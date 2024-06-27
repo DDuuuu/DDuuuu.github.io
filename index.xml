@@ -1,16 +1,16 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
   <channel>
     <title>AndrewDu&#39;s cabin</title>
-    <link>http://localhost:1313/</link>
+    <link>https://DDuuuu.github.io/</link>
     <description>欢迎小憩片刻</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>Copyright© 2024 Andrew.Du</copyright><lastBuildDate>Thu, 22 Feb 2018 20:14:22 &#43;0800</lastBuildDate>
-      <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+      <atom:link href="https://DDuuuu.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
   <title>是谁？从哪里来？要去哪里？</title>
-  <link>http://localhost:1313/posts/introduce/</link>
+  <link>https://DDuuuu.github.io/posts/introduce/</link>
   <pubDate>Thu, 22 Feb 2018 20:14:22 &#43;0800</pubDate>
   <author>Andrew.Du</author>
-  <guid>http://localhost:1313/posts/introduce/</guid>
+  <guid>https://DDuuuu.github.io/posts/introduce/</guid>
   <description><![CDATA[欢迎来到小木屋]]></description>
 </item>
 </channel>

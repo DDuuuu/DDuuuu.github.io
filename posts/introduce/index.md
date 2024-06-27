@@ -8,5 +8,5 @@
 ---
 
 > 作者: Andrew.Du  
-> URL: http://localhost:1313/posts/introduce/  
+> URL: https://DDuuuu.github.io/posts/introduce/  
 
