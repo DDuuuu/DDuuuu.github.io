@@ -2,9 +2,15 @@
   xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml"
   ><url>
-      <loc>https://DDuuuu.github.io/</loc><lastmod>2018-02-22T20:14:22&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-      <loc>https://DDuuuu.github.io/posts/</loc><lastmod>2018-02-22T20:14:22&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-      <loc>https://DDuuuu.github.io/posts/introduce/</loc><lastmod>2018-02-22T20:14:22&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-      <loc>https://DDuuuu.github.io/categories/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-      <loc>https://DDuuuu.github.io/collections/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-      <loc>https://DDuuuu.github.io/tags/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url></urlset>
+      <loc>https://DDuuuu.github.io/</loc><lastmod>2023-02-20T20:14:22&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+      <loc>https://DDuuuu.github.io/2023/02/my-first-post/</loc><lastmod>2023-02-20T20:14:22&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+      <loc>https://DDuuuu.github.io/posts/</loc><lastmod>2023-02-20T20:14:22&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+      <loc>https://DDuuuu.github.io/categories/</loc><lastmod>2022-09-12T20:14:22&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+      <loc>https://DDuuuu.github.io/tags/</loc><lastmod>2022-09-12T20:14:22&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+      <loc>https://DDuuuu.github.io/tags/touchsocket/</loc><lastmod>2022-09-12T20:14:22&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+      <loc>https://DDuuuu.github.io/categories/touchsocket/</loc><lastmod>2022-09-12T20:14:22&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+      <loc>https://DDuuuu.github.io/2022/09/touchsocket-dependecy/</loc><lastmod>2022-09-12T20:14:22&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+      <loc>https://DDuuuu.github.io/tags/%E4%BE%9D%E8%B5%96%E5%B1%9E%E6%80%A7/</loc><lastmod>2022-09-12T20:14:22&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+      <loc>https://DDuuuu.github.io/2018/02/%E6%A6%82%E8%A6%81/</loc><lastmod>2018-02-22T20:14:22&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+      <loc>https://DDuuuu.github.io/about/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+      <loc>https://DDuuuu.github.io/collections/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url></urlset>

@@ -1,4 +1,4 @@
-# 是谁？从哪里来？要去哪里？
+# 概要
 
 
 欢迎来到小木屋
@@ -8,5 +8,5 @@
 ---
 
 > 作者: Andrew.Du  
-> URL: https://DDuuuu.github.io/posts/introduce/  
+> URL: http://localhost:1313/posts/introduce/  
 

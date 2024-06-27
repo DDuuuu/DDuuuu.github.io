@@ -2,13 +2,30 @@
   <channel>
     <title>所有文章</title>
     <link>https://DDuuuu.github.io/posts/</link>
-    <description>所有文章 | AndrewDu&#39;s cabin</description>
-    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>Copyright© 2024 Andrew.Du</copyright><lastBuildDate>Thu, 22 Feb 2018 20:14:22 &#43;0800</lastBuildDate><atom:link href="https://DDuuuu.github.io/posts/" rel="self" type="application/rss+xml" /><item>
-  <title>是谁？从哪里来？要去哪里？</title>
-  <link>https://DDuuuu.github.io/posts/introduce/</link>
+    <description>所有文章 | AndrewDu&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>978089234@qq.com (Andrew.Du)</managingEditor>
+      <webMaster>978089234@qq.com (Andrew.Du)</webMaster><copyright>Copyright© 2024 Andrew.Du</copyright><lastBuildDate>Mon, 20 Feb 2023 20:14:22 &#43;0800</lastBuildDate><atom:link href="https://DDuuuu.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+  <title>My First Post</title>
+  <link>https://DDuuuu.github.io/2023/02/my-first-post/</link>
+  <pubDate>Mon, 20 Feb 2023 20:14:22 &#43;0800</pubDate>
+  <author>Andrew.Du</author>
+  <guid>https://DDuuuu.github.io/2023/02/my-first-post/</guid>
+  <description><![CDATA[A blog (a truncation of &ldquo;weblog&rdquo;) is an informational website published on the World Wide Web consisting of discrete, often informal diary-style text entries (posts). Posts are typically displayed in reverse chronological order so that the most recent post appears first, at the top of the web page. Until 2009, blogs were usually the work of a single individual,[citation needed] occasionally of a small group, and often covered a single subject or topic.]]></description>
+</item>
+<item>
+  <title>TouchSocket 依赖属性</title>
+  <link>https://DDuuuu.github.io/2022/09/touchsocket-dependecy/</link>
+  <pubDate>Sat, 10 Sep 2022 20:14:22 &#43;0800</pubDate>
+  <author>Andrew.Du</author>
+  <guid>https://DDuuuu.github.io/2022/09/touchsocket-dependecy/</guid>
+  <description><![CDATA[概述 框架地址：https://github.com/RRQM/TouchSocket 文档地址：https://www.yuque.com/r]]></description>
+</item>
+<item>
+  <title>概要</title>
+  <link>https://DDuuuu.github.io/2018/02/%E6%A6%82%E8%A6%81/</link>
   <pubDate>Thu, 22 Feb 2018 20:14:22 &#43;0800</pubDate>
   <author>Andrew.Du</author>
-  <guid>https://DDuuuu.github.io/posts/introduce/</guid>
+  <guid>https://DDuuuu.github.io/2018/02/%E6%A6%82%E8%A6%81/</guid>
   <description><![CDATA[欢迎来到小木屋]]></description>
 </item>
 </channel>
