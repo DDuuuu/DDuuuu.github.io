@@ -4,13 +4,29 @@
     <link>https://DDuuuu.github.io/posts/</link>
     <description>所有文章 | AndrewDu&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>978089234@qq.com (AndrewDu)</managingEditor>
-      <webMaster>978089234@qq.com (AndrewDu)</webMaster><copyright>Copyright© Andrew.Du</copyright><lastBuildDate>Wed, 07 Sep 2022 17:09:22 &#43;0800</lastBuildDate><atom:link href="https://DDuuuu.github.io/posts/" rel="self" type="application/rss+xml" /><item>
-  <title>TouchSocket 依赖属性</title>
-  <link>https://DDuuuu.github.io/2022/09/touchsocket1-dependencyproperties/</link>
-  <pubDate>Wed, 07 Sep 2022 17:09:22 &#43;0800</pubDate>
+      <webMaster>978089234@qq.com (AndrewDu)</webMaster><copyright>Copyright© Andrew.Du</copyright><lastBuildDate>Mon, 12 Sep 2022 17:09:22 &#43;0800</lastBuildDate><atom:link href="https://DDuuuu.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+  <title>TouchSocket 文件池</title>
+  <link>https://DDuuuu.github.io/2022/09/touchsocket4-filepool/</link>
+  <pubDate>Mon, 12 Sep 2022 17:09:22 &#43;0800</pubDate>
   <author>AndrewDu</author>
-  <guid>https://DDuuuu.github.io/2022/09/touchsocket1-dependencyproperties/</guid>
-  <description><![CDATA[概述 注意：该版本为TouchSocket 0.3.5,最新版已有较大改动。 该框架实现了广泛的Socket应用，NAT，各种RPC，文件传输，W]]></description>
+  <guid>https://DDuuuu.github.io/2022/09/touchsocket4-filepool/</guid>
+  <description><![CDATA[概述 注意：该版本为TouchSocket 0.3.5,最新版已有较大改动。 读写文件是应用中必不可少的操作，也是比较经典的问题。该问题一般要求：]]></description>
+</item>
+<item>
+  <title>TouchSocket 字节池和待处理池</title>
+  <link>https://DDuuuu.github.io/2022/09/touchsocket3-bytespoolwaithandlepool/</link>
+  <pubDate>Sat, 10 Sep 2022 17:09:22 &#43;0800</pubDate>
+  <author>AndrewDu</author>
+  <guid>https://DDuuuu.github.io/2022/09/touchsocket3-bytespoolwaithandlepool/</guid>
+  <description><![CDATA[概述 注意：该版本为TouchSocket 0.3.5,最新版已有较大改动。 池是高性能组件中必不可少的东西，池最主要的功能是复用，在软件中创建和]]></description>
+</item>
+<item>
+  <title>TouchSocket 依赖注入容器</title>
+  <link>https://DDuuuu.github.io/2022/09/touchsocket2-dependencyinjection/</link>
+  <pubDate>Fri, 09 Sep 2022 17:09:22 &#43;0800</pubDate>
+  <author>AndrewDu</author>
+  <guid>https://DDuuuu.github.io/2022/09/touchsocket2-dependencyinjection/</guid>
+  <description><![CDATA[概述 注意：该版本为TouchSocket 0.3.5,最新版已有较大改动。 容器现在已经成为各种组件的标配了，为什么容器这么火，确实是太好用了。]]></description>
 </item>
 <item>
   <title>TouchSocket 依赖属性</title>

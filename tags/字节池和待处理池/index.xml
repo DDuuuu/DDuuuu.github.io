@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>字节池和待处理池 - 标签 - AndrewDu&#39;s blog</title>
+    <link>https://DDuuuu.github.io/tags/%E5%AD%97%E8%8A%82%E6%B1%A0%E5%92%8C%E5%BE%85%E5%A4%84%E7%90%86%E6%B1%A0/</link>
+    <description>字节池和待处理池 - 标签 | AndrewDu&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>978089234@qq.com (AndrewDu)</managingEditor>
+      <webMaster>978089234@qq.com (AndrewDu)</webMaster><copyright>Copyright© Andrew.Du</copyright><lastBuildDate>Sat, 10 Sep 2022 17:09:22 &#43;0800</lastBuildDate><atom:link href="https://DDuuuu.github.io/tags/%E5%AD%97%E8%8A%82%E6%B1%A0%E5%92%8C%E5%BE%85%E5%A4%84%E7%90%86%E6%B1%A0/" rel="self" type="application/rss+xml" /><item>
+  <title>TouchSocket 字节池和待处理池</title>
+  <link>https://DDuuuu.github.io/2022/09/touchsocket3-bytespoolwaithandlepool/</link>
+  <pubDate>Sat, 10 Sep 2022 17:09:22 &#43;0800</pubDate>
+  <author>AndrewDu</author>
+  <guid>https://DDuuuu.github.io/2022/09/touchsocket3-bytespoolwaithandlepool/</guid>
+  <description><![CDATA[概述 注意：该版本为TouchSocket 0.3.5,最新版已有较大改动。 池是高性能组件中必不可少的东西，池最主要的功能是复用，在软件中创建和]]></description>
+</item>
+</channel>
+</rss>
