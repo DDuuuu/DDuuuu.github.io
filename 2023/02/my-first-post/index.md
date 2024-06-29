@@ -6,6 +6,6 @@ A blog (a truncation of &#34;weblog&#34;) is an informational website published 
 
 ---
 
-> 作者: Andrew.Du  
-> URL: https://DDuuuu.github.io/2023/02/my-first-post/  
+> 作者: [Andrew.Du](https://github.com/DDuuuu)  
+> URL: http://localhost:1313/2023/02/my-first-post/  
 

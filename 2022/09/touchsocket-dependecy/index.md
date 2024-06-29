@@ -382,6 +382,6 @@ public class TouchSocketConfig : DependencyObject
 
 ---
 
-> 作者: Andrew.Du  
-> URL: https://DDuuuu.github.io/2022/09/touchsocket-dependecy/  
+> 作者: [Andrew.Du](https://github.com/DDuuuu)  
+> URL: http://localhost:1313/2022/09/touchsocket-dependecy/  
 

@@ -1,16 +1,16 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
   <channel>
-    <title>TouchSocket - 分类</title>
+    <title>TouchSocket - 分类 - AndrewDu&#39;s blog</title>
     <link>https://DDuuuu.github.io/categories/touchsocket/</link>
     <description>TouchSocket - 分类 | AndrewDu&#39;s blog</description>
-    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>978089234@qq.com (Andrew.Du)</managingEditor>
-      <webMaster>978089234@qq.com (Andrew.Du)</webMaster><copyright>Copyright© 2024 Andrew.Du</copyright><lastBuildDate>Sat, 10 Sep 2022 20:14:22 &#43;0800</lastBuildDate><atom:link href="https://DDuuuu.github.io/categories/touchsocket/" rel="self" type="application/rss+xml" /><item>
+    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>978089234@qq.com (AndrewDu)</managingEditor>
+      <webMaster>978089234@qq.com (AndrewDu)</webMaster><copyright>Copyright© Andrew.Du</copyright><lastBuildDate>Wed, 07 Sep 2022 17:09:22 &#43;0800</lastBuildDate><atom:link href="https://DDuuuu.github.io/categories/touchsocket/" rel="self" type="application/rss+xml" /><item>
   <title>TouchSocket 依赖属性</title>
-  <link>https://DDuuuu.github.io/2022/09/touchsocket-dependecy/</link>
-  <pubDate>Sat, 10 Sep 2022 20:14:22 &#43;0800</pubDate>
-  <author>Andrew.Du</author>
-  <guid>https://DDuuuu.github.io/2022/09/touchsocket-dependecy/</guid>
-  <description><![CDATA[概述 框架地址：https://github.com/RRQM/TouchSocket 文档地址：https://www.yuque.com/r]]></description>
+  <link>https://DDuuuu.github.io/2022/09/touchsocket1-dependencyproperties/</link>
+  <pubDate>Wed, 07 Sep 2022 17:09:22 &#43;0800</pubDate>
+  <author>AndrewDu</author>
+  <guid>https://DDuuuu.github.io/2022/09/touchsocket1-dependencyproperties/</guid>
+  <description><![CDATA[概述 注意：该版本为TouchSocket 0.3.5,最新版已有较大改动。 该框架实现了广泛的Socket应用，NAT，各种RPC，文件传输，W]]></description>
 </item>
 </channel>
 </rss>
