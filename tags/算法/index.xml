@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>算法 - 标签 - AndrewDu&#39;s blog</title>
+    <link>https://DDuuuu.github.io/tags/%E7%AE%97%E6%B3%95/</link>
+    <description>算法 - 标签 | AndrewDu&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>978089234@qq.com (AndrewDu)</managingEditor>
+      <webMaster>978089234@qq.com (AndrewDu)</webMaster><copyright>Copyright© Andrew.Du</copyright><lastBuildDate>Tue, 14 Jun 2022 17:09:22 &#43;0800</lastBuildDate><atom:link href="https://DDuuuu.github.io/tags/%E7%AE%97%E6%B3%95/" rel="self" type="application/rss+xml" /><item>
+  <title>算法 队列与链表</title>
+  <link>https://DDuuuu.github.io/2022/06/algorithm1-queuesandlinks/</link>
+  <pubDate>Tue, 14 Jun 2022 17:09:22 &#43;0800</pubDate>
+  <author>AndrewDu</author>
+  <guid>https://DDuuuu.github.io/2022/06/algorithm1-queuesandlinks/</guid>
+  <description><![CDATA[实现队列的一些思路 数组的优劣： 读取：连续的地址空间，数组全部或者部分元素被连续存在CPU缓存里面，读取速度非常快。 插入/删除/扩容：插入和删]]></description>
+</item>
+</channel>
+</rss>

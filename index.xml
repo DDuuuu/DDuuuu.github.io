@@ -70,5 +70,13 @@
   <guid>https://DDuuuu.github.io/2022/09/touchsocket1-dependencyproperties/</guid>
   <description><![CDATA[概述 注意：该版本为TouchSocket 0.3.5,最新版已有较大改动。 该框架实现了广泛的Socket应用，NAT，各种RPC，文件传输，W]]></description>
 </item>
+<item>
+  <title>算法 队列与链表</title>
+  <link>https://DDuuuu.github.io/2022/06/algorithm1-queuesandlinks/</link>
+  <pubDate>Tue, 14 Jun 2022 17:09:22 &#43;0800</pubDate>
+  <author>AndrewDu</author>
+  <guid>https://DDuuuu.github.io/2022/06/algorithm1-queuesandlinks/</guid>
+  <description><![CDATA[实现队列的一些思路 数组的优劣： 读取：连续的地址空间，数组全部或者部分元素被连续存在CPU缓存里面，读取速度非常快。 插入/删除/扩容：插入和删]]></description>
+</item>
 </channel>
 </rss>
