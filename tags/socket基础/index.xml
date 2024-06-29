@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>Socket基础 - 标签 - AndrewDu&#39;s blog</title>
+    <link>https://DDuuuu.github.io/tags/socket%E5%9F%BA%E7%A1%80/</link>
+    <description>Socket基础 - 标签 | AndrewDu&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>978089234@qq.com (AndrewDu)</managingEditor>
+      <webMaster>978089234@qq.com (AndrewDu)</webMaster><copyright>Copyright© Andrew.Du</copyright><lastBuildDate>Fri, 16 Sep 2022 17:09:22 &#43;0800</lastBuildDate><atom:link href="https://DDuuuu.github.io/tags/socket%E5%9F%BA%E7%A1%80/" rel="self" type="application/rss+xml" /><item>
+  <title>TouchSocket Socket基础</title>
+  <link>https://DDuuuu.github.io/2022/09/touchsocket6-socket/</link>
+  <pubDate>Fri, 16 Sep 2022 17:09:22 &#43;0800</pubDate>
+  <author>AndrewDu</author>
+  <guid>https://DDuuuu.github.io/2022/09/touchsocket6-socket/</guid>
+  <description><![CDATA[概述 注意：该版本为TouchSocket 0.3.5,最新版已有较大改动。 TouchSocket的底层使用完成端口模型，基于事件的异步模式。关]]></description>
+</item>
+</channel>
+</rss>

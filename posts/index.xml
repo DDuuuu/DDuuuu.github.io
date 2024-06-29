@@ -4,18 +4,34 @@
     <link>https://DDuuuu.github.io/posts/</link>
     <description>所有文章 | AndrewDu&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>978089234@qq.com (AndrewDu)</managingEditor>
-      <webMaster>978089234@qq.com (AndrewDu)</webMaster><copyright>Copyright© Andrew.Du</copyright><lastBuildDate>Wed, 14 Sep 2022 17:09:22 &#43;0800</lastBuildDate><atom:link href="https://DDuuuu.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>978089234@qq.com (AndrewDu)</webMaster><copyright>Copyright© Andrew.Du</copyright><lastBuildDate>Fri, 14 Oct 2022 17:09:22 &#43;0800</lastBuildDate><atom:link href="https://DDuuuu.github.io/posts/" rel="self" type="application/rss+xml" /><item>
   <title>DotNet基础 Socket</title>
-  <link>https://DDuuuu.github.io/2022/09/dotnetbase1-socket/</link>
-  <pubDate>Wed, 14 Sep 2022 17:09:22 &#43;0800</pubDate>
+  <link>https://DDuuuu.github.io/2022/10/dotnetbase1-socket/</link>
+  <pubDate>Fri, 14 Oct 2022 17:09:22 &#43;0800</pubDate>
   <author>AndrewDu</author>
-  <guid>https://DDuuuu.github.io/2022/09/dotnetbase1-socket/</guid>
+  <guid>https://DDuuuu.github.io/2022/10/dotnetbase1-socket/</guid>
   <description><![CDATA[概述 高性能的套接字编程围绕着两个方面：异步和复用。异步：高性能就是最大化计算机资源的利用，是不可能让线程有阻塞的，所以就有了各种异步模式。复]]></description>
+</item>
+<item>
+  <title>TouchSocket 插件</title>
+  <link>https://DDuuuu.github.io/2022/09/touchsocket7-plugs/</link>
+  <pubDate>Sat, 17 Sep 2022 17:09:22 &#43;0800</pubDate>
+  <author>AndrewDu</author>
+  <guid>https://DDuuuu.github.io/2022/09/touchsocket7-plugs/</guid>
+  <description><![CDATA[概述 注意：该版本为TouchSocket 0.3.5,最新版已有较大改动。 TouchSocket提供插件方式的扩展，这种方式对原框架的耦合较小]]></description>
+</item>
+<item>
+  <title>TouchSocket Socket基础</title>
+  <link>https://DDuuuu.github.io/2022/09/touchsocket6-socket/</link>
+  <pubDate>Fri, 16 Sep 2022 17:09:22 &#43;0800</pubDate>
+  <author>AndrewDu</author>
+  <guid>https://DDuuuu.github.io/2022/09/touchsocket6-socket/</guid>
+  <description><![CDATA[概述 注意：该版本为TouchSocket 0.3.5,最新版已有较大改动。 TouchSocket的底层使用完成端口模型，基于事件的异步模式。关]]></description>
 </item>
 <item>
   <title>TouchSocket 封装和扩展</title>
   <link>https://DDuuuu.github.io/2022/09/touchsocket5-encapsulationextension/</link>
-  <pubDate>Tue, 13 Sep 2022 17:09:22 &#43;0800</pubDate>
+  <pubDate>Thu, 15 Sep 2022 17:09:22 &#43;0800</pubDate>
   <author>AndrewDu</author>
   <guid>https://DDuuuu.github.io/2022/09/touchsocket5-encapsulationextension/</guid>
   <description><![CDATA[概述 注意：该版本为TouchSocket 0.3.5,最新版已有较大改动。 Socket模型中需要考虑对各种方法的封装，需要考虑对各种业务场景的]]></description>
@@ -23,7 +39,7 @@
 <item>
   <title>TouchSocket 文件池</title>
   <link>https://DDuuuu.github.io/2022/09/touchsocket4-filepool/</link>
-  <pubDate>Mon, 12 Sep 2022 17:09:22 &#43;0800</pubDate>
+  <pubDate>Wed, 14 Sep 2022 17:09:22 &#43;0800</pubDate>
   <author>AndrewDu</author>
   <guid>https://DDuuuu.github.io/2022/09/touchsocket4-filepool/</guid>
   <description><![CDATA[概述 注意：该版本为TouchSocket 0.3.5,最新版已有较大改动。 读写文件是应用中必不可少的操作，也是比较经典的问题。该问题一般要求：]]></description>

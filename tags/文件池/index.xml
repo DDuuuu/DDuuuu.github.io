@@ -4,10 +4,10 @@
     <link>https://DDuuuu.github.io/tags/%E6%96%87%E4%BB%B6%E6%B1%A0/</link>
     <description>文件池 - 标签 | AndrewDu&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>978089234@qq.com (AndrewDu)</managingEditor>
-      <webMaster>978089234@qq.com (AndrewDu)</webMaster><copyright>Copyright© Andrew.Du</copyright><lastBuildDate>Mon, 12 Sep 2022 17:09:22 &#43;0800</lastBuildDate><atom:link href="https://DDuuuu.github.io/tags/%E6%96%87%E4%BB%B6%E6%B1%A0/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>978089234@qq.com (AndrewDu)</webMaster><copyright>Copyright© Andrew.Du</copyright><lastBuildDate>Wed, 14 Sep 2022 17:09:22 &#43;0800</lastBuildDate><atom:link href="https://DDuuuu.github.io/tags/%E6%96%87%E4%BB%B6%E6%B1%A0/" rel="self" type="application/rss+xml" /><item>
   <title>TouchSocket 文件池</title>
   <link>https://DDuuuu.github.io/2022/09/touchsocket4-filepool/</link>
-  <pubDate>Mon, 12 Sep 2022 17:09:22 &#43;0800</pubDate>
+  <pubDate>Wed, 14 Sep 2022 17:09:22 &#43;0800</pubDate>
   <author>AndrewDu</author>
   <guid>https://DDuuuu.github.io/2022/09/touchsocket4-filepool/</guid>
   <description><![CDATA[概述 注意：该版本为TouchSocket 0.3.5,最新版已有较大改动。 读写文件是应用中必不可少的操作，也是比较经典的问题。该问题一般要求：]]></description>

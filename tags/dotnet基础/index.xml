@@ -4,12 +4,12 @@
     <link>https://DDuuuu.github.io/tags/dotnet%E5%9F%BA%E7%A1%80/</link>
     <description>DotNet基础 - 标签 | AndrewDu&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>978089234@qq.com (AndrewDu)</managingEditor>
-      <webMaster>978089234@qq.com (AndrewDu)</webMaster><copyright>Copyright© Andrew.Du</copyright><lastBuildDate>Wed, 14 Sep 2022 17:09:22 &#43;0800</lastBuildDate><atom:link href="https://DDuuuu.github.io/tags/dotnet%E5%9F%BA%E7%A1%80/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>978089234@qq.com (AndrewDu)</webMaster><copyright>Copyright© Andrew.Du</copyright><lastBuildDate>Fri, 14 Oct 2022 17:09:22 &#43;0800</lastBuildDate><atom:link href="https://DDuuuu.github.io/tags/dotnet%E5%9F%BA%E7%A1%80/" rel="self" type="application/rss+xml" /><item>
   <title>DotNet基础 Socket</title>
-  <link>https://DDuuuu.github.io/2022/09/dotnetbase1-socket/</link>
-  <pubDate>Wed, 14 Sep 2022 17:09:22 &#43;0800</pubDate>
+  <link>https://DDuuuu.github.io/2022/10/dotnetbase1-socket/</link>
+  <pubDate>Fri, 14 Oct 2022 17:09:22 &#43;0800</pubDate>
   <author>AndrewDu</author>
-  <guid>https://DDuuuu.github.io/2022/09/dotnetbase1-socket/</guid>
+  <guid>https://DDuuuu.github.io/2022/10/dotnetbase1-socket/</guid>
   <description><![CDATA[概述 高性能的套接字编程围绕着两个方面：异步和复用。异步：高性能就是最大化计算机资源的利用，是不可能让线程有阻塞的，所以就有了各种异步模式。复]]></description>
 </item>
 </channel>
