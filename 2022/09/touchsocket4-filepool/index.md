@@ -72,11 +72,11 @@ Reader()
 
 相关类图：
 
-![image-20220911083207553](/images/touchsocket/image-20220911083207553.png)
+![image-20220911083207553](/touchsocket/image-20220911083207553.png)
 
-![image-20220911083219384](/images/touchsocket/image-20220911083219384.png)
+![image-20220911083219384](/touchsocket/image-20220911083219384.png)
 
-![image-20220911083228691](/images/touchsocket/image-20220911083228691.png)
+![image-20220911083228691](/touchsocket/image-20220911083228691.png)
 
 读写模式的互斥通过状态保证:
 
