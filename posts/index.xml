@@ -4,7 +4,31 @@
     <link>https://DDuuuu.github.io/posts/</link>
     <description>所有文章 | AndrewDu&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>978089234@qq.com (AndrewDu)</managingEditor>
-      <webMaster>978089234@qq.com (AndrewDu)</webMaster><copyright>Copyright© Andrew.Du</copyright><lastBuildDate>Fri, 14 Oct 2022 17:09:22 &#43;0800</lastBuildDate><atom:link href="https://DDuuuu.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>978089234@qq.com (AndrewDu)</webMaster><copyright>Copyright© Andrew.Du</copyright><lastBuildDate>Wed, 16 Nov 2022 17:09:22 &#43;0800</lastBuildDate><atom:link href="https://DDuuuu.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+  <title>LeeCode-34-数组-查找第一个和最后一个位置</title>
+  <link>https://DDuuuu.github.io/2022/11/leecode34/</link>
+  <pubDate>Wed, 16 Nov 2022 17:09:22 &#43;0800</pubDate>
+  <author>AndrewDu</author>
+  <guid>https://DDuuuu.github.io/2022/11/leecode34/</guid>
+  <description><![CDATA[题目 题目链接 给你一个按照非递减顺序排列的整数数组 nums，和一个目标值 target。请你找出给定目标值在数组中的开始位置和结束位置。 如果数组]]></description>
+</item>
+<item>
+  <title>LeeCode-35-数组-搜索插入位置</title>
+  <link>https://DDuuuu.github.io/2022/11/leecode35/</link>
+  <pubDate>Tue, 15 Nov 2022 17:09:22 &#43;0800</pubDate>
+  <author>AndrewDu</author>
+  <guid>https://DDuuuu.github.io/2022/11/leecode35/</guid>
+  <description><![CDATA[题目 题目链接 给定一个排序数组和一个目标值，在数组中找到目标值，并返回其索引。如果目标值不存在于数组中，返回它将会被按顺序插入的位置。 请必须使]]></description>
+</item>
+<item>
+  <title>LeeCode-704-数组-二分查找</title>
+  <link>https://DDuuuu.github.io/2022/11/leecode704/</link>
+  <pubDate>Mon, 14 Nov 2022 17:09:22 &#43;0800</pubDate>
+  <author>AndrewDu</author>
+  <guid>https://DDuuuu.github.io/2022/11/leecode704/</guid>
+  <description><![CDATA[题目 给定一个 n 个元素有序的（升序）整型数组 nums 和一个目标值 target ，写一个函数搜索 nums 中的 target，如果目标值存在返回下标，否则返回 -1。 示例 1: 1]]></description>
+</item>
+<item>
   <title>DotNet基础 Socket</title>
   <link>https://DDuuuu.github.io/2022/10/dotnetbase1-socket/</link>
   <pubDate>Fri, 14 Oct 2022 17:09:22 &#43;0800</pubDate>
@@ -59,22 +83,6 @@
   <author>AndrewDu</author>
   <guid>https://DDuuuu.github.io/2022/09/touchsocket2-dependencyinjection/</guid>
   <description><![CDATA[概述 注意：该版本为TouchSocket 0.3.5,最新版已有较大改动。 容器现在已经成为各种组件的标配了，为什么容器这么火，确实是太好用了。]]></description>
-</item>
-<item>
-  <title>TouchSocket 依赖属性</title>
-  <link>https://DDuuuu.github.io/2022/09/touchsocket1-dependencyproperties/</link>
-  <pubDate>Wed, 07 Sep 2022 17:09:22 &#43;0800</pubDate>
-  <author>AndrewDu</author>
-  <guid>https://DDuuuu.github.io/2022/09/touchsocket1-dependencyproperties/</guid>
-  <description><![CDATA[概述 注意：该版本为TouchSocket 0.3.5,最新版已有较大改动。 该框架实现了广泛的Socket应用，NAT，各种RPC，文件传输，W]]></description>
-</item>
-<item>
-  <title>算法 队列与链表</title>
-  <link>https://DDuuuu.github.io/2022/06/algorithm1-queuesandlinks/</link>
-  <pubDate>Tue, 14 Jun 2022 17:09:22 &#43;0800</pubDate>
-  <author>AndrewDu</author>
-  <guid>https://DDuuuu.github.io/2022/06/algorithm1-queuesandlinks/</guid>
-  <description><![CDATA[实现队列的一些思路 数组的优劣： 读取：连续的地址空间，数组全部或者部分元素被连续存在CPU缓存里面，读取速度非常快。 插入/删除/扩容：插入和删]]></description>
 </item>
 </channel>
 </rss>

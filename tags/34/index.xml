@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>34 - 标签 - AndrewDu&#39;s blog</title>
+    <link>https://DDuuuu.github.io/tags/34/</link>
+    <description>34 - 标签 | AndrewDu&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>978089234@qq.com (AndrewDu)</managingEditor>
+      <webMaster>978089234@qq.com (AndrewDu)</webMaster><copyright>Copyright© Andrew.Du</copyright><lastBuildDate>Wed, 16 Nov 2022 17:09:22 &#43;0800</lastBuildDate><atom:link href="https://DDuuuu.github.io/tags/34/" rel="self" type="application/rss+xml" /><item>
+  <title>LeeCode-34-数组-查找第一个和最后一个位置</title>
+  <link>https://DDuuuu.github.io/2022/11/leecode34/</link>
+  <pubDate>Wed, 16 Nov 2022 17:09:22 &#43;0800</pubDate>
+  <author>AndrewDu</author>
+  <guid>https://DDuuuu.github.io/2022/11/leecode34/</guid>
+  <description><![CDATA[题目 题目链接 给你一个按照非递减顺序排列的整数数组 nums，和一个目标值 target。请你找出给定目标值在数组中的开始位置和结束位置。 如果数组]]></description>
+</item>
+</channel>
+</rss>
