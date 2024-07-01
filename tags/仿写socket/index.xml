@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>仿写Socket - 标签 - AndrewDu&#39;s blog</title>
+    <link>https://DDuuuu.github.io/tags/%E4%BB%BF%E5%86%99socket/</link>
+    <description>仿写Socket - 标签 | AndrewDu&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>978089234@qq.com (AndrewDu)</managingEditor>
+      <webMaster>978089234@qq.com (AndrewDu)</webMaster><copyright>Copyright© Andrew.Du</copyright><lastBuildDate>Wed, 27 May 2020 17:09:22 &#43;0800</lastBuildDate><atom:link href="https://DDuuuu.github.io/tags/%E4%BB%BF%E5%86%99socket/" rel="self" type="application/rss+xml" /><item>
+  <title>DotNet基础 仿写Socket</title>
+  <link>https://DDuuuu.github.io/2020/05/dotnetbase10-socket/</link>
+  <pubDate>Wed, 27 May 2020 17:09:22 &#43;0800</pubDate>
+  <author>AndrewDu</author>
+  <guid>https://DDuuuu.github.io/2020/05/dotnetbase10-socket/</guid>
+  <description><![CDATA[最近和Socket干上了，连续肝了2个星期了，目前自己连抄带写的Socket已完成60%。来讲讲我在肝的过程中所思所想。为啥这么和Socke]]></description>
+</item>
+</channel>
+</rss>

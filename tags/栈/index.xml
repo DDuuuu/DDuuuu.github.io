@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>栈 - 标签 - AndrewDu&#39;s blog</title>
+    <link>https://DDuuuu.github.io/tags/%E6%A0%88/</link>
+    <description>栈 - 标签 | AndrewDu&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>978089234@qq.com (AndrewDu)</managingEditor>
+      <webMaster>978089234@qq.com (AndrewDu)</webMaster><copyright>Copyright© Andrew.Du</copyright><lastBuildDate>Sun, 22 Nov 2020 17:09:22 &#43;0800</lastBuildDate><atom:link href="https://DDuuuu.github.io/tags/%E6%A0%88/" rel="self" type="application/rss+xml" /><item>
+  <title>算法 包 栈 队列</title>
+  <link>https://DDuuuu.github.io/2020/11/algorithm2/</link>
+  <pubDate>Sun, 22 Nov 2020 17:09:22 &#43;0800</pubDate>
+  <author>AndrewDu</author>
+  <guid>https://DDuuuu.github.io/2020/11/algorithm2/</guid>
+  <description><![CDATA[Bag（包） 背包：不支持删除元素的集合数据类型。 1 2 3 4 5 6 public interface IBag&lt;TItem&gt; : IEnumerable&lt;TItem&gt;, IDisposable { bool IsEmpty { get; } int Length { get; } void Add(TItem item); } 数组实现 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15]]></description>
+</item>
+</channel>
+</rss>

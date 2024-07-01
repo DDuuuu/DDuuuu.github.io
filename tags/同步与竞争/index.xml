@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>同步与竞争 - 标签 - AndrewDu&#39;s blog</title>
+    <link>https://DDuuuu.github.io/tags/%E5%90%8C%E6%AD%A5%E4%B8%8E%E7%AB%9E%E4%BA%89/</link>
+    <description>同步与竞争 - 标签 | AndrewDu&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>978089234@qq.com (AndrewDu)</managingEditor>
+      <webMaster>978089234@qq.com (AndrewDu)</webMaster><copyright>Copyright© Andrew.Du</copyright><lastBuildDate>Sun, 01 Mar 2020 17:09:22 &#43;0800</lastBuildDate><atom:link href="https://DDuuuu.github.io/tags/%E5%90%8C%E6%AD%A5%E4%B8%8E%E7%AB%9E%E4%BA%89/" rel="self" type="application/rss+xml" /><item>
+  <title>NetCLRVia 同步与竞争</title>
+  <link>https://DDuuuu.github.io/2020/03/dotnetbase8-netclrvia/</link>
+  <pubDate>Sun, 01 Mar 2020 17:09:22 &#43;0800</pubDate>
+  <author>AndrewDu</author>
+  <guid>https://DDuuuu.github.io/2020/03/dotnetbase8-netclrvia/</guid>
+  <description><![CDATA[基元线程同步构造 构建可伸缩的，响应灵敏的应用程序，关键在于不要阻塞线程， 多个线程同时访问共享数据，获取并释放一个线程同步锁。锁会损害性能，获]]></description>
+</item>
+</channel>
+</rss>

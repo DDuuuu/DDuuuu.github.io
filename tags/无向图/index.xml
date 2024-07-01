@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>无向图 - 标签 - AndrewDu&#39;s blog</title>
+    <link>https://DDuuuu.github.io/tags/%E6%97%A0%E5%90%91%E5%9B%BE/</link>
+    <description>无向图 - 标签 | AndrewDu&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>978089234@qq.com (AndrewDu)</managingEditor>
+      <webMaster>978089234@qq.com (AndrewDu)</webMaster><copyright>Copyright© Andrew.Du</copyright><lastBuildDate>Wed, 16 Dec 2020 17:09:22 &#43;0800</lastBuildDate><atom:link href="https://DDuuuu.github.io/tags/%E6%97%A0%E5%90%91%E5%9B%BE/" rel="self" type="application/rss+xml" /><item>
+  <title>算法 图 无向图</title>
+  <link>https://DDuuuu.github.io/2020/12/algorithm6/</link>
+  <pubDate>Wed, 16 Dec 2020 17:09:22 &#43;0800</pubDate>
+  <author>AndrewDu</author>
+  <guid>https://DDuuuu.github.io/2020/12/algorithm6/</guid>
+  <description><![CDATA[图 无向图，有向图，加权图，加权有向图 将对象称为触点，将整数对称为连接，将等价类称为连通分量或是简称分量 连通性问题 目标：编写一个程序来过滤序列]]></description>
+</item>
+</channel>
+</rss>

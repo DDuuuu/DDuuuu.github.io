@@ -12,5 +12,77 @@
   <guid>https://DDuuuu.github.io/2022/06/algorithm1-queuesandlinks/</guid>
   <description><![CDATA[实现队列的一些思路 数组的优劣： 读取：连续的地址空间，数组全部或者部分元素被连续存在CPU缓存里面，读取速度非常快。 插入/删除/扩容：插入和删]]></description>
 </item>
+<item>
+  <title>算法 字符串压缩</title>
+  <link>https://DDuuuu.github.io/2021/05/algorithm12/</link>
+  <pubDate>Thu, 20 May 2021 17:09:22 &#43;0800</pubDate>
+  <author>AndrewDu</author>
+  <guid>https://DDuuuu.github.io/2021/05/algorithm12/</guid>
+  <description><![CDATA[数据压缩 基础模型 压缩盒，能够将一个比特流B 转化为压缩后的版本C(B); 展开盒，能够将C(B) 转化回B 。 这种模型叫做无损压缩模型一保证不丢失任]]></description>
+</item>
+<item>
+  <title>算法 字符串查找</title>
+  <link>https://DDuuuu.github.io/2021/05/algorithm11/</link>
+  <pubDate>Wed, 05 May 2021 17:09:22 &#43;0800</pubDate>
+  <author>AndrewDu</author>
+  <guid>https://DDuuuu.github.io/2021/05/algorithm11/</guid>
+  <description><![CDATA[字符串查找 单词查找树 单词查找树是由链接的结点所组成的数据结构，这些链接可能为空，也可能指向其他结点。 每个结点都只可能有一个指向它的结点，称为]]></description>
+</item>
+<item>
+  <title>算法 字符串排序</title>
+  <link>https://DDuuuu.github.io/2021/04/algorithm10/</link>
+  <pubDate>Mon, 26 Apr 2021 17:09:22 &#43;0800</pubDate>
+  <author>AndrewDu</author>
+  <guid>https://DDuuuu.github.io/2021/04/algorithm10/</guid>
+  <description><![CDATA[字符串 字母表 将字符串转化成数字， 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54]]></description>
+</item>
+<item>
+  <title>算法 加权有向图</title>
+  <link>https://DDuuuu.github.io/2021/04/algorithm9/</link>
+  <pubDate>Fri, 23 Apr 2021 17:09:22 &#43;0800</pubDate>
+  <author>AndrewDu</author>
+  <guid>https://DDuuuu.github.io/2021/04/algorithm9/</guid>
+  <description><![CDATA[加权有向图 找到从一个顶点到达另一个顶点的成本最小的路径。 在一幅加权有向图中，从顶点s 到顶点t 的最短路径是所有从s 到t 的路径中的权重最小者。 最]]></description>
+</item>
+<item>
+  <title>算法 加权无向图</title>
+  <link>https://DDuuuu.github.io/2021/04/algorithm8/</link>
+  <pubDate>Tue, 20 Apr 2021 17:09:22 &#43;0800</pubDate>
+  <author>AndrewDu</author>
+  <guid>https://DDuuuu.github.io/2021/04/algorithm8/</guid>
+  <description><![CDATA[加权无向图 最小生成树：一棵含有其所有顶点的无环连通子图，一幅加权无向图的最小生成树(MST)是它的一棵权值(树中所有边的权值之和)最小的生成]]></description>
+</item>
+<item>
+  <title>算法 有向图</title>
+  <link>https://DDuuuu.github.io/2020/12/algorithm7/</link>
+  <pubDate>Sat, 19 Dec 2020 17:09:22 &#43;0800</pubDate>
+  <author>AndrewDu</author>
+  <guid>https://DDuuuu.github.io/2020/12/algorithm7/</guid>
+  <description><![CDATA[有向图 有向图：边是单向的，每条边所连接的两个顶点都是一个有序对。 定义：一幅有方向性的图(或有向图)是由一组顶点和一组由方向的边组成的，每条有]]></description>
+</item>
+<item>
+  <title>算法 图 无向图</title>
+  <link>https://DDuuuu.github.io/2020/12/algorithm6/</link>
+  <pubDate>Wed, 16 Dec 2020 17:09:22 &#43;0800</pubDate>
+  <author>AndrewDu</author>
+  <guid>https://DDuuuu.github.io/2020/12/algorithm6/</guid>
+  <description><![CDATA[图 无向图，有向图，加权图，加权有向图 将对象称为触点，将整数对称为连接，将等价类称为连通分量或是简称分量 连通性问题 目标：编写一个程序来过滤序列]]></description>
+</item>
+<item>
+  <title>算法 字典</title>
+  <link>https://DDuuuu.github.io/2020/12/algorithm5/</link>
+  <pubDate>Tue, 15 Dec 2020 17:09:22 &#43;0800</pubDate>
+  <author>AndrewDu</author>
+  <guid>https://DDuuuu.github.io/2020/12/algorithm5/</guid>
+  <description><![CDATA[查找 统计多本书中每个单词出现的频率，使用符号表(字典)，但是怎么快速定位到Key是一个难题，当Key数据量上亿了之后还能快速定位吗 查找的成本]]></description>
+</item>
+<item>
+  <title>算法 堆 优先队列</title>
+  <link>https://DDuuuu.github.io/2020/12/algorithm4/</link>
+  <pubDate>Sat, 12 Dec 2020 17:09:22 &#43;0800</pubDate>
+  <author>AndrewDu</author>
+  <guid>https://DDuuuu.github.io/2020/12/algorithm4/</guid>
+  <description><![CDATA[堆 堆：当一棵二叉树的每个结点都大于等于它的两个子结点时，它被称为堆有序。 命题O:根结点是堆有序的二叉树中的最大结点 二叉堆：一组能够用堆有序的]]></description>
+</item>
 </channel>
 </rss>

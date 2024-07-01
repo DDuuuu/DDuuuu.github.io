@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>嵌入式 - 分类 - AndrewDu&#39;s blog</title>
+    <link>https://DDuuuu.github.io/categories/%E5%B5%8C%E5%85%A5%E5%BC%8F/</link>
+    <description>嵌入式 - 分类 | AndrewDu&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>978089234@qq.com (AndrewDu)</managingEditor>
+      <webMaster>978089234@qq.com (AndrewDu)</webMaster><copyright>Copyright© Andrew.Du</copyright><lastBuildDate>Sun, 09 Aug 2020 17:09:22 &#43;0800</lastBuildDate><atom:link href="https://DDuuuu.github.io/categories/%E5%B5%8C%E5%85%A5%E5%BC%8F/" rel="self" type="application/rss+xml" /><item>
+  <title>嵌入式 8位计算机</title>
+  <link>https://DDuuuu.github.io/2020/08/embedded-8bitcomputer/</link>
+  <pubDate>Sun, 09 Aug 2020 17:09:22 &#43;0800</pubDate>
+  <author>AndrewDu</author>
+  <guid>https://DDuuuu.github.io/2020/08/embedded-8bitcomputer/</guid>
+  <description><![CDATA[在B站上看到有大佬做了个8位计算机，非常感兴趣，同时想了解一下计算机底层到底是怎么运作的，就跟着做了一个。以下是笔记，写的比较细。 先show]]></description>
+</item>
+</channel>
+</rss>

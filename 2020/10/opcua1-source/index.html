@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>OPCUA 源码解析 - AndrewDu&#39;s blog</title><meta name="author" content="AndrewDu">
+<meta name="author-link" content="https://github.com/DDuuuu">
+<meta name="description" content="前言 一毕业第一个项目就做了OPC数据转发，面向API编程，调用固定接口，定时器轮询从OPC DA2.0 Server中获取数据写到数据库，定时器5分钟写" /><meta name="keywords" content='OPCUA, 源码解析' />
+  <meta itemprop="name" content="OPCUA 源码解析">
+  <meta itemprop="description" content="前言 一毕业第一个项目就做了OPC数据转发，面向API编程，调用固定接口，定时器轮询从OPC DA2.0 Server中获取数据写到数据库，定时器5分钟写">
+  <meta itemprop="datePublished" content="2020-10-31T17:09:22+08:00">
+  <meta itemprop="dateModified" content="2020-10-31T17:09:22+08:00">
+  <meta itemprop="wordCount" content="3719">
+  <meta itemprop="image" content="https://DDuuuu.github.io/images/logo150.png">
+  <meta itemprop="keywords" content="OPCUA,源码解析"><meta property="og:url" content="https://DDuuuu.github.io/2020/10/opcua1-source/">
+  <meta property="og:site_name" content="AndrewDu&#39;s blog">
+  <meta property="og:title" content="OPCUA 源码解析">
+  <meta property="og:description" content="前言 一毕业第一个项目就做了OPC数据转发，面向API编程，调用固定接口，定时器轮询从OPC DA2.0 Server中获取数据写到数据库，定时器5分钟写">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2020-10-31T17:09:22+08:00">
+    <meta property="article:modified_time" content="2020-10-31T17:09:22+08:00">
+    <meta property="article:tag" content="OPCUA">
+    <meta property="article:tag" content="源码解析">
+    <meta property="og:image" content="https://DDuuuu.github.io/images/logo150.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://DDuuuu.github.io/images/logo150.png">
+  <meta name="twitter:title" content="OPCUA 源码解析">
+  <meta name="twitter:description" content="前言 一毕业第一个项目就做了OPC数据转发，面向API编程，调用固定接口，定时器轮询从OPC DA2.0 Server中获取数据写到数据库，定时器5分钟写">
+<meta name="application-name" content="Andrew.Du">
+<meta name="apple-mobile-web-app-title" content="Andrew.Du"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://DDuuuu.github.io/2020/10/opcua1-source/" /><link rel="prev" href="https://DDuuuu.github.io/2020/08/embedded-8bitcomputer/" /><link rel="next" href="https://DDuuuu.github.io/2020/11/algorithm2/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "OPCUA 源码解析",
+    "inLanguage": "zh-CN",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https:\/\/DDuuuu.github.io\/2020\/10\/opcua1-source\/"
+    },"image": ["https:\/\/DDuuuu.github.io\/images\/logo192.png"],"genre": "posts","keywords": "OPCUA, 源码解析","wordcount":  3719 ,
+    "url": "https:\/\/DDuuuu.github.io\/2020\/10\/opcua1-source\/","datePublished": "2020-10-31T17:09:22+08:00","dateModified": "2020-10-31T17:09:22+08:00","license": "Copyright© Andrew.Du","publisher": {
+      "@type": "Organization",
+      "name": "AndrewDu"},"author": {
+        "@type": "Person",
+        "name": "AndrewDu"
+      },"description": ""
+  }
+  </script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage?.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper" data-page-style="normal"><header class="desktop animate__faster" id="header-desktop">
+  <div class="header-wrapper" data-github-corner="right">
+    <div class="header-title">
+      <a href="/" title="AndrewDu&#39;s blog"><span class="typeit"><template>AndrewDu&#39;s blog</template></span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/"
+                title="主页"
+                
+              ><i class="fa-solid fa-home fa-fw fa-sm" aria-hidden="true"></i> 主页</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/archives/"
+                title="归档"
+                
+              ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 归档</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              ><i class="fa-solid fa-folder-tree fa-fw fa-sm" aria-hidden="true"></i> 类别</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/about/"
+                
+                
+              ><i class="fa-solid fa-link fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item delimiter"></li><li class="menu-item search" id="search-desktop">
+            <input type="text" placeholder="搜索文章标题或内容……" id="search-input-desktop">
+            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+              <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+            </a>
+            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+              <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+            </a>
+            <span class="search-button search-loading" id="search-loading-desktop">
+              <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+            </span>
+          </li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><header class="mobile animate__faster" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="AndrewDu&#39;s blog"><span class="typeit"><template>AndrewDu&#39;s blog</template></span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li class="search-wrapper">
+            <div class="search mobile" id="search-mobile">
+              <input type="text" placeholder="搜索文章标题或内容……" id="search-input-mobile">
+              <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+              </a>
+              <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+              </a>
+              <span class="search-button search-loading" id="search-loading-mobile">
+                <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+              </span>
+            </div>
+            <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+              取消
+            </a>
+          </li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/"
+                  title="主页"
+                  
+                ><i class="fa-solid fa-home fa-fw fa-sm" aria-hidden="true"></i> 主页</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/archives/"
+                  title="归档"
+                  
+                ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 归档</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/categories/"
+                  
+                  
+                ><i class="fa-solid fa-folder-tree fa-fw fa-sm" aria-hidden="true"></i> 类别</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/about/"
+                  
+                  
+                ><i class="fa-solid fa-link fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item menu-system">
+          <span class="menu-system-item theme-switch" title="切换主题"><i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i></span></li>
+      </ul>
+    </nav>
+  </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+  </div>
+  <div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+  </div><nav aria-label="breadcrumb" class="breadcrumb-container sticky">
+    <ol class="breadcrumb"><li class="breadcrumb-item"><a href="/" title="AndrewDu&#39;s Blog">主页</a></li><li class="breadcrumb-item"><a href="/posts/" title="Posts">文章</a></li><li class="breadcrumb-item active" aria-current="page">OPCUA 源码解析</li>
+    </ol>
+  </nav><main class="container"><aside class="aside-collection animate__animated animate__fadeIn animate__faster" aria-label="合集"></aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX"><span>OPCUA 源码解析</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><a href="https://github.com/DDuuuu" title="作者"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+    AndrewDu</a></span><span class="post-included-in">&nbsp;收录于 <a href="/categories/opcua/" class="post-category" title="分类 - OPCUA"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> OPCUA</a></span></div><div class="post-meta-line"><span title="发布于 2020-10-31 17:09:22"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2020-10-31">2020-10-31</time></span>&nbsp;<span title="3719 字"><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>约 3800 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>预计阅读 8 分钟</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="OPCUA 源码解析">
+              <i class="fa-regular fa-eye fa-fw me-1" aria-hidden="true"></i><span id="busuanzi_value_page_pv">-</span>&nbsp;次阅读
+            </span>&nbsp;</div>
+    </div><div class="content" id="content" data-end-flag="感谢阅读！"><h1 id="前言" class="heading-element"><span>前言</span>
+  <a href="#%e5%89%8d%e8%a8%80" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h1><p>一毕业第一个项目就做了OPC数据转发，面向API编程，调用固定接口，定时器轮询从OPC DA2.0 Server中获取数据写到数据库，定时器5分钟写一次，数据量比较大，有几千个点，当时是数据库有一个主表，通过主表的触发器，会为每个点生成一个子表，数据都往子表里写。可以说非常low了。有时候数据库和server需要走Network,DA是需要配置COM的，非常的麻烦。就开始研究OPCUA,也是面向API编程，调包程序员。再后来项目不需要就不研究了。在Github上找过其源码但是没有看过觉得真是一大遗憾，有一种只问其声，未见其人的感觉，非常的不爽。最近要写一个组件用到OPCUA，所以仔细看了它的源码。OPC的网上资料很少，有一本书写的太过理论，学组件还是直接看源码，源码看懂了再看概念理论就会非常清晰了。</p>
+<h1 id="底层通讯" class="heading-element"><span>底层通讯</span>
+  <a href="#%e5%ba%95%e5%b1%82%e9%80%9a%e8%ae%af" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h1><p>ApplicationInstance:该类是服务的包装类，提供了加载参数，启动服务的方法。相当于服务入口。</p>
+<p>Server:最重要的服务类：</p>
+<p><img loading="lazy" src="/opcua/1603974747879.png" alt="1603974747879" srcset="/opcua/1603974747879.png?size=small, /opcua/1603974747879.png?size=medium 1.5x, /opcua/1603974747879.png?size=large 2x" data-title="1603974747879" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>Server的接口非常多，但是扩展却非常容易，自己扩展只需要继承StandardServer就可以了。它是怎么实现各种订阅，浏览，事件，方法等功能的呢，这里面最重要的是用了一个Manager的思想。关注ServerInternal属性，其是ServerInternalData类，这个类非常像外观模式，包含了很多Manager。每个Manager是相当于一个组件管理器。比如NodeManager，所有的节点管理都在这个Manager中，还有SubscriptionManager,SessionManager,EventManager等。服务除了Manager，还有Certificate，OPCUA的安全这一块做的真好，TransportListeners管理所有的Host。</p>
+<p><img loading="lazy" src="/opcua/1603975341434.png" alt="1603975341434" srcset="/opcua/1603975341434.png?size=small, /opcua/1603975341434.png?size=medium 1.5x, /opcua/1603975341434.png?size=large 2x" data-title="1603975341434" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>Server中TransportListeners，底层通讯。</p>
+<p>OPCUA默认实现了三种Host:UaHttpsChannelListener,UaTcpChannelListener,NullListener,这边用到了空对象模式，从名字就可以看出来Listener的职责就说监听连接，TCP监听实现是通过完成端口模型。</p>
+<p><img loading="lazy" src="/opcua/1603976653100.png" alt="1603976653100" srcset="/opcua/1603976653100.png?size=small, /opcua/1603976653100.png?size=medium 1.5x, /opcua/1603976653100.png?size=large 2x" data-title="1603976653100" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="/opcua/1604057776912.png" alt="1604057776912" srcset="/opcua/1604057776912.png?size=small, /opcua/1604057776912.png?size=medium 1.5x, /opcua/1604057776912.png?size=large 2x" data-title="1604057776912" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>在OnAccept中：一旦有链接，就创建Channel来处理数据请求</p>
+<p><img loading="lazy" src="/opcua/1604057874649.png" alt="1604057874649" srcset="/opcua/1604057874649.png?size=small, /opcua/1604057874649.png?size=medium 1.5x, /opcua/1604057874649.png?size=large 2x" data-title="1604057874649" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="/opcua/1604057634344.png" alt="1604057634344" srcset="/opcua/1604057634344.png?size=small, /opcua/1604057634344.png?size=medium 1.5x, /opcua/1604057634344.png?size=large 2x" data-title="1604057634344" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>channel内部对Socket完成端口模型进行了封装，TcpMessageSocket</p>
+<p><img loading="lazy" src="/opcua/1604058221546.png" alt="1604058221546" srcset="/opcua/1604058221546.png?size=small, /opcua/1604058221546.png?size=medium 1.5x, /opcua/1604058221546.png?size=large 2x" data-title="1604058221546" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>在TcpMessageSocket内部：</p>
+<p><img loading="lazy" src="/opcua/1604058282130.png" alt="1604058282130" srcset="/opcua/1604058282130.png?size=small, /opcua/1604058282130.png?size=medium 1.5x, /opcua/1604058282130.png?size=large 2x" data-title="1604058282130" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>接受数据完成端口模型，最终调用了Channel的OnMessageReceived方法</p>
+<p><img loading="lazy" src="/opcua/1604058308648.png" alt="1604058308648" srcset="/opcua/1604058308648.png?size=small, /opcua/1604058308648.png?size=medium 1.5x, /opcua/1604058308648.png?size=large 2x" data-title="1604058308648" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="/opcua/1604058510245.png" alt="1604058510245" srcset="/opcua/1604058510245.png?size=small, /opcua/1604058510245.png?size=medium 1.5x, /opcua/1604058510245.png?size=large 2x" data-title="1604058510245" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>在Channel中处理消息，在ProcessRequestMessage方法内部调用了m_RequestReceived回调函数，其实是调用了Listener中的OnRequestReceived方法，该方法实际上是将请求给了专门ReceiveDataHandle类：SessionEndpoint类来处理请求，这个类其实对请求数据的一种管理，所有的请求都给了SessionEndpoint中BeginProcessRequest方法，这个SessionEndpoint管理器会创建一些具体解析请求的类，来处理请求ProcessRequestAsyncResult，</p>
+<p><img loading="lazy" src="/opcua/1604058741455.png" alt="1604058741455" srcset="/opcua/1604058741455.png?size=small, /opcua/1604058741455.png?size=medium 1.5x, /opcua/1604058741455.png?size=large 2x" data-title="1604058741455" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="/opcua/1604059150058.png" alt="1604059150058" srcset="/opcua/1604059150058.png?size=small, /opcua/1604059150058.png?size=medium 1.5x, /opcua/1604059150058.png?size=large 2x" data-title="1604059150058" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="/opcua/1604059169202.png" alt="1604059169202" srcset="/opcua/1604059169202.png?size=small, /opcua/1604059169202.png?size=medium 1.5x, /opcua/1604059169202.png?size=large 2x" data-title="1604059169202" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="/opcua/1604059187168.png" alt="1604059187168" srcset="/opcua/1604059187168.png?size=small, /opcua/1604059187168.png?size=medium 1.5x, /opcua/1604059187168.png?size=large 2x" data-title="1604059187168" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="/opcua/1604059880031.png" alt="1604059880031" srcset="/opcua/1604059880031.png?size=small, /opcua/1604059880031.png?size=medium 1.5x, /opcua/1604059880031.png?size=large 2x" data-title="1604059880031" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>在具体处理数据内部肯定是调用管理器类SessionEndpoint来具体请求数据，这边将找到的Service保存到m_Service中，只不过这边又做了一个请求处理队列，ServerForContext就是Server，server最后还是调用这个类的CallSynchronously方法，然后调用m_service的</p>
+<p><img loading="lazy" src="/opcua/1604060145717.png" alt="1604060145717" srcset="/opcua/1604060145717.png?size=small, /opcua/1604060145717.png?size=medium 1.5x, /opcua/1604060145717.png?size=large 2x" data-title="1604060145717" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="/opcua/1604060447298.png" alt="1604060447298" srcset="/opcua/1604060447298.png?size=small, /opcua/1604060447298.png?size=medium 1.5x, /opcua/1604060447298.png?size=large 2x" data-title="1604060447298" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="/opcua/1604060501554.png" alt="1604060501554" srcset="/opcua/1604060501554.png?size=small, /opcua/1604060501554.png?size=medium 1.5x, /opcua/1604060501554.png?size=large 2x" data-title="1604060501554" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>ProcessRequestAsyncResult调用m_service</p>
+<p><img loading="lazy" src="/opcua/1604061001059.png" alt="1604061001059" srcset="/opcua/1604061001059.png?size=small, /opcua/1604061001059.png?size=medium 1.5x, /opcua/1604061001059.png?size=large 2x" data-title="1604061001059" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>这个m_service就是一开始在SessionEndpoint管理的服务，这些服务最后都指向Server中的一个方法。</p>
+<p>比如Browse服务就是Server中的Browse方法。</p>
+<p><img loading="lazy" src="/opcua/1604061123338.png" alt="1604061123338" srcset="/opcua/1604061123338.png?size=small, /opcua/1604061123338.png?size=medium 1.5x, /opcua/1604061123338.png?size=large 2x" data-title="1604061123338" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<h1 id="通讯框架总结" class="heading-element"><span>通讯框架总结</span>
+  <a href="#%e9%80%9a%e8%ae%af%e6%a1%86%e6%9e%b6%e6%80%bb%e7%bb%93" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h1><ol>
+<li>Server管理所有的Listener集合</li>
+<li>Listener负责监听</li>
+<li>Channel负责处理链接，解析消息结构</li>
+<li>TcpMessageSocket负责封装Socket来收发消息</li>
+<li>SessionEndpoint封装所有对消息体处理的服务，这些服务其实都是Server中方法委托。</li>
+<li>TcpMessageSocket接受到消息最终调用SessionEndpoint中的BeginProcessRequest方法，然后生成了消息处理类ProcessRequestAsyncResult，该类将请求给了server中的RequestQueue,Server处理队列最终是调用ProcessRequestAsyncResult中的方法找到SessionEndpoint中对应的处理服务，调用server中对应的方法。</li>
+<li>Server负责创建SessionEndpoint实例，Listen负责调用SessionEndpoint实例方法解析数据，channel负责解析数据类型调用Listen方法。</li>
+</ol>
+<h1 id="协议格式" class="heading-element"><span>协议格式</span>
+  <a href="#%e5%8d%8f%e8%ae%ae%e6%a0%bc%e5%bc%8f" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h1><p>在Channel的OnMessageReceived方法中，协议头中前4个字节是消息的类型：也就是消息ID，详情可以看TcpMessageType类</p>
+<p><img loading="lazy" src="/opcua/1604109961342.png" alt="1604109961342" srcset="/opcua/1604109961342.png?size=small, /opcua/1604109961342.png?size=medium 1.5x, /opcua/1604109961342.png?size=large 2x" data-title="1604109961342" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="/opcua/1604110030696.png" alt="1604110030696" srcset="/opcua/1604110030696.png?size=small, /opcua/1604110030696.png?size=medium 1.5x, /opcua/1604110030696.png?size=large 2x" data-title="1604110030696" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>channel中的ReadSymmetricMessage方法，可以消息头：一共24个字节</p>
+<p>MessageType;MessageSize;channelID;tokenId;sequenceNumber;requestId都是4个字节</p>
+<p><img loading="lazy" src="/opcua/1604110800288.png" alt="1604110800288" srcset="/opcua/1604110800288.png?size=small, /opcua/1604110800288.png?size=medium 1.5x, /opcua/1604110800288.png?size=large 2x" data-title="1604110800288" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>channel解密TokenID</p>
+<p><img loading="lazy" src="/opcua/1604111015281.png" alt="1604111015281" srcset="/opcua/1604111015281.png?size=small, /opcua/1604111015281.png?size=medium 1.5x, /opcua/1604111015281.png?size=large 2x" data-title="1604111015281" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>通过Token解密消息，还可以看出消息的最后字节是Signature。</p>
+<p>还是在Channel的ReadSymmetricMessage 方法中</p>
+<p><img loading="lazy" src="/opcua/1604111191527.png" alt="1604111191527" srcset="/opcua/1604111191527.png?size=small, /opcua/1604111191527.png?size=medium 1.5x, /opcua/1604111191527.png?size=large 2x" data-title="1604111191527" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>消息的最后还有一些没有用的填充消息，在签名的前一个字节为填充长度</p>
+<p><img loading="lazy" src="/opcua/1604112388066.png" alt="1604112388066" srcset="/opcua/1604112388066.png?size=small, /opcua/1604112388066.png?size=medium 1.5x, /opcua/1604112388066.png?size=large 2x" data-title="1604112388066" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>协议内容：</p>
+<p>MessageType;MessageSize;channelID;tokenId;sequenceNumber;requestId;MessageBogy;Padding;Signature.</p>
+<p><img loading="lazy" src="/opcua/1604111829721.png" alt="1604111829721" srcset="/opcua/1604111829721.png?size=small, /opcua/1604111829721.png?size=medium 1.5x, /opcua/1604111829721.png?size=large 2x" data-title="1604111829721" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>总结</p>
+<p>整个协议的格式都是在Channel的ReadSymmetricMessage方法中解析的，主要解析了协议头，签名和获取MessageBody并进行解密。</p>
+<h1 id="消息体" class="heading-element"><span>消息体</span>
+  <a href="#%e6%b6%88%e6%81%af%e4%bd%93" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h1><p>在channel的ProcessRequestMessage方法中看到对消息体的解析，将MessageBody解析成ServiceRequest</p>
+<p><img loading="lazy" src="/opcua/1604113227288.png" alt="1604113227288" srcset="/opcua/1604113227288.png?size=small, /opcua/1604113227288.png?size=medium 1.5x, /opcua/1604113227288.png?size=large 2x" data-title="1604113227288" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>整个解析职责是交给了BinaryDecoder类,Decoder实际是调用IEncodeable来进行解码，这边有点像迭代器模式，集合实现IEnumerable,而调用者使用IEnumator进行遍历。</p>
+<p><img loading="lazy" src="/opcua/1604114314385.png" alt="1604114314385" srcset="/opcua/1604114314385.png?size=small, /opcua/1604114314385.png?size=medium 1.5x, /opcua/1604114314385.png?size=large 2x" data-title="1604114314385" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="/opcua/1604115066158.png" alt="1604115066158" srcset="/opcua/1604115066158.png?size=small, /opcua/1604115066158.png?size=medium 1.5x, /opcua/1604115066158.png?size=large 2x" data-title="1604115066158" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>MessageBody:NodeId+NodeValue+IEncodeable。，通过NodeId获取实际是IEncodeableType,调用其Decode方法，获取IEncodeable，然后显示转化为IServiceRequest接口</p>
+<p><img loading="lazy" src="/opcua/1604113359651.png" alt="1604113359651" srcset="/opcua/1604113359651.png?size=small, /opcua/1604113359651.png?size=medium 1.5x, /opcua/1604113359651.png?size=large 2x" data-title="1604113359651" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="/opcua/1604113459405.png" alt="1604113459405" srcset="/opcua/1604113459405.png?size=small, /opcua/1604113459405.png?size=medium 1.5x, /opcua/1604113459405.png?size=large 2x" data-title="1604113459405" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>通过ID来获取解码类，进行解码：</p>
+<p>解码类从哪里来呢？通过工厂，工厂通过反射获取程序集中所有IEncodeable</p>
+<p><img loading="lazy" src="/opcua/1604113802227.png" alt="1604113802227" srcset="/opcua/1604113802227.png?size=small, /opcua/1604113802227.png?size=medium 1.5x, /opcua/1604113802227.png?size=large 2x" data-title="1604113802227" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="/opcua/1604113822171.png" alt="1604113822171" srcset="/opcua/1604113822171.png?size=small, /opcua/1604113822171.png?size=medium 1.5x, /opcua/1604113822171.png?size=large 2x" data-title="1604113822171" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="/opcua/1604113846559.png" alt="1604113846559" srcset="/opcua/1604113846559.png?size=small, /opcua/1604113846559.png?size=medium 1.5x, /opcua/1604113846559.png?size=large 2x" data-title="1604113846559" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="/opcua/1604114209704.png" alt="1604114209704" srcset="/opcua/1604114209704.png?size=small, /opcua/1604114209704.png?size=medium 1.5x, /opcua/1604114209704.png?size=large 2x" data-title="1604114209704" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="/opcua/1604116408322.png" alt="1604116408322" srcset="/opcua/1604116408322.png?size=small, /opcua/1604116408322.png?size=medium 1.5x, /opcua/1604116408322.png?size=large 2x" data-title="1604116408322" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="/opcua/1604116611351.png" alt="1604116611351" srcset="/opcua/1604116611351.png?size=small, /opcua/1604116611351.png?size=medium 1.5x, /opcua/1604116611351.png?size=large 2x" data-title="1604116611351" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="/opcua/1604116673012.png" alt="1604116673012" srcset="/opcua/1604116673012.png?size=small, /opcua/1604116673012.png?size=medium 1.5x, /opcua/1604116673012.png?size=large 2x" data-title="1604116673012" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>至此解析出具体请求类进行回调，也就是将请求类交给SessionEndpoint进行处理。</p>
+<p>总结：Channel调用Decoder，这边Decoder负责解析MessageBody,具体的解析操作职责给IEncodeable的子类。解析完后将IEncodeable显示转化为IServiceRequest交给SessionEndpoint处理。</p>
+<h1 id="感悟" class="heading-element"><span>感悟</span>
+  <a href="#%e6%84%9f%e6%82%9f" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h1><p>软件中的架构大体和现实世界差不多，如果一个需求有多个不同的操作，就将其抽象为子类，一个管理器Manager或者XXXer负责管理所有的子类集合，子类可以由专门的工厂类创建也可以是由管理器创建。</p>
+<p>现实生活中一个公司就相当于一个软件，有一个总经理（Master/Server/Instance）总经理负责协调各个部门，每个部门的部长就相当于(Manager/Presenter/Controller&hellip;)，它负责安排这个部门的职责，也就是管理部门里面的员工集合，员工就是具体干活的类，这些类可以由基类派生或实现统一的接口。派生类如何生成可以由部长负责，也可以由部长请求公司的HR相当于工厂生成派生类。工厂可以是抽象工厂也可以工厂模式，为每个部门生成一个工厂子类。</p>
+<p>以OPCUA的通讯为例：</p>
+<p>Server就相当于总经理，通讯组件(销售)就相当于一个通讯部门这边部长和总经理和二为一，可能这个部门非常重要，总经理想亲自管理，Listeners就相当于具体干活的员工，每个Listener(销售)负责一个通讯线的对接，每当有通讯连接就派Channel(具体负责哪个厂)去负责对接内容，Channel说对接内容还需要一个人去专门的地方去就派了MessageSocket通过完成端口模型去取通讯消息，MessageSocket每次取到消息就把消息给Channel解析，Channel先解析这是上面类型的消息，将其具体解析为一个请求文件，这个请求文件都汇总给了由Listener指派的SessionEndpoint这个人（有点像总经理秘书），这个人将负责管理所有的请求文件种类。它收到请求文件其实就把请求给了总经理，总经理根据不同的请求将请求转发给其他部门的人干。</p>
+</div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title="更新于 2020-10-31 17:09:22">更新于 2020-10-31&nbsp;</span>
+      </div><div class="post-info-license">
+            <span><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0 转载请注明来源</a></span>
+          </div></div><div class="post-info-line">
+        <div class="post-info-md"><span><a href="https://github.com/DDuuuu/issues/new?title=[BUG]%20OPCUA&#43;%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90&amp;body=%7cField%7cValue%7c%0A%7c-%7c-%7c%0A%7cTitle%7cOPCUA&#43;%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90%7c%0A%7cURL%7chttps://DDuuuu.github.io/2020/10/opcua1-source/%7c%0A%7cFilename%7c%7c" title="报告问题"target="_blank" rel="external nofollow noopener noreferrer" class="link-to-report">报告问题</a></span></div>
+        <div class="post-info-share">
+          <span></span>
+        </div>
+      </div></div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href="/tags/opcua/" class="post-tag" title="标签 - OPCUA">OPCUA</a><a href="/tags/%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/" class="post-tag" title="标签 - 源码解析">源码解析</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/2020/08/embedded-8bitcomputer/" class="post-nav-item" rel="prev" title="嵌入式 8位计算机"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>嵌入式 8位计算机</a>
+      <a href="/2020/11/algorithm2/" class="post-nav-item" rel="next" title="算法 包 栈 队列">算法 包 栈 队列<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div class="post-reward">
+    <div class="comment">为爱发电,请我喝杯咖啡吧</div>
+    <input type="checkbox" class="reward-input" name="reward" id="fi-reward" hidden />
+    <label class="reward-button" for="fi-reward"><i class="fa-solid fa-qrcode fa-fw" aria-hidden="true"></i>赞赏</label>
+    <div class="reward-ways" data-mode="static"><div><img loading="lazy" src="/images/alipay.jpg" alt="AndrewDu 支付宝" data-title="AndrewDu 支付宝" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/><span data-animation>支付宝</span>
+          </div><div><img loading="lazy" src="/images/wechat.jpg" alt="AndrewDu 微信" data-title="AndrewDu 微信" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/><span data-animation>微信</span>
+          </div></div>
+  </div><div id="comments"><div id="giscus" class="comment">
+          <script
+            src="https://giscus.app/client.js"
+            data-repo="DDuuuu/DDuuuu.github.io"
+            data-repo-id="R_kgDOMOxQVQ"
+            data-category="Announcements"
+            data-category-id="DIC_kwDOMOxQVc4Cgd23"
+            data-mapping="pathname"
+            data-strict="0"
+            
+            data-theme="preferred_color_scheme"
+            data-reactions-enabled="1"
+            data-emit-metadata="0"
+            data-input-position="bottom"
+            data-lang="zh-CN"
+            data-loading="lazy"
+            crossorigin="anonymous"
+            async
+            defer
+          ></script>
+        </div>
+        <noscript>
+          Please enable JavaScript to view the comments powered by <a href="https://giscus.app/" rel="external nofollow noopener noreferrer">giscus</a>.
+        </noscript></div></article>
+
+  <aside class="toc" id="toc-auto" aria-label="目录"></aside></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2018 - 2024</span><span class="author" itemprop="copyrightHolder">
+              <a href="https://github.com/DDuuuu"target="_blank" rel="external nofollow noopener noreferrer">AndrewDu</a></span></div><div class="footer-line statistics"><span class="site-time" title='网站运行中……'><i class="fa-solid fa-heartbeat fa-fw animate-icon" aria-hidden="true"></i><span class="ms-1 d-none">网站运行时间:</span><span class="run-times ms-1">网站运行中……</span></span></div><div class="footer-line visitor">
+          <span id="busuanzi_container_site_uv" title='总访客数'><i class="fa-regular fa-user fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span><span id="busuanzi_container_site_pv" class="footer-divider" title='总访问量'><i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span>
+        </div></div>
+  </footer></div><div class="widgets"><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role="button" aria-label="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i><span class="variant-numeric d-none">0%</span>
+        </div><div class="fixed-button view-comments d-none" role="button" aria-label="查看评论"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></div></div><a href="https://github.com/DDuuuu" title="AndrewDu GitHub"target="_blank" rel="external nofollow" class="github-corner right d-none-mobile"><svg viewBox="0 0 250 250" aria-hidden="true" width="56" height="56"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><div id="mask"></div><div class="reading-progress-bar" style="left: 0;top: 0;"></div><noscript>
+    <div class="noscript-warning">该网站在启用 JavaScript 的情况下效果最佳。</div>
+  </noscript>
+</div><link rel="stylesheet" href="/lib/lightgallery/css/lightgallery-bundle.min.css"><link rel="preload" href="/lib/katex/katex.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/lib/katex/katex.min.css"></noscript><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><link rel="stylesheet" href="/lib/pace/themes/blue/pace-theme-minimal.css"><script src="https://polyfill.io/v3/polyfill.min.js?features=Array.prototype.fill%2CArray.prototype.find%2CArray.from%2CIntersectionObserver%2CMath.sign%2CObject.assign%2CPromise%2CObject.entries%2Chtml5shiv%2CObject.values%2Cfetch%2CElement.prototype.after"></script><script src="/lib/object-fit-images/ofi.min.js"></script><script src="/lib/autocomplete/autocomplete.min.js" defer></script><script src="/lib/fuse/fuse.min.js" defer></script><script src="/lib/instant-page/instantpage.min.js" async defer type="module"></script><script src="/lib/twemoji/twemoji.min.js" defer></script><script src="/lib/lightgallery/lightgallery.min.js" defer></script><script src="/lib/lightgallery/plugins/thumbnail/lg-thumbnail.min.js" defer></script><script src="/lib/lightgallery/plugins/zoom/lg-zoom.min.js" defer></script><script src="/lib/typeit/index.umd.js" defer></script><script src="/lib/katex/katex.min.js" defer></script><script src="/lib/katex/auto-render.min.js" defer></script><script src="/lib/katex/copy-tex.min.js" defer></script><script src="/lib/katex/mhchem.min.js" defer></script><script src="/lib/cookieconsent/cookieconsent.min.js" defer></script><script src="/lib/pangu/pangu.min.js" defer></script><script src="/lib/cell-watermark/watermark.min.js" defer></script><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async defer></script><script src="/lib/pace/pace.min.js" async defer></script><script>window.config={"autoBookmark":true,"code":{"copyTitle":"复制到剪贴板","maxShownLines":999999},"comment":{"enable":true,"expired":false,"giscus":{"darkTheme":"dark","lightTheme":"light","origin":"https://giscus.app"}},"cookieconsent":{"content":{"dismiss":"同意","link":"了解更多","message":"本网站使用 Cookies 来改善您的浏览体验。"},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"enablePWA":true,"lightgallery":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"pangu":{"enable":true,"selector":"article"},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":12,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":100,"threshold":0.3,"type":"fuse","useExtendedSearch":false},"siteTime":"2018-02-22T04:10:22+08:00","twemoji":true,"typeit":{"cursorChar":"|","cursorSpeed":1000,"duration":-1,"loop":false,"speed":100},"version":"v0.3.8","watermark":{"colspacing":300,"content":"Andrew.Du","enable":true,"fontfamily":"inherit","fontsize":0.85,"height":20,"opacity":0.1,"rotate":15,"rowspacing":300,"width":150}};</script><script src="/js/theme.min.js" defer></script></body>
+</html>

@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>证书加密签名 - 标签 - AndrewDu&#39;s blog</title>
+    <link>https://DDuuuu.github.io/tags/%E8%AF%81%E4%B9%A6%E5%8A%A0%E5%AF%86%E7%AD%BE%E5%90%8D/</link>
+    <description>证书加密签名 - 标签 | AndrewDu&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>978089234@qq.com (AndrewDu)</managingEditor>
+      <webMaster>978089234@qq.com (AndrewDu)</webMaster><copyright>Copyright© Andrew.Du</copyright><lastBuildDate>Tue, 02 Jun 2020 17:09:22 &#43;0800</lastBuildDate><atom:link href="https://DDuuuu.github.io/tags/%E8%AF%81%E4%B9%A6%E5%8A%A0%E5%AF%86%E7%AD%BE%E5%90%8D/" rel="self" type="application/rss+xml" /><item>
+  <title>DotNet基础 证书加密签名</title>
+  <link>https://DDuuuu.github.io/2020/06/dotnetbase12-certificate/</link>
+  <pubDate>Tue, 02 Jun 2020 17:09:22 &#43;0800</pubDate>
+  <author>AndrewDu</author>
+  <guid>https://DDuuuu.github.io/2020/06/dotnetbase12-certificate/</guid>
+  <description><![CDATA[网络威胁 1.窃听：网络传输是在公共信道上进行的，特别是HTTP传输大多以明文传输，黑客进行窃听，获取敏感信息。 2.伪装：这个基本每个人都遇到]]></description>
+</item>
+</channel>
+</rss>

@@ -1,0 +1,24 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>源码解析 - 标签 - AndrewDu&#39;s blog</title>
+    <link>https://DDuuuu.github.io/tags/%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/</link>
+    <description>源码解析 - 标签 | AndrewDu&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>978089234@qq.com (AndrewDu)</managingEditor>
+      <webMaster>978089234@qq.com (AndrewDu)</webMaster><copyright>Copyright© Andrew.Du</copyright><lastBuildDate>Sat, 31 Oct 2020 17:09:22 &#43;0800</lastBuildDate><atom:link href="https://DDuuuu.github.io/tags/%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/" rel="self" type="application/rss+xml" /><item>
+  <title>OPCUA 源码解析</title>
+  <link>https://DDuuuu.github.io/2020/10/opcua1-source/</link>
+  <pubDate>Sat, 31 Oct 2020 17:09:22 &#43;0800</pubDate>
+  <author>AndrewDu</author>
+  <guid>https://DDuuuu.github.io/2020/10/opcua1-source/</guid>
+  <description><![CDATA[前言 一毕业第一个项目就做了OPC数据转发，面向API编程，调用固定接口，定时器轮询从OPC DA2.0 Server中获取数据写到数据库，定时器5分钟写]]></description>
+</item>
+<item>
+  <title>SuperSocket1.6 源码解析</title>
+  <link>https://DDuuuu.github.io/2020/01/supersocket1-source/</link>
+  <pubDate>Tue, 28 Jan 2020 17:09:22 &#43;0800</pubDate>
+  <author>AndrewDu</author>
+  <guid>https://DDuuuu.github.io/2020/01/supersocket1-source/</guid>
+  <description><![CDATA[注意：该版本为SuperSocket1.6,最新版已有较大改动 Normal Socket System.Net.Sockets.dll程序集中使用socket类： 服]]></description>
+</item>
+</channel>
+</rss>

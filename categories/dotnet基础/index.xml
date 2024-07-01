@@ -13,6 +13,38 @@
   <description><![CDATA[概述 高性能的套接字编程围绕着两个方面：异步和复用。异步：高性能就是最大化计算机资源的利用，是不可能让线程有阻塞的，所以就有了各种异步模式。复]]></description>
 </item>
 <item>
+  <title>DotNet基础 证书加密签名</title>
+  <link>https://DDuuuu.github.io/2020/06/dotnetbase12-certificate/</link>
+  <pubDate>Tue, 02 Jun 2020 17:09:22 &#43;0800</pubDate>
+  <author>AndrewDu</author>
+  <guid>https://DDuuuu.github.io/2020/06/dotnetbase12-certificate/</guid>
+  <description><![CDATA[网络威胁 1.窃听：网络传输是在公共信道上进行的，特别是HTTP传输大多以明文传输，黑客进行窃听，获取敏感信息。 2.伪装：这个基本每个人都遇到]]></description>
+</item>
+<item>
+  <title>DotNet基础 仿写Socket</title>
+  <link>https://DDuuuu.github.io/2020/05/dotnetbase10-socket/</link>
+  <pubDate>Wed, 27 May 2020 17:09:22 &#43;0800</pubDate>
+  <author>AndrewDu</author>
+  <guid>https://DDuuuu.github.io/2020/05/dotnetbase10-socket/</guid>
+  <description><![CDATA[最近和Socket干上了，连续肝了2个星期了，目前自己连抄带写的Socket已完成60%。来讲讲我在肝的过程中所思所想。为啥这么和Socke]]></description>
+</item>
+<item>
+  <title>DotNet基础 日志组件</title>
+  <link>https://DDuuuu.github.io/2020/05/dotnetbase11-log/</link>
+  <pubDate>Fri, 01 May 2020 17:09:22 &#43;0800</pubDate>
+  <author>AndrewDu</author>
+  <guid>https://DDuuuu.github.io/2020/05/dotnetbase11-log/</guid>
+  <description><![CDATA[介绍 近期一直在看开源社区的源码，看各种编程书籍，自己却没有实践，堪称身体力行了王者级输入，青铜级输出。这是一个非常不好的学习习惯，会导致知其]]></description>
+</item>
+<item>
+  <title>DotNet基础 Socket与完成端口模型</title>
+  <link>https://DDuuuu.github.io/2020/04/dotnetbase9-socket/</link>
+  <pubDate>Sun, 12 Apr 2020 17:09:22 &#43;0800</pubDate>
+  <author>AndrewDu</author>
+  <guid>https://DDuuuu.github.io/2020/04/dotnetbase9-socket/</guid>
+  <description><![CDATA[介绍 一次简单的Socket探索之旅，分别对Socket服务端的两种方式进行了测试和解析。 CommonSocket 代码实现 实现一个简单的Socket服务，基本功能就]]></description>
+</item>
+<item>
   <title>DotNet基础 winform</title>
   <link>https://DDuuuu.github.io/2018/12/dotnetbase5-winform/</link>
   <pubDate>Wed, 05 Dec 2018 17:09:22 &#43;0800</pubDate>

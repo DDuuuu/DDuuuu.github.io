@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>加权无向图 - 标签 - AndrewDu&#39;s blog</title>
+    <link>https://DDuuuu.github.io/tags/%E5%8A%A0%E6%9D%83%E6%97%A0%E5%90%91%E5%9B%BE/</link>
+    <description>加权无向图 - 标签 | AndrewDu&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>978089234@qq.com (AndrewDu)</managingEditor>
+      <webMaster>978089234@qq.com (AndrewDu)</webMaster><copyright>Copyright© Andrew.Du</copyright><lastBuildDate>Tue, 20 Apr 2021 17:09:22 &#43;0800</lastBuildDate><atom:link href="https://DDuuuu.github.io/tags/%E5%8A%A0%E6%9D%83%E6%97%A0%E5%90%91%E5%9B%BE/" rel="self" type="application/rss+xml" /><item>
+  <title>算法 加权无向图</title>
+  <link>https://DDuuuu.github.io/2021/04/algorithm8/</link>
+  <pubDate>Tue, 20 Apr 2021 17:09:22 &#43;0800</pubDate>
+  <author>AndrewDu</author>
+  <guid>https://DDuuuu.github.io/2021/04/algorithm8/</guid>
+  <description><![CDATA[加权无向图 最小生成树：一棵含有其所有顶点的无环连通子图，一幅加权无向图的最小生成树(MST)是它的一棵权值(树中所有边的权值之和)最小的生成]]></description>
+</item>
+</channel>
+</rss>

@@ -1,0 +1,32 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>NetCLRVia - 分类 - AndrewDu&#39;s blog</title>
+    <link>https://DDuuuu.github.io/categories/netclrvia/</link>
+    <description>NetCLRVia - 分类 | AndrewDu&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>978089234@qq.com (AndrewDu)</managingEditor>
+      <webMaster>978089234@qq.com (AndrewDu)</webMaster><copyright>Copyright© Andrew.Du</copyright><lastBuildDate>Sun, 01 Mar 2020 17:09:22 &#43;0800</lastBuildDate><atom:link href="https://DDuuuu.github.io/categories/netclrvia/" rel="self" type="application/rss+xml" /><item>
+  <title>NetCLRVia 同步与竞争</title>
+  <link>https://DDuuuu.github.io/2020/03/dotnetbase8-netclrvia/</link>
+  <pubDate>Sun, 01 Mar 2020 17:09:22 &#43;0800</pubDate>
+  <author>AndrewDu</author>
+  <guid>https://DDuuuu.github.io/2020/03/dotnetbase8-netclrvia/</guid>
+  <description><![CDATA[基元线程同步构造 构建可伸缩的，响应灵敏的应用程序，关键在于不要阻塞线程， 多个线程同时访问共享数据，获取并释放一个线程同步锁。锁会损害性能，获]]></description>
+</item>
+<item>
+  <title>NetCLRVia 线程</title>
+  <link>https://DDuuuu.github.io/2020/02/dotnetbase7-netclrvia/</link>
+  <pubDate>Sat, 29 Feb 2020 17:09:22 &#43;0800</pubDate>
+  <author>AndrewDu</author>
+  <guid>https://DDuuuu.github.io/2020/02/dotnetbase7-netclrvia/</guid>
+  <description><![CDATA[线程基础 Windows为什么要支持线程 在单核单线程系统中有两个问题：1. 如果系统需要执行某些长时间任务或死循环，就没办法响应其他任何，造成系]]></description>
+</item>
+<item>
+  <title>NetCLRVia CLR</title>
+  <link>https://DDuuuu.github.io/2020/02/dotnetbase6-netclrvia/</link>
+  <pubDate>Sat, 22 Feb 2020 17:09:22 &#43;0800</pubDate>
+  <author>AndrewDu</author>
+  <guid>https://DDuuuu.github.io/2020/02/dotnetbase6-netclrvia/</guid>
+  <description><![CDATA[CLR执行模型 1 将源码编译成托管模块 在选择framework平台开发后，就面向CLR进行开发 CLR：一个程序，代码块，平台。可以使得多种编程]]></description>
+</item>
+</channel>
+</rss>

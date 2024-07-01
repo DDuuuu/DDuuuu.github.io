@@ -4,7 +4,15 @@
     <link>https://DDuuuu.github.io/tags/%E7%BA%BF%E7%A8%8B/</link>
     <description>线程 - 标签 | AndrewDu&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>978089234@qq.com (AndrewDu)</managingEditor>
-      <webMaster>978089234@qq.com (AndrewDu)</webMaster><copyright>Copyright© Andrew.Du</copyright><lastBuildDate>Fri, 23 Nov 2018 17:09:22 &#43;0800</lastBuildDate><atom:link href="https://DDuuuu.github.io/tags/%E7%BA%BF%E7%A8%8B/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>978089234@qq.com (AndrewDu)</webMaster><copyright>Copyright© Andrew.Du</copyright><lastBuildDate>Sat, 29 Feb 2020 17:09:22 &#43;0800</lastBuildDate><atom:link href="https://DDuuuu.github.io/tags/%E7%BA%BF%E7%A8%8B/" rel="self" type="application/rss+xml" /><item>
+  <title>NetCLRVia 线程</title>
+  <link>https://DDuuuu.github.io/2020/02/dotnetbase7-netclrvia/</link>
+  <pubDate>Sat, 29 Feb 2020 17:09:22 &#43;0800</pubDate>
+  <author>AndrewDu</author>
+  <guid>https://DDuuuu.github.io/2020/02/dotnetbase7-netclrvia/</guid>
+  <description><![CDATA[线程基础 Windows为什么要支持线程 在单核单线程系统中有两个问题：1. 如果系统需要执行某些长时间任务或死循环，就没办法响应其他任何，造成系]]></description>
+</item>
+<item>
   <title>DotNet基础 线程</title>
   <link>https://DDuuuu.github.io/2018/11/dotnetbase4-thread/</link>
   <pubDate>Fri, 23 Nov 2018 17:09:22 &#43;0800</pubDate>

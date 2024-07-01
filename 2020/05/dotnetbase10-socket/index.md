@@ -1,0 +1,68 @@
+# DotNet基础 仿写Socket
+
+
+最近和Socket干上了，连续肝了2个星期了，目前自己连抄带写的Socket已完成60%。来讲讲我在肝的过程中所思所想。为啥这么和Socket过不去，因为我想面向服务编程，每个组件都做成服务，组件化，当基础组件足够多，足够稳定，那么新的项目开发就会变得异常简单。而Socket是任何服务的基础，一个优秀的服务组件其网络通讯必须简洁可靠稳定的。有这么多优秀的Socket框架直接拿来用不香吗？是很香，也可以直接用它们实现各个组件，但是如果仅仅会用而不知道他们是如何实现的，同时出现问题只会花费更多的时间，一个简单的小问题可能需要排查很长一段时间。如果已经知道它们是如何是实现的，那么为何不自己尝试写一个呢。既是学习也是锻炼。本篇将总结一下SuperSocket中一些功能的实现思路。
+
+## 架构
+
+SuperSocket主要这几个类，AppServer,SocketServer,Listener,SocketSession,AppSession,这几个类的职责分工不同，一起完成SuperSocket强大的功能，这几个类也充分解释了：任何软件工程遇到的问题都可以通过增加一个中间层来解决。
+
+Socket编程主要有一下几个步骤：
+
+- Build Socket
+- Listener
+- Accept
+- ReceiveHandle
+- SendingHandle
+- Close
+
+如果想做一个中央日志服务或者文件管理服务，哪些是变化的东西？
+
+ReceiveHandle肯定是变化的，SendingHandle也是变化的，发送的数据内容可能是String也可能是Binary，日志服务可以用UDP，文件管理用TCP，Server的后台操作不一样，日志服务，有的新的连接时新建一个日志文件，文件管理服务有新的连接了访问文件目录结构。
+
+哪些东西是不会改变的？
+
+Socket的执行流程是不变的，必须要建立socket,listener,accept.....
+
+SuperSocket就是把这个变化的东西都单独抽出来分离一层，以应对变化。
+
+- AppServer:负责应对服务端的变化和基本设置，比如设置线程数量，设置接收缓存发小，发送队列大小，LoadConnectFilter,LoadReceiveFilter,CommandLoader，CommandFIlter,ReceiveFilter，创建SocketServer.
+
+- SocketServer负责应对Socket层面的变化，TCP，还是UDP,建立ReceiveBuffer,SendingQueuePool,Listener。同时订阅Listener的一些事件以响应NewClientConnected。一旦响应事件，就创建SocketSession,AppSession.
+
+- Listener：创建ListenSocekt，ListenSocketAsyncEventArgs,并执行监听
+
+- SocketSession最为核心，负责Socket底层的收发消息，负责使用ReceiveBuffer，SendingQueuePool，该层也最容易发生内存泄漏。
+
+- AppSession应对Receive和Send的变化，比如ConnectedFilter,ReceiverFilter，CommandFilter都是该层做的，同时还包括ReceiveParser，所有跟收发相关的业务都在这一层实现。
+
+从这些职责分配可以看出如果想用SuperSocket做一个组件那么只需要继承AppServer和AppSession就可以，这两个类是面向业务层面的变化，开发者不需要管理Socket底层的任何东西，重写一些方法专注于业务逻辑就可以了。
+
+## 关键技术
+
+我主要关注了Socket相关的关键技术
+
+ReceiveBuffer：SuperSocket的AsyncReceive使用SocketAsyncEventArgs，那每一个SocketAsyncEventArgs都需要设置一个Buffer，所以就构建了一个大的ReceiveBuffer,将其均分给每一个ReceiveSocketAsyncEventArgs.同时维护了一个ReceiveSocketAsyncEventArgsPool，当一个连接断开后会将ReceiveSocketAsyncEventArgs返回给Pool
+
+SendingQueuePool：最有意思，看完它想到一句话：任何性能问题都可以用队列来解决，一个Queue不够可以构建一个QueuePool，如果一个QueuePool不够可以构建多个甚至QueuePoolQueue，多线程执行多个的Queue提高性能。具体是如何是实现呢？每个SocektSession都有一个m_SendingQueue,线程1执行发送任务，将本次发送任务的所有数据压入当前的SendingQueue，从SendingQueuePool中获得一个新的NewSendingQueue给m_SendingQueue，然后异步让后台线程执行发送任务从OldSendingQueue中取出数据执行发送。这样即使OldSendingQueue没有发送完，也不影响NewSendingQueue发送数据。当OldSendingQueue中的数据发送完会将其返回给SendingQueuePool，当并发量超级多，SendingQueuePool中的SendingQueue都被用完，SendingQueuePool还会实现自动扩容，建一个新的SendingQueuePool一起组成BigSendingQueuePool。这是不是很棒的设计。
+
+ReceiveData的Parser和Filter都是在AppSession中完成的。CommandExecute是在AppServer中完成的，ReceiveFilter使用了模板方法，并使用复杂的算法来标识数据中特定的Mark，从而完成Filter，这里Parser使用了解析模式。Filter使用了组合模式。如果在ReceiveBuffer是固定的，但是Client发送数据很快，server会等到ReceiveBuffer满了之后进入Completed，必然会出现某条数据被切割成了两部分，在两次Completed的事件中，那么做一个拼接算法是必要的，Supersocket是如何做的呢？在Filter中如果第一次Filter结尾没有找到标识，会将最后这部分数据保存起来，然后重新设置第二次的ReceiveBuffer范围，其范围为头去掉（MessageLenth-receiveSize）大小，在第二次Filter中，会将第一次接收的数据拼接起来组成完整数据。提高数据传输的效率
+
+## 感想
+
+SuperSocket没有实现数据压缩传输比较遗憾，但是其也足够优秀，设计思路真的让人开阔视野，
+
+刚开始写Socket的时候并没有想太多，但真的开始做了才发现考虑的东西非常多，总结一些经验：
+
+- 先做好基本的设计需求规划，想要实现什么功能等等。
+- 做好类的责任划分，想清楚哪些有可能会变化，让其呆在架构的底层，在没有办法的情况才进行分层隔离。
+- 根据类的职责套用合适的设计模式。
+- 开始撸代码，写好注释和测试。
+- 任何好的代码都是重构来的，不要一开始就面面俱到，够用就行。
+
+
+---
+
+> 作者: [AndrewDu](https://github.com/DDuuuu)  
+> URL: https://DDuuuu.github.io/2020/05/dotnetbase10-socket/  
+

@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>CLR - 标签 - AndrewDu&#39;s blog</title>
+    <link>https://DDuuuu.github.io/tags/clr/</link>
+    <description>CLR - 标签 | AndrewDu&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>978089234@qq.com (AndrewDu)</managingEditor>
+      <webMaster>978089234@qq.com (AndrewDu)</webMaster><copyright>Copyright© Andrew.Du</copyright><lastBuildDate>Sat, 22 Feb 2020 17:09:22 &#43;0800</lastBuildDate><atom:link href="https://DDuuuu.github.io/tags/clr/" rel="self" type="application/rss+xml" /><item>
+  <title>NetCLRVia CLR</title>
+  <link>https://DDuuuu.github.io/2020/02/dotnetbase6-netclrvia/</link>
+  <pubDate>Sat, 22 Feb 2020 17:09:22 &#43;0800</pubDate>
+  <author>AndrewDu</author>
+  <guid>https://DDuuuu.github.io/2020/02/dotnetbase6-netclrvia/</guid>
+  <description><![CDATA[CLR执行模型 1 将源码编译成托管模块 在选择framework平台开发后，就面向CLR进行开发 CLR：一个程序，代码块，平台。可以使得多种编程]]></description>
+</item>
+</channel>
+</rss>

@@ -12,5 +12,13 @@
   <guid>https://DDuuuu.github.io/2022/06/algorithm1-queuesandlinks/</guid>
   <description><![CDATA[实现队列的一些思路 数组的优劣： 读取：连续的地址空间，数组全部或者部分元素被连续存在CPU缓存里面，读取速度非常快。 插入/删除/扩容：插入和删]]></description>
 </item>
+<item>
+  <title>算法 包 栈 队列</title>
+  <link>https://DDuuuu.github.io/2020/11/algorithm2/</link>
+  <pubDate>Sun, 22 Nov 2020 17:09:22 &#43;0800</pubDate>
+  <author>AndrewDu</author>
+  <guid>https://DDuuuu.github.io/2020/11/algorithm2/</guid>
+  <description><![CDATA[Bag（包） 背包：不支持删除元素的集合数据类型。 1 2 3 4 5 6 public interface IBag&lt;TItem&gt; : IEnumerable&lt;TItem&gt;, IDisposable { bool IsEmpty { get; } int Length { get; } void Add(TItem item); } 数组实现 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15]]></description>
+</item>
 </channel>
 </rss>

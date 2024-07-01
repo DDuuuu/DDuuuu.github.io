@@ -4,15 +4,7 @@
     <link>https://DDuuuu.github.io/categories/headfirst%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</link>
     <description>HeadFirst设计模式 - 分类 | AndrewDu&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>978089234@qq.com (AndrewDu)</managingEditor>
-      <webMaster>978089234@qq.com (AndrewDu)</webMaster><copyright>Copyright© Andrew.Du</copyright><lastBuildDate>Wed, 27 Nov 2019 17:09:22 &#43;0800</lastBuildDate><atom:link href="https://DDuuuu.github.io/categories/headfirst%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="self" type="application/rss+xml" /><item>
-  <title>HeadFirst设计模式 装饰 适配器</title>
-  <link>https://DDuuuu.github.io/2019/11/designpattern14-headfirst/</link>
-  <pubDate>Wed, 27 Nov 2019 17:09:22 &#43;0800</pubDate>
-  <author>AndrewDu</author>
-  <guid>https://DDuuuu.github.io/2019/11/designpattern14-headfirst/</guid>
-  <description><![CDATA[1 装饰者模式 星巴克咖啡 饮料 总结 如果说策略模式是通过组合实现弹性，那么装饰者模式就是通过继承来实现，在实现的同时，客户基本感觉不到使用了装饰者]]></description>
-</item>
-<item>
+      <webMaster>978089234@qq.com (AndrewDu)</webMaster><copyright>Copyright© Andrew.Du</copyright><lastBuildDate>Mon, 25 Nov 2019 17:09:22 &#43;0800</lastBuildDate><atom:link href="https://DDuuuu.github.io/categories/headfirst%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="self" type="application/rss+xml" /><item>
   <title>HeadFirst设计模式 装饰 适配器</title>
   <link>https://DDuuuu.github.io/2019/11/designpattern14-headfirst/</link>
   <pubDate>Mon, 25 Nov 2019 17:09:22 &#43;0800</pubDate>

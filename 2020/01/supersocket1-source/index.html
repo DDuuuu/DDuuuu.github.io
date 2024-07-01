@@ -1,0 +1,1230 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>SuperSocket1.6 源码解析 - AndrewDu&#39;s blog</title><meta name="author" content="AndrewDu">
+<meta name="author-link" content="https://github.com/DDuuuu">
+<meta name="description" content="注意：该版本为SuperSocket1.6,最新版已有较大改动 Normal Socket System.Net.Sockets.dll程序集中使用socket类： 服" /><meta name="keywords" content='SuperSocket1.6, 源码解析' />
+  <meta itemprop="name" content="SuperSocket1.6 源码解析">
+  <meta itemprop="description" content="注意：该版本为SuperSocket1.6,最新版已有较大改动 Normal Socket System.Net.Sockets.dll程序集中使用socket类： 服">
+  <meta itemprop="datePublished" content="2020-01-28T17:09:22+08:00">
+  <meta itemprop="dateModified" content="2020-01-28T17:09:22+08:00">
+  <meta itemprop="wordCount" content="7893">
+  <meta itemprop="image" content="https://DDuuuu.github.io/images/logo150.png">
+  <meta itemprop="keywords" content="SuperSocket1.6,源码解析"><meta property="og:url" content="https://DDuuuu.github.io/2020/01/supersocket1-source/">
+  <meta property="og:site_name" content="AndrewDu&#39;s blog">
+  <meta property="og:title" content="SuperSocket1.6 源码解析">
+  <meta property="og:description" content="注意：该版本为SuperSocket1.6,最新版已有较大改动 Normal Socket System.Net.Sockets.dll程序集中使用socket类： 服">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2020-01-28T17:09:22+08:00">
+    <meta property="article:modified_time" content="2020-01-28T17:09:22+08:00">
+    <meta property="article:tag" content="SuperSocket1.6">
+    <meta property="article:tag" content="源码解析">
+    <meta property="og:image" content="https://DDuuuu.github.io/images/logo150.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://DDuuuu.github.io/images/logo150.png">
+  <meta name="twitter:title" content="SuperSocket1.6 源码解析">
+  <meta name="twitter:description" content="注意：该版本为SuperSocket1.6,最新版已有较大改动 Normal Socket System.Net.Sockets.dll程序集中使用socket类： 服">
+<meta name="application-name" content="Andrew.Du">
+<meta name="apple-mobile-web-app-title" content="Andrew.Du"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://DDuuuu.github.io/2020/01/supersocket1-source/" /><link rel="prev" href="https://DDuuuu.github.io/2019/11/designpattern14-headfirst/" /><link rel="next" href="https://DDuuuu.github.io/2020/02/dotnetbase6-netclrvia/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "SuperSocket1.6 源码解析",
+    "inLanguage": "zh-CN",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https:\/\/DDuuuu.github.io\/2020\/01\/supersocket1-source\/"
+    },"image": ["https:\/\/DDuuuu.github.io\/images\/logo192.png"],"genre": "posts","keywords": "SuperSocket1.6, 源码解析","wordcount":  7893 ,
+    "url": "https:\/\/DDuuuu.github.io\/2020\/01\/supersocket1-source\/","datePublished": "2020-01-28T17:09:22+08:00","dateModified": "2020-01-28T17:09:22+08:00","license": "Copyright© Andrew.Du","publisher": {
+      "@type": "Organization",
+      "name": "AndrewDu"},"author": {
+        "@type": "Person",
+        "name": "AndrewDu"
+      },"description": ""
+  }
+  </script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage?.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper" data-page-style="normal"><header class="desktop animate__faster" id="header-desktop">
+  <div class="header-wrapper" data-github-corner="right">
+    <div class="header-title">
+      <a href="/" title="AndrewDu&#39;s blog"><span class="typeit"><template>AndrewDu&#39;s blog</template></span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/"
+                title="主页"
+                
+              ><i class="fa-solid fa-home fa-fw fa-sm" aria-hidden="true"></i> 主页</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/archives/"
+                title="归档"
+                
+              ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 归档</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              ><i class="fa-solid fa-folder-tree fa-fw fa-sm" aria-hidden="true"></i> 类别</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/about/"
+                
+                
+              ><i class="fa-solid fa-link fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item delimiter"></li><li class="menu-item search" id="search-desktop">
+            <input type="text" placeholder="搜索文章标题或内容……" id="search-input-desktop">
+            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+              <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+            </a>
+            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+              <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+            </a>
+            <span class="search-button search-loading" id="search-loading-desktop">
+              <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+            </span>
+          </li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><header class="mobile animate__faster" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="AndrewDu&#39;s blog"><span class="typeit"><template>AndrewDu&#39;s blog</template></span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li class="search-wrapper">
+            <div class="search mobile" id="search-mobile">
+              <input type="text" placeholder="搜索文章标题或内容……" id="search-input-mobile">
+              <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+              </a>
+              <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+              </a>
+              <span class="search-button search-loading" id="search-loading-mobile">
+                <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+              </span>
+            </div>
+            <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+              取消
+            </a>
+          </li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/"
+                  title="主页"
+                  
+                ><i class="fa-solid fa-home fa-fw fa-sm" aria-hidden="true"></i> 主页</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/archives/"
+                  title="归档"
+                  
+                ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 归档</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/categories/"
+                  
+                  
+                ><i class="fa-solid fa-folder-tree fa-fw fa-sm" aria-hidden="true"></i> 类别</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/about/"
+                  
+                  
+                ><i class="fa-solid fa-link fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item menu-system">
+          <span class="menu-system-item theme-switch" title="切换主题"><i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i></span></li>
+      </ul>
+    </nav>
+  </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+  </div>
+  <div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+  </div><nav aria-label="breadcrumb" class="breadcrumb-container sticky">
+    <ol class="breadcrumb"><li class="breadcrumb-item"><a href="/" title="AndrewDu&#39;s Blog">主页</a></li><li class="breadcrumb-item"><a href="/posts/" title="Posts">文章</a></li><li class="breadcrumb-item active" aria-current="page">SuperSocket1.6 源码解析</li>
+    </ol>
+  </nav><main class="container"><aside class="aside-collection animate__animated animate__fadeIn animate__faster" aria-label="合集"></aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX"><span>SuperSocket1.6 源码解析</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><a href="https://github.com/DDuuuu" title="作者"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+    AndrewDu</a></span><span class="post-included-in">&nbsp;收录于 <a href="/categories/supersocket1.6/" class="post-category" title="分类 - SuperSocket1.6"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> SuperSocket1.6</a></span></div><div class="post-meta-line"><span title="发布于 2020-01-28 17:09:22"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2020-01-28">2020-01-28</time></span>&nbsp;<span title="7893 字"><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>约 7900 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>预计阅读 16 分钟</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="SuperSocket1.6 源码解析">
+              <i class="fa-regular fa-eye fa-fw me-1" aria-hidden="true"></i><span id="busuanzi_value_page_pv">-</span>&nbsp;次阅读
+            </span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>目录</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#normal-socket">Normal Socket</a></li>
+    <li><a href="#socketasynceventargs">SocketAsyncEventArgs</a></li>
+    <li><a href="#supersocket-architecture">SuperSocket Architecture</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#supersocket-层次示意图">SuperSocket 层次示意图</a></li>
+            <li><a href="#supersocket-对象模型图示意图">SuperSocket 对象模型图示意图</a></li>
+            <li><a href="#supersocket-请求处理模型示意图">SuperSocket 请求处理模型示意图</a></li>
+            <li><a href="#supersocket-隔离模型示意图">SuperSocket 隔离模型示意图</a></li>
+          </ul>
+        </li>
+        <li><a href="#config">Config</a></li>
+        <li><a href="#command-filters">Command Filters</a></li>
+        <li><a href="#loglogfactory">Log/LogFactory</a></li>
+        <li><a href="#command-loaders">Command Loaders</a></li>
+        <li><a href="#receivefilterfactory">ReceiveFilterFactory</a></li>
+        <li><a href="#receivefilter">ReceiveFilter</a></li>
+        <li><a href="#connection-filters">Connection Filters</a></li>
+      </ul>
+    </li>
+    <li><a href="#socketbasedll">SocketBase.dll</a>
+      <ul>
+        <li><a href="#isessionbase">ISessionBase</a></li>
+        <li><a href="#appsession">AppSession</a></li>
+        <li><a href="#serverconfig">ServerConfig</a></li>
+        <li><a href="#rootconfig">RootConfig</a></li>
+        <li><a href="#requestinfo">RequestInfo</a></li>
+        <li><a href="#listenerinfo">ListenerInfo</a></li>
+        <li><a href="#listenerconfig">ListenerConfig</a></li>
+        <li><a href="#reflectcommandloader">ReflectCommandLoader</a></li>
+        <li><a href="#statusinfocollection">StatusInfoCollection</a></li>
+        <li><a href="#appserverbase">AppServerBase</a></li>
+        <li><a href="#appseverbasetappsessiontrequestinfo">AppSeverBase&lt;TAppSession,TRequestInfo&gt;</a></li>
+      </ul>
+    </li>
+    <li><a href="#facilitydll">Facility.dll</a>
+      <ul>
+        <li><a href="#policyreceivefilterfactory">PolicyReceiveFilterFactory</a></li>
+        <li><a href="#policyrecievefilter">PolicyRecieveFilter</a></li>
+        <li><a href="#protocol">Protocol</a></li>
+      </ul>
+    </li>
+    <li><a href="#socketenginedll">SocketEngine.dll</a>
+      <ul>
+        <li><a href="#performancemonitor">PerformanceMonitor</a></li>
+        <li><a href="#socketsession">SocketSession</a></li>
+        <li><a href="#asyncsocketsession">AsyncSocketSession</a></li>
+        <li><a href="#asyncstreamsocketsession">AsyncStreamSocketSession</a></li>
+        <li><a href="#socketfactory">SocketFactory</a></li>
+        <li><a href="#socketservers">SocketServers</a></li>
+        <li><a href="#asyncsocketserver">AsyncSocketServer</a></li>
+        <li><a href="#socketasynceventargsproxy">SocketAsyncEventArgsProxy</a></li>
+        <li><a href="#bootstrapfactory">BootstrapFactory</a></li>
+        <li><a href="#defaultbootstrap">DefaultBootStrap</a></li>
+        <li><a href="#configurationwatcher">ConfigurationWatcher</a></li>
+        <li><a href="#socketlistenerbase">SocketListenerBase</a></li>
+        <li><a href="#tcpasyncsocketlistener">TcpAsyncSocketListener</a></li>
+        <li><a href="#workitemfactoryinfoloader">WorkItemFactoryInfoLoader</a></li>
+      </ul>
+    </li>
+    <li><a href="#commondll">Common.dll</a>
+      <ul>
+        <li><a href="#buffermanager">BufferManager</a></li>
+        <li><a href="#arraysegmentlist">ArraySegmentList</a></li>
+        <li><a href="#arraysegmentex">ArraySegmentEx</a></li>
+        <li><a href="#sendingqueue">SendingQueue</a></li>
+        <li><a href="#sendingqueuesourcecreator">SendingQueueSourceCreator</a></li>
+        <li><a href="#smartpool">SmartPool</a></li>
+        <li><a href="#smartpoolsource">SmartPoolSource</a></li>
+      </ul>
+    </li>
+    <li><a href="#otherdll">Other.dll</a>
+      <ul>
+        <li><a href="#socketasynceventargshttpsdocsmicrosoftcomzh-cndotnetapisystemnetsocketssocketasynceventargsf1urlhttps3a2f2fmsdnmicrosoftcom2fquery2fdev15query3fappid3ddev15idef126l3dzh-cn26k3dksystemnetsocketssocketasynceventargsktargetframeworkmoniker-netframeworkversion3dv45kdevlang-csharp26rd3dtrueviewnetframework-48-类"><a href="https://docs.microsoft.com/zh-cn/dotnet/api/system.net.sockets.socketasynceventargs?f1url=https%3A%2F%2Fmsdn.microsoft.com%2Fquery%2Fdev15.query%3FappId%3DDev15IDEF1%26l%3DZH-CN%26k%3Dk(System.Net.Sockets.SocketAsyncEventArgs);k(TargetFrameworkMoniker-.NETFramework,Version%3Dv4.5);k(DevLang-csharp)%26rd%3Dtrue&amp;view=netframework-4.8">SocketAsyncEventArgs</a> 类</a></li>
+      </ul>
+    </li>
+    <li><a href="#设置ip和port调用流程">设置IP和Port调用流程</a></li>
+    <li><a href="#start调用流程">start调用流程</a></li>
+    <li><a href="#send调用流程">send调用流程</a></li>
+    <li><a href="#stop调用流程">Stop调用流程</a></li>
+  </ul>
+</nav></div>
+      </div><div class="content" id="content" data-end-flag="感谢阅读！"><p>注意：该版本为SuperSocket1.6,最新版已有较大改动</p>
+<h2 id="normal-socket" class="heading-element"><span>Normal Socket</span>
+  <a href="#normal-socket" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><p>System.Net.Sockets.dll程序集中使用socket类：</p>
+<p>服务器：</p>
+<ol>
+<li><strong>创建socket</strong>:<code>_socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);</code></li>
+<li><strong>创建IP</strong>：<code>IPAddress _ip = IPAddress.Parse(ip);_endPoint = new IPEndPoint(_ip, port);</code></li>
+<li><strong>绑定IP地址：</strong> <code>_socket.Bind(_endPoint);</code> //绑定端口</li>
+<li><strong>服务开启监听：</strong><code>_socket.Listen(BACKLOG);</code> //开启监听，backlog是监听的最大数列</li>
+<li><strong>开启监听线程</strong>：创建新的监听线程，在监听线程中while调用<code>Socket acceptSocket = _socket.Accept();</code>
+<ol>
+<li>一旦acceptSocket 不为空，说明有客户端连接成功，保存客户端socket，并查看该socket的isConnected属性是否连接<code>socket.RemoteEndPoint.ToString();</code></li>
+<li>一旦连接创建接收线程，并启动线程，在该线程中创建while<code>while (sInfo.isConnected){sInfo.socket.BeginReceive(sInfo.buffer, 0, sInfo.buffer.Length, SocketFlags.None, ReceiveCallBack, sInfo.socket.RemoteEndPoint);}</code>来接收客户端传来的消息。</li>
+</ol>
+</li>
+<li>**BeginReceive()**有一个回调函数ReceiveCallBack()通过读取byte[]buffer</li>
+<li>向客户端发送信息<code>socket.Send(Encoding.ASCII.GetBytes(text));</code></li>
+</ol>
+<p>receivebuffer默认值8192</p>
+<h2 id="socketasynceventargs" class="heading-element"><span>SocketAsyncEventArgs</span>
+  <a href="#socketasynceventargs" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><p>异步套接字操作</p>
+<ol>
+<li><strong>创建IPEndPoint</strong></li>
+<li><strong>创建socket</strong><code>ListenerSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);</code></li>
+<li><strong>绑定IP地址</strong><code>ListenerSocket.Bind(e);</code></li>
+<li><strong>开始监听</strong><code>ListenerSocket.Listen(10);</code></li>
+<li><strong>创建异步套接字,并绑定异步完成事件</strong><code>Args = new SocketAsyncEventArgs();Args.Completed += new EventHandler&lt;SocketAsyncEventArgs&gt;(ProcessAccept);</code></li>
+<li><strong>调用socket的AcceptAsync(Args)方法</strong><code>ListenerSocket.AcceptAsync(Args);</code></li>
+<li><strong>在异步套接字完成事件的回调函数中</strong>，创建新的异步套接字用于接收客户端传入消息的异步操作。<code>var args = new SocketAsyncEventArgs();args.Completed += new EventHandler&lt;SocketAsyncEventArgs&gt;(OnIOCompleted);args.AcceptSocket = s;s.ReceiveAsync(args)</code>s.<strong>ReceiveAsync</strong>(args)，s接收的socket的，新建一个异步套接字，并传入ReceiveAsync()方法。</li>
+<li><code>switch (e.LastOperation)case SocketAsyncOperation.Receive:</code></li>
+</ol>
+<p>Socket.AcceptAsync(SocketAsyncEventArgs) 方法</p>
+<p>返回：如果 I/O 操作挂起，则为 <code>true</code>。 操作完成时，将引发 <a href="https://docs.microsoft.com/zh-cn/dotnet/api/system.net.sockets.socketasynceventargs.completed?view=netframework-4.8"target="_blank" rel="external nofollow noopener noreferrer">Completed</a> 参数的 <code>e</code> 事件。read和write是异步完成为true，如果过是同步完成则为false.</p>
+<p>如果 I/O 操作同步完成，则为 <code>false</code>。 将不会引发 <a href="https://docs.microsoft.com/zh-cn/dotnet/api/system.net.sockets.socketasynceventargs.completed?view=netframework-4.8"target="_blank" rel="external nofollow noopener noreferrer">Completed</a> 参数的 <code>e</code> 事件，并且可能在方法调用返回后立即检查作为参数传递的 <code>e</code> 对象以检索操作的结果。</p>
+<h2 id="supersocket-architecture" class="heading-element"><span>SuperSocket Architecture</span>
+  <a href="#supersocket-architecture" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><h4 id="supersocket-层次示意图" class="heading-element"><span>SuperSocket 层次示意图</span>
+  <a href="#supersocket-%e5%b1%82%e6%ac%a1%e7%a4%ba%e6%84%8f%e5%9b%be" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h4><p><img loading="lazy" src="/supersocket/1579317752168.jpg" alt="SuperSocketLayers" srcset="/supersocket/1579317752168.jpg?size=small, /supersocket/1579317752168.jpg?size=medium 1.5x, /supersocket/1579317752168.jpg?size=large 2x" data-title="SuperSocketLayers" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<ul>
+<li>Reusable IO Buffer Pool：BufferManager类</li>
+</ul>
+<h4 id="supersocket-对象模型图示意图" class="heading-element"><span>SuperSocket 对象模型图示意图</span>
+  <a href="#supersocket-%e5%af%b9%e8%b1%a1%e6%a8%a1%e5%9e%8b%e5%9b%be%e7%a4%ba%e6%84%8f%e5%9b%be" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h4><p><img loading="lazy" src="/supersocket/objectmodel.jpg" alt="SuperSocketObjectModel" srcset="/supersocket/objectmodel.jpg?size=small, /supersocket/objectmodel.jpg?size=medium 1.5x, /supersocket/objectmodel.jpg?size=large 2x" data-title="SuperSocketObjectModel" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<h4 id="supersocket-请求处理模型示意图" class="heading-element"><span>SuperSocket 请求处理模型示意图</span>
+  <a href="#supersocket-%e8%af%b7%e6%b1%82%e5%a4%84%e7%90%86%e6%a8%a1%e5%9e%8b%e7%a4%ba%e6%84%8f%e5%9b%be" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h4><p><img loading="lazy" src="/supersocket/requesthandlingmodel.jpg" alt="SuperSocketRequestHandlingModel" srcset="/supersocket/requesthandlingmodel.jpg?size=small, /supersocket/requesthandlingmodel.jpg?size=medium 1.5x, /supersocket/requesthandlingmodel.jpg?size=large 2x" data-title="SuperSocketRequestHandlingModel" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<h4 id="supersocket-隔离模型示意图" class="heading-element"><span>SuperSocket 隔离模型示意图</span>
+  <a href="#supersocket-%e9%9a%94%e7%a6%bb%e6%a8%a1%e5%9e%8b%e7%a4%ba%e6%84%8f%e5%9b%be" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h4><p><img loading="lazy" src="/supersocket/isolationmodel.jpg" alt="SuperSocketIsolationModel" srcset="/supersocket/isolationmodel.jpg?size=small, /supersocket/isolationmodel.jpg?size=medium 1.5x, /supersocket/isolationmodel.jpg?size=large 2x" data-title="SuperSocketIsolationModel" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<h3 id="config" class="heading-element"><span>Config</span>
+  <a href="#config" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><h3 id="command-filters" class="heading-element"><span>Command Filters</span>
+  <a href="#command-filters" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><h3 id="loglogfactory" class="heading-element"><span>Log/LogFactory</span>
+  <a href="#loglogfactory" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><h3 id="command-loaders" class="heading-element"><span>Command Loaders</span>
+  <a href="#command-loaders" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p><img loading="lazy" src="/supersocket/1078802-20200127233503613-437203940-1580139446894.png" alt="1579856396698" srcset="/supersocket/1078802-20200127233503613-437203940-1580139446894.png?size=small, /supersocket/1078802-20200127233503613-437203940-1580139446894.png?size=medium 1.5x, /supersocket/1078802-20200127233503613-437203940-1580139446894.png?size=large 2x" data-title="1579856396698" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<h3 id="receivefilterfactory" class="heading-element"><span>ReceiveFilterFactory</span>
+  <a href="#receivefilterfactory" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p><img loading="lazy" src="/supersocket/1078802-20200127233503630-1179617648-1580139446901.png" alt="1579855102888" srcset="/supersocket/1078802-20200127233503630-1179617648-1580139446901.png?size=small, /supersocket/1078802-20200127233503630-1179617648-1580139446901.png?size=medium 1.5x, /supersocket/1078802-20200127233503630-1179617648-1580139446901.png?size=large 2x" data-title="1579855102888" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<h3 id="receivefilter" class="heading-element"><span>ReceiveFilter</span>
+  <a href="#receivefilter" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p><img loading="lazy" src="/supersocket/1078802-20200127233503679-902606586-1580139446911.png" alt="1579855469740" srcset="/supersocket/1078802-20200127233503679-902606586-1580139446911.png?size=small, /supersocket/1078802-20200127233503679-902606586-1580139446911.png?size=medium 1.5x, /supersocket/1078802-20200127233503679-902606586-1580139446911.png?size=large 2x" data-title="1579855469740" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<h3 id="connection-filters" class="heading-element"><span>Connection Filters</span>
+  <a href="#connection-filters" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p><img loading="lazy" src="/supersocket/1078802-20200127233503698-344557318-1580139446918.png" alt="1579856311644" srcset="/supersocket/1078802-20200127233503698-344557318-1580139446918.png?size=small, /supersocket/1078802-20200127233503698-344557318-1580139446918.png?size=medium 1.5x, /supersocket/1078802-20200127233503698-344557318-1580139446918.png?size=large 2x" data-title="1579856311644" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<h2 id="socketbasedll" class="heading-element"><span>SocketBase.dll</span>
+  <a href="#socketbasedll" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><h3 id="isessionbase" class="heading-element"><span>ISessionBase</span>
+  <a href="#isessionbase" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p><img loading="lazy" src="/supersocket/1078802-20200127233503726-859896689-1580139446943.png" alt="1579318554194" srcset="/supersocket/1078802-20200127233503726-859896689-1580139446943.png?size=small, /supersocket/1078802-20200127233503726-859896689-1580139446943.png?size=medium 1.5x, /supersocket/1078802-20200127233503726-859896689-1580139446943.png?size=large 2x" data-title="1579318554194" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<h3 id="appsession" class="heading-element"><span>AppSession</span>
+  <a href="#appsession" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p><img loading="lazy" src="/supersocket/1078802-20200127233503768-2071780339-1580139446934.png" alt="1580125323588" srcset="/supersocket/1078802-20200127233503768-2071780339-1580139446934.png?size=small, /supersocket/1078802-20200127233503768-2071780339-1580139446934.png?size=medium 1.5x, /supersocket/1078802-20200127233503768-2071780339-1580139446934.png?size=large 2x" data-title="1580125323588" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="/supersocket/1078802-20200127233504166-1333428366-1580139446941.png" alt="1579319140513" srcset="/supersocket/1078802-20200127233504166-1333428366-1580139446941.png?size=small, /supersocket/1078802-20200127233504166-1333428366-1580139446941.png?size=medium 1.5x, /supersocket/1078802-20200127233504166-1333428366-1580139446941.png?size=large 2x" data-title="1579319140513" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>对AppServer和SocketSession的包装</p>
+<h3 id="serverconfig" class="heading-element"><span>ServerConfig</span>
+  <a href="#serverconfig" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p>服务参数配置,在serverbase基类SetUp中创建</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c#" data-lang="c#"><span class="line"><span class="cl"><span class="cs">/// &lt;summary&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="cs">/// Setups with the specified ip and port.</span>
+</span></span><span class="line"><span class="cl"><span class="cs">/// &lt;/summary&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="cs">/// &lt;param name=&#34;ip&#34;&gt;The ip.&lt;/param&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="cs">/// &lt;param name=&#34;port&#34;&gt;The port.&lt;/param&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="cs">/// &lt;param name=&#34;socketServerFactory&#34;&gt;The socket server factory.&lt;/param&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="cs">/// &lt;param name=&#34;receiveFilterFactory&#34;&gt;The Receive filter factory.&lt;/param&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="cs">/// &lt;param name=&#34;logFactory&#34;&gt;The log factory.&lt;/param&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="cs">/// &lt;param name=&#34;connectionFilters&#34;&gt;The connection filters.&lt;/param&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="cs">/// &lt;param name=&#34;commandLoaders&#34;&gt;The command loaders.&lt;/param&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="cs">/// &lt;returns&gt;return setup result&lt;/returns&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">bool</span> <span class="n">Setup</span><span class="p">(</span><span class="kt">string</span> <span class="n">ip</span><span class="p">,</span> <span class="kt">int</span> <span class="n">port</span><span class="p">,</span> <span class="n">ISocketServerFactory</span> <span class="n">socketServerFactory</span> <span class="p">=</span> <span class="kc">null</span><span class="p">,</span> <span class="n">IReceiveFilterFactory</span><span class="p">&lt;</span><span class="n">TRequestInfo</span><span class="p">&gt;</span> <span class="n">receiveFilterFactory</span> <span class="p">=</span> <span class="kc">null</span><span class="p">,</span> <span class="n">ILogFactory</span> <span class="n">logFactory</span> <span class="p">=</span> <span class="kc">null</span><span class="p">,</span> <span class="n">IEnumerable</span><span class="p">&lt;</span><span class="n">IConnectionFilter</span><span class="p">&gt;</span> <span class="n">connectionFilters</span> <span class="p">=</span> <span class="kc">null</span><span class="p">,</span> <span class="n">IEnumerable</span><span class="p">&lt;</span><span class="n">ICommandLoader</span><span class="p">&lt;</span><span class="n">ICommand</span><span class="p">&lt;</span><span class="n">TAppSession</span><span class="p">,</span> <span class="n">TRequestInfo</span><span class="p">&gt;&gt;&gt;</span> <span class="n">commandLoaders</span> <span class="p">=</span> <span class="kc">null</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">Setup</span><span class="p">(</span><span class="k">new</span> <span class="n">ServerConfig</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">Ip</span> <span class="p">=</span> <span class="n">ip</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">Port</span> <span class="p">=</span> <span class="n">port</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">socketServerFactory</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">receiveFilterFactory</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">logFactory</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">connectionFilters</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">commandLoaders</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><img loading="lazy" src="/supersocket/1078802-20200127233505015-945625614-1580139446956.png" alt="1578468089417" srcset="/supersocket/1078802-20200127233505015-945625614-1580139446956.png?size=small, /supersocket/1078802-20200127233505015-945625614-1580139446956.png?size=medium 1.5x, /supersocket/1078802-20200127233505015-945625614-1580139446956.png?size=large 2x" data-title="1578468089417" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<h3 id="rootconfig" class="heading-element"><span>RootConfig</span>
+  <a href="#rootconfig" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p><img loading="lazy" src="/supersocket/1078802-20200127233504737-1332814685-1580139446985.png" alt="1578469017093" srcset="/supersocket/1078802-20200127233504737-1332814685-1580139446985.png?size=small, /supersocket/1078802-20200127233504737-1332814685-1580139446985.png?size=medium 1.5x, /supersocket/1078802-20200127233504737-1332814685-1580139446985.png?size=large 2x" data-title="1578469017093" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<ul>
+<li>MaxWorkingThreads：最大工作线程数量</li>
+<li>MaxCompletionPortThreads：线程池中异步 I/O 线程的最大数目。</li>
+<li>PerformanceDataCollectInterval：性能数据收集间隔</li>
+</ul>
+<h3 id="requestinfo" class="heading-element"><span>RequestInfo</span>
+  <a href="#requestinfo" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p>类图</p>
+<p><img loading="lazy" src="/supersocket/1078802-20200127233504676-1620865394-1580139446996.png" alt="1578446037999" srcset="/supersocket/1078802-20200127233504676-1620865394-1580139446996.png?size=small, /supersocket/1078802-20200127233504676-1620865394-1580139446996.png?size=medium 1.5x, /supersocket/1078802-20200127233504676-1620865394-1580139446996.png?size=large 2x" data-title="1578446037999" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<ul>
+<li>基类是RequestInfo，提供了两个方法Key和Body,Body是模板，由子类确定具体类型</li>
+<li>StringRequestInfo,在父类基础上提供了一个参数，String[] Parameters</li>
+<li>RequestInfo&lt;TRequestHeader, TRequestBody&gt;:提供了请求头和请求体类型的模板。</li>
+<li>三个接口，key属性，body属性，heater属性</li>
+</ul>
+<h3 id="listenerinfo" class="heading-element"><span>ListenerInfo</span>
+  <a href="#listenerinfo" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p><img loading="lazy" src="/supersocket/1078802-20200127233503853-531792950-1580139447019.png" alt="1579947882373" srcset="/supersocket/1078802-20200127233503853-531792950-1580139447019.png?size=small, /supersocket/1078802-20200127233503853-531792950-1580139447019.png?size=medium 1.5x, /supersocket/1078802-20200127233503853-531792950-1580139447019.png?size=large 2x" data-title="1579947882373" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>监听节点</p>
+<h3 id="listenerconfig" class="heading-element"><span>ListenerConfig</span>
+  <a href="#listenerconfig" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p><img loading="lazy" src="/supersocket/1078802-20200127233503914-974907069-1580139447057.png" alt="1578474012112" srcset="/supersocket/1078802-20200127233503914-974907069-1580139447057.png?size=small, /supersocket/1078802-20200127233503914-974907069-1580139447057.png?size=medium 1.5x, /supersocket/1078802-20200127233503914-974907069-1580139447057.png?size=large 2x" data-title="1578474012112" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<h3 id="reflectcommandloader" class="heading-element"><span>ReflectCommandLoader</span>
+  <a href="#reflectcommandloader" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p><img loading="lazy" src="/supersocket/1078802-20200127233504892-1585734593-1580139447063.png" alt="1578472566238" srcset="/supersocket/1078802-20200127233504892-1585734593-1580139447063.png?size=small, /supersocket/1078802-20200127233504892-1585734593-1580139447063.png?size=medium 1.5x, /supersocket/1078802-20200127233504892-1585734593-1580139447063.png?size=large 2x" data-title="1578472566238" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<ul>
+<li>ReflectCommandLoader:通过TryLoadCommands方法反射出程序集中的所有命令</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c#" data-lang="c#"><span class="line"><span class="cl"><span class="cs">/// &lt;summary&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="cs">/// Tries to load commands.</span>
+</span></span><span class="line"><span class="cl"><span class="cs">/// &lt;/summary&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="cs">/// &lt;param name=&#34;commands&#34;&gt;The commands.&lt;/param&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="cs">/// &lt;returns&gt;&lt;/returns&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">override</span> <span class="kt">bool</span> <span class="n">TryLoadCommands</span><span class="p">(</span><span class="k">out</span> <span class="n">IEnumerable</span><span class="p">&lt;</span><span class="n">TCommand</span><span class="p">&gt;</span> <span class="n">commands</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">commands</span> <span class="p">=</span> <span class="kc">null</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">var</span> <span class="n">commandAssemblies</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">Assembly</span><span class="p">&gt;();</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">m_AppServer</span><span class="p">.</span><span class="n">GetType</span><span class="p">().</span><span class="n">Assembly</span> <span class="p">!=</span> <span class="k">this</span><span class="p">.</span><span class="n">GetType</span><span class="p">().</span><span class="n">Assembly</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">commandAssemblies</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="n">m_AppServer</span><span class="p">.</span><span class="n">GetType</span><span class="p">().</span><span class="n">Assembly</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">string</span> <span class="n">commandAssembly</span> <span class="p">=</span> <span class="n">m_AppServer</span><span class="p">.</span><span class="n">Config</span><span class="p">.</span><span class="n">Options</span><span class="p">.</span><span class="n">GetValue</span><span class="p">(</span><span class="s">&#34;commandAssembly&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(!</span><span class="kt">string</span><span class="p">.</span><span class="n">IsNullOrEmpty</span><span class="p">(</span><span class="n">commandAssembly</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">OnError</span><span class="p">(</span><span class="s">&#34;The configuration attribute &#39;commandAssembly&#39; is not in used, please try to use the child node &#39;commandAssemblies&#39; instead!&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">m_AppServer</span><span class="p">.</span><span class="n">Config</span><span class="p">.</span><span class="n">CommandAssemblies</span> <span class="p">!=</span> <span class="kc">null</span> <span class="p">&amp;&amp;</span> <span class="n">m_AppServer</span><span class="p">.</span><span class="n">Config</span><span class="p">.</span><span class="n">CommandAssemblies</span><span class="p">.</span><span class="n">Any</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">try</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="kt">var</span> <span class="n">definedAssemblies</span> <span class="p">=</span> <span class="n">AssemblyUtil</span><span class="p">.</span><span class="n">GetAssembliesFromStrings</span><span class="p">(</span><span class="n">m_AppServer</span><span class="p">.</span><span class="n">Config</span><span class="p">.</span><span class="n">CommandAssemblies</span><span class="p">.</span><span class="n">Select</span><span class="p">(</span><span class="n">a</span> <span class="p">=&gt;</span> <span class="n">a</span><span class="p">.</span><span class="n">Assembly</span><span class="p">).</span><span class="n">ToArray</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="p">(</span><span class="n">definedAssemblies</span><span class="p">.</span><span class="n">Any</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">                <span class="n">commandAssemblies</span><span class="p">.</span><span class="n">AddRange</span><span class="p">(</span><span class="n">definedAssemblies</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span> <span class="n">e</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">OnError</span><span class="p">(</span><span class="k">new</span> <span class="n">Exception</span><span class="p">(</span><span class="s">&#34;Failed to load defined command assemblies!&#34;</span><span class="p">,</span> <span class="n">e</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(!</span><span class="n">commandAssemblies</span><span class="p">.</span><span class="n">Any</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">commandAssemblies</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="n">Assembly</span><span class="p">.</span><span class="n">GetEntryAssembly</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">var</span> <span class="n">outputCommands</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">TCommand</span><span class="p">&gt;();</span>
+</span></span><span class="line"><span class="cl">    <span class="k">foreach</span> <span class="p">(</span><span class="kt">var</span> <span class="n">assembly</span> <span class="k">in</span> <span class="n">commandAssemblies</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">try</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">outputCommands</span><span class="p">.</span><span class="n">AddRange</span><span class="p">(</span><span class="n">assembly</span><span class="p">.</span><span class="n">GetImplementedObjectsByInterface</span><span class="p">&lt;</span><span class="n">TCommand</span><span class="p">&gt;());</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span> <span class="n">exc</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">OnError</span><span class="p">(</span><span class="k">new</span> <span class="n">Exception</span><span class="p">(</span><span class="kt">string</span><span class="p">.</span><span class="n">Format</span><span class="p">(</span><span class="s">&#34;Failed to get commands from the assembly {0}!&#34;</span><span class="p">,</span> <span class="n">assembly</span><span class="p">.</span><span class="n">FullName</span><span class="p">),</span> <span class="n">exc</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">commands</span> <span class="p">=</span> <span class="n">outputCommands</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="statusinfocollection" class="heading-element"><span>StatusInfoCollection</span>
+  <a href="#statusinfocollection" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p><img loading="lazy" src="/supersocket/1078802-20200127233503964-196619068-1580139447075.png" alt="1578475314305" srcset="/supersocket/1078802-20200127233503964-196619068-1580139447075.png?size=small, /supersocket/1078802-20200127233503964-196619068-1580139447075.png?size=medium 1.5x, /supersocket/1078802-20200127233503964-196619068-1580139447075.png?size=large 2x" data-title="1578475314305" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<h3 id="appserverbase" class="heading-element"><span>AppServerBase</span>
+  <a href="#appserverbase" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p><img loading="lazy" src="/supersocket/1078802-20200127233505098-1915472804-1580139447103.png" alt="1580125365801" srcset="/supersocket/1078802-20200127233505098-1915472804-1580139447103.png?size=small, /supersocket/1078802-20200127233505098-1915472804-1580139447103.png?size=medium 1.5x, /supersocket/1078802-20200127233505098-1915472804-1580139447103.png?size=large 2x" data-title="1580125365801" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="/supersocket/1078802-20200127233505413-292737059-1580139447098.png" alt="1578487267303" srcset="/supersocket/1078802-20200127233505413-292737059-1580139447098.png?size=small, /supersocket/1078802-20200127233505413-292737059-1580139447098.png?size=medium 1.5x, /supersocket/1078802-20200127233505413-292737059-1580139447098.png?size=large 2x" data-title="1578487267303" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<h3 id="appseverbasetappsessiontrequestinfo" class="heading-element"><span>AppSeverBase&lt;TAppSession,TRequestInfo&gt;</span>
+  <a href="#appseverbasetappsessiontrequestinfo" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p>m_CommandContainer：命令容器</p>
+<p>m_CommandLoaders</p>
+<p>m_ConnectionFilters</p>
+<p>m_GlobalCommandFilters</p>
+<p>m_Listeners</p>
+<p>m_SocketServerFactory：在SetupBas</p>
+<h2 id="facilitydll" class="heading-element"><span>Facility.dll</span>
+  <a href="#facilitydll" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><h3 id="policyreceivefilterfactory" class="heading-element"><span>PolicyReceiveFilterFactory</span>
+  <a href="#policyreceivefilterfactory" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p><img loading="lazy" src="/supersocket/1078802-20200127233504288-266302679-1580139447121.png" alt="1579780070988" srcset="/supersocket/1078802-20200127233504288-266302679-1580139447121.png?size=small, /supersocket/1078802-20200127233504288-266302679-1580139447121.png?size=medium 1.5x, /supersocket/1078802-20200127233504288-266302679-1580139447121.png?size=large 2x" data-title="1579780070988" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<h3 id="policyrecievefilter" class="heading-element"><span>PolicyRecieveFilter</span>
+  <a href="#policyrecievefilter" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p><img loading="lazy" src="/supersocket/1078802-20200127233504792-1217497193-1580139447122.png" alt="1579780715003" srcset="/supersocket/1078802-20200127233504792-1217497193-1580139447122.png?size=small, /supersocket/1078802-20200127233504792-1217497193-1580139447122.png?size=medium 1.5x, /supersocket/1078802-20200127233504792-1217497193-1580139447122.png?size=large 2x" data-title="1579780715003" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<h3 id="protocol" class="heading-element"><span>Protocol</span>
+  <a href="#protocol" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p>ReceiveFilterBase</p>
+<p>类图</p>
+<p><img loading="lazy" src="/supersocket/1078802-20200127233504744-769462672-1580139447191.png" alt="1578464691790" srcset="/supersocket/1078802-20200127233504744-769462672-1580139447191.png?size=small, /supersocket/1078802-20200127233504744-769462672-1580139447191.png?size=medium 1.5x, /supersocket/1078802-20200127233504744-769462672-1580139447191.png?size=large 2x" data-title="1578464691790" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="/supersocket/1078802-20200127233505220-2047058269-1580139447221.png" alt="1578464252406" srcset="/supersocket/1078802-20200127233505220-2047058269-1580139447221.png?size=small, /supersocket/1078802-20200127233505220-2047058269-1580139447221.png?size=medium 1.5x, /supersocket/1078802-20200127233505220-2047058269-1580139447221.png?size=large 2x" data-title="1578464252406" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="/supersocket/1078802-20200127233504349-1337008525-1580139447373.png" alt="1578466885687" srcset="/supersocket/1078802-20200127233504349-1337008525-1580139447373.png?size=small, /supersocket/1078802-20200127233504349-1337008525-1580139447373.png?size=medium 1.5x, /supersocket/1078802-20200127233504349-1337008525-1580139447373.png?size=large 2x" data-title="1578466885687" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<ul>
+<li>在SuperSocket.SocketBase.Protocol程序集中</li>
+<li>IReceiveFilter&lt;TRequestInfo&gt;接口，接收解析接口
+<ul>
+<li>Filter方法，解析会话请求的信息，参数包括，读取缓冲，偏移量，长度，是否copy，没有被解析的长度</li>
+<li>LeftBufferSize属性：空余的缓冲区长度</li>
+<li>NextReceiveFilter属性，下一个接收解析器</li>
+<li>Reset方法，恢复初始化</li>
+<li>State:解析器状态，正常和错误状态</li>
+</ul>
+</li>
+<li>ArraySegmentEx&lt;T&gt;数段类
+<ul>
+<li>T为数组模板</li>
+<li>Array数组，count:数量，Offset偏移量，From从，To到</li>
+</ul>
+</li>
+<li>ArraySegmentList&lt;T&gt;数段列表
+<ul>
+<li>实现了一个数组段列表</li>
+<li>m_PrevSegment：当前的数段</li>
+<li>m_PrevSegmentIndex，数段所在的index</li>
+</ul>
+</li>
+<li>ReceiveFilterBase&lt;TRequestInfo&gt;
+<ul>
+<li>BufferSegments属性</li>
+</ul>
+</li>
+</ul>
+<h2 id="socketenginedll" class="heading-element"><span>SocketEngine.dll</span>
+  <a href="#socketenginedll" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><h3 id="performancemonitor" class="heading-element"><span>PerformanceMonitor</span>
+  <a href="#performancemonitor" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p><img loading="lazy" src="/supersocket/1078802-20200127233504532-151444867-1580139447367.png" alt="1580126841482" srcset="/supersocket/1078802-20200127233504532-151444867-1580139447367.png?size=small, /supersocket/1078802-20200127233504532-151444867-1580139447367.png?size=medium 1.5x, /supersocket/1078802-20200127233504532-151444867-1580139447367.png?size=large 2x" data-title="1580126841482" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<h3 id="socketsession" class="heading-element"><span>SocketSession</span>
+  <a href="#socketsession" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p><img loading="lazy" src="/supersocket/1078802-20200127233505321-2113835116-1580139447378.png" alt="1579319465778" srcset="/supersocket/1078802-20200127233505321-2113835116-1580139447378.png?size=small, /supersocket/1078802-20200127233505321-2113835116-1580139447378.png?size=medium 1.5x, /supersocket/1078802-20200127233505321-2113835116-1580139447378.png?size=large 2x" data-title="1579319465778" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>在初始化里对AppSession产生依赖，同时维护Socket和SmartPool(SendingQueue[])，因为维护着socket所以发送接收数据都是通过这个类。</p>
+<ul>
+<li>设置状态：AddStateFlag（）TryAddStateFlag（）RemoveStateFlag（）,AddStateFlag：自旋设置m_State状态，线程安全的</li>
+<li>m_Client:Socket</li>
+<li>SessionID:new guid</li>
+<li>LocalEndPoint:本地Id端</li>
+<li>RemoteEndPoint：远程终结点</li>
+<li>m_SendingQueuePool：实际是SmartPool类的实例，该实例维护者sendingQueue数组</li>
+<li>m_SendingQueue：从SmarlPool中获取一个SendingQueue实例。</li>
+</ul>
+<p>方法</p>
+<p>Initialize()方法：</p>
+<ul>
+<li>初始化m_SendingQueuePool和m_SendingQueue</li>
+</ul>
+<p>TrySend()方法：参数：IList&lt;ArraySegment&lt;byte&gt;&gt; segments：将segments压入sendingqueue队列并调用StartSend最终是调用<strong>SendAsync</strong>或<strong>SendSync</strong>，这个是由子类实现。</p>
+<h3 id="asyncsocketsession" class="heading-element"><span>AsyncSocketSession</span>
+  <a href="#asyncsocketsession" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p>在子类中维护SocketAsyncEventArgs</p>
+<ul>
+<li>SocketAsyncProxy：维护着SocketAsyncEventArgs</li>
+<li>m_SocketEventArgSend：发送的SocketAsyncEventArgs实例</li>
+</ul>
+<p>在初始化中如果同步发送就使用m_SocketEventArgSend，并OnSendingCompleted方法绑定其Completed事件</p>
+<p>在SendAsync()方法中将SendingQueue实例给m_SocketEventArgSend的UserToken属性，并调用m_SocketEventArgSend的<strong>SetBuffer</strong>和<strong>SendAsync</strong>方法，发送失败也调用OnSendingCompleted</p>
+<p>SocketAsyncProxy中的Completed事件中调用ProcessReceive方法，再调用<code>this.AppSession.ProcessRequest(e.Buffer, e.Offset, e.BytesTransferred, true);</code>方法</p>
+<h3 id="asyncstreamsocketsession" class="heading-element"><span>AsyncStreamSocketSession</span>
+  <a href="#asyncstreamsocketsession" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><h3 id="socketfactory" class="heading-element"><span>SocketFactory</span>
+  <a href="#socketfactory" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p><img loading="lazy" src="/supersocket/1078802-20200127233504195-344926542-1580139447406.png" alt="1578467105778" srcset="/supersocket/1078802-20200127233504195-344926542-1580139447406.png?size=small, /supersocket/1078802-20200127233504195-344926542-1580139447406.png?size=medium 1.5x, /supersocket/1078802-20200127233504195-344926542-1580139447406.png?size=large 2x" data-title="1578467105778" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c#" data-lang="c#"><span class="line"><span class="cl"><span class="cs">/// &lt;summary&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="cs">/// Creates the socket server.</span>
+</span></span><span class="line"><span class="cl"><span class="cs">/// &lt;/summary&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="cs">/// &lt;typeparam name=&#34;TRequestInfo&#34;&gt;The type of the request info.&lt;/typeparam&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="cs">/// &lt;param name=&#34;appServer&#34;&gt;The app server.&lt;/param&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="cs">/// &lt;param name=&#34;listeners&#34;&gt;The listeners.&lt;/param&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="cs">/// &lt;param name=&#34;config&#34;&gt;The config.&lt;/param&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="cs">/// &lt;returns&gt;&lt;/returns&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="n">ISocketServer</span> <span class="n">CreateSocketServer</span><span class="p">&lt;</span><span class="n">TRequestInfo</span><span class="p">&gt;(</span><span class="n">IAppServer</span> <span class="n">appServer</span><span class="p">,</span> <span class="n">ListenerInfo</span><span class="p">[]</span> <span class="n">listeners</span><span class="p">,</span> <span class="n">IServerConfig</span> <span class="n">config</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">where</span> <span class="n">TRequestInfo</span> <span class="p">:</span> <span class="n">IRequestInfo</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">appServer</span> <span class="p">==</span> <span class="kc">null</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">throw</span> <span class="k">new</span> <span class="n">ArgumentNullException</span><span class="p">(</span><span class="s">&#34;appServer&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">listeners</span> <span class="p">==</span> <span class="kc">null</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">throw</span> <span class="k">new</span> <span class="n">ArgumentNullException</span><span class="p">(</span><span class="s">&#34;listeners&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">config</span> <span class="p">==</span> <span class="kc">null</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">throw</span> <span class="k">new</span> <span class="n">ArgumentNullException</span><span class="p">(</span><span class="s">&#34;config&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">switch</span><span class="p">(</span><span class="n">config</span><span class="p">.</span><span class="n">Mode</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">case</span><span class="p">(</span><span class="n">SocketMode</span><span class="p">.</span><span class="n">Tcp</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="k">new</span> <span class="n">AsyncSocketServer</span><span class="p">(</span><span class="n">appServer</span><span class="p">,</span> <span class="n">listeners</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">case</span><span class="p">(</span><span class="n">SocketMode</span><span class="p">.</span><span class="n">Udp</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="k">new</span> <span class="n">UdpSocketServer</span><span class="p">&lt;</span><span class="n">TRequestInfo</span><span class="p">&gt;(</span><span class="n">appServer</span><span class="p">,</span> <span class="n">listeners</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">default</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">throw</span> <span class="k">new</span> <span class="n">NotSupportedException</span><span class="p">(</span><span class="s">&#34;Unsupported SocketMode:&#34;</span> <span class="p">+</span> <span class="n">config</span><span class="p">.</span><span class="n">Mode</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="socketservers" class="heading-element"><span>SocketServers</span>
+  <a href="#socketservers" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p><img loading="lazy" src="/supersocket/1078802-20200127233505121-377801937-1580139447431.png" alt="1578487919018" srcset="/supersocket/1078802-20200127233505121-377801937-1580139447431.png?size=small, /supersocket/1078802-20200127233505121-377801937-1580139447431.png?size=medium 1.5x, /supersocket/1078802-20200127233505121-377801937-1580139447431.png?size=large 2x" data-title="1578487919018" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<h3 id="asyncsocketserver" class="heading-element"><span>AsyncSocketServer</span>
+  <a href="#asyncsocketserver" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><ul>
+<li>缓存管理器m_BufferManager</li>
+<li>线程安全的SocketAsyncEventArgsProxy栈</li>
+</ul>
+<p>构造函数，父类</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c#" data-lang="c#"><span class="line"><span class="cl"><span class="kd">public</span> <span class="n">TcpSocketServerBase</span><span class="p">(</span><span class="n">IAppServer</span> <span class="n">appServer</span><span class="p">,</span> <span class="n">ListenerInfo</span><span class="p">[]</span> <span class="n">listeners</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">:</span> <span class="k">base</span><span class="p">(</span><span class="n">appServer</span><span class="p">,</span> <span class="n">listeners</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">var</span> <span class="n">config</span> <span class="p">=</span> <span class="n">appServer</span><span class="p">.</span><span class="n">Config</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kt">uint</span> <span class="n">dummy</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">m_KeepAliveOptionValues</span> <span class="p">=</span> <span class="k">new</span> <span class="kt">byte</span><span class="p">[</span><span class="n">Marshal</span><span class="p">.</span><span class="n">SizeOf</span><span class="p">(</span><span class="n">dummy</span><span class="p">)</span> <span class="p">*</span> <span class="m">3</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">    <span class="n">m_KeepAliveOptionOutValues</span> <span class="p">=</span> <span class="k">new</span> <span class="kt">byte</span><span class="p">[</span><span class="n">m_KeepAliveOptionValues</span><span class="p">.</span><span class="n">Length</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//whether enable KeepAlive</span>
+</span></span><span class="line"><span class="cl">    <span class="n">BitConverter</span><span class="p">.</span><span class="n">GetBytes</span><span class="p">((</span><span class="kt">uint</span><span class="p">)</span><span class="m">1</span><span class="p">).</span><span class="n">CopyTo</span><span class="p">(</span><span class="n">m_KeepAliveOptionValues</span><span class="p">,</span> <span class="m">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//how long will start first keep alive</span>
+</span></span><span class="line"><span class="cl">    <span class="n">BitConverter</span><span class="p">.</span><span class="n">GetBytes</span><span class="p">((</span><span class="kt">uint</span><span class="p">)(</span><span class="n">config</span><span class="p">.</span><span class="n">KeepAliveTime</span> <span class="p">*</span> <span class="m">1000</span><span class="p">)).</span><span class="n">CopyTo</span><span class="p">(</span><span class="n">m_KeepAliveOptionValues</span><span class="p">,</span> <span class="n">Marshal</span><span class="p">.</span><span class="n">SizeOf</span><span class="p">(</span><span class="n">dummy</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//keep alive interval</span>
+</span></span><span class="line"><span class="cl">    <span class="n">BitConverter</span><span class="p">.</span><span class="n">GetBytes</span><span class="p">((</span><span class="kt">uint</span><span class="p">)(</span><span class="n">config</span><span class="p">.</span><span class="n">KeepAliveInterval</span> <span class="p">*</span> <span class="m">1000</span><span class="p">)).</span><span class="n">CopyTo</span><span class="p">(</span><span class="n">m_KeepAliveOptionValues</span><span class="p">,</span> <span class="n">Marshal</span><span class="p">.</span><span class="n">SizeOf</span><span class="p">(</span><span class="n">dummy</span><span class="p">)</span> <span class="p">*</span> <span class="m">2</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">m_SendTimeOut</span> <span class="p">=</span> <span class="n">config</span><span class="p">.</span><span class="n">SendTimeOut</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">m_ReceiveBufferSize</span> <span class="p">=</span> <span class="n">config</span><span class="p">.</span><span class="n">ReceiveBufferSize</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">m_SendBufferSize</span> <span class="p">=</span> <span class="n">config</span><span class="p">.</span><span class="n">SendBufferSize</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c#" data-lang="c#"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">override</span> <span class="kt">bool</span> <span class="n">Start</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">try</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">bufferSize</span> <span class="p">=</span> <span class="n">AppServer</span><span class="p">.</span><span class="n">Config</span><span class="p">.</span><span class="n">ReceiveBufferSize</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">bufferSize</span> <span class="p">&lt;=</span> <span class="m">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="n">bufferSize</span> <span class="p">=</span> <span class="m">1024</span> <span class="p">*</span> <span class="m">4</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">m_BufferManager</span> <span class="p">=</span> <span class="k">new</span> <span class="n">BufferManager</span><span class="p">(</span><span class="n">bufferSize</span> <span class="p">*</span> <span class="n">AppServer</span><span class="p">.</span><span class="n">Config</span><span class="p">.</span><span class="n">MaxConnectionNumber</span><span class="p">,</span> <span class="n">bufferSize</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">try</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">m_BufferManager</span><span class="p">.</span><span class="n">InitBuffer</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span> <span class="n">e</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">AppServer</span><span class="p">.</span><span class="n">Logger</span><span class="p">.</span><span class="n">Error</span><span class="p">(</span><span class="s">&#34;Failed to allocate buffer for async socket communication, may because there is no enough memory, please decrease maxConnectionNumber in configuration!&#34;</span><span class="p">,</span> <span class="n">e</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1">// preallocate pool of SocketAsyncEventArgs objects</span>
+</span></span><span class="line"><span class="cl">        <span class="n">SocketAsyncEventArgs</span> <span class="n">socketEventArg</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="kt">var</span> <span class="n">socketArgsProxyList</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">SocketAsyncEventArgsProxy</span><span class="p">&gt;(</span><span class="n">AppServer</span><span class="p">.</span><span class="n">Config</span><span class="p">.</span><span class="n">MaxConnectionNumber</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="n">i</span> <span class="p">&lt;</span> <span class="n">AppServer</span><span class="p">.</span><span class="n">Config</span><span class="p">.</span><span class="n">MaxConnectionNumber</span><span class="p">;</span> <span class="n">i</span><span class="p">++)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">//Pre-allocate a set of reusable SocketAsyncEventArgs</span>
+</span></span><span class="line"><span class="cl">            <span class="n">socketEventArg</span> <span class="p">=</span> <span class="k">new</span> <span class="n">SocketAsyncEventArgs</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">            <span class="n">m_BufferManager</span><span class="p">.</span><span class="n">SetBuffer</span><span class="p">(</span><span class="n">socketEventArg</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="n">socketArgsProxyList</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="k">new</span> <span class="n">SocketAsyncEventArgsProxy</span><span class="p">(</span><span class="n">socketEventArg</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">m_ReadWritePool</span> <span class="p">=</span> <span class="k">new</span> <span class="n">ConcurrentStack</span><span class="p">&lt;</span><span class="n">SocketAsyncEventArgsProxy</span><span class="p">&gt;(</span><span class="n">socketArgsProxyList</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(!</span><span class="k">base</span><span class="p">.</span><span class="n">Start</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">IsRunning</span> <span class="p">=</span> <span class="kc">true</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span> <span class="n">e</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">AppServer</span><span class="p">.</span><span class="n">Logger</span><span class="p">.</span><span class="n">Error</span><span class="p">(</span><span class="n">e</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="socketasynceventargsproxy" class="heading-element"><span>SocketAsyncEventArgsProxy</span>
+  <a href="#socketasynceventargsproxy" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p><img loading="lazy" src="/supersocket/1078802-20200127233504284-2051183622-1580139447431.png" alt="1579316308225" srcset="/supersocket/1078802-20200127233504284-2051183622-1580139447431.png?size=small, /supersocket/1078802-20200127233504284-2051183622-1580139447431.png?size=medium 1.5x, /supersocket/1078802-20200127233504284-2051183622-1580139447431.png?size=large 2x" data-title="1579316308225" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>SocketAsyncEventArgs的代理</p>
+<p>维护着一个SocketAsyncEventArgs对象，并订阅了该对象的Completed事件(异步完成事件)</p>
+<p>IsRecyclable：是否可以循环使用</p>
+<p>OrigOffset：原始偏移量</p>
+<p>每当异步完成的时候调用SocketAsyncEventArgs实例中的<strong>UserToken属性</strong>，该<strong>属性实际上保存着SocketSession</strong>实例，并调用SocketSession的**ProcessReceive()<strong>和</strong>AsyncRun()**方法；<strong>socketSession.AsyncRun(() =&gt; socketSession.ProcessReceive(e));</strong></p>
+<p>UserToken属性是在SocketAsyncEventArgsProxy的<strong>初始化方法中定义的</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c#" data-lang="c#"><span class="line"><span class="cl"><span class="kd">public</span> <span class="k">void</span> <span class="n">Initialize</span><span class="p">(</span><span class="n">IAsyncSocketSession</span> <span class="n">socketSession</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">SocketEventArgs</span><span class="p">.</span><span class="n">UserToken</span> <span class="p">=</span> <span class="n">socketSession</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>代理模式</p>
+<p><img loading="lazy" src="/supersocket/1078802-20200127233504292-415600494-1580139447454.png" alt="img" srcset="/supersocket/1078802-20200127233504292-415600494-1580139447454.png?size=small, /supersocket/1078802-20200127233504292-415600494-1580139447454.png?size=medium 1.5x, /supersocket/1078802-20200127233504292-415600494-1580139447454.png?size=large 2x" data-title="img" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<h3 id="bootstrapfactory" class="heading-element"><span>BootstrapFactory</span>
+  <a href="#bootstrapfactory" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p><img loading="lazy" src="/supersocket/1078802-20200127233504128-1448853299-1580139447486.png" alt="1580106366845" srcset="/supersocket/1078802-20200127233504128-1448853299-1580139447486.png?size=small, /supersocket/1078802-20200127233504128-1448853299-1580139447486.png?size=medium 1.5x, /supersocket/1078802-20200127233504128-1448853299-1580139447486.png?size=large 2x" data-title="1580106366845" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<h3 id="defaultbootstrap" class="heading-element"><span>DefaultBootStrap</span>
+  <a href="#defaultbootstrap" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p><img loading="lazy" src="/supersocket/1078802-20200127233505051-410216803-1580139447503.png" alt="1579403530245" srcset="/supersocket/1078802-20200127233505051-410216803-1580139447503.png?size=small, /supersocket/1078802-20200127233505051-410216803-1580139447503.png?size=medium 1.5x, /supersocket/1078802-20200127233505051-410216803-1580139447503.png?size=large 2x" data-title="1579403530245" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>引导配置文件并通过配置实例化各个server和factory,在CreateWorkItemInstance方法通过Activator.CreateInstance(serviceType)实例化</p>
+<h3 id="configurationwatcher" class="heading-element"><span>ConfigurationWatcher</span>
+  <a href="#configurationwatcher" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p><img loading="lazy" src="/supersocket/1078802-20200127233504295-437996370-1580139447742.png" alt="1580108736600" srcset="/supersocket/1078802-20200127233504295-437996370-1580139447742.png?size=small, /supersocket/1078802-20200127233504295-437996370-1580139447742.png?size=medium 1.5x, /supersocket/1078802-20200127233504295-437996370-1580139447742.png?size=large 2x" data-title="1580108736600" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<h3 id="socketlistenerbase" class="heading-element"><span>SocketListenerBase</span>
+  <a href="#socketlistenerbase" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p><img loading="lazy" src="/supersocket/1078802-20200127233504852-779876721-1580139447762.png" alt="1579439987190" srcset="/supersocket/1078802-20200127233504852-779876721-1580139447762.png?size=small, /supersocket/1078802-20200127233504852-779876721-1580139447762.png?size=medium 1.5x, /supersocket/1078802-20200127233504852-779876721-1580139447762.png?size=large 2x" data-title="1579439987190" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<h3 id="tcpasyncsocketlistener" class="heading-element"><span>TcpAsyncSocketListener</span>
+  <a href="#tcpasyncsocketlistener" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p>监听类，由三个事件：监听错误，监听停止，新的客户端连接</p>
+<p>m_ListrnSocket：监听Socket</p>
+<h3 id="workitemfactoryinfoloader" class="heading-element"><span>WorkItemFactoryInfoLoader</span>
+  <a href="#workitemfactoryinfoloader" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p><img loading="lazy" src="/supersocket/1078802-20200127233504625-1535726155-1580139447839.png" alt="1580119613894" srcset="/supersocket/1078802-20200127233504625-1535726155-1580139447839.png?size=small, /supersocket/1078802-20200127233504625-1535726155-1580139447839.png?size=medium 1.5x, /supersocket/1078802-20200127233504625-1535726155-1580139447839.png?size=large 2x" data-title="1580119613894" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>配置文件载入 LoadResult,载入配置的connectionFilter,logfactory,commandloaderfactory，将appserver转化成IworkItem接口，</p>
+<h2 id="commondll" class="heading-element"><span>Common.dll</span>
+  <a href="#commondll" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><h3 id="buffermanager" class="heading-element"><span>BufferManager</span>
+  <a href="#buffermanager" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p><img loading="lazy" src="/supersocket/1078802-20200127233504286-854569341-1580139447912.png" alt="1578487794792" srcset="/supersocket/1078802-20200127233504286-854569341-1580139447912.png?size=small, /supersocket/1078802-20200127233504286-854569341-1580139447912.png?size=medium 1.5x, /supersocket/1078802-20200127233504286-854569341-1580139447912.png?size=large 2x" data-title="1578487794792" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>此类创建一个大缓冲区，该缓冲区可以分配给每个套接字I / O操作使用，并分配给SocketAsyncEventArgs对象。 这使得bufffer可以轻松地重用，并且可以<strong>防止堆内存碎片化</strong>。</p>
+<p>BufferManager类上公开的操作不是线程安全的。我觉得这个类不需要线程安全，因为每个socket获得数据基本不会并发执行。</p>
+<ul>
+<li>m_buffer:所有的字节缓存</li>
+<li>m_bufferSize:单个片段的缓存大小</li>
+<li>m_currentIndex：当前字节在总缓存中的索引</li>
+<li>m_freeIndexPool:空闲索引池</li>
+<li>m_numBytes：缓存片段的数目</li>
+</ul>
+<p>主要提供两个方法：一个是SetBuffer和FreeBuffer</p>
+<p>SetBuffer：</p>
+<ul>
+<li>检查空闲索引栈中是否有值，有值就直接使用空闲索引栈中的值，并将其值从栈中推出，</li>
+<li>如果没有空闲栈的值就先检查剩余的缓存是否有一个片段大小，有的化就设置并改变m_currentIndex索引，没有返回false</li>
+</ul>
+<p>FreeBuffer：</p>
+<ul>
+<li>将当前索引添加到空闲索引栈中，并释放SocketAsyncEventArgs中用的缓存片段。</li>
+</ul>
+<h3 id="arraysegmentlist" class="heading-element"><span>ArraySegmentList</span>
+  <a href="#arraysegmentlist" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p><img loading="lazy" src="/supersocket/1078802-20200127233504855-1506344631-1580139447911.png" alt="1579323401012" srcset="/supersocket/1078802-20200127233504855-1506344631-1580139447911.png?size=small, /supersocket/1078802-20200127233504855-1506344631-1580139447911.png?size=medium 1.5x, /supersocket/1078802-20200127233504855-1506344631-1580139447911.png?size=large 2x" data-title="1579323401012" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>方法：</p>
+<p>IndexOf：T在所有缓存中的索引</p>
+<h3 id="arraysegmentex" class="heading-element"><span>ArraySegmentEx</span>
+  <a href="#arraysegmentex" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><ul>
+<li>数组，是保存着所有缓存，T[]</li>
+<li>偏移，该片段在缓存中的位置</li>
+<li>数量，该片段的长度</li>
+</ul>
+<h3 id="sendingqueue" class="heading-element"><span>SendingQueue</span>
+  <a href="#sendingqueue" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p><img loading="lazy" src="/supersocket/1078802-20200127233504887-724206769-1580139447914.png" alt="1579329295160" srcset="/supersocket/1078802-20200127233504887-724206769-1580139447914.png?size=small, /supersocket/1078802-20200127233504887-724206769-1580139447914.png?size=medium 1.5x, /supersocket/1078802-20200127233504887-724206769-1580139447914.png?size=large 2x" data-title="1579329295160" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>维护ArraySegment&lt;byte&gt;[] globalQueue， globalQueue中包含着所有所有缓存</p>
+<p>入栈，出战，开始入栈，开始出栈。</p>
+<p>所有的发送队列内存片组成一个大的arraysegment，由SendingQueueSourceCreator创建，并由SmartPool维护</p>
+<h3 id="sendingqueuesourcecreator" class="heading-element"><span>SendingQueueSourceCreator</span>
+  <a href="#sendingqueuesourcecreator" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p>实际就是SmartPoolSourceCreator,发送队列<strong>创建者</strong>，默认有5个发送队列，其实每个连接一个发送队列，这边的所有sendingQueue组数是由SmartPool维护的</p>
+<p>m_SendingQueueSize：发送队列大小，默认为5</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c#" data-lang="c#"><span class="line"><span class="cl"><span class="cs">/// &lt;summary&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="cs">/// Creates the specified size.</span>
+</span></span><span class="line"><span class="cl"><span class="cs">/// &lt;/summary&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="cs">/// &lt;param name=&#34;size&#34;&gt;The size.&lt;/param&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="cs">/// &lt;param name=&#34;poolItems&#34;&gt;The pool items.&lt;/param&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="cs">/// &lt;returns&gt;&lt;/returns&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="n">ISmartPoolSource</span> <span class="n">Create</span><span class="p">(</span><span class="kt">int</span> <span class="n">size</span><span class="p">,</span> <span class="k">out</span> <span class="n">SendingQueue</span><span class="p">[]</span> <span class="n">poolItems</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">var</span> <span class="n">source</span> <span class="p">=</span> <span class="k">new</span> <span class="n">ArraySegment</span><span class="p">&lt;</span><span class="kt">byte</span><span class="p">&gt;[</span><span class="n">size</span> <span class="p">*</span> <span class="n">m_SendingQueueSize</span><span class="p">];</span><span class="c1">//256*5</span>
+</span></span><span class="line"><span class="cl">    <span class="n">poolItems</span> <span class="p">=</span> <span class="k">new</span> <span class="n">SendingQueue</span><span class="p">[</span><span class="n">size</span><span class="p">];</span><span class="c1">//size=256</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">var</span> <span class="n">i</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="n">i</span> <span class="p">&lt;</span> <span class="n">size</span><span class="p">;</span> <span class="n">i</span><span class="p">++)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">poolItems</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="p">=</span> <span class="k">new</span> <span class="n">SendingQueue</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">i</span> <span class="p">*</span> <span class="n">m_SendingQueueSize</span><span class="p">,</span> <span class="n">m_SendingQueueSize</span><span class="p">);</span><span class="c1">//SendingQueue中的source是所有的队列缓存，发送队列偏移量和发送队列容量</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="k">new</span> <span class="n">SmartPoolSource</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">size</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="smartpool" class="heading-element"><span>SmartPool</span>
+  <a href="#smartpool" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p><img loading="lazy" src="/supersocket/1078802-20200127233504824-1163773032-1580139447929.png" alt="1579327943978" srcset="/supersocket/1078802-20200127233504824-1163773032-1580139447929.png?size=small, /supersocket/1078802-20200127233504824-1163773032-1580139447929.png?size=medium 1.5x, /supersocket/1078802-20200127233504824-1163773032-1580139447929.png?size=large 2x" data-title="1579327943978" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>其中维护了一个T（实际是SendingQueue）线程安全栈(m_GlobalStack)。由此看出SmartPool就是SendingQueue的池</p>
+<p>m_MinPoolSize：Math.Max(config.MaxConnectionNumber / 6, 256)</p>
+<p>m_MaxPoolSize：Math.Max(config.MaxConnectionNumber * 2, 256)</p>
+<p>m_SourceCreator：new SendingQueueSourceCreator(config.SendingQueueSize)</p>
+<p>m_ItemsSource：保存着SmartPoolSource[]对象,该对象实际上是所有的sendingqueue缓存。</p>
+<p><strong>m_GlobalStack</strong>：保存着单个SendingQueuep对象的数组</p>
+<p>Initialize()：初始化函数，初始化上面的变量</p>
+<h3 id="smartpoolsource" class="heading-element"><span>SmartPoolSource</span>
+  <a href="#smartpoolsource" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p>维护所有的发送队列缓存，并保存sendingQueue的个数</p>
+<p>Source：是object类型，实际上是ArraySegment&lt;byte&gt;[]，实际上是所有的sendingqueue的缓存，大小为<code>size*sendingqueuesize=256*5</code>，</p>
+<p>Count:为默认值5</p>
+<h2 id="otherdll" class="heading-element"><span>Other.dll</span>
+  <a href="#otherdll" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><h3 id="socketasynceventargshttpsdocsmicrosoftcomzh-cndotnetapisystemnetsocketssocketasynceventargsf1urlhttps3a2f2fmsdnmicrosoftcom2fquery2fdev15query3fappid3ddev15idef126l3dzh-cn26k3dksystemnetsocketssocketasynceventargsktargetframeworkmoniker-netframeworkversion3dv45kdevlang-csharp26rd3dtrueviewnetframework-48-类" class="heading-element"><span><a href="https://docs.microsoft.com/zh-cn/dotnet/api/system.net.sockets.socketasynceventargs?f1url=https%3A%2F%2Fmsdn.microsoft.com%2Fquery%2Fdev15.query%3FappId%3DDev15IDEF1%26l%3DZH-CN%26k%3Dk%28System.Net.Sockets.SocketAsyncEventArgs%29;k%28TargetFrameworkMoniker-.NETFramework,Version%3Dv4.5%29;k%28DevLang-csharp%29%26rd%3Dtrue&amp;view=netframework-4.8"target="_blank" rel="external nofollow noopener noreferrer">SocketAsyncEventArgs</a> 类</span>
+  <a href="#socketasynceventargshttpsdocsmicrosoftcomzh-cndotnetapisystemnetsocketssocketasynceventargsf1urlhttps3a2f2fmsdnmicrosoftcom2fquery2fdev15query3fappid3ddev15idef126l3dzh-cn26k3dksystemnetsocketssocketasynceventargsktargetframeworkmoniker-netframeworkversion3dv45kdevlang-csharp26rd3dtrueviewnetframework-48-%e7%b1%bb" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p>表示异步套接字操作。</p>
+<h2 id="设置ip和port调用流程" class="heading-element"><span>设置IP和Port调用流程</span>
+  <a href="#%e8%ae%be%e7%bd%aeip%e5%92%8cport%e8%b0%83%e7%94%a8%e6%b5%81%e7%a8%8b" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><ol>
+<li>创建ServerConfig实例，RootConfig实例</li>
+<li>设置m_State状态，线程安全的，通过Interlocked.CompareExchange方法设置</li>
+<li>在setbasic中设置RootConfig,m_Name,Config，设置currentculture,设置线程池参数，设置m_socketfactory,设置textencoding,</li>
+<li>设置logfactory</li>
+<li>在setMedium中设置<strong>ReceiveFilterFactory</strong>，m_ConnectionFilters，m_CommandLoaders（add <strong>ReflectCommandLoader</strong>）</li>
+<li>在SetupAdvanced中设置BaseSecurity和Certificate，设置<strong>listners(ListenerInfo)</strong> 设置CommandFilterAttribute，遍历m_CommandLoaders，订阅Error,Updated事件，调用Initialize方法，通过TryLoadCommands方法获取命令集合commands，遍历命令集合添加命令到discoveredCommands集合中</li>
+<li>遍历discoveredCommands集合，将其添加到命令容器 m_CommandContainer中，使用Interlocked.Exchange方法保证线程安全</li>
+<li>在SetupFinal中设置ReceiveFilterFactory=new CommandLineReceiveFilterFactory(TextEncoding)，设置m_ServerStatus,通过socketfactory获得serverfactory。</li>
+</ol>
+<h2 id="start调用流程" class="heading-element"><span>start调用流程</span>
+  <a href="#start%e8%b0%83%e7%94%a8%e6%b5%81%e7%a8%8b" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><ol>
+<li>调用SuperSocket.SocketBase.AppServer中start()方法，调用基类AppServerBase的start()方法，该方法中调用socketserver的start方法</li>
+<li>在socketserver的start方法中设置BufferManager,创建<strong>SocketAsyncEventArg</strong>,并通过buffermanager设置其buffer,并创建<strong>SocketAsyncEventArgProxys</strong>, <strong>SocketAsyncEventArgProxys</strong>集合赋值给<strong>m_ReadWritePool</strong>。调用SocketServer基类中的start</li>
+<li>在socketserver基类的start中创建<strong>SendingQueuePool</strong>并初始化,实际是初始化队列池中的sendingqueue队列；通过遍历ListenerInfo集合创建TcpAsyncSocketListener监听者，订阅监听者的<strong>stop，error,NewClientAccepted</strong>事件，并开始监听Listener.Start,也添加到容器中。</li>
+<li>Listener.Start中创建一个监听Listen_socket和<strong>new异步套接字SocketAsyncEventArgs</strong>,并订阅Compeleted事件，启用socket监听，并调用AcceptAsync方法，异步完成触发compeleted事件，调用ProcessAccept方法，原来的方法异步已经触发<strong>重新调用一下AcceptAsync方法，通过函数递归实现while</strong>，判定acceptsocket是否正常，触发NewClientAccepted事件，</li>
+<li>事件触发AsyncSocketServer 类中的ProcessNewClient方法，从m_ReadWritePool池中取一个空闲的SocketAsyncEventArgProxy，并通过代理，socket创建AsyncSocketSession，并通过socketsession创建Appsession，在创建过程中做连接过滤，初始化app&rsquo;session，通过receivefactory创建receivefilter，同时初始化socketsession,主要是订阅SocketAsyncEventArgProxy中的compeleted事件。调用socketsession的start方法</li>
+<li>在socketsession中调用<strong>startreceive</strong>方法,中调用socket.ReceiveAsync方法，当异步完成时调用socketProxy的SocketEventArgs_Completed方法，该方法调用SocketSession的ProcessReceive方法，在该方法中执行过滤FilterRequest,执行命令，再一次<strong>调用startReceive方法，如此不停通过异步直接实现接收循环</strong></li>
+</ol>
+<h2 id="send调用流程" class="heading-element"><span>send调用流程</span>
+  <a href="#send%e8%b0%83%e7%94%a8%e6%b5%81%e7%a8%8b" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><p>在订阅了NewRequestReceived事件之后，该事件会有两个参数，一个是appsession，一个是requestinfo,</p>
+<p>appsession和socketsession完成，</p>
+<p>在appsession的InteralSend函数中对sendtimeout进行限制。</p>
+<p>在socketsession中将消息压入消息栈对消息进行校验，最终是通过socket.send和socket.sendasync两个方法将消息发送。</p>
+<h2 id="stop调用流程" class="heading-element"><span>Stop调用流程</span>
+  <a href="#stop%e8%b0%83%e7%94%a8%e6%b5%81%e7%a8%8b" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><p>先调用stop再调用close</p>
+<p>socketserver的stop，释放m_ReadWritePool中所有SocketAsyncEventArgs，所有listener的stop，释放其SocketAsyncEventArgs</p>
+<p>socket&rsquo;session的closed，回收所有sendingqqueue到pool中</p>
+</div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title="更新于 2020-01-28 17:09:22">更新于 2020-01-28&nbsp;</span>
+      </div><div class="post-info-license">
+            <span><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0 转载请注明来源</a></span>
+          </div></div><div class="post-info-line">
+        <div class="post-info-md"><span><a href="https://github.com/DDuuuu/issues/new?title=[BUG]%20SuperSocket1.6&#43;%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90&amp;body=%7cField%7cValue%7c%0A%7c-%7c-%7c%0A%7cTitle%7cSuperSocket1.6&#43;%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90%7c%0A%7cURL%7chttps://DDuuuu.github.io/2020/01/supersocket1-source/%7c%0A%7cFilename%7c%7c" title="报告问题"target="_blank" rel="external nofollow noopener noreferrer" class="link-to-report">报告问题</a></span></div>
+        <div class="post-info-share">
+          <span></span>
+        </div>
+      </div></div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href="/tags/supersocket1.6/" class="post-tag" title="标签 - SuperSocket1.6">SuperSocket1.6</a><a href="/tags/%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/" class="post-tag" title="标签 - 源码解析">源码解析</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/2019/11/designpattern14-headfirst/" class="post-nav-item" rel="prev" title="HeadFirst设计模式 装饰 适配器"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>HeadFirst设计模式 装饰 适配器</a>
+      <a href="/2020/02/dotnetbase6-netclrvia/" class="post-nav-item" rel="next" title="NetCLRVia CLR">NetCLRVia CLR<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div class="post-reward">
+    <div class="comment">为爱发电,请我喝杯咖啡吧</div>
+    <input type="checkbox" class="reward-input" name="reward" id="fi-reward" hidden />
+    <label class="reward-button" for="fi-reward"><i class="fa-solid fa-qrcode fa-fw" aria-hidden="true"></i>赞赏</label>
+    <div class="reward-ways" data-mode="static"><div><img loading="lazy" src="/images/alipay.jpg" alt="AndrewDu 支付宝" data-title="AndrewDu 支付宝" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/><span data-animation>支付宝</span>
+          </div><div><img loading="lazy" src="/images/wechat.jpg" alt="AndrewDu 微信" data-title="AndrewDu 微信" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/><span data-animation>微信</span>
+          </div></div>
+  </div><div id="comments"><div id="giscus" class="comment">
+          <script
+            src="https://giscus.app/client.js"
+            data-repo="DDuuuu/DDuuuu.github.io"
+            data-repo-id="R_kgDOMOxQVQ"
+            data-category="Announcements"
+            data-category-id="DIC_kwDOMOxQVc4Cgd23"
+            data-mapping="pathname"
+            data-strict="0"
+            
+            data-theme="preferred_color_scheme"
+            data-reactions-enabled="1"
+            data-emit-metadata="0"
+            data-input-position="bottom"
+            data-lang="zh-CN"
+            data-loading="lazy"
+            crossorigin="anonymous"
+            async
+            defer
+          ></script>
+        </div>
+        <noscript>
+          Please enable JavaScript to view the comments powered by <a href="https://giscus.app/" rel="external nofollow noopener noreferrer">giscus</a>.
+        </noscript></div></article>
+
+  <aside class="toc" id="toc-auto" aria-label="目录"><h2 class="toc-title">目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2018 - 2024</span><span class="author" itemprop="copyrightHolder">
+              <a href="https://github.com/DDuuuu"target="_blank" rel="external nofollow noopener noreferrer">AndrewDu</a></span></div><div class="footer-line statistics"><span class="site-time" title='网站运行中……'><i class="fa-solid fa-heartbeat fa-fw animate-icon" aria-hidden="true"></i><span class="ms-1 d-none">网站运行时间:</span><span class="run-times ms-1">网站运行中……</span></span></div><div class="footer-line visitor">
+          <span id="busuanzi_container_site_uv" title='总访客数'><i class="fa-regular fa-user fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span><span id="busuanzi_container_site_pv" class="footer-divider" title='总访问量'><i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span>
+        </div></div>
+  </footer></div><div class="widgets"><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role="button" aria-label="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i><span class="variant-numeric d-none">0%</span>
+        </div><div class="fixed-button view-comments d-none" role="button" aria-label="查看评论"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></div></div><a href="https://github.com/DDuuuu" title="AndrewDu GitHub"target="_blank" rel="external nofollow" class="github-corner right d-none-mobile"><svg viewBox="0 0 250 250" aria-hidden="true" width="56" height="56"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><div id="mask"></div><div class="reading-progress-bar" style="left: 0;top: 0;"></div><noscript>
+    <div class="noscript-warning">该网站在启用 JavaScript 的情况下效果最佳。</div>
+  </noscript>
+</div><link rel="stylesheet" href="/lib/lightgallery/css/lightgallery-bundle.min.css"><link rel="preload" href="/lib/katex/katex.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/lib/katex/katex.min.css"></noscript><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><link rel="stylesheet" href="/lib/pace/themes/blue/pace-theme-minimal.css"><script src="https://polyfill.io/v3/polyfill.min.js?features=Array.prototype.fill%2CArray.prototype.find%2CArray.from%2CIntersectionObserver%2CMath.sign%2CObject.assign%2CPromise%2CObject.entries%2Chtml5shiv%2CObject.values%2Cfetch%2CElement.prototype.after"></script><script src="/lib/object-fit-images/ofi.min.js"></script><script src="/lib/autocomplete/autocomplete.min.js" defer></script><script src="/lib/fuse/fuse.min.js" defer></script><script src="/lib/instant-page/instantpage.min.js" async defer type="module"></script><script src="/lib/twemoji/twemoji.min.js" defer></script><script src="/lib/lightgallery/lightgallery.min.js" defer></script><script src="/lib/lightgallery/plugins/thumbnail/lg-thumbnail.min.js" defer></script><script src="/lib/lightgallery/plugins/zoom/lg-zoom.min.js" defer></script><script src="/lib/typeit/index.umd.js" defer></script><script src="/lib/katex/katex.min.js" defer></script><script src="/lib/katex/auto-render.min.js" defer></script><script src="/lib/katex/copy-tex.min.js" defer></script><script src="/lib/katex/mhchem.min.js" defer></script><script src="/lib/cookieconsent/cookieconsent.min.js" defer></script><script src="/lib/pangu/pangu.min.js" defer></script><script src="/lib/cell-watermark/watermark.min.js" defer></script><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async defer></script><script src="/lib/pace/pace.min.js" async defer></script><script>window.config={"autoBookmark":true,"code":{"copyTitle":"复制到剪贴板","maxShownLines":999999},"comment":{"enable":true,"expired":false,"giscus":{"darkTheme":"dark","lightTheme":"light","origin":"https://giscus.app"}},"cookieconsent":{"content":{"dismiss":"同意","link":"了解更多","message":"本网站使用 Cookies 来改善您的浏览体验。"},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"enablePWA":true,"lightgallery":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"pangu":{"enable":true,"selector":"article"},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":12,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":100,"threshold":0.3,"type":"fuse","useExtendedSearch":false},"siteTime":"2018-02-22T04:10:22+08:00","twemoji":true,"typeit":{"cursorChar":"|","cursorSpeed":1000,"duration":-1,"loop":false,"speed":100},"version":"v0.3.8","watermark":{"colspacing":300,"content":"Andrew.Du","enable":true,"fontfamily":"inherit","fontsize":0.85,"height":20,"opacity":0.1,"rotate":15,"rowspacing":300,"width":150}};</script><script src="/js/theme.min.js" defer></script></body>
+</html>

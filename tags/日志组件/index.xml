@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>日志组件 - 标签 - AndrewDu&#39;s blog</title>
+    <link>https://DDuuuu.github.io/tags/%E6%97%A5%E5%BF%97%E7%BB%84%E4%BB%B6/</link>
+    <description>日志组件 - 标签 | AndrewDu&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>978089234@qq.com (AndrewDu)</managingEditor>
+      <webMaster>978089234@qq.com (AndrewDu)</webMaster><copyright>Copyright© Andrew.Du</copyright><lastBuildDate>Fri, 01 May 2020 17:09:22 &#43;0800</lastBuildDate><atom:link href="https://DDuuuu.github.io/tags/%E6%97%A5%E5%BF%97%E7%BB%84%E4%BB%B6/" rel="self" type="application/rss+xml" /><item>
+  <title>DotNet基础 日志组件</title>
+  <link>https://DDuuuu.github.io/2020/05/dotnetbase11-log/</link>
+  <pubDate>Fri, 01 May 2020 17:09:22 &#43;0800</pubDate>
+  <author>AndrewDu</author>
+  <guid>https://DDuuuu.github.io/2020/05/dotnetbase11-log/</guid>
+  <description><![CDATA[介绍 近期一直在看开源社区的源码，看各种编程书籍，自己却没有实践，堪称身体力行了王者级输入，青铜级输出。这是一个非常不好的学习习惯，会导致知其]]></description>
+</item>
+</channel>
+</rss>
