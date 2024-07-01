@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>设计模式 - 分类 - AndrewDu&#39;s blog</title>
+    <link>https://DDuuuu.github.io/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</link>
+    <description>设计模式 - 分类 | AndrewDu&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>978089234@qq.com (AndrewDu)</managingEditor>
+      <webMaster>978089234@qq.com (AndrewDu)</webMaster><copyright>Copyright© Andrew.Du</copyright><lastBuildDate>Wed, 26 Sep 2018 17:09:22 &#43;0800</lastBuildDate><atom:link href="https://DDuuuu.github.io/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="self" type="application/rss+xml" /><item>
+  <title>敏捷软件开发原则模式与实践 UML</title>
+  <link>https://DDuuuu.github.io/2018/09/designpattern-uml/</link>
+  <pubDate>Wed, 26 Sep 2018 17:09:22 &#43;0800</pubDate>
+  <author>AndrewDu</author>
+  <guid>https://DDuuuu.github.io/2018/09/designpattern-uml/</guid>
+  <description><![CDATA[所看书籍是：敏捷软件开发_原则、模式与实践_C#版（美）马丁著，这本书写的非常棒，感谢作者。该归纳总结的过程按照我读的顺序写。 UML 在建造桥梁，]]></description>
+</item>
+</channel>
+</rss>
