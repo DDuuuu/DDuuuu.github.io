@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>Css - 标签 - AndrewDu&#39;s blog</title>
+    <link>https://DDuuuu.github.io/tags/css/</link>
+    <description>Css - 标签 | AndrewDu&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>978089234@qq.com (AndrewDu)</managingEditor>
+      <webMaster>978089234@qq.com (AndrewDu)</webMaster><copyright>Copyright© Andrew.Du</copyright><lastBuildDate>Mon, 22 Oct 2018 17:09:22 &#43;0800</lastBuildDate><atom:link href="https://DDuuuu.github.io/tags/css/" rel="self" type="application/rss+xml" /><item>
+  <title>自学 CSS</title>
+  <link>https://DDuuuu.github.io/2018/10/web2-css/</link>
+  <pubDate>Mon, 22 Oct 2018 17:09:22 &#43;0800</pubDate>
+  <author>AndrewDu</author>
+  <guid>https://DDuuuu.github.io/2018/10/web2-css/</guid>
+  <description><![CDATA[CSS（层叠样式表）是用来美化页面用的，可以对页面元素进行更精细的设置，样式主要描述元素的字体颜色、背景颜色、边框等。 CSS主要有元素内联、]]></description>
+</item>
+</channel>
+</rss>

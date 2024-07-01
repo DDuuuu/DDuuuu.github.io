@@ -1,0 +1,40 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>Web - 标签 - AndrewDu&#39;s blog</title>
+    <link>https://DDuuuu.github.io/tags/web/</link>
+    <description>Web - 标签 | AndrewDu&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>978089234@qq.com (AndrewDu)</managingEditor>
+      <webMaster>978089234@qq.com (AndrewDu)</webMaster><copyright>Copyright© Andrew.Du</copyright><lastBuildDate>Thu, 04 Apr 2019 17:09:22 &#43;0800</lastBuildDate><atom:link href="https://DDuuuu.github.io/tags/web/" rel="self" type="application/rss+xml" /><item>
+  <title>自学 DOM</title>
+  <link>https://DDuuuu.github.io/2019/04/web4-dom/</link>
+  <pubDate>Thu, 04 Apr 2019 17:09:22 &#43;0800</pubDate>
+  <author>AndrewDu</author>
+  <guid>https://DDuuuu.github.io/2019/04/web4-dom/</guid>
+  <description><![CDATA[DOM(document object medol)文档对象模型。 DOM就是HTML页面的模型，将每个标签都做为一个对象，JavaScript通过调用DOM中的属性、方法就可以]]></description>
+</item>
+<item>
+  <title>自学 javascript</title>
+  <link>https://DDuuuu.github.io/2019/03/web3-javascript/</link>
+  <pubDate>Sat, 16 Mar 2019 17:09:22 &#43;0800</pubDate>
+  <author>AndrewDu</author>
+  <guid>https://DDuuuu.github.io/2019/03/web3-javascript/</guid>
+  <description><![CDATA[什么是JAVASCRIPT HTML只是描述网页长相的标记语言，没有计算、判断能力，如果所有计算、判断（比如判断文本框是否为空、判断两次密码是]]></description>
+</item>
+<item>
+  <title>自学 CSS</title>
+  <link>https://DDuuuu.github.io/2018/10/web2-css/</link>
+  <pubDate>Mon, 22 Oct 2018 17:09:22 &#43;0800</pubDate>
+  <author>AndrewDu</author>
+  <guid>https://DDuuuu.github.io/2018/10/web2-css/</guid>
+  <description><![CDATA[CSS（层叠样式表）是用来美化页面用的，可以对页面元素进行更精细的设置，样式主要描述元素的字体颜色、背景颜色、边框等。 CSS主要有元素内联、]]></description>
+</item>
+<item>
+  <title>自学 HTML</title>
+  <link>https://DDuuuu.github.io/2018/10/web1-html/</link>
+  <pubDate>Wed, 17 Oct 2018 17:09:22 &#43;0800</pubDate>
+  <author>AndrewDu</author>
+  <guid>https://DDuuuu.github.io/2018/10/web1-html/</guid>
+  <description><![CDATA[HTML(HyperText Markup Language)：描述网页长什么样子、有什么内容的一个文本。查看网页的描述内容（HTML）的方式：使用IE浏览器的话，在网页上点击右键]]></description>
+</item>
+</channel>
+</rss>

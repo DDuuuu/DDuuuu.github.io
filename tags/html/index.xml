@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>Html - 标签 - AndrewDu&#39;s blog</title>
+    <link>https://DDuuuu.github.io/tags/html/</link>
+    <description>Html - 标签 | AndrewDu&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>978089234@qq.com (AndrewDu)</managingEditor>
+      <webMaster>978089234@qq.com (AndrewDu)</webMaster><copyright>Copyright© Andrew.Du</copyright><lastBuildDate>Wed, 17 Oct 2018 17:09:22 &#43;0800</lastBuildDate><atom:link href="https://DDuuuu.github.io/tags/html/" rel="self" type="application/rss+xml" /><item>
+  <title>自学 HTML</title>
+  <link>https://DDuuuu.github.io/2018/10/web1-html/</link>
+  <pubDate>Wed, 17 Oct 2018 17:09:22 &#43;0800</pubDate>
+  <author>AndrewDu</author>
+  <guid>https://DDuuuu.github.io/2018/10/web1-html/</guid>
+  <description><![CDATA[HTML(HyperText Markup Language)：描述网页长什么样子、有什么内容的一个文本。查看网页的描述内容（HTML）的方式：使用IE浏览器的话，在网页上点击右键]]></description>
+</item>
+</channel>
+</rss>

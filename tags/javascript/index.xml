@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>Javascript - 标签 - AndrewDu&#39;s blog</title>
+    <link>https://DDuuuu.github.io/tags/javascript/</link>
+    <description>Javascript - 标签 | AndrewDu&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>978089234@qq.com (AndrewDu)</managingEditor>
+      <webMaster>978089234@qq.com (AndrewDu)</webMaster><copyright>Copyright© Andrew.Du</copyright><lastBuildDate>Sat, 16 Mar 2019 17:09:22 &#43;0800</lastBuildDate><atom:link href="https://DDuuuu.github.io/tags/javascript/" rel="self" type="application/rss+xml" /><item>
+  <title>自学 javascript</title>
+  <link>https://DDuuuu.github.io/2019/03/web3-javascript/</link>
+  <pubDate>Sat, 16 Mar 2019 17:09:22 &#43;0800</pubDate>
+  <author>AndrewDu</author>
+  <guid>https://DDuuuu.github.io/2019/03/web3-javascript/</guid>
+  <description><![CDATA[什么是JAVASCRIPT HTML只是描述网页长相的标记语言，没有计算、判断能力，如果所有计算、判断（比如判断文本框是否为空、判断两次密码是]]></description>
+</item>
+</channel>
+</rss>

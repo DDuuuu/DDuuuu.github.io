@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>DOM - 标签 - AndrewDu&#39;s blog</title>
+    <link>https://DDuuuu.github.io/tags/dom/</link>
+    <description>DOM - 标签 | AndrewDu&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>978089234@qq.com (AndrewDu)</managingEditor>
+      <webMaster>978089234@qq.com (AndrewDu)</webMaster><copyright>Copyright© Andrew.Du</copyright><lastBuildDate>Thu, 04 Apr 2019 17:09:22 &#43;0800</lastBuildDate><atom:link href="https://DDuuuu.github.io/tags/dom/" rel="self" type="application/rss+xml" /><item>
+  <title>自学 DOM</title>
+  <link>https://DDuuuu.github.io/2019/04/web4-dom/</link>
+  <pubDate>Thu, 04 Apr 2019 17:09:22 &#43;0800</pubDate>
+  <author>AndrewDu</author>
+  <guid>https://DDuuuu.github.io/2019/04/web4-dom/</guid>
+  <description><![CDATA[DOM(document object medol)文档对象模型。 DOM就是HTML页面的模型，将每个标签都做为一个对象，JavaScript通过调用DOM中的属性、方法就可以]]></description>
+</item>
+</channel>
+</rss>
