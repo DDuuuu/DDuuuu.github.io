@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>ADO.NET - 标签 - AndrewDu&#39;s blog</title>
+    <link>https://DDuuuu.github.io/tags/ado.net/</link>
+    <description>ADO.NET - 标签 | AndrewDu&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>978089234@qq.com (AndrewDu)</managingEditor>
+      <webMaster>978089234@qq.com (AndrewDu)</webMaster><copyright>Copyright© Andrew.Du</copyright><lastBuildDate>Mon, 29 Oct 2018 17:09:22 &#43;0800</lastBuildDate><atom:link href="https://DDuuuu.github.io/tags/ado.net/" rel="self" type="application/rss+xml" /><item>
+  <title>DotNet基础 sql Ado.Net</title>
+  <link>https://DDuuuu.github.io/2018/10/dotnetbase2-sql-adonet/</link>
+  <pubDate>Mon, 29 Oct 2018 17:09:22 &#43;0800</pubDate>
+  <author>AndrewDu</author>
+  <guid>https://DDuuuu.github.io/2018/10/dotnetbase2-sql-adonet/</guid>
+  <description><![CDATA[数据库 数据库概述 DBMS(DataBase Management System,数据库管理系统)和数据库。平时谈到“数据库”可能有两种含义：MSSQLServer、Oracle等某种DB]]></description>
+</item>
+</channel>
+</rss>

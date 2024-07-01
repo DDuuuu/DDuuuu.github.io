@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>入门 - 标签 - AndrewDu&#39;s blog</title>
+    <link>https://DDuuuu.github.io/tags/%E5%85%A5%E9%97%A8/</link>
+    <description>入门 - 标签 | AndrewDu&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>978089234@qq.com (AndrewDu)</managingEditor>
+      <webMaster>978089234@qq.com (AndrewDu)</webMaster><copyright>Copyright© Andrew.Du</copyright><lastBuildDate>Thu, 22 Nov 2018 17:09:22 &#43;0800</lastBuildDate><atom:link href="https://DDuuuu.github.io/tags/%E5%85%A5%E9%97%A8/" rel="self" type="application/rss+xml" /><item>
+  <title>DotNet基础 入门</title>
+  <link>https://DDuuuu.github.io/2018/11/dotnetbase2-sql-adonet/</link>
+  <pubDate>Thu, 22 Nov 2018 17:09:22 &#43;0800</pubDate>
+  <author>AndrewDu</author>
+  <guid>https://DDuuuu.github.io/2018/11/dotnetbase2-sql-adonet/</guid>
+  <description><![CDATA[基本信息 CIL和JIT CIL通用中间语言 JIT just-in-time使得CIT代码仅在需要时才编译 程序集 包含可执行文件.exe和库函数.dll]]></description>
+</item>
+</channel>
+</rss>
