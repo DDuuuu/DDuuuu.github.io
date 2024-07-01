@@ -154,7 +154,7 @@ Server收到消息:{Client:1:MessageID:9;Client发送时间:2020-04-11 14:19:44:
 Parallel.For(1, 10, (i) =&gt;
              {
                  var Replaystr =
-                     $&#34;{{Client:1:MessageID:{i};Client发送时间:{DateTime.Now.ToString(&#34;yyyy-MM-dd HH:mm:ss:fff&#34;)}}}&#34;;
+                     $&#34;Client:1:MessageID:{i};Client发送时间:{DateTime.Now.ToString(&#34;yyyy-MM-dd HH:mm:ss:fff&#34;)}&#34;;
                  var strbytes = Encoding.UTF8.GetBytes(Replaystr);
                  socket.Send(strbytes, 0, strbytes.Length, SocketFlags.None);
              });
