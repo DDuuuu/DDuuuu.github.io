@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>咖啡机 - 标签 - AndrewDu&#39;s blog</title>
+    <link>https://DDuuuu.github.io/tags/%E5%92%96%E5%95%A1%E6%9C%BA/</link>
+    <description>咖啡机 - 标签 | AndrewDu&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>978089234@qq.com (AndrewDu)</managingEditor>
+      <webMaster>978089234@qq.com (AndrewDu)</webMaster><copyright>Copyright© Andrew.Du</copyright><lastBuildDate>Sat, 29 Sep 2018 17:09:22 &#43;0800</lastBuildDate><atom:link href="https://DDuuuu.github.io/tags/%E5%92%96%E5%95%A1%E6%9C%BA/" rel="self" type="application/rss+xml" /><item>
+  <title>敏捷软件开发原则模式与实践 咖啡机</title>
+  <link>https://DDuuuu.github.io/2018/09/designpattern2-case1/</link>
+  <pubDate>Sat, 29 Sep 2018 17:09:22 &#43;0800</pubDate>
+  <author>AndrewDu</author>
+  <guid>https://DDuuuu.github.io/2018/09/designpattern2-case1/</guid>
+  <description><![CDATA[这本书的实例非常好，给了我非常多的启发。主要讲了两个实例，咖啡机和薪水支付实例，咖啡机实例比较简单并没有用什么设计模式，薪水支付实例用了很多]]></description>
+</item>
+</channel>
+</rss>

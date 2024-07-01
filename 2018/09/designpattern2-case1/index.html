@@ -1,0 +1,1155 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>敏捷软件开发原则模式与实践 咖啡机 - AndrewDu&#39;s blog</title><meta name="author" content="AndrewDu">
+<meta name="author-link" content="https://github.com/DDuuuu">
+<meta name="description" content="这本书的实例非常好，给了我非常多的启发。主要讲了两个实例，咖啡机和薪水支付实例，咖啡机实例比较简单并没有用什么设计模式，薪水支付实例用了很多" /><meta name="keywords" content='敏捷软件开发原则模式与实践, 咖啡机' />
+  <meta itemprop="name" content="敏捷软件开发原则模式与实践 咖啡机">
+  <meta itemprop="description" content="这本书的实例非常好，给了我非常多的启发。主要讲了两个实例，咖啡机和薪水支付实例，咖啡机实例比较简单并没有用什么设计模式，薪水支付实例用了很多">
+  <meta itemprop="datePublished" content="2018-09-29T17:09:22+08:00">
+  <meta itemprop="dateModified" content="2018-09-29T17:09:22+08:00">
+  <meta itemprop="wordCount" content="3810">
+  <meta itemprop="image" content="https://DDuuuu.github.io/images/logo150.png">
+  <meta itemprop="keywords" content="敏捷软件开发原则模式与实践,咖啡机"><meta property="og:url" content="https://DDuuuu.github.io/2018/09/designpattern2-case1/">
+  <meta property="og:site_name" content="AndrewDu&#39;s blog">
+  <meta property="og:title" content="敏捷软件开发原则模式与实践 咖啡机">
+  <meta property="og:description" content="这本书的实例非常好，给了我非常多的启发。主要讲了两个实例，咖啡机和薪水支付实例，咖啡机实例比较简单并没有用什么设计模式，薪水支付实例用了很多">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2018-09-29T17:09:22+08:00">
+    <meta property="article:modified_time" content="2018-09-29T17:09:22+08:00">
+    <meta property="article:tag" content="敏捷软件开发原则模式与实践">
+    <meta property="article:tag" content="咖啡机">
+    <meta property="og:image" content="https://DDuuuu.github.io/images/logo150.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://DDuuuu.github.io/images/logo150.png">
+  <meta name="twitter:title" content="敏捷软件开发原则模式与实践 咖啡机">
+  <meta name="twitter:description" content="这本书的实例非常好，给了我非常多的启发。主要讲了两个实例，咖啡机和薪水支付实例，咖啡机实例比较简单并没有用什么设计模式，薪水支付实例用了很多">
+<meta name="application-name" content="Andrew.Du">
+<meta name="apple-mobile-web-app-title" content="Andrew.Du"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://DDuuuu.github.io/2018/09/designpattern2-case1/" /><link rel="prev" href="https://DDuuuu.github.io/2018/09/designpattern1-uml/" /><link rel="next" href="https://DDuuuu.github.io/2022/06/algorithm1-queuesandlinks/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "敏捷软件开发原则模式与实践 咖啡机",
+    "inLanguage": "zh-CN",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https:\/\/DDuuuu.github.io\/2018\/09\/designpattern2-case1\/"
+    },"image": ["https:\/\/DDuuuu.github.io\/images\/logo192.png"],"genre": "posts","keywords": "敏捷软件开发原则模式与实践, 咖啡机","wordcount":  3810 ,
+    "url": "https:\/\/DDuuuu.github.io\/2018\/09\/designpattern2-case1\/","datePublished": "2018-09-29T17:09:22+08:00","dateModified": "2018-09-29T17:09:22+08:00","license": "Copyright© Andrew.Du","publisher": {
+      "@type": "Organization",
+      "name": "AndrewDu"},"author": {
+        "@type": "Person",
+        "name": "AndrewDu"
+      },"description": ""
+  }
+  </script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage?.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper" data-page-style="normal"><header class="desktop animate__faster" id="header-desktop">
+  <div class="header-wrapper" data-github-corner="right">
+    <div class="header-title">
+      <a href="/" title="AndrewDu&#39;s blog"><span class="typeit"><template>AndrewDu&#39;s blog</template></span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/"
+                title="主页"
+                
+              ><i class="fa-solid fa-home fa-fw fa-sm" aria-hidden="true"></i> 主页</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/archives/"
+                title="归档"
+                
+              ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 归档</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              ><i class="fa-solid fa-folder-tree fa-fw fa-sm" aria-hidden="true"></i> 类别</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/about/"
+                
+                
+              ><i class="fa-solid fa-link fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item delimiter"></li><li class="menu-item search" id="search-desktop">
+            <input type="text" placeholder="搜索文章标题或内容……" id="search-input-desktop">
+            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+              <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+            </a>
+            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+              <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+            </a>
+            <span class="search-button search-loading" id="search-loading-desktop">
+              <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+            </span>
+          </li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><header class="mobile animate__faster" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="AndrewDu&#39;s blog"><span class="typeit"><template>AndrewDu&#39;s blog</template></span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li class="search-wrapper">
+            <div class="search mobile" id="search-mobile">
+              <input type="text" placeholder="搜索文章标题或内容……" id="search-input-mobile">
+              <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+              </a>
+              <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+              </a>
+              <span class="search-button search-loading" id="search-loading-mobile">
+                <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+              </span>
+            </div>
+            <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+              取消
+            </a>
+          </li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/"
+                  title="主页"
+                  
+                ><i class="fa-solid fa-home fa-fw fa-sm" aria-hidden="true"></i> 主页</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/archives/"
+                  title="归档"
+                  
+                ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 归档</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/categories/"
+                  
+                  
+                ><i class="fa-solid fa-folder-tree fa-fw fa-sm" aria-hidden="true"></i> 类别</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/about/"
+                  
+                  
+                ><i class="fa-solid fa-link fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item menu-system">
+          <span class="menu-system-item theme-switch" title="切换主题"><i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i></span></li>
+      </ul>
+    </nav>
+  </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+  </div>
+  <div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+  </div><nav aria-label="breadcrumb" class="breadcrumb-container sticky">
+    <ol class="breadcrumb"><li class="breadcrumb-item"><a href="/" title="AndrewDu&#39;s Blog">主页</a></li><li class="breadcrumb-item"><a href="/posts/" title="Posts">文章</a></li><li class="breadcrumb-item active" aria-current="page">敏捷软件开发原则模式与实践 咖啡机</li>
+    </ol>
+  </nav><main class="container"><aside class="aside-collection animate__animated animate__fadeIn animate__faster" aria-label="合集"></aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX"><span>敏捷软件开发原则模式与实践 咖啡机</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><a href="https://github.com/DDuuuu" title="作者"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+    AndrewDu</a></span><span class="post-included-in">&nbsp;收录于 <a href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" class="post-category" title="分类 - 设计模式"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 设计模式</a></span></div><div class="post-meta-line"><span title="发布于 2018-09-29 17:09:22"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2018-09-29">2018-09-29</time></span>&nbsp;<span title="3810 字"><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>约 3900 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>预计阅读 8 分钟</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="敏捷软件开发原则模式与实践 咖啡机">
+              <i class="fa-regular fa-eye fa-fw me-1" aria-hidden="true"></i><span id="busuanzi_value_page_pv">-</span>&nbsp;次阅读
+            </span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>目录</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#咖啡机实例">咖啡机实例</a>
+      <ul>
+        <li><a href="#方案一">方案一</a></li>
+        <li><a href="#方案二">方案二</a>
+          <ul>
+            <li><a href="#用例">用例</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#薪水支付实例">薪水支付实例</a>
+      <ul>
+        <li><a href="#用例-1">用例：</a></li>
+        <li><a href="#设计类和结构">设计类和结构：</a>
+          <ul>
+            <li><a href="#从用例的角度设计">从用例的角度设计</a></li>
+            <li><a href="#从程序运行的角度补充细节">从程序运行的角度补充细节</a></li>
+          </ul>
+        </li>
+        <li><a href="#实现">实现</a></li>
+      </ul>
+    </li>
+    <li><a href="#总结">总结</a></li>
+  </ul>
+</nav></div>
+      </div><div class="content" id="content" data-end-flag="感谢阅读！"><p>这本书的实例非常好，给了我非常多的启发。主要讲了两个实例，咖啡机和薪水支付实例，咖啡机实例比较简单并没有用什么设计模式，薪水支付实例用了很多设计模式，包括后面的打包等。</p>
+<h2 id="咖啡机实例" class="heading-element"><span>咖啡机实例</span>
+  <a href="#%e5%92%96%e5%95%a1%e6%9c%ba%e5%ae%9e%e4%be%8b" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><p>做一个使用咖啡机的软件，驱动接口已经被写好。</p>
+<p>咖啡机的硬件包括：</p>
+<ul>
+<li>加热器加热棒（开关）</li>
+<li>保温盘加热棒（开关）</li>
+<li>保温盘传感器（保温盘空，杯子空，杯子不空）</li>
+<li>加热器传感器（有水，没水）</li>
+<li>冲煮按钮（开关）</li>
+<li>指示灯（开关）</li>
+<li>减压阀门（开关）</li>
+</ul>
+<p>咖啡机的冲煮流程：</p>
+<ul>
+<li>咖啡机一次煮12杯咖啡，</li>
+<li>咖啡加入过滤器，过滤器加入支架，支架放到咖啡机。</li>
+<li>倒入12杯水到滤水器，按下冲煮，水杯加热至沸腾，水蒸气碰洒到过滤器，形成水滴到咖啡壶，咖啡壶发现有水保温，</li>
+<li>拿走水杯，停止工作。</li>
+</ul>
+<h3 id="方案一" class="heading-element"><span>方案一</span>
+  <a href="#%e6%96%b9%e6%a1%88%e4%b8%80" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p>建立一个咖啡机超类，关联各个硬件类。这个方案是非常丑陋的，这不是根据行为划分的，有些类，比如light没有任何变量，仅仅调用了驱动接口，这种类叫水蒸气类。没有意义</p>
+<p><img loading="lazy" src="/designpattern/gU6xVKQ-1719811783363-66.png" alt="/designpattern/gU6xVKQ-1719811783363-66.png" srcset="/designpattern/gU6xVKQ-1719811783363-66.png?size=small, /designpattern/gU6xVKQ-1719811783363-66.png?size=medium 1.5x, /designpattern/gU6xVKQ-1719811783363-66.png?size=large 2x" data-title="/designpattern/gU6xVKQ-1719811783363-66.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<h3 id="方案二" class="heading-element"><span>方案二</span>
+  <a href="#%e6%96%b9%e6%a1%88%e4%ba%8c" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p>按照行为来划分，要确定一些类有没有意义，只需要确定<strong>谁使用他们</strong>，而且要到业务底层去看。把问题的本质和细节分离，忘掉一切，<strong>最根本的问题</strong>是如何煮咖啡。如何煮咖啡，将热水倒到咖啡上，把冲泡好的咖啡收集起来。水从哪来？咖啡放到哪里？那么就有两个类：热水类和支架类，大大多数人会考虑热水流到支架中，这是比较错误的，<strong>软件的行为应该按照软件的行为给出而不是基于一些物理关系</strong>。还需要考虑用户界面，这样就有三个类。</p>
+<ul>
+<li>谁使用</li>
+<li>最根本的问题</li>
+<li>软件行为而不是物理行为</li>
+</ul>
+<h4 id="用例" class="heading-element"><span>用例</span>
+  <a href="#%e7%94%a8%e4%be%8b" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h4><ol>
+<li>按下冲煮，启动水流，支架做好准备，都准备好就开始煮咖啡</li>
+<li>接受器具准备好没有</li>
+<li>冲煮完成</li>
+<li>咖啡喝完</li>
+</ol>
+<p><img loading="lazy" src="/designpattern/dqRYN3x-1719811783363-67.png" alt="/designpattern/dqRYN3x-1719811783363-67.png" srcset="/designpattern/dqRYN3x-1719811783363-67.png?size=small, /designpattern/dqRYN3x-1719811783363-67.png?size=medium 1.5x, /designpattern/dqRYN3x-1719811783363-67.png?size=large 2x" data-title="/designpattern/dqRYN3x-1719811783363-67.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>Containment Vessel:支架和保温壶</p>
+<p>Resume:恢复</p>
+<p>a，b，c，d表示四种逻辑：</p>
+<ul>
+<li>a 表示：用户按下冲煮，确保支架中有咖啡壶放在保温杯上，热水器中已经加满了水，然后才开始煮咖啡</li>
+<li>b 表示：如果正在股咖啡的过程中咖啡壶被拿走，则必须中断咖啡流，停止送热水，再次放回咖啡壶继续煮咖啡</li>
+<li>c 表示：热水器中传感器告诉我们水用完了就停止煮咖啡，同时告诉用户和支架（保温盘）已经停止煮咖啡</li>
+<li>d 表示：冲煮结束时并且一个空的咖啡壶放在支架上（保温盘），热水器应该知道这个消息，同时用户也应该知道这个消息</li>
+</ul>
+<p>这样整个咖啡机的抽象就完成了，按职责划分，各司其职。这三个抽象类不能知道任何关于咖啡机的任何信息。这就是依赖倒置原则。</p>
+<p>系统的控制流如何检测传感器呢？是选择线程还是轮询。最好的总是假设消息都是可以异步发送的，就像存在有独立的线程一样，把使用轮询还是线程的决策推迟到最后一刻。
+这样设置了一个接口，main()程序就待在一个循环中，不停地一遍遍调用这个方法实现轮询。</p>
+<pre><code>public static void Main(string[] args)
+{
+	CoffeeMakerAPI api = new M4CoffeeMakerAPI();
+	M4UserInterface ui = new M4UserInterface(api);
+	M4HotWaterSOurce hws = new M4HotWaterSOurce(api);
+	M4ContainmentVessel cv = new M4ContainmentVessel(api);
+	ui.Init(hws,cv);
+	hws.Init(ui,cv);
+	cv.Init(hws,ui);
+	while(true)
+	{
+		ui.Poll();
+		hws.Poll();
+		cv.Poll();
+	}
+}
+</code></pre>
+<p><img loading="lazy" src="/designpattern/9amR9CG-1719811783364-68.png" alt="/designpattern/9amR9CG-1719811783364-68.png" srcset="/designpattern/9amR9CG-1719811783364-68.png?size=small, /designpattern/9amR9CG-1719811783364-68.png?size=medium 1.5x, /designpattern/9amR9CG-1719811783364-68.png?size=large 2x" data-title="/designpattern/9amR9CG-1719811783364-68.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>依赖倒置，不允许高层的咖啡制作中依赖底层实现。</p>
+<h2 id="薪水支付实例" class="heading-element"><span>薪水支付实例</span>
+  <a href="#%e8%96%aa%e6%b0%b4%e6%94%af%e4%bb%98%e5%ae%9e%e4%be%8b" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><p>该案例主要有做一个薪水支付系统，主要有三类员工</p>
+<ul>
+<li>临时工：基本时薪，超过8小时加班时间1.5倍工资，每天有考勤卡，每周5结算。</li>
+<li>正式员工：月薪，每个月最后一天结算。</li>
+<li>经理：月薪，每月最后一天结算，有项目提成，每隔一周的周五结算，加入公会扣会费。</li>
+<li>公会会费分服务费和会费：会费每周都有从薪水中扣除，服务费从下个月薪水中扣除。</li>
+<li>薪水支付方式：可以选择支票邮寄到家，支票保存自取，直接存入银行账号。</li>
+<li>薪水支付每天运行一次，在当天为相应的雇员进行支付，上一次支付到本次支付应付的数额。</li>
+</ul>
+<h3 id="用例-1" class="heading-element"><span>用例：</span>
+  <a href="#%e7%94%a8%e4%be%8b-1" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><ul>
+<li>新增雇员：雇员号，姓名，地址。（零时工，正式员工，经理）</li>
+<li>删除雇员：雇员号</li>
+<li>登记考勤卡：雇员号，日期，小时</li>
+<li>登记销售凭条：雇员号，日期，销售记录</li>
+<li>登记公会服务费：公会成员，服务费用</li>
+<li>更改雇员细则：更改姓名，更改地址，更改每小时报酬，更改薪水，更改提成，更改支付方式，加入公会，离开公会</li>
+</ul>
+<h3 id="设计类和结构" class="heading-element"><span>设计类和结构：</span>
+  <a href="#%e8%ae%be%e8%ae%a1%e7%b1%bb%e5%92%8c%e7%bb%93%e6%9e%84" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p>通过迭代的方式进行实现。数据库是实现细节，应该尽推迟数据库的设计。通过用例来推导出应该有哪些类。</p>
+<h4 id="从用例的角度设计" class="heading-element"><span>从用例的角度设计</span>
+  <a href="#%e4%bb%8e%e7%94%a8%e4%be%8b%e7%9a%84%e8%a7%92%e5%ba%a6%e8%ae%be%e8%ae%a1" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h4><ul>
+<li>新增雇员</li>
+</ul>
+<p><img loading="lazy" src="/designpattern/4sgdRCQ-1719811783364-69.png" alt="/designpattern/4sgdRCQ-1719811783364-69.png" srcset="/designpattern/4sgdRCQ-1719811783364-69.png?size=small, /designpattern/4sgdRCQ-1719811783364-69.png?size=medium 1.5x, /designpattern/4sgdRCQ-1719811783364-69.png?size=large 2x" data-title="/designpattern/4sgdRCQ-1719811783364-69.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>Hourly:小时工</p>
+<p>Commissioned：正式员工</p>
+<p>Balarid：经理</p>
+<p>把每一项工作划分为自己的类中。这样有可能会创建三个雇员类，但是分析一下就会发现变化的东西太多了，正式由于雇员变化的东西引发雇员类型的改变，只需要将变化的东西抽象出来，在更改雇员细则时改变这些变化的东西就可以改变雇员类型。</p>
+<ul>
+<li>登记考勤卡</li>
+</ul>
+<p>考勤卡和雇员应该是聚合的关系
+<img loading="lazy" src="/designpattern/xnDY9RM-1719811783364-70.png" alt="/designpattern/xnDY9RM-1719811783364-70.png" srcset="/designpattern/xnDY9RM-1719811783364-70.png?size=small, /designpattern/xnDY9RM-1719811783364-70.png?size=medium 1.5x, /designpattern/xnDY9RM-1719811783364-70.png?size=large 2x" data-title="/designpattern/xnDY9RM-1719811783364-70.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<ul>
+<li>登记销售凭条</li>
+</ul>
+<p>销售凭条和雇员也应该是聚合的关系
+<img loading="lazy" src="/designpattern/HplaBfD-1719811783364-71.png" alt="/designpattern/HplaBfD-1719811783364-71.png" srcset="/designpattern/HplaBfD-1719811783364-71.png?size=small, /designpattern/HplaBfD-1719811783364-71.png?size=medium 1.5x, /designpattern/HplaBfD-1719811783364-71.png?size=large 2x" data-title="/designpattern/HplaBfD-1719811783364-71.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<ul>
+<li>登机工会服务费</li>
+</ul>
+<p>工会服务费维护着工会会员的编号，因此系统必须要把工会成员和雇员标识联系起俩，推迟这一行为。公会成员和服务费也是聚合的关系
+<img loading="lazy" src="/designpattern/brpPGqR-1719811783364-72.png" alt="/designpattern/brpPGqR-1719811783364-72.png" srcset="/designpattern/brpPGqR-1719811783364-72.png?size=small, /designpattern/brpPGqR-1719811783364-72.png?size=medium 1.5x, /designpattern/brpPGqR-1719811783364-72.png?size=large 2x" data-title="/designpattern/brpPGqR-1719811783364-72.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<ul>
+<li>更改雇员细则</li>
+</ul>
+<p>这是由多个更改策略组合而成。</p>
+<p><img loading="lazy" src="/designpattern/ZuREWHC-1601256937615-1719811783364-73.png" alt="/designpattern/ZuREWHC-1601256937615-1719811783364-73.png" srcset="/designpattern/ZuREWHC-1601256937615-1719811783364-73.png?size=small, /designpattern/ZuREWHC-1601256937615-1719811783364-73.png?size=medium 1.5x, /designpattern/ZuREWHC-1601256937615-1719811783364-73.png?size=large 2x" data-title="/designpattern/ZuREWHC-1601256937615-1719811783364-73.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>最后各个类之间的关系</p>
+<h4 id="从程序运行的角度补充细节" class="heading-element"><span>从程序运行的角度补充细节</span>
+  <a href="#%e4%bb%8e%e7%a8%8b%e5%ba%8f%e8%bf%90%e8%a1%8c%e7%9a%84%e8%a7%92%e5%ba%a6%e8%a1%a5%e5%85%85%e7%bb%86%e8%8a%82" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h4><ul>
+<li>运行薪水支付系统：找到所有进行支付的雇员，确定扣款额，根据他们的支付方式支付。</li>
+<li>抽象出变化的东西：雇员的支付类别抽象，支付时间抽象</li>
+</ul>
+<p><img loading="lazy" src="/designpattern/SpfhQMB-1601256966037-1719811783364-74.png" alt="/designpattern/SpfhQMB-1601256966037-1719811783364-74.png" srcset="/designpattern/SpfhQMB-1601256966037-1719811783364-74.png?size=small, /designpattern/SpfhQMB-1601256966037-1719811783364-74.png?size=medium 1.5x, /designpattern/SpfhQMB-1601256966037-1719811783364-74.png?size=large 2x" data-title="/designpattern/SpfhQMB-1601256966037-1719811783364-74.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
+<img loading="lazy" src="/designpattern/sIDmVyG-1719811783364-75.png" alt="/designpattern/sIDmVyG-1719811783364-75.png" srcset="/designpattern/sIDmVyG-1719811783364-75.png?size=small, /designpattern/sIDmVyG-1719811783364-75.png?size=medium 1.5x, /designpattern/sIDmVyG-1719811783364-75.png?size=large 2x" data-title="/designpattern/sIDmVyG-1719811783364-75.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<ul>
+<li>工会服务费抽象。Affillation:联系</li>
+</ul>
+<p><img loading="lazy" src="/designpattern/b4wSIST-1719811783364-76.png" alt="/designpattern/b4wSIST-1719811783364-76.png" srcset="/designpattern/b4wSIST-1719811783364-76.png?size=small, /designpattern/b4wSIST-1719811783364-76.png?size=medium 1.5x, /designpattern/b4wSIST-1719811783364-76.png?size=large 2x" data-title="/designpattern/b4wSIST-1719811783364-76.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
+<img loading="lazy" src="/designpattern/bfmWeG3-1719811783364-77.png" alt="/designpattern/bfmWeG3-1719811783364-77.png" srcset="/designpattern/bfmWeG3-1719811783364-77.png?size=small, /designpattern/bfmWeG3-1719811783364-77.png?size=medium 1.5x, /designpattern/bfmWeG3-1719811783364-77.png?size=large 2x" data-title="/designpattern/bfmWeG3-1719811783364-77.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<h3 id="实现" class="heading-element"><span>实现</span>
+  <a href="#%e5%ae%9e%e7%8e%b0" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><ul>
+<li>事务</li>
+</ul>
+<p>事务是使用命令模式。
+<img loading="lazy" src="/designpattern/nBYrNSk-1719811783364-78.png" alt="/designpattern/nBYrNSk-1719811783364-78.png" srcset="/designpattern/nBYrNSk-1719811783364-78.png?size=small, /designpattern/nBYrNSk-1719811783364-78.png?size=medium 1.5x, /designpattern/nBYrNSk-1719811783364-78.png?size=large 2x" data-title="/designpattern/nBYrNSk-1719811783364-78.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<ul>
+<li>增加雇员事务，雇员有三个类型，所以使用模板模式来实现增加雇员，此处模板模式的唯一任务就是创建对象</li>
+</ul>
+<p><img loading="lazy" src="/designpattern/aOp2NGw-1719811783364-79.png" alt="/designpattern/aOp2NGw-1719811783364-79.png" srcset="/designpattern/aOp2NGw-1719811783364-79.png?size=small, /designpattern/aOp2NGw-1719811783364-79.png?size=medium 1.5x, /designpattern/aOp2NGw-1719811783364-79.png?size=large 2x" data-title="/designpattern/aOp2NGw-1719811783364-79.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="/designpattern/image-20240701133000020.png" alt="image-20240701133000020" srcset="/designpattern/image-20240701133000020.png?size=small, /designpattern/image-20240701133000020.png?size=medium 1.5x, /designpattern/image-20240701133000020.png?size=large 2x" data-title="image-20240701133000020" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<pre><code>public abstract class AddEmployeeTransaction : Transaction
+{
+	private readonly int empid;
+	private readonly string name;
+	private readonly string address;
+
+	public AddEmployeeTransaction(int empid, 
+		string name, string address, PayrollDatabase database)
+		: base (database)
+	{
+		this.empid = empid;
+		this.name = name;
+		this.address = address;
+	}
+
+	protected abstract 
+		PaymentClassification MakeClassification();
+	protected abstract 
+		PaymentSchedule MakeSchedule();
+
+	public override void Execute()
+	{
+		PaymentClassification pc = MakeClassification();
+		PaymentSchedule ps = MakeSchedule();
+		PaymentMethod pm = new HoldMethod();
+
+		Employee e = new Employee(empid, name, address);
+		e.Classification = pc;
+		e.Schedule = ps;
+		e.Method = pm;
+		database.AddEmployee(e);
+	}
+
+	public override string ToString()
+	{
+		return String.Format(&quot;{0}  id:{1}   name:{2}   address:{3}&quot;, GetType().Name, empid, name,address);
+	} 
+}
+
+public class AddSalariedEmployee : AddEmployeeTransaction
+{
+	private readonly double salary;
+
+	public AddSalariedEmployee(int id, string name, string address, double salary, PayrollDatabase database) 
+		: base(id, name, address, database)
+	{
+		this.salary = salary;
+	}
+
+	protected override 
+		PaymentClassification MakeClassification()
+	{
+		return new SalariedClassification(salary);
+	}
+
+	protected override PaymentSchedule MakeSchedule()
+	{
+		return new MonthlySchedule();
+	}
+}
+</code></pre>
+<ul>
+<li>删除雇员</li>
+</ul>
+<p>提供雇员id，去数据库删除雇员，没啥好说的。</p>
+<ul>
+<li>考勤卡、销售凭条、服务费</li>
+</ul>
+<p>考勤卡：需要参数，雇员id,日期，工作时间</p>
+<p><img loading="lazy" src="/designpattern/HKh6NFO-1719811783365-80.png" alt="/designpattern/HKh6NFO-1719811783365-80.png" srcset="/designpattern/HKh6NFO-1719811783365-80.png?size=small, /designpattern/HKh6NFO-1719811783365-80.png?size=medium 1.5x, /designpattern/HKh6NFO-1719811783365-80.png?size=large 2x" data-title="/designpattern/HKh6NFO-1719811783365-80.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
+<img loading="lazy" src="/designpattern/Q5vkdbO-1719811783365-81.png" alt="/designpattern/Q5vkdbO-1719811783365-81.png" srcset="/designpattern/Q5vkdbO-1719811783365-81.png?size=small, /designpattern/Q5vkdbO-1719811783365-81.png?size=medium 1.5x, /designpattern/Q5vkdbO-1719811783365-81.png?size=large 2x" data-title="/designpattern/Q5vkdbO-1719811783365-81.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<pre><code>public class TimeCard
+{
+	private readonly DateTime date;
+	private readonly double hours;
+
+	public TimeCard(DateTime date, double hours)
+	{
+		this.date = date;
+		this.hours = hours;
+	}
+
+	public double Hours
+	{
+		get { return hours; }
+	}
+
+	public DateTime Date
+	{
+		get { return date; }
+	}
+}
+public class TimeCardTransaction : Transaction
+{
+	private readonly DateTime date;
+	private readonly double hours;
+	private readonly int empId;
+
+	public TimeCardTransaction(DateTime date, double hours, int empId, PayrollDatabase database)
+		: base(database)
+	{
+		this.date = date;
+		this.hours = hours;
+		this.empId = empId;
+	}
+
+	public override void Execute()
+	{
+		Employee e = database.GetEmployee(empId);
+
+		if (e != null)
+		{
+			HourlyClassification hc =
+				e.Classification as HourlyClassification;
+
+			if (hc != null)
+				hc.AddTimeCard(new TimeCard(date, hours));
+			else
+				throw new ApplicationException(
+					&quot;Tried to add timecard to&quot; +
+						&quot;non-hourly employee&quot;);
+		}
+		else
+			throw new ApplicationException(
+				&quot;No such employee.&quot;);
+	}
+}
+</code></pre>
+<p>其他两种与这类似</p>
+<ul>
+<li>更改雇员属性</li>
+</ul>
+<p>更改雇员属性由多个事务集合而成</p>
+<p><img loading="lazy" src="/designpattern/aVSGZwo-1719811783365-82.png" alt="/designpattern/aVSGZwo-1719811783365-82.png" srcset="/designpattern/aVSGZwo-1719811783365-82.png?size=small, /designpattern/aVSGZwo-1719811783365-82.png?size=medium 1.5x, /designpattern/aVSGZwo-1719811783365-82.png?size=large 2x" data-title="/designpattern/aVSGZwo-1719811783365-82.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
+<img loading="lazy" src="/designpattern/gWlg4Xy-1719811783365-83.png" alt="/designpattern/gWlg4Xy-1719811783365-83.png" srcset="/designpattern/gWlg4Xy-1719811783365-83.png?size=small, /designpattern/gWlg4Xy-1719811783365-83.png?size=medium 1.5x, /designpattern/gWlg4Xy-1719811783365-83.png?size=large 2x" data-title="/designpattern/gWlg4Xy-1719811783365-83.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
+<img loading="lazy" src="/designpattern/uUHuGdd-1719811783366-84.png" alt="/designpattern/uUHuGdd-1719811783366-84.png" srcset="/designpattern/uUHuGdd-1719811783366-84.png?size=small, /designpattern/uUHuGdd-1719811783366-84.png?size=medium 1.5x, /designpattern/uUHuGdd-1719811783366-84.png?size=large 2x" data-title="/designpattern/uUHuGdd-1719811783366-84.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
+<img loading="lazy" src="/designpattern/o7yQ9r5-1719811783366-85.png" alt="/designpattern/o7yQ9r5-1719811783366-85.png" srcset="/designpattern/o7yQ9r5-1719811783366-85.png?size=small, /designpattern/o7yQ9r5-1719811783366-85.png?size=medium 1.5x, /designpattern/o7yQ9r5-1719811783366-85.png?size=large 2x" data-title="/designpattern/o7yQ9r5-1719811783366-85.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>改名字事务：</p>
+<pre><code>public abstract class ChangeEmployeeTransaction : Transaction
+{
+	private readonly int empId;
+
+	public ChangeEmployeeTransaction(int empId, PayrollDatabase database)
+		: base (database)
+	{
+		this.empId = empId;
+	}
+
+	public override void Execute()
+	{
+		Employee e = database.GetEmployee(empId);
+		
+		if(e != null)
+			Change(e);
+		else
+			throw new ApplicationException(
+				&quot;No such employee.&quot;);
+	}
+
+	protected abstract void Change(Employee e);
+}
+public class ChangeNameTransaction 
+	: ChangeEmployeeTransaction
+{
+	private readonly string newName;
+
+	public ChangeNameTransaction(int id, string newName, PayrollDatabase database)
+		: base(id, database)
+	{
+		this.newName = newName;
+	}
+
+	protected override void Change(Employee e)
+	{
+		e.Name = newName;
+	}
+}
+</code></pre>
+<p>更改雇员类别</p>
+<p><img loading="lazy" src="/designpattern/GeW3N7q-1719811783366-86.png" alt="/designpattern/GeW3N7q-1719811783366-86.png" srcset="/designpattern/GeW3N7q-1719811783366-86.png?size=small, /designpattern/GeW3N7q-1719811783366-86.png?size=medium 1.5x, /designpattern/GeW3N7q-1719811783366-86.png?size=large 2x" data-title="/designpattern/GeW3N7q-1719811783366-86.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
+<img loading="lazy" src="/designpattern/joOQrUG-1719811783366-87.png" alt="/designpattern/joOQrUG-1719811783366-87.png" srcset="/designpattern/joOQrUG-1719811783366-87.png?size=small, /designpattern/joOQrUG-1719811783366-87.png?size=medium 1.5x, /designpattern/joOQrUG-1719811783366-87.png?size=large 2x" data-title="/designpattern/joOQrUG-1719811783366-87.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
+<img loading="lazy" src="/designpattern/kDPETN3-1719811783366-88.png" alt="/designpattern/kDPETN3-1719811783366-88.png" srcset="/designpattern/kDPETN3-1719811783366-88.png?size=small, /designpattern/kDPETN3-1719811783366-88.png?size=medium 1.5x, /designpattern/kDPETN3-1719811783366-88.png?size=large 2x" data-title="/designpattern/kDPETN3-1719811783366-88.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
+<img loading="lazy" src="/designpattern/Y4oG5M0-1719811783366-89.png" alt="/designpattern/Y4oG5M0-1719811783366-89.png" srcset="/designpattern/Y4oG5M0-1719811783366-89.png?size=small, /designpattern/Y4oG5M0-1719811783366-89.png?size=medium 1.5x, /designpattern/Y4oG5M0-1719811783366-89.png?size=large 2x" data-title="/designpattern/Y4oG5M0-1719811783366-89.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<pre><code>public abstract class ChangeClassificationTransaction
+	: ChangeEmployeeTransaction
+{
+	public ChangeClassificationTransaction(int id, PayrollDatabase database)
+		: base (id, database)
+	{}
+
+	protected override void Change(Employee e)
+	{
+		e.Classification = Classification;
+		e.Schedule = Schedule;
+	}
+
+	protected abstract 
+		PaymentClassification Classification { get; }
+	protected abstract PaymentSchedule Schedule { get; }
+}
+public class ChangeHourlyTransaction 
+	: ChangeClassificationTransaction
+{
+	private readonly double hourlyRate;
+
+	public ChangeHourlyTransaction(int id, double hourlyRate, PayrollDatabase database)
+		: base(id, database)
+	{
+		this.hourlyRate = hourlyRate;
+	}
+
+	protected override PaymentClassification Classification
+	{
+		get { return new HourlyClassification(hourlyRate); }
+	}
+
+	protected override PaymentSchedule Schedule
+	{
+		get { return new WeeklySchedule(); }
+	}
+}
+public class ChangeSalariedTransaction : ChangeClassificationTransaction
+{
+	private readonly double salary;
+
+	public ChangeSalariedTransaction(int id, double salary, PayrollDatabase database)
+		: base(id, database)
+	{
+		this.salary = salary;
+	}
+
+	protected override PaymentClassification Classification
+	{
+		get { return new SalariedClassification(salary); }
+	}
+
+	protected override PaymentSchedule Schedule
+	{
+		get { return new MonthlySchedule(); }
+	}
+}
+public class ChangeCommissionedTransaction
+	: ChangeClassificationTransaction
+{
+	private readonly double baseSalary;
+	private readonly double commissionRate;
+
+	public ChangeCommissionedTransaction(int id, double baseSalary, double commissionRate, PayrollDatabase database)
+		: base(id, database)
+	{
+		this.baseSalary = baseSalary;
+		this.commissionRate = commissionRate;
+	}
+
+	protected override PaymentClassification Classification
+	{
+		get { return new CommissionClassification(baseSalary, commissionRate); }
+	}
+
+	protected override PaymentSchedule Schedule
+	{
+		get { return new BiWeeklySchedule(); }
+	}
+}
+</code></pre>
+<p>改变方法和改变工会实现方式基本与改变雇佣类别相似</p>
+<p>改变支付方法：</p>
+<pre><code>public abstract class ChangeMethodTransaction : ChangeEmployeeTransaction
+{
+	public ChangeMethodTransaction(int empId, PayrollDatabase database)
+		: base(empId, database)
+	{}
+
+	protected override void Change(Employee e)
+	{
+		PaymentMethod method = Method;
+		e.Method = method;
+	}
+
+	protected abstract PaymentMethod Method { get; }
+}
+public class ChangeMailTransaction : ChangeMethodTransaction
+{
+	public ChangeMailTransaction(int empId, PayrollDatabase database)
+		: base(empId, database)
+	{
+	}
+
+	protected override PaymentMethod Method
+	{
+		get { return new MailMethod(&quot;3.14 Pi St&quot;); }
+	}
+
+}
+public class ChangeHoldTransaction : ChangeMethodTransaction
+{
+	public ChangeHoldTransaction(int empId, PayrollDatabase database)
+		: base(empId, database)
+	{
+	}
+
+	protected override PaymentMethod Method
+	{
+		get { return new HoldMethod(); }
+	}
+
+}
+public class ChangeDirectTransaction : ChangeMethodTransaction
+{
+	public ChangeDirectTransaction(int empId, PayrollDatabase database)
+		: base(empId, database)
+	{
+	}
+
+	protected override PaymentMethod Method
+	{
+		get { return new DirectDepositMethod(&quot;Bank -1&quot;, &quot;123&quot;); }
+	}
+
+}
+</code></pre>
+<p>改变工会：</p>
+<pre><code>public abstract class ChangeAffiliationTransaction : ChangeEmployeeTransaction
+{
+	public ChangeAffiliationTransaction(int empId, PayrollDatabase database)
+		: base(empId, database)
+	{}
+
+	protected override void Change(Employee e)
+	{
+		RecordMembership(e);
+		Affiliation affiliation = Affiliation;
+		e.Affiliation = affiliation;
+	}
+
+	protected abstract Affiliation Affiliation { get; }
+	protected abstract void RecordMembership(Employee e);
+}
+public class ChangeUnaffiliatedTransaction : ChangeAffiliationTransaction
+{
+	public ChangeUnaffiliatedTransaction(int empId, PayrollDatabase database)
+		: base(empId, database)
+	{}
+
+	protected override Affiliation Affiliation
+	{
+		get { return new NoAffiliation(); }
+	}
+
+	protected override void RecordMembership(Employee e)
+	{
+		Affiliation affiliation = e.Affiliation;
+		if(affiliation is UnionAffiliation)
+		{
+			UnionAffiliation unionAffiliation = 
+				affiliation as UnionAffiliation;
+			int memberId = unionAffiliation.MemberId;
+			database.RemoveUnionMember(memberId);
+		}
+	}
+}
+public class ChangeMemberTransaction : ChangeAffiliationTransaction
+{
+	private readonly int memberId;
+	private readonly double dues;
+
+	public ChangeMemberTransaction(int empId, int memberId, double dues, PayrollDatabase database)
+		: base(empId, database)
+	{
+		this.memberId = memberId;
+		this.dues = dues;
+	}
+
+	protected override Affiliation Affiliation
+	{
+		get { return new UnionAffiliation(memberId, dues); }
+	}
+
+	protected override void RecordMembership(Employee e)
+	{
+		database.AddUnionMember(memberId, e);
+	}
+}
+</code></pre>
+<ul>
+<li>支付薪水</li>
+</ul>
+<p><img loading="lazy" src="/designpattern/VYRcwVf-1719811783366-90.png" alt="/designpattern/VYRcwVf-1719811783366-90.png" srcset="/designpattern/VYRcwVf-1719811783366-90.png?size=small, /designpattern/VYRcwVf-1719811783366-90.png?size=medium 1.5x, /designpattern/VYRcwVf-1719811783366-90.png?size=large 2x" data-title="/designpattern/VYRcwVf-1719811783366-90.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
+<img loading="lazy" src="/designpattern/6Xk883H-1719811783366-91.png" alt="/designpattern/6Xk883H-1719811783366-91.png" srcset="/designpattern/6Xk883H-1719811783366-91.png?size=small, /designpattern/6Xk883H-1719811783366-91.png?size=medium 1.5x, /designpattern/6Xk883H-1719811783366-91.png?size=large 2x" data-title="/designpattern/6Xk883H-1719811783366-91.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
+<img loading="lazy" src="/designpattern/d3XMQJP-1719811783366-92.png" alt="/designpattern/d3XMQJP-1719811783366-92.png" srcset="/designpattern/d3XMQJP-1719811783366-92.png?size=small, /designpattern/d3XMQJP-1719811783366-92.png?size=medium 1.5x, /designpattern/d3XMQJP-1719811783366-92.png?size=large 2x" data-title="/designpattern/d3XMQJP-1719811783366-92.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
+<img loading="lazy" src="/designpattern/4LJ7uRl-1719811783366-93.png" alt="/designpattern/4LJ7uRl-1719811783366-93.png" srcset="/designpattern/4LJ7uRl-1719811783366-93.png?size=small, /designpattern/4LJ7uRl-1719811783366-93.png?size=medium 1.5x, /designpattern/4LJ7uRl-1719811783366-93.png?size=large 2x" data-title="/designpattern/4LJ7uRl-1719811783366-93.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
+<img loading="lazy" src="/designpattern/vPEAMS0-1719811783366-94.png" alt="/designpattern/vPEAMS0-1719811783366-94.png" srcset="/designpattern/vPEAMS0-1719811783366-94.png?size=small, /designpattern/vPEAMS0-1719811783366-94.png?size=medium 1.5x, /designpattern/vPEAMS0-1719811783366-94.png?size=large 2x" data-title="/designpattern/vPEAMS0-1719811783366-94.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>支付月薪：</p>
+<pre><code>public class PaydayTransaction : Transaction
+{
+	private readonly DateTime payDate;
+	private Hashtable paychecks = new Hashtable();
+
+	public PaydayTransaction(DateTime payDate, PayrollDatabase database)
+		: base (database)
+	{
+		this.payDate = payDate;
+	}
+
+	public override void Execute()
+	{
+		ArrayList empIds = database.GetAllEmployeeIds();
+		  
+		foreach(int empId in empIds)
+		{
+			Employee employee = database.GetEmployee(empId);
+			if (employee.IsPayDate(payDate)) 
+			{
+				DateTime startDate = 
+					employee.GetPayPeriodStartDate(payDate);
+				Paycheck pc = new Paycheck(startDate, payDate);
+				paychecks[empId] = pc;
+				employee.Payday(pc);
+			}
+		}
+	}
+
+	public Paycheck GetPaycheck(int empId)
+	{
+		return paychecks[empId] as Paycheck;
+	}
+}
+public class MonthlySchedule : PaymentSchedule
+{
+	private bool IsLastDayOfMonth(DateTime date)
+	{
+		int m1 = date.Month;
+		int m2 = date.AddDays(1).Month;
+		return (m1 != m2);
+	}
+
+	public bool IsPayDate(DateTime payDate)
+	{
+		return IsLastDayOfMonth(payDate);
+	}
+
+	public DateTime GetPayPeriodStartDate(DateTime date)
+	{
+		int days = 0;
+		while(date.AddDays(days - 1).Month == date.Month)
+			days--;
+
+		return date.AddDays(days);
+	}
+
+	public override string ToString()
+	{
+		return &quot;monthly&quot;;
+	}
+}
+</code></pre>
+<p>其中有paycheck类。该类有日期，总薪酬，服务扣费，实际薪酬</p>
+<ul>
+<li>
+<p>临时工</p>
+<p>public class HourlyClassification : PaymentClassification
+{
+private double hourlyRate;</p>
+<pre><code>  private Hashtable timeCards = new Hashtable();
+
+  public HourlyClassification(double rate)
+  {
+      this.hourlyRate = rate;
+  }
+
+  public double HourlyRate
+  {
+      get { return hourlyRate; }
+  }
+
+  public TimeCard GetTimeCard(DateTime date)
+  {
+      return timeCards[date] as TimeCard;
+  }
+
+  public void AddTimeCard(TimeCard card)
+  {
+      timeCards[card.Date] = card;
+  }
+
+  public override double CalculatePay(Paycheck paycheck)
+  {
+      double totalPay = 0.0;
+      foreach(TimeCard timeCard in timeCards.Values)
+      {
+          if(DateUtil.IsInPayPeriod(timeCard.Date, 
+              paycheck.PayPeriodStartDate, 
+              paycheck.PayPeriodEndDate))
+              totalPay += CalculatePayForTimeCard(timeCard);
+      }
+      return totalPay;
+  }
+
+  private double CalculatePayForTimeCard(TimeCard card)
+  {
+      double overtimeHours = Math.Max(0.0, card.Hours - 8);
+      double normalHours = card.Hours - overtimeHours;
+      return hourlyRate * normalHours + 
+          hourlyRate * 1.5 * overtimeHours;
+  }
+
+  public override string ToString()
+  {
+      return String.Format(&quot;${0}/hr&quot;, hourlyRate);
+  }
+</code></pre>
+<p>}
+public class WeeklySchedule : PaymentSchedule
+{
+public bool IsPayDate(DateTime payDate)
+{
+return payDate.DayOfWeek == DayOfWeek.Friday;
+}</p>
+<pre><code>  public DateTime GetPayPeriodStartDate(DateTime date)
+  {
+      return date.AddDays(-6);
+  }
+
+  public override string ToString()
+  {
+      return &quot;weekly&quot;;
+  }
+</code></pre>
+<p>}</p>
+<p>public class Employee
+{
+private readonly int empid;
+private string name;
+private readonly string address;
+private PaymentClassification classification;
+private PaymentSchedule schedule;
+private PaymentMethod method;
+private Affiliation affiliation = new NoAffiliation();</p>
+<pre><code>  public Employee(int empid, string name, string address)
+  {
+      this.empid = empid;
+      this.name = name;
+      this.address = address;
+  }
+
+  public string Name
+  {
+      get { return name; }
+      set { name = value; }
+  }
+
+  public string Address
+  {
+      get { return address; }
+  }
+
+  public PaymentClassification Classification
+  {
+      get { return classification; }
+      set { classification = value; }
+  }
+
+  public PaymentSchedule Schedule
+  {
+      get { return schedule; }
+      set { schedule = value; }
+  }
+
+  public PaymentMethod Method
+  {
+      get { return method; }
+      set { method = value; }
+  }
+
+  public Affiliation Affiliation
+  {
+      get { return affiliation; }
+      set { affiliation = value; }
+  }
+
+  public bool IsPayDate(DateTime date)
+  {
+      return schedule.IsPayDate(date);
+  }
+
+  public void Payday(Paycheck paycheck)
+  {
+      //计算总的薪资
+      double grossPay = classification.CalculatePay(paycheck);
+      //计算扣除薪资
+      double deductions = affiliation.CalculateDeductions(paycheck);
+      //计算实际薪资
+      double netPay = grossPay - deductions;
+      paycheck.GrossPay = grossPay;
+      paycheck.Deductions = deductions;
+      paycheck.NetPay = netPay;
+      //通过支付方式支付
+      method.Pay(paycheck);
+  }
+
+  public DateTime GetPayPeriodStartDate(DateTime date)
+  {
+      return schedule.GetPayPeriodStartDate(date);
+  }
+
+  public int EmpId
+  {
+      get { return empid; }
+  }
+
+  public override string ToString()
+  {
+      StringBuilder builder = new StringBuilder();
+      builder.Append(&quot;Emp#: &quot;).Append(empid).Append(&quot;   &quot;);
+      builder.Append(name).Append(&quot;   &quot;);
+      builder.Append(address).Append(&quot;   &quot;);
+      builder.Append(&quot;Paid &quot;).Append(classification).Append(&quot; &quot;);
+      builder.Append(schedule);
+      builder.Append(&quot; by &quot;).Append(method);
+      return builder.ToString();
+  }
+</code></pre>
+<p>}</p>
+<p>public class UnionAffiliation : Affiliation
+{
+private Hashtable charges = new Hashtable();
+private int memberId;
+private readonly double dues;</p>
+<pre><code>  public UnionAffiliation(int memberId, double dues)
+  {
+      this.memberId = memberId;
+      this.dues = dues;
+  }
+
+  public UnionAffiliation()
+      : this(-1, 0.0)
+  {}
+
+  public ServiceCharge GetServiceCharge(DateTime time)
+  {
+      return charges[time] as ServiceCharge;
+  }
+
+  public void AddServiceCharge(ServiceCharge sc)
+  {
+      charges[sc.Time] = sc;
+  }
+
+  public double Dues
+  {
+      get { return dues;	}
+  }
+
+  public int MemberId
+  {
+      get { return memberId; }
+  }
+
+  public double CalculateDeductions(Paycheck paycheck)
+  {
+      double totalDues = 0;
+
+      int fridays = NumberOfFridaysInPayPeriod(
+          paycheck.PayPeriodStartDate, paycheck.PayPeriodEndDate);
+      totalDues = dues * fridays;
+
+      foreach(ServiceCharge charge in charges.Values)
+      {
+          if(DateUtil.IsInPayPeriod(charge.Time,
+              paycheck.PayPeriodStartDate,
+              paycheck.PayPeriodEndDate))
+          totalDues += charge.Amount;
+      }
+
+      return totalDues;
+  }
+
+  private int NumberOfFridaysInPayPeriod(
+      DateTime payPeriodStart, DateTime payPeriodEnd)
+  {
+      int fridays = 0;
+      for (DateTime day = payPeriodStart; 
+          day &lt;= payPeriodEnd; day = day.AddDays(1)) 
+      {
+          if (day.DayOfWeek == DayOfWeek.Friday)
+              fridays++;
+      }
+      return fridays;
+  }
+</code></pre>
+<p>}</p>
+</li>
+<li>
+<p>主程序</p>
+</li>
+</ul>
+<p><img loading="lazy" src="/designpattern/TSzQlyi-1719811783366-95.png" alt="/designpattern/TSzQlyi-1719811783366-95.png" srcset="/designpattern/TSzQlyi-1719811783366-95.png?size=small, /designpattern/TSzQlyi-1719811783366-95.png?size=medium 1.5x, /designpattern/TSzQlyi-1719811783366-95.png?size=large 2x" data-title="/designpattern/TSzQlyi-1719811783366-95.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="/designpattern/Uo40WBA-1719811783366-96.png" alt="/designpattern/Uo40WBA-1719811783366-96.png" srcset="/designpattern/Uo40WBA-1719811783366-96.png?size=small, /designpattern/Uo40WBA-1719811783366-96.png?size=medium 1.5x, /designpattern/Uo40WBA-1719811783366-96.png?size=large 2x" data-title="/designpattern/Uo40WBA-1719811783366-96.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<h2 id="总结" class="heading-element"><span>总结</span>
+  <a href="#%e6%80%bb%e7%bb%93" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><p>到目前为止基本功能已经实现，仅仅只是用了模板，空值，命令等设计模式，下一篇将会进一步使用更多的设计模式进行打包处理。</p>
+</div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title="更新于 2018-09-29 17:09:22">更新于 2018-09-29&nbsp;</span>
+      </div><div class="post-info-license">
+            <span><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0 转载请注明来源</a></span>
+          </div></div><div class="post-info-line">
+        <div class="post-info-md"><span><a href="https://github.com/DDuuuu/issues/new?title=[BUG]%20%E6%95%8F%E6%8D%B7%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91%E5%8E%9F%E5%88%99%E6%A8%A1%E5%BC%8F%E4%B8%8E%E5%AE%9E%E8%B7%B5&#43;%E5%92%96%E5%95%A1%E6%9C%BA&amp;body=%7cField%7cValue%7c%0A%7c-%7c-%7c%0A%7cTitle%7c%E6%95%8F%E6%8D%B7%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91%E5%8E%9F%E5%88%99%E6%A8%A1%E5%BC%8F%E4%B8%8E%E5%AE%9E%E8%B7%B5&#43;%E5%92%96%E5%95%A1%E6%9C%BA%7c%0A%7cURL%7chttps://DDuuuu.github.io/2018/09/designpattern2-case1/%7c%0A%7cFilename%7c%7c" title="报告问题"target="_blank" rel="external nofollow noopener noreferrer" class="link-to-report">报告问题</a></span></div>
+        <div class="post-info-share">
+          <span></span>
+        </div>
+      </div></div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href="/tags/%E6%95%8F%E6%8D%B7%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91%E5%8E%9F%E5%88%99%E6%A8%A1%E5%BC%8F%E4%B8%8E%E5%AE%9E%E8%B7%B5/" class="post-tag" title="标签 - 敏捷软件开发原则模式与实践">敏捷软件开发原则模式与实践</a><a href="/tags/%E5%92%96%E5%95%A1%E6%9C%BA/" class="post-tag" title="标签 - 咖啡机">咖啡机</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/2018/09/designpattern1-uml/" class="post-nav-item" rel="prev" title="敏捷软件开发原则模式与实践 UML"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>敏捷软件开发原则模式与实践 UML</a>
+      <a href="/2022/06/algorithm1-queuesandlinks/" class="post-nav-item" rel="next" title="算法 队列与链表">算法 队列与链表<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div class="post-reward">
+    <div class="comment">为爱发电,请我喝杯咖啡吧</div>
+    <input type="checkbox" class="reward-input" name="reward" id="fi-reward" hidden />
+    <label class="reward-button" for="fi-reward"><i class="fa-solid fa-qrcode fa-fw" aria-hidden="true"></i>赞赏</label>
+    <div class="reward-ways" data-mode="static"><div><img loading="lazy" src="/images/alipay.jpg" alt="AndrewDu 支付宝" data-title="AndrewDu 支付宝" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/><span data-animation>支付宝</span>
+          </div><div><img loading="lazy" src="/images/wechat.jpg" alt="AndrewDu 微信" data-title="AndrewDu 微信" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/><span data-animation>微信</span>
+          </div></div>
+  </div><div id="comments"><div id="giscus" class="comment">
+          <script
+            src="https://giscus.app/client.js"
+            data-repo="DDuuuu/DDuuuu.github.io"
+            data-repo-id="R_kgDOMOxQVQ"
+            data-category="Announcements"
+            data-category-id="DIC_kwDOMOxQVc4Cgd23"
+            data-mapping="pathname"
+            data-strict="0"
+            
+            data-theme="preferred_color_scheme"
+            data-reactions-enabled="1"
+            data-emit-metadata="0"
+            data-input-position="bottom"
+            data-lang="zh-CN"
+            data-loading="lazy"
+            crossorigin="anonymous"
+            async
+            defer
+          ></script>
+        </div>
+        <noscript>
+          Please enable JavaScript to view the comments powered by <a href="https://giscus.app/" rel="external nofollow noopener noreferrer">giscus</a>.
+        </noscript></div></article>
+
+  <aside class="toc" id="toc-auto" aria-label="目录"><h2 class="toc-title">目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2018 - 2024</span><span class="author" itemprop="copyrightHolder">
+              <a href="https://github.com/DDuuuu"target="_blank" rel="external nofollow noopener noreferrer">AndrewDu</a></span></div><div class="footer-line statistics"><span class="site-time" title='网站运行中……'><i class="fa-solid fa-heartbeat fa-fw animate-icon" aria-hidden="true"></i><span class="ms-1 d-none">网站运行时间:</span><span class="run-times ms-1">网站运行中……</span></span></div><div class="footer-line visitor">
+          <span id="busuanzi_container_site_uv" title='总访客数'><i class="fa-regular fa-user fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span><span id="busuanzi_container_site_pv" class="footer-divider" title='总访问量'><i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span>
+        </div></div>
+  </footer></div><div class="widgets"><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role="button" aria-label="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i><span class="variant-numeric d-none">0%</span>
+        </div><div class="fixed-button view-comments d-none" role="button" aria-label="查看评论"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></div></div><a href="https://github.com/DDuuuu" title="AndrewDu GitHub"target="_blank" rel="external nofollow" class="github-corner right d-none-mobile"><svg viewBox="0 0 250 250" aria-hidden="true" width="56" height="56"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><div id="mask"></div><div class="reading-progress-bar" style="left: 0;top: 0;"></div><noscript>
+    <div class="noscript-warning">该网站在启用 JavaScript 的情况下效果最佳。</div>
+  </noscript>
+</div><link rel="stylesheet" href="/lib/lightgallery/css/lightgallery-bundle.min.css"><link rel="preload" href="/lib/katex/katex.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/lib/katex/katex.min.css"></noscript><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><link rel="stylesheet" href="/lib/pace/themes/blue/pace-theme-minimal.css"><script src="https://polyfill.io/v3/polyfill.min.js?features=Array.prototype.fill%2CArray.prototype.find%2CArray.from%2CIntersectionObserver%2CMath.sign%2CObject.assign%2CPromise%2CObject.entries%2Chtml5shiv%2CObject.values%2Cfetch%2CElement.prototype.after"></script><script src="/lib/object-fit-images/ofi.min.js"></script><script src="/lib/autocomplete/autocomplete.min.js" defer></script><script src="/lib/fuse/fuse.min.js" defer></script><script src="/lib/instant-page/instantpage.min.js" async defer type="module"></script><script src="/lib/twemoji/twemoji.min.js" defer></script><script src="/lib/lightgallery/lightgallery.min.js" defer></script><script src="/lib/lightgallery/plugins/thumbnail/lg-thumbnail.min.js" defer></script><script src="/lib/lightgallery/plugins/zoom/lg-zoom.min.js" defer></script><script src="/lib/typeit/index.umd.js" defer></script><script src="/lib/katex/katex.min.js" defer></script><script src="/lib/katex/auto-render.min.js" defer></script><script src="/lib/katex/copy-tex.min.js" defer></script><script src="/lib/katex/mhchem.min.js" defer></script><script src="/lib/cookieconsent/cookieconsent.min.js" defer></script><script src="/lib/pangu/pangu.min.js" defer></script><script src="/lib/cell-watermark/watermark.min.js" defer></script><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async defer></script><script src="/lib/pace/pace.min.js" async defer></script><script>window.config={"autoBookmark":true,"code":{"copyTitle":"复制到剪贴板","maxShownLines":999999},"comment":{"enable":true,"expired":false,"giscus":{"darkTheme":"dark","lightTheme":"light","origin":"https://giscus.app"}},"cookieconsent":{"content":{"dismiss":"同意","link":"了解更多","message":"本网站使用 Cookies 来改善您的浏览体验。"},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"enablePWA":true,"lightgallery":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"pangu":{"enable":true,"selector":"article"},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":12,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":100,"threshold":0.3,"type":"fuse","useExtendedSearch":false},"siteTime":"2018-02-22T04:10:22+08:00","twemoji":true,"typeit":{"cursorChar":"|","cursorSpeed":1000,"duration":-1,"loop":false,"speed":100},"version":"v0.3.8","watermark":{"colspacing":300,"content":"Andrew.Du","enable":true,"fontfamily":"inherit","fontsize":0.85,"height":20,"opacity":0.1,"rotate":15,"rowspacing":300,"width":150}};</script><script src="/js/theme.min.js" defer></script></body>
+</html>
