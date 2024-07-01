@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>Winform - 标签 - AndrewDu&#39;s blog</title>
+    <link>https://DDuuuu.github.io/tags/winform/</link>
+    <description>Winform - 标签 | AndrewDu&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>978089234@qq.com (AndrewDu)</managingEditor>
+      <webMaster>978089234@qq.com (AndrewDu)</webMaster><copyright>Copyright© Andrew.Du</copyright><lastBuildDate>Wed, 05 Dec 2018 17:09:22 &#43;0800</lastBuildDate><atom:link href="https://DDuuuu.github.io/tags/winform/" rel="self" type="application/rss+xml" /><item>
+  <title>DotNet基础 winform</title>
+  <link>https://DDuuuu.github.io/2018/12/dotnetbase5-winform/</link>
+  <pubDate>Wed, 05 Dec 2018 17:09:22 &#43;0800</pubDate>
+  <author>AndrewDu</author>
+  <guid>https://DDuuuu.github.io/2018/12/dotnetbase5-winform/</guid>
+  <description><![CDATA[在windows form开发过程中还是有很多坑需要注意，包括一些重要代码记不得，在这个文件中进行汇总更新。 命名规则 M结尾表示model A结尾]]></description>
+</item>
+</channel>
+</rss>
