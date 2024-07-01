@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>简化函数调用 - 标签 - AndrewDu&#39;s blog</title>
+    <link>https://DDuuuu.github.io/tags/%E7%AE%80%E5%8C%96%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8/</link>
+    <description>简化函数调用 - 标签 | AndrewDu&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>978089234@qq.com (AndrewDu)</managingEditor>
+      <webMaster>978089234@qq.com (AndrewDu)</webMaster><copyright>Copyright© Andrew.Du</copyright><lastBuildDate>Wed, 13 Nov 2019 17:09:22 &#43;0800</lastBuildDate><atom:link href="https://DDuuuu.github.io/tags/%E7%AE%80%E5%8C%96%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8/" rel="self" type="application/rss+xml" /><item>
+  <title>重构改善既有代码 简化函数调用</title>
+  <link>https://DDuuuu.github.io/2019/11/designpattern10-refactoring6/</link>
+  <pubDate>Wed, 13 Nov 2019 17:09:22 &#43;0800</pubDate>
+  <author>AndrewDu</author>
+  <guid>https://DDuuuu.github.io/2019/11/designpattern10-refactoring6/</guid>
+  <description><![CDATA[所有的数据都应该隐藏起来。 1、函数改名 Rename Method 动机 将复杂的处理过程分解成小函数。 什么时候做 函数名称未能揭示函数的用途 怎么做 修改函数名称 2、添加参]]></description>
+</item>
+</channel>
+</rss>

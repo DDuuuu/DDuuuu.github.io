@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>重构改善既有代码 在对象之间搬移特性 - AndrewDu&#39;s blog</title><meta name="author" content="AndrewDu">
+<meta name="author-link" content="https://github.com/DDuuuu">
+<meta name="description" content="在面向对象的设计中，决定把责任放在哪里。 先使用移动字段，在移动方法 1、搬移函数 Move Method 动机 一个类与另一个类高度耦合，就会搬移函数，通过这种手段，" /><meta name="keywords" content='重构改善既有代码, 在对象之间搬移特性' />
+  <meta itemprop="name" content="重构改善既有代码 在对象之间搬移特性">
+  <meta itemprop="description" content="在面向对象的设计中，决定把责任放在哪里。 先使用移动字段，在移动方法 1、搬移函数 Move Method 动机 一个类与另一个类高度耦合，就会搬移函数，通过这种手段，">
+  <meta itemprop="datePublished" content="2019-11-10T17:09:22+08:00">
+  <meta itemprop="dateModified" content="2019-11-10T17:09:22+08:00">
+  <meta itemprop="wordCount" content="1573">
+  <meta itemprop="image" content="https://DDuuuu.github.io/images/logo150.png">
+  <meta itemprop="keywords" content="重构改善既有代码,在对象之间搬移特性"><meta property="og:url" content="https://DDuuuu.github.io/2019/11/designpattern7-refactoring3/">
+  <meta property="og:site_name" content="AndrewDu&#39;s blog">
+  <meta property="og:title" content="重构改善既有代码 在对象之间搬移特性">
+  <meta property="og:description" content="在面向对象的设计中，决定把责任放在哪里。 先使用移动字段，在移动方法 1、搬移函数 Move Method 动机 一个类与另一个类高度耦合，就会搬移函数，通过这种手段，">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2019-11-10T17:09:22+08:00">
+    <meta property="article:modified_time" content="2019-11-10T17:09:22+08:00">
+    <meta property="article:tag" content="重构改善既有代码">
+    <meta property="article:tag" content="在对象之间搬移特性">
+    <meta property="og:image" content="https://DDuuuu.github.io/images/logo150.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://DDuuuu.github.io/images/logo150.png">
+  <meta name="twitter:title" content="重构改善既有代码 在对象之间搬移特性">
+  <meta name="twitter:description" content="在面向对象的设计中，决定把责任放在哪里。 先使用移动字段，在移动方法 1、搬移函数 Move Method 动机 一个类与另一个类高度耦合，就会搬移函数，通过这种手段，">
+<meta name="application-name" content="Andrew.Du">
+<meta name="apple-mobile-web-app-title" content="Andrew.Du"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://DDuuuu.github.io/2019/11/designpattern7-refactoring3/" /><link rel="prev" href="https://DDuuuu.github.io/2019/11/designpattern6-refactoring2/" /><link rel="next" href="https://DDuuuu.github.io/2019/11/designpattern8-refactoring4/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "重构改善既有代码 在对象之间搬移特性",
+    "inLanguage": "zh-CN",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https:\/\/DDuuuu.github.io\/2019\/11\/designpattern7-refactoring3\/"
+    },"image": ["https:\/\/DDuuuu.github.io\/images\/logo192.png"],"genre": "posts","keywords": "重构改善既有代码, 在对象之间搬移特性","wordcount":  1573 ,
+    "url": "https:\/\/DDuuuu.github.io\/2019\/11\/designpattern7-refactoring3\/","datePublished": "2019-11-10T17:09:22+08:00","dateModified": "2019-11-10T17:09:22+08:00","license": "Copyright© Andrew.Du","publisher": {
+      "@type": "Organization",
+      "name": "AndrewDu"},"author": {
+        "@type": "Person",
+        "name": "AndrewDu"
+      },"description": ""
+  }
+  </script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage?.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper" data-page-style="normal"><header class="desktop animate__faster" id="header-desktop">
+  <div class="header-wrapper" data-github-corner="right">
+    <div class="header-title">
+      <a href="/" title="AndrewDu&#39;s blog"><span class="typeit"><template>AndrewDu&#39;s blog</template></span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/"
+                title="主页"
+                
+              ><i class="fa-solid fa-home fa-fw fa-sm" aria-hidden="true"></i> 主页</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/archives/"
+                title="归档"
+                
+              ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 归档</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              ><i class="fa-solid fa-folder-tree fa-fw fa-sm" aria-hidden="true"></i> 类别</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/about/"
+                
+                
+              ><i class="fa-solid fa-link fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item delimiter"></li><li class="menu-item search" id="search-desktop">
+            <input type="text" placeholder="搜索文章标题或内容……" id="search-input-desktop">
+            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+              <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+            </a>
+            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+              <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+            </a>
+            <span class="search-button search-loading" id="search-loading-desktop">
+              <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+            </span>
+          </li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><header class="mobile animate__faster" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="AndrewDu&#39;s blog"><span class="typeit"><template>AndrewDu&#39;s blog</template></span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li class="search-wrapper">
+            <div class="search mobile" id="search-mobile">
+              <input type="text" placeholder="搜索文章标题或内容……" id="search-input-mobile">
+              <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+              </a>
+              <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+              </a>
+              <span class="search-button search-loading" id="search-loading-mobile">
+                <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+              </span>
+            </div>
+            <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+              取消
+            </a>
+          </li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/"
+                  title="主页"
+                  
+                ><i class="fa-solid fa-home fa-fw fa-sm" aria-hidden="true"></i> 主页</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/archives/"
+                  title="归档"
+                  
+                ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 归档</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/categories/"
+                  
+                  
+                ><i class="fa-solid fa-folder-tree fa-fw fa-sm" aria-hidden="true"></i> 类别</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/about/"
+                  
+                  
+                ><i class="fa-solid fa-link fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item menu-system">
+          <span class="menu-system-item theme-switch" title="切换主题"><i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i></span></li>
+      </ul>
+    </nav>
+  </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+  </div>
+  <div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+  </div><nav aria-label="breadcrumb" class="breadcrumb-container sticky">
+    <ol class="breadcrumb"><li class="breadcrumb-item"><a href="/" title="AndrewDu&#39;s Blog">主页</a></li><li class="breadcrumb-item"><a href="/posts/" title="Posts">文章</a></li><li class="breadcrumb-item active" aria-current="page">重构改善既有代码 在对象之间搬移特性</li>
+    </ol>
+  </nav><main class="container"><aside class="aside-collection animate__animated animate__fadeIn animate__faster" aria-label="合集"></aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX"><span>重构改善既有代码 在对象之间搬移特性</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><a href="https://github.com/DDuuuu" title="作者"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+    AndrewDu</a></span><span class="post-included-in">&nbsp;收录于 <a href="/categories/%E9%87%8D%E6%9E%84%E6%94%B9%E5%96%84%E6%97%A2%E6%9C%89%E4%BB%A3%E7%A0%81/" class="post-category" title="分类 - 重构改善既有代码"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 重构改善既有代码</a></span></div><div class="post-meta-line"><span title="发布于 2019-11-10 17:09:22"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2019-11-10">2019-11-10</time></span>&nbsp;<span title="1573 字"><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>约 1600 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>预计阅读 4 分钟</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="重构改善既有代码 在对象之间搬移特性">
+              <i class="fa-regular fa-eye fa-fw me-1" aria-hidden="true"></i><span id="busuanzi_value_page_pv">-</span>&nbsp;次阅读
+            </span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>目录</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#1搬移函数">1、搬移函数</a></li>
+        <li><a href="#2搬移字段">2、搬移字段</a></li>
+        <li><a href="#3提炼类">3、提炼类*？</a></li>
+        <li><a href="#4将类内联化">4、将类内联化</a></li>
+        <li><a href="#5隐藏委托关系">5、隐藏“委托关系”</a></li>
+        <li><a href="#6移除中间人">6、移除中间人</a></li>
+        <li><a href="#7引入外加函数">7、引入外加函数</a></li>
+        <li><a href="#8引入本地扩展">8、引入本地扩展</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+      </div><div class="content" id="content" data-end-flag="感谢阅读！"><p>在面向对象的设计中，决定把责任放在哪里。</p>
+<p>先使用移动字段，在移动方法</p>
+<h3 id="1搬移函数" class="heading-element"><span>1、搬移函数</span>
+  <a href="#1%e6%90%ac%e7%a7%bb%e5%87%bd%e6%95%b0" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><ul>
+<li>Move  Method
+<ul>
+<li><img loading="lazy" src="/designpattern/1572397619571.png" alt="1572397619571" srcset="/designpattern/1572397619571.png?size=small, /designpattern/1572397619571.png?size=medium 1.5x, /designpattern/1572397619571.png?size=large 2x" data-title="1572397619571" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></li>
+</ul>
+</li>
+<li>动机
+<ul>
+<li>一个类与另一个类高度耦合，就会搬移函数，通过这种手段，可以使得类更加简单。</li>
+</ul>
+</li>
+<li>什么时候搬移
+<ul>
+<li>有个函数与其所属类之外的另一个类有更多的交流。</li>
+<li>当不能肯定是否需要移动一个函数，需要继续观察其他函数，先移动其它函数就会使决定变得容易一些。</li>
+</ul>
+</li>
+<li>怎么搬移
+<ul>
+<li>检查所有字段，属性和函数，考虑是否应该被搬移</li>
+<li>在该函数最常用引用中建立一个有类似行为的新函数</li>
+<li>将旧函数变成一个单纯的委托函数，或是将旧函数完全移除。</li>
+<li>有多个函数使用这个需要搬移的特性，应考虑使用该特性的所有函数被一起搬移。</li>
+<li>检查所有子类和超类，看看是否有该函数其他声明</li>
+<li>如果目标函数使用了源类中的特性，可以将<strong>源对象的引用</strong>当作参数（多个参数或则存在方法需要调用），传给新建立的目标函数。</li>
+<li>如果目标函数需要太多源类特性，就得进一步重构，会将目标函数分解并将其中一部分移回源类。</li>
+</ul>
+</li>
+</ul>
+<h3 id="2搬移字段" class="heading-element"><span>2、搬移字段</span>
+  <a href="#2%e6%90%ac%e7%a7%bb%e5%ad%97%e6%ae%b5" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><ul>
+<li>Move Field
+<ul>
+<li><img loading="lazy" src="/designpattern/1572397877822.png" alt="1572397877822" srcset="/designpattern/1572397877822.png?size=small, /designpattern/1572397877822.png?size=medium 1.5x, /designpattern/1572397877822.png?size=large 2x" data-title="1572397877822" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></li>
+</ul>
+</li>
+<li>动机
+<ul>
+<li>随着项目类的增加和扩充，有一些字段放在原来的类中已经不太合适</li>
+</ul>
+</li>
+<li>什么时候搬移
+<ul>
+<li>某个字段在另一个类中被更多的用到</li>
+</ul>
+</li>
+<li>怎么搬移
+<ul>
+<li>修改源字段的所有用户，令它们改用新字段</li>
+<li>决定如何在源对象中引用目标对象，方法，新建字段引用</li>
+<li>新类中自我封装SetValue, GetValue。</li>
+</ul>
+</li>
+</ul>
+<h3 id="3提炼类" class="heading-element"><span>3、提炼类*？</span>
+  <a href="#3%e6%8f%90%e7%82%bc%e7%b1%bb" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><ul>
+<li>Extract Class
+<ul>
+<li><img loading="lazy" src="/designpattern/1572397904071.png" alt="1572397904071" srcset="/designpattern/1572397904071.png?size=small, /designpattern/1572397904071.png?size=medium 1.5x, /designpattern/1572397904071.png?size=large 2x" data-title="1572397904071" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></li>
+</ul>
+</li>
+<li>动机
+<ul>
+<li>将复合类的职责提炼出新的类</li>
+<li>或者需要将类的子类化，分解原来的类</li>
+</ul>
+</li>
+<li>什么时候提炼
+<ul>
+<li>某个类做了应该由两个类做的事</li>
+</ul>
+</li>
+<li>怎么提炼
+<ul>
+<li>建立一个新类，将相关的字段和函数从旧类搬移到新类</li>
+<li>有可能需要一个双向连接， 但是在真正需要它之前，不要建立从新类往旧类的连接，如果建立起双向连接，检查是否可以将它改为单向连接。</li>
+</ul>
+</li>
+</ul>
+<h3 id="4将类内联化" class="heading-element"><span>4、将类内联化</span>
+  <a href="#4%e5%b0%86%e7%b1%bb%e5%86%85%e8%81%94%e5%8c%96" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><ul>
+<li>Inline Class
+<ul>
+<li><img loading="lazy" src="/designpattern/1572400836706.png" alt="1572400836706" srcset="/designpattern/1572400836706.png?size=small, /designpattern/1572400836706.png?size=medium 1.5x, /designpattern/1572400836706.png?size=large 2x" data-title="1572400836706" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></li>
+</ul>
+</li>
+<li>动机
+<ul>
+<li>一个类不再承担足够责任，不再由单独存在的理由。</li>
+</ul>
+</li>
+<li>什么时候内联
+<ul>
+<li>某个类没有做太多的事情</li>
+</ul>
+</li>
+<li>怎么内联
+<ul>
+<li>将这个类是多有特性搬移到另一个类中，然后移除原类</li>
+<li>修改所有源类引用点，改而引用目标类</li>
+</ul>
+</li>
+</ul>
+<h3 id="5隐藏委托关系" class="heading-element"><span>5、隐藏“委托关系”</span>
+  <a href="#5%e9%9a%90%e8%97%8f%e5%a7%94%e6%89%98%e5%85%b3%e7%b3%bb" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><ul>
+<li>
+<p>Hide Delegate</p>
+<ul>
+<li>
+<p>局限性是每当客户要使用受托类的新特性时，就必须在服务段添加一个简单委托函数，受托类的特性越来越多，这一过程会越来越痛苦。</p>
+</li>
+<li>
+<p><img loading="lazy" src="/designpattern/1572400926241.png" alt="1572400926241" srcset="/designpattern/1572400926241.png?size=small, /designpattern/1572400926241.png?size=medium 1.5x, /designpattern/1572400926241.png?size=large 2x" data-title="1572400926241" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+</li>
+<li>
+<p>简单委托关系<img loading="lazy" src="/designpattern/1572400978816.png" alt="1572400978816" srcset="/designpattern/1572400978816.png?size=small, /designpattern/1572400978816.png?size=medium 1.5x, /designpattern/1572400978816.png?size=large 2x" data-title="1572400978816" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+</li>
+</ul>
+</li>
+<li>
+<p>动机</p>
+<ul>
+<li>封装意味着每个对象都应该尽可能少的了解系统的其他部分，</li>
+<li>如果客户调用对象字段得到另一个对象，然后再调用后者的函数，那么客户就必须知道这一层关系。将委托关系隐藏起来不会波及客户。</li>
+</ul>
+</li>
+<li>
+<p>什么时候隐藏</p>
+<ul>
+<li>客户通过一个委托类来调用另一个对象</li>
+</ul>
+</li>
+<li>
+<p>怎么隐藏</p>
+<ul>
+<li>在服务类上建立客户所需的所有函数，用以隐藏委托关系</li>
+<li><img loading="lazy" src="/designpattern/1572253642885.png" alt="1572253642885" srcset="/designpattern/1572253642885.png?size=small, /designpattern/1572253642885.png?size=medium 1.5x, /designpattern/1572253642885.png?size=large 2x" data-title="1572253642885" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></li>
+<li>manager=john.getDepartment().getManager();隐藏=&gt;manager=john.getManager();隐藏了调用关系。</li>
+</ul>
+</li>
+</ul>
+<h3 id="6移除中间人" class="heading-element"><span>6、移除中间人</span>
+  <a href="#6%e7%a7%bb%e9%99%a4%e4%b8%ad%e9%97%b4%e4%ba%ba" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><ul>
+<li>Remove Middle Man
+<ul>
+<li>与隐藏委托关系相反</li>
+<li><img loading="lazy" src="/designpattern/1572401291820.png" alt="1572401291820" srcset="/designpattern/1572401291820.png?size=small, /designpattern/1572401291820.png?size=medium 1.5x, /designpattern/1572401291820.png?size=large 2x" data-title="1572401291820" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></li>
+</ul>
+</li>
+<li>动机
+<ul>
+<li>针对隐藏委托的局限性，当委托的方法越来越多时，服务类就完全变成一个中间人，此时应该让客户直接调用受托类。</li>
+</ul>
+</li>
+<li>什么时候移除
+<ul>
+<li>某个类做了过多的简单委托动作</li>
+</ul>
+</li>
+<li>怎么移除
+<ul>
+<li>让客户直接调用受托类</li>
+</ul>
+</li>
+</ul>
+<h3 id="7引入外加函数" class="heading-element"><span>7、引入外加函数</span>
+  <a href="#7%e5%bc%95%e5%85%a5%e5%a4%96%e5%8a%a0%e5%87%bd%e6%95%b0" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><ul>
+<li>Introduce Foreign Method
+<ul>
+<li><img loading="lazy" src="/designpattern/1572401389300.png" alt="1572401389300" srcset="/designpattern/1572401389300.png?size=small, /designpattern/1572401389300.png?size=medium 1.5x, /designpattern/1572401389300.png?size=large 2x" data-title="1572401389300" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></li>
+</ul>
+</li>
+<li>动机
+<ul>
+<li>发现一个好用的工具类不能修改工具类，添加方法</li>
+<li>但外加函数终归是权益之计，</li>
+</ul>
+</li>
+<li>什么时候需要引入外加函数
+<ul>
+<li>需要为提供服务的类增加一个函数，但无法修改这个类。</li>
+</ul>
+</li>
+<li>怎么引入
+<ul>
+<li>在客户类中建立一个函数，并以第一参数形式传入一个服务类实例</li>
+</ul>
+</li>
+</ul>
+<h3 id="8引入本地扩展" class="heading-element"><span>8、引入本地扩展</span>
+  <a href="#8%e5%bc%95%e5%85%a5%e6%9c%ac%e5%9c%b0%e6%89%a9%e5%b1%95" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><ul>
+<li>Introduce Local Extension
+<ul>
+<li><img loading="lazy" src="/designpattern/1572401403718.png" alt="1572401403718" srcset="/designpattern/1572401403718.png?size=small, /designpattern/1572401403718.png?size=medium 1.5x, /designpattern/1572401403718.png?size=large 2x" data-title="1572401403718" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></li>
+</ul>
+</li>
+<li>动机
+<ul>
+<li>在不能修改的类中添加方法，方法的数量超过2个的时候外加函数难以控制，需要将函数组织到一起，通过两种标准对象技术：<strong>子类化和包装</strong>，子类化和包装叫做本地扩展。</li>
+<li>在子类化和包装中优先选择子类，</li>
+<li>使用包装会造成A=B，B不等于A的逻辑，子类等于包装类，包装类不等于子类</li>
+</ul>
+</li>
+<li>什么时候引入
+<ul>
+<li>需要为服务类提供一些额外函数，但无法修改类。</li>
+</ul>
+</li>
+<li>怎么引入
+<ul>
+<li>建立一个新类，使它包含这些额外函数，让这个扩展品成为源类的子类或包装类。</li>
+<li>子类化方案，转型构造函数应该调用适当的超类构造函数</li>
+<li>包装类方案，转型构造函数应该传入参数以实例变量的形式保存起来，用作接受委托的原对象。</li>
+</ul>
+</li>
+</ul>
+</div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title="更新于 2019-11-10 17:09:22">更新于 2019-11-10&nbsp;</span>
+      </div><div class="post-info-license">
+            <span><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0 转载请注明来源</a></span>
+          </div></div><div class="post-info-line">
+        <div class="post-info-md"><span><a href="https://github.com/DDuuuu/issues/new?title=[BUG]%20%E9%87%8D%E6%9E%84%E6%94%B9%E5%96%84%E6%97%A2%E6%9C%89%E4%BB%A3%E7%A0%81&#43;%E5%9C%A8%E5%AF%B9%E8%B1%A1%E4%B9%8B%E9%97%B4%E6%90%AC%E7%A7%BB%E7%89%B9%E6%80%A7&amp;body=%7cField%7cValue%7c%0A%7c-%7c-%7c%0A%7cTitle%7c%E9%87%8D%E6%9E%84%E6%94%B9%E5%96%84%E6%97%A2%E6%9C%89%E4%BB%A3%E7%A0%81&#43;%E5%9C%A8%E5%AF%B9%E8%B1%A1%E4%B9%8B%E9%97%B4%E6%90%AC%E7%A7%BB%E7%89%B9%E6%80%A7%7c%0A%7cURL%7chttps://DDuuuu.github.io/2019/11/designpattern7-refactoring3/%7c%0A%7cFilename%7c%7c" title="报告问题"target="_blank" rel="external nofollow noopener noreferrer" class="link-to-report">报告问题</a></span></div>
+        <div class="post-info-share">
+          <span></span>
+        </div>
+      </div></div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href="/tags/%E9%87%8D%E6%9E%84%E6%94%B9%E5%96%84%E6%97%A2%E6%9C%89%E4%BB%A3%E7%A0%81/" class="post-tag" title="标签 - 重构改善既有代码">重构改善既有代码</a><a href="/tags/%E5%9C%A8%E5%AF%B9%E8%B1%A1%E4%B9%8B%E9%97%B4%E6%90%AC%E7%A7%BB%E7%89%B9%E6%80%A7/" class="post-tag" title="标签 - 在对象之间搬移特性">在对象之间搬移特性</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/2019/11/designpattern6-refactoring2/" class="post-nav-item" rel="prev" title="重构改善既有代码 重新组织函数"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>重构改善既有代码 重新组织函数</a>
+      <a href="/2019/11/designpattern8-refactoring4/" class="post-nav-item" rel="next" title="重构改善既有代码 重新组织数据">重构改善既有代码 重新组织数据<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div class="post-reward">
+    <div class="comment">为爱发电,请我喝杯咖啡吧</div>
+    <input type="checkbox" class="reward-input" name="reward" id="fi-reward" hidden />
+    <label class="reward-button" for="fi-reward"><i class="fa-solid fa-qrcode fa-fw" aria-hidden="true"></i>赞赏</label>
+    <div class="reward-ways" data-mode="static"><div><img loading="lazy" src="/images/alipay.jpg" alt="AndrewDu 支付宝" data-title="AndrewDu 支付宝" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/><span data-animation>支付宝</span>
+          </div><div><img loading="lazy" src="/images/wechat.jpg" alt="AndrewDu 微信" data-title="AndrewDu 微信" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/><span data-animation>微信</span>
+          </div></div>
+  </div><div id="comments"><div id="giscus" class="comment">
+          <script
+            src="https://giscus.app/client.js"
+            data-repo="DDuuuu/DDuuuu.github.io"
+            data-repo-id="R_kgDOMOxQVQ"
+            data-category="Announcements"
+            data-category-id="DIC_kwDOMOxQVc4Cgd23"
+            data-mapping="pathname"
+            data-strict="0"
+            
+            data-theme="preferred_color_scheme"
+            data-reactions-enabled="1"
+            data-emit-metadata="0"
+            data-input-position="bottom"
+            data-lang="zh-CN"
+            data-loading="lazy"
+            crossorigin="anonymous"
+            async
+            defer
+          ></script>
+        </div>
+        <noscript>
+          Please enable JavaScript to view the comments powered by <a href="https://giscus.app/" rel="external nofollow noopener noreferrer">giscus</a>.
+        </noscript></div></article>
+
+  <aside class="toc" id="toc-auto" aria-label="目录"><h2 class="toc-title">目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2018 - 2024</span><span class="author" itemprop="copyrightHolder">
+              <a href="https://github.com/DDuuuu"target="_blank" rel="external nofollow noopener noreferrer">AndrewDu</a></span></div><div class="footer-line statistics"><span class="site-time" title='网站运行中……'><i class="fa-solid fa-heartbeat fa-fw animate-icon" aria-hidden="true"></i><span class="ms-1 d-none">网站运行时间:</span><span class="run-times ms-1">网站运行中……</span></span></div><div class="footer-line visitor">
+          <span id="busuanzi_container_site_uv" title='总访客数'><i class="fa-regular fa-user fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span><span id="busuanzi_container_site_pv" class="footer-divider" title='总访问量'><i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span>
+        </div></div>
+  </footer></div><div class="widgets"><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role="button" aria-label="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i><span class="variant-numeric d-none">0%</span>
+        </div><div class="fixed-button view-comments d-none" role="button" aria-label="查看评论"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></div></div><a href="https://github.com/DDuuuu" title="AndrewDu GitHub"target="_blank" rel="external nofollow" class="github-corner right d-none-mobile"><svg viewBox="0 0 250 250" aria-hidden="true" width="56" height="56"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><div id="mask"></div><div class="reading-progress-bar" style="left: 0;top: 0;"></div><noscript>
+    <div class="noscript-warning">该网站在启用 JavaScript 的情况下效果最佳。</div>
+  </noscript>
+</div><link rel="stylesheet" href="/lib/lightgallery/css/lightgallery-bundle.min.css"><link rel="preload" href="/lib/katex/katex.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/lib/katex/katex.min.css"></noscript><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><link rel="stylesheet" href="/lib/pace/themes/blue/pace-theme-minimal.css"><script src="https://polyfill.io/v3/polyfill.min.js?features=Array.prototype.fill%2CArray.prototype.find%2CArray.from%2CIntersectionObserver%2CMath.sign%2CObject.assign%2CPromise%2CObject.entries%2Chtml5shiv%2CObject.values%2Cfetch%2CElement.prototype.after"></script><script src="/lib/object-fit-images/ofi.min.js"></script><script src="/lib/autocomplete/autocomplete.min.js" defer></script><script src="/lib/fuse/fuse.min.js" defer></script><script src="/lib/instant-page/instantpage.min.js" async defer type="module"></script><script src="/lib/twemoji/twemoji.min.js" defer></script><script src="/lib/lightgallery/lightgallery.min.js" defer></script><script src="/lib/lightgallery/plugins/thumbnail/lg-thumbnail.min.js" defer></script><script src="/lib/lightgallery/plugins/zoom/lg-zoom.min.js" defer></script><script src="/lib/typeit/index.umd.js" defer></script><script src="/lib/katex/katex.min.js" defer></script><script src="/lib/katex/auto-render.min.js" defer></script><script src="/lib/katex/copy-tex.min.js" defer></script><script src="/lib/katex/mhchem.min.js" defer></script><script src="/lib/cookieconsent/cookieconsent.min.js" defer></script><script src="/lib/pangu/pangu.min.js" defer></script><script src="/lib/cell-watermark/watermark.min.js" defer></script><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async defer></script><script src="/lib/pace/pace.min.js" async defer></script><script>window.config={"autoBookmark":true,"code":{"copyTitle":"复制到剪贴板","maxShownLines":999999},"comment":{"enable":true,"expired":false,"giscus":{"darkTheme":"dark","lightTheme":"light","origin":"https://giscus.app"}},"cookieconsent":{"content":{"dismiss":"同意","link":"了解更多","message":"本网站使用 Cookies 来改善您的浏览体验。"},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"enablePWA":true,"lightgallery":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"pangu":{"enable":true,"selector":"article"},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":12,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":100,"threshold":0.3,"type":"fuse","useExtendedSearch":false},"siteTime":"2018-02-22T04:10:22+08:00","twemoji":true,"typeit":{"cursorChar":"|","cursorSpeed":1000,"duration":-1,"loop":false,"speed":100},"version":"v0.3.8","watermark":{"colspacing":300,"content":"Andrew.Du","enable":true,"fontfamily":"inherit","fontsize":0.85,"height":20,"opacity":0.1,"rotate":15,"rowspacing":300,"width":150}};</script><script src="/js/theme.min.js" defer></script></body>
+</html>

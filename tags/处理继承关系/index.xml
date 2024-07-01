@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>处理继承关系 - 标签 - AndrewDu&#39;s blog</title>
+    <link>https://DDuuuu.github.io/tags/%E5%A4%84%E7%90%86%E7%BB%A7%E6%89%BF%E5%85%B3%E7%B3%BB/</link>
+    <description>处理继承关系 - 标签 | AndrewDu&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>978089234@qq.com (AndrewDu)</managingEditor>
+      <webMaster>978089234@qq.com (AndrewDu)</webMaster><copyright>Copyright© Andrew.Du</copyright><lastBuildDate>Thu, 14 Nov 2019 17:09:22 &#43;0800</lastBuildDate><atom:link href="https://DDuuuu.github.io/tags/%E5%A4%84%E7%90%86%E7%BB%A7%E6%89%BF%E5%85%B3%E7%B3%BB/" rel="self" type="application/rss+xml" /><item>
+  <title>重构改善既有代码 处理继承关系</title>
+  <link>https://DDuuuu.github.io/2019/11/designpattern11-refactoring7/</link>
+  <pubDate>Thu, 14 Nov 2019 17:09:22 &#43;0800</pubDate>
+  <author>AndrewDu</author>
+  <guid>https://DDuuuu.github.io/2019/11/designpattern11-refactoring7/</guid>
+  <description><![CDATA[1、字段上移 Pull Up Field 动机 减少重复 什么时候做 两个子类拥有相同的字段 怎么做 将该字段移至超类 2、函数上移 Pull Up Method 动机 滋生错误 避免重复 什么时候做 有些函数]]></description>
+</item>
+</channel>
+</rss>

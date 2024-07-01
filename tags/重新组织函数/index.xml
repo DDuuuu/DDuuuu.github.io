@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>重新组织函数 - 标签 - AndrewDu&#39;s blog</title>
+    <link>https://DDuuuu.github.io/tags/%E9%87%8D%E6%96%B0%E7%BB%84%E7%BB%87%E5%87%BD%E6%95%B0/</link>
+    <description>重新组织函数 - 标签 | AndrewDu&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>978089234@qq.com (AndrewDu)</managingEditor>
+      <webMaster>978089234@qq.com (AndrewDu)</webMaster><copyright>Copyright© Andrew.Du</copyright><lastBuildDate>Sat, 09 Nov 2019 17:09:22 &#43;0800</lastBuildDate><atom:link href="https://DDuuuu.github.io/tags/%E9%87%8D%E6%96%B0%E7%BB%84%E7%BB%87%E5%87%BD%E6%95%B0/" rel="self" type="application/rss+xml" /><item>
+  <title>重构改善既有代码 重新组织函数</title>
+  <link>https://DDuuuu.github.io/2019/11/designpattern6-refactoring2/</link>
+  <pubDate>Sat, 09 Nov 2019 17:09:22 &#43;0800</pubDate>
+  <author>AndrewDu</author>
+  <guid>https://DDuuuu.github.io/2019/11/designpattern6-refactoring2/</guid>
+  <description><![CDATA[对函数的重构方法 1、提炼函数 ExtractMethod 动机 每个函数的颗粒度都比较小，高层函数读起来就像是注释 颗粒度比较小覆写也比较容易 什么时候需要提炼函数 当函数体的]]></description>
+</item>
+</channel>
+</rss>

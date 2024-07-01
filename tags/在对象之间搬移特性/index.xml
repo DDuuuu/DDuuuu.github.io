@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>在对象之间搬移特性 - 标签 - AndrewDu&#39;s blog</title>
+    <link>https://DDuuuu.github.io/tags/%E5%9C%A8%E5%AF%B9%E8%B1%A1%E4%B9%8B%E9%97%B4%E6%90%AC%E7%A7%BB%E7%89%B9%E6%80%A7/</link>
+    <description>在对象之间搬移特性 - 标签 | AndrewDu&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>978089234@qq.com (AndrewDu)</managingEditor>
+      <webMaster>978089234@qq.com (AndrewDu)</webMaster><copyright>Copyright© Andrew.Du</copyright><lastBuildDate>Sun, 10 Nov 2019 17:09:22 &#43;0800</lastBuildDate><atom:link href="https://DDuuuu.github.io/tags/%E5%9C%A8%E5%AF%B9%E8%B1%A1%E4%B9%8B%E9%97%B4%E6%90%AC%E7%A7%BB%E7%89%B9%E6%80%A7/" rel="self" type="application/rss+xml" /><item>
+  <title>重构改善既有代码 在对象之间搬移特性</title>
+  <link>https://DDuuuu.github.io/2019/11/designpattern7-refactoring3/</link>
+  <pubDate>Sun, 10 Nov 2019 17:09:22 &#43;0800</pubDate>
+  <author>AndrewDu</author>
+  <guid>https://DDuuuu.github.io/2019/11/designpattern7-refactoring3/</guid>
+  <description><![CDATA[在面向对象的设计中，决定把责任放在哪里。 先使用移动字段，在移动方法 1、搬移函数 Move Method 动机 一个类与另一个类高度耦合，就会搬移函数，通过这种手段，]]></description>
+</item>
+</channel>
+</rss>

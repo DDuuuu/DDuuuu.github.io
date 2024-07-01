@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>重构改善既有代码 简化函数调用 - AndrewDu&#39;s blog</title><meta name="author" content="AndrewDu">
+<meta name="author-link" content="https://github.com/DDuuuu">
+<meta name="description" content="所有的数据都应该隐藏起来。 1、函数改名 Rename Method 动机 将复杂的处理过程分解成小函数。 什么时候做 函数名称未能揭示函数的用途 怎么做 修改函数名称 2、添加参" /><meta name="keywords" content='重构改善既有代码, 简化函数调用' />
+  <meta itemprop="name" content="重构改善既有代码 简化函数调用">
+  <meta itemprop="description" content="所有的数据都应该隐藏起来。 1、函数改名 Rename Method 动机 将复杂的处理过程分解成小函数。 什么时候做 函数名称未能揭示函数的用途 怎么做 修改函数名称 2、添加参">
+  <meta itemprop="datePublished" content="2019-11-13T17:09:22+08:00">
+  <meta itemprop="dateModified" content="2019-11-13T17:09:22+08:00">
+  <meta itemprop="wordCount" content="1956">
+  <meta itemprop="image" content="https://DDuuuu.github.io/images/logo150.png">
+  <meta itemprop="keywords" content="重构改善既有代码,简化函数调用"><meta property="og:url" content="https://DDuuuu.github.io/2019/11/designpattern10-refactoring6/">
+  <meta property="og:site_name" content="AndrewDu&#39;s blog">
+  <meta property="og:title" content="重构改善既有代码 简化函数调用">
+  <meta property="og:description" content="所有的数据都应该隐藏起来。 1、函数改名 Rename Method 动机 将复杂的处理过程分解成小函数。 什么时候做 函数名称未能揭示函数的用途 怎么做 修改函数名称 2、添加参">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2019-11-13T17:09:22+08:00">
+    <meta property="article:modified_time" content="2019-11-13T17:09:22+08:00">
+    <meta property="article:tag" content="重构改善既有代码">
+    <meta property="article:tag" content="简化函数调用">
+    <meta property="og:image" content="https://DDuuuu.github.io/images/logo150.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://DDuuuu.github.io/images/logo150.png">
+  <meta name="twitter:title" content="重构改善既有代码 简化函数调用">
+  <meta name="twitter:description" content="所有的数据都应该隐藏起来。 1、函数改名 Rename Method 动机 将复杂的处理过程分解成小函数。 什么时候做 函数名称未能揭示函数的用途 怎么做 修改函数名称 2、添加参">
+<meta name="application-name" content="Andrew.Du">
+<meta name="apple-mobile-web-app-title" content="Andrew.Du"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://DDuuuu.github.io/2019/11/designpattern10-refactoring6/" /><link rel="prev" href="https://DDuuuu.github.io/2019/11/designpattern9-refactoring5/" /><link rel="next" href="https://DDuuuu.github.io/2019/11/designpattern11-refactoring7/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "重构改善既有代码 简化函数调用",
+    "inLanguage": "zh-CN",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https:\/\/DDuuuu.github.io\/2019\/11\/designpattern10-refactoring6\/"
+    },"image": ["https:\/\/DDuuuu.github.io\/images\/logo192.png"],"genre": "posts","keywords": "重构改善既有代码, 简化函数调用","wordcount":  1956 ,
+    "url": "https:\/\/DDuuuu.github.io\/2019\/11\/designpattern10-refactoring6\/","datePublished": "2019-11-13T17:09:22+08:00","dateModified": "2019-11-13T17:09:22+08:00","license": "Copyright© Andrew.Du","publisher": {
+      "@type": "Organization",
+      "name": "AndrewDu"},"author": {
+        "@type": "Person",
+        "name": "AndrewDu"
+      },"description": ""
+  }
+  </script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage?.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper" data-page-style="normal"><header class="desktop animate__faster" id="header-desktop">
+  <div class="header-wrapper" data-github-corner="right">
+    <div class="header-title">
+      <a href="/" title="AndrewDu&#39;s blog"><span class="typeit"><template>AndrewDu&#39;s blog</template></span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/"
+                title="主页"
+                
+              ><i class="fa-solid fa-home fa-fw fa-sm" aria-hidden="true"></i> 主页</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/archives/"
+                title="归档"
+                
+              ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 归档</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              ><i class="fa-solid fa-folder-tree fa-fw fa-sm" aria-hidden="true"></i> 类别</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/about/"
+                
+                
+              ><i class="fa-solid fa-link fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item delimiter"></li><li class="menu-item search" id="search-desktop">
+            <input type="text" placeholder="搜索文章标题或内容……" id="search-input-desktop">
+            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+              <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+            </a>
+            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+              <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+            </a>
+            <span class="search-button search-loading" id="search-loading-desktop">
+              <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+            </span>
+          </li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><header class="mobile animate__faster" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="AndrewDu&#39;s blog"><span class="typeit"><template>AndrewDu&#39;s blog</template></span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li class="search-wrapper">
+            <div class="search mobile" id="search-mobile">
+              <input type="text" placeholder="搜索文章标题或内容……" id="search-input-mobile">
+              <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+              </a>
+              <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+              </a>
+              <span class="search-button search-loading" id="search-loading-mobile">
+                <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+              </span>
+            </div>
+            <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+              取消
+            </a>
+          </li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/"
+                  title="主页"
+                  
+                ><i class="fa-solid fa-home fa-fw fa-sm" aria-hidden="true"></i> 主页</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/archives/"
+                  title="归档"
+                  
+                ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 归档</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/categories/"
+                  
+                  
+                ><i class="fa-solid fa-folder-tree fa-fw fa-sm" aria-hidden="true"></i> 类别</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/about/"
+                  
+                  
+                ><i class="fa-solid fa-link fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item menu-system">
+          <span class="menu-system-item theme-switch" title="切换主题"><i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i></span></li>
+      </ul>
+    </nav>
+  </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+  </div>
+  <div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+  </div><nav aria-label="breadcrumb" class="breadcrumb-container sticky">
+    <ol class="breadcrumb"><li class="breadcrumb-item"><a href="/" title="AndrewDu&#39;s Blog">主页</a></li><li class="breadcrumb-item"><a href="/posts/" title="Posts">文章</a></li><li class="breadcrumb-item active" aria-current="page">重构改善既有代码 简化函数调用</li>
+    </ol>
+  </nav><main class="container"><aside class="aside-collection animate__animated animate__fadeIn animate__faster" aria-label="合集"></aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX"><span>重构改善既有代码 简化函数调用</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><a href="https://github.com/DDuuuu" title="作者"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+    AndrewDu</a></span><span class="post-included-in">&nbsp;收录于 <a href="/categories/%E9%87%8D%E6%9E%84%E6%94%B9%E5%96%84%E6%97%A2%E6%9C%89%E4%BB%A3%E7%A0%81/" class="post-category" title="分类 - 重构改善既有代码"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 重构改善既有代码</a></span></div><div class="post-meta-line"><span title="发布于 2019-11-13 17:09:22"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2019-11-13">2019-11-13</time></span>&nbsp;<span title="1956 字"><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>约 2000 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>预计阅读 4 分钟</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="重构改善既有代码 简化函数调用">
+              <i class="fa-regular fa-eye fa-fw me-1" aria-hidden="true"></i><span id="busuanzi_value_page_pv">-</span>&nbsp;次阅读
+            </span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>目录</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#1函数改名">1、函数改名</a></li>
+        <li><a href="#2添加参数">2、添加参数</a></li>
+        <li><a href="#3移除参数">3、移除参数</a></li>
+        <li><a href="#4将查询函数和修改函数分离">4、将查询函数和修改函数分离</a></li>
+        <li><a href="#5令函数携带参数">5、令函数携带参数</a></li>
+        <li><a href="#6以明确函数取代参数">6、以明确函数取代参数</a></li>
+        <li><a href="#7保持对象完整">7、保持对象完整</a></li>
+        <li><a href="#8以函数取代参数">8、以函数取代参数</a></li>
+        <li><a href="#9引入参数对象">9、引入参数对象</a></li>
+        <li><a href="#10移除设值函数">10、移除设值函数</a></li>
+        <li><a href="#11隐藏函数">11、隐藏函数</a></li>
+        <li><a href="#12以工厂函数取代构造函数">12、以工厂函数取代构造函数</a></li>
+        <li><a href="#13封装向下转型">13、封装向下转型</a></li>
+        <li><a href="#14以异常取代错误码">14、以异常取代错误码</a></li>
+        <li><a href="#15以测试取代异常">15、以测试取代异常</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+      </div><div class="content" id="content" data-end-flag="感谢阅读！"><p>所有的数据都应该隐藏起来。</p>
+<h3 id="1函数改名" class="heading-element"><span>1、函数改名</span>
+  <a href="#1%e5%87%bd%e6%95%b0%e6%94%b9%e5%90%8d" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><ul>
+<li>Rename Method
+<ul>
+<li><img loading="lazy" src="/designpattern/1572491178470.png" alt="1572491178470" srcset="/designpattern/1572491178470.png?size=small, /designpattern/1572491178470.png?size=medium 1.5x, /designpattern/1572491178470.png?size=large 2x" data-title="1572491178470" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></li>
+</ul>
+</li>
+<li>动机
+<ul>
+<li>将复杂的处理过程分解成小函数。</li>
+</ul>
+</li>
+<li>什么时候做
+<ul>
+<li>函数名称未能揭示函数的用途</li>
+</ul>
+</li>
+<li>怎么做
+<ul>
+<li>修改函数名称</li>
+</ul>
+</li>
+</ul>
+<h3 id="2添加参数" class="heading-element"><span>2、添加参数</span>
+  <a href="#2%e6%b7%bb%e5%8a%a0%e5%8f%82%e6%95%b0" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><ul>
+<li>Add Parameter
+<ul>
+<li><img loading="lazy" src="/designpattern/1572491269669.png" alt="1572491269669" srcset="/designpattern/1572491269669.png?size=small, /designpattern/1572491269669.png?size=medium 1.5x, /designpattern/1572491269669.png?size=large 2x" data-title="1572491269669" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></li>
+</ul>
+</li>
+<li>动机</li>
+<li>什么时候做
+<ul>
+<li>某个函数需要从调用端得到更多信息</li>
+<li>在添加参数外常常还有其他的选择，只要有可能，其他选择都比添加参数要好（查询），因为它们不会增加参数列的长度，过长的参数列是一个不好的味道。</li>
+</ul>
+</li>
+<li>怎么做
+<ul>
+<li>为此函数添加一个对象参数，让该对象带进函数所需信息。</li>
+</ul>
+</li>
+</ul>
+<h3 id="3移除参数" class="heading-element"><span>3、移除参数</span>
+  <a href="#3%e7%a7%bb%e9%99%a4%e5%8f%82%e6%95%b0" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><ul>
+<li>Remove Parameter
+<ul>
+<li><img loading="lazy" src="/designpattern/1572491400021.png" alt="1572491400021" srcset="/designpattern/1572491400021.png?size=small, /designpattern/1572491400021.png?size=medium 1.5x, /designpattern/1572491400021.png?size=large 2x" data-title="1572491400021" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></li>
+</ul>
+</li>
+<li>动机
+<ul>
+<li>可能经常添加参数却很少去除参数，因为多余的参数不会引起任何问题，相反以后可能还会用到它。请去除这些想法。</li>
+</ul>
+</li>
+<li>什么时候做
+<ul>
+<li>函数本体不需要某个参数</li>
+</ul>
+</li>
+<li>怎么做
+<ul>
+<li>将该参数去除。</li>
+</ul>
+</li>
+</ul>
+<h3 id="4将查询函数和修改函数分离" class="heading-element"><span>4、将查询函数和修改函数分离</span>
+  <a href="#4%e5%b0%86%e6%9f%a5%e8%af%a2%e5%87%bd%e6%95%b0%e5%92%8c%e4%bf%ae%e6%94%b9%e5%87%bd%e6%95%b0%e5%88%86%e7%a6%bb" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><ul>
+<li>Separate Query from Modifier
+<ul>
+<li><img loading="lazy" src="/designpattern/1572491591701.png" alt="1572491591701" srcset="/designpattern/1572491591701.png?size=small, /designpattern/1572491591701.png?size=medium 1.5x, /designpattern/1572491591701.png?size=large 2x" data-title="1572491591701" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></li>
+</ul>
+</li>
+<li>动机
+<ul>
+<li>在多线程系统中，查询和修改函数应该被声明为synchronized(已同步化)</li>
+</ul>
+</li>
+<li>什么时候做
+<ul>
+<li>某个函数既返回对象状态值，又修改对象状态</li>
+<li>任何有返回值的函数，都不应该又看得到的副作用。</li>
+<li>常见的优化是将某个<strong>查询结果放到某个字段或集合中</strong>，后面如何查询，总是获得相同的结果。</li>
+</ul>
+</li>
+<li>怎么做
+<ul>
+<li>建立两个不同的函数，其中一个负责查询，另一个负责修改。</li>
+</ul>
+</li>
+</ul>
+<h3 id="5令函数携带参数" class="heading-element"><span>5、令函数携带参数</span>
+  <a href="#5%e4%bb%a4%e5%87%bd%e6%95%b0%e6%90%ba%e5%b8%a6%e5%8f%82%e6%95%b0" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><ul>
+<li>Parameterize
+<ul>
+<li><img loading="lazy" src="/designpattern/1572567550304.png" alt="1572567550304" srcset="/designpattern/1572567550304.png?size=small, /designpattern/1572567550304.png?size=medium 1.5x, /designpattern/1572567550304.png?size=large 2x" data-title="1572567550304" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></li>
+</ul>
+</li>
+<li>动机
+<ul>
+<li>去除重复代码</li>
+</ul>
+</li>
+<li>什么时候做
+<ul>
+<li>若干函数做了类似的工作，但在函数本体中却饱含了不同的值</li>
+</ul>
+</li>
+<li>怎么做
+<ul>
+<li>建立单一函数，以参数表达那些不同的值</li>
+</ul>
+</li>
+</ul>
+<h3 id="6以明确函数取代参数" class="heading-element"><span>6、以明确函数取代参数</span>
+  <a href="#6%e4%bb%a5%e6%98%8e%e7%a1%ae%e5%87%bd%e6%95%b0%e5%8f%96%e4%bb%a3%e5%8f%82%e6%95%b0" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><ul>
+<li>Replace Parameter with Explicit Methods
+<ul>
+<li><img loading="lazy" src="/designpattern/1572567656198.png" alt="1572567656198" srcset="/designpattern/1572567656198.png?size=small, /designpattern/1572567656198.png?size=medium 1.5x, /designpattern/1572567656198.png?size=large 2x" data-title="1572567656198" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></li>
+</ul>
+</li>
+<li>动机
+<ul>
+<li>避免出现条件表达式，接口更清楚，编译期间就可以检查，</li>
+<li>如果在同一个函数中，参数是否合法还需要考虑</li>
+<li>但是参数值不会对函数的行为有太多影响的话就不应该使用本项重构，如果需要条件判断的行为，可以考虑使用多态。</li>
+</ul>
+</li>
+<li>什么时候做
+<ul>
+<li>有一个函数，其中完全取决于参数值不同而采取不同行为</li>
+</ul>
+</li>
+<li>怎么做
+<ul>
+<li>针对该参数的每一个可能值，建立一个独立函数</li>
+</ul>
+</li>
+</ul>
+<h3 id="7保持对象完整" class="heading-element"><span>7、保持对象完整</span>
+  <a href="#7%e4%bf%9d%e6%8c%81%e5%af%b9%e8%b1%a1%e5%ae%8c%e6%95%b4" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><ul>
+<li>Preserve While Object
+<ul>
+<li><img loading="lazy" src="/designpattern/1572568707669.png" alt="1572568707669" srcset="/designpattern/1572568707669.png?size=small, /designpattern/1572568707669.png?size=medium 1.5x, /designpattern/1572568707669.png?size=large 2x" data-title="1572568707669" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></li>
+</ul>
+</li>
+<li>动机
+<ul>
+<li>不适用完整对象会造成重复代码</li>
+<li>事物都是有两面性，如果你传的是数值，被调用函数就只依赖于这些数值，如果传的是对象，就要依赖于整个对象。如果依赖对象会造成结构恶化。那么就不应该使用保持对象完整。</li>
+<li>如果这个函数使用了另一个对象的多项数据，这可能以为着这个函数实际上应该定义在那些数据所属的对象上，应该考虑移动方法。</li>
+</ul>
+</li>
+<li>什么时候做
+<ul>
+<li>从某个对象中取出若干值，将它们作为某一次函数调用时的参数</li>
+</ul>
+</li>
+<li>怎么做
+<ul>
+<li>改为传递整个对象</li>
+</ul>
+</li>
+</ul>
+<h3 id="8以函数取代参数" class="heading-element"><span>8、以函数取代参数</span>
+  <a href="#8%e4%bb%a5%e5%87%bd%e6%95%b0%e5%8f%96%e4%bb%a3%e5%8f%82%e6%95%b0" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><ul>
+<li>Replace Parameter with Methods
+<ul>
+<li><img loading="lazy" src="/designpattern/1572569273989.png" alt="1572569273989" srcset="/designpattern/1572569273989.png?size=small, /designpattern/1572569273989.png?size=medium 1.5x, /designpattern/1572569273989.png?size=large 2x" data-title="1572569273989" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></li>
+</ul>
+</li>
+<li>动机
+<ul>
+<li>尽可能缩减参数长度</li>
+</ul>
+</li>
+<li>什么时候做
+<ul>
+<li>对象调用某个函数，并将所有结果作为参数传递给另一个函数，而接受该参数的函数本省也能够调用前一个函数。</li>
+</ul>
+</li>
+<li>怎么做
+<ul>
+<li>让参数接受者去除该项参数，并直接调用前一个函数。</li>
+</ul>
+</li>
+</ul>
+<h3 id="9引入参数对象" class="heading-element"><span>9、引入参数对象</span>
+  <a href="#9%e5%bc%95%e5%85%a5%e5%8f%82%e6%95%b0%e5%af%b9%e8%b1%a1" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><ul>
+<li>Introduce Parameter Object
+<ul>
+<li><img loading="lazy" src="/designpattern/1572569919231.png" alt="1572569919231" srcset="/designpattern/1572569919231.png?size=small, /designpattern/1572569919231.png?size=medium 1.5x, /designpattern/1572569919231.png?size=large 2x" data-title="1572569919231" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></li>
+</ul>
+</li>
+<li>动机
+<ul>
+<li>特定的一组参数总是一起被传递，可能有好几个函数都使用这一组参数，这些函数可能隶属于同一个类，也可能隶属于不同的类。这样的参数就是所谓的<strong>数据泥团</strong>，可以运用一个对象包装所有的这些数据，再以该对象取代它们。</li>
+</ul>
+</li>
+<li>什么时候做
+<ul>
+<li>某些参数总是很自然地同时出现</li>
+</ul>
+</li>
+<li>怎么做
+<ul>
+<li>以一个对象取代这些参数</li>
+</ul>
+</li>
+</ul>
+<h3 id="10移除设值函数" class="heading-element"><span>10、移除设值函数</span>
+  <a href="#10%e7%a7%bb%e9%99%a4%e8%ae%be%e5%80%bc%e5%87%bd%e6%95%b0" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><ul>
+<li>Remove Setting Method</li>
+<li>动机
+<ul>
+<li>使用了设值函数就暗示了这个字段值可以被改变。</li>
+</ul>
+</li>
+<li>什么时候做
+<ul>
+<li>类中某个字段应该在对象创建时被设值，然后就不再改变。</li>
+</ul>
+</li>
+<li>怎么做
+<ul>
+<li>去掉该字段的所有设值函数。</li>
+</ul>
+</li>
+</ul>
+<h3 id="11隐藏函数" class="heading-element"><span>11、隐藏函数</span>
+  <a href="#11%e9%9a%90%e8%97%8f%e5%87%bd%e6%95%b0" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><ul>
+<li>Hide Method
+<ul>
+<li><img loading="lazy" src="/designpattern/1572570692493.png" alt="1572570692493" srcset="/designpattern/1572570692493.png?size=small, /designpattern/1572570692493.png?size=medium 1.5x, /designpattern/1572570692493.png?size=large 2x" data-title="1572570692493" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></li>
+</ul>
+</li>
+<li>动机
+<ul>
+<li>面对一个过于丰富、提供了过多行为的接口时，就值得将非必要的取值函数和设置函数隐藏起来</li>
+</ul>
+</li>
+<li>什么时候做
+<ul>
+<li>有一个函数，从来没有被其他任何类用到</li>
+</ul>
+</li>
+<li>怎么做
+<ul>
+<li>将这个函数修改为private</li>
+</ul>
+</li>
+</ul>
+<h3 id="12以工厂函数取代构造函数" class="heading-element"><span>12、以工厂函数取代构造函数</span>
+  <a href="#12%e4%bb%a5%e5%b7%a5%e5%8e%82%e5%87%bd%e6%95%b0%e5%8f%96%e4%bb%a3%e6%9e%84%e9%80%a0%e5%87%bd%e6%95%b0" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><ul>
+<li>Replace Constructor with Factory Method
+<ul>
+<li><img loading="lazy" src="/designpattern/1572570846559.png" alt="1572570846559" srcset="/designpattern/1572570846559.png?size=small, /designpattern/1572570846559.png?size=medium 1.5x, /designpattern/1572570846559.png?size=large 2x" data-title="1572570846559" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></li>
+</ul>
+</li>
+<li>动机
+<ul>
+<li>使用以工厂函数取代构造函数最显而易见的动机就是在<strong>派生子类的过程中以工厂函数取代类型码</strong>。</li>
+<li>工厂函数也是将值替换成引用的方法。</li>
+</ul>
+</li>
+<li>什么时候做
+<ul>
+<li>希望在创建对象时不仅仅是做简单的构建动作</li>
+</ul>
+</li>
+<li>怎么做
+<ul>
+<li>将构造函数替换为工厂函数</li>
+<li>使用工厂模式就使得超类必须知晓子类，如果想避免这个可以用操盘手模式，为工厂类提供一个会话层，提供对工厂类的集合对工厂类进行控制。</li>
+</ul>
+</li>
+</ul>
+<h3 id="13封装向下转型" class="heading-element"><span>13、封装向下转型</span>
+  <a href="#13%e5%b0%81%e8%a3%85%e5%90%91%e4%b8%8b%e8%bd%ac%e5%9e%8b" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><ul>
+<li>Encapsulate Downcast
+<ul>
+<li><img loading="lazy" src="/designpattern/1572572975294.png" alt="1572572975294" srcset="/designpattern/1572572975294.png?size=small, /designpattern/1572572975294.png?size=medium 1.5x, /designpattern/1572572975294.png?size=large 2x" data-title="1572572975294" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></li>
+</ul>
+</li>
+<li>动机
+<ul>
+<li>能不向下转型就不要向下转型，但如果需要向下转型就必须在该函数中向下转型。</li>
+</ul>
+</li>
+<li>什么时候做
+<ul>
+<li>某个函数返回对象，需要由函数调用者执行 向下转型</li>
+</ul>
+</li>
+<li>怎么做
+<ul>
+<li>将向下转型动作移到函数中</li>
+</ul>
+</li>
+</ul>
+<h3 id="14以异常取代错误码" class="heading-element"><span>14、以异常取代错误码</span>
+  <a href="#14%e4%bb%a5%e5%bc%82%e5%b8%b8%e5%8f%96%e4%bb%a3%e9%94%99%e8%af%af%e7%a0%81" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><ul>
+<li>Replace Error Code with Exception
+<ul>
+<li><img loading="lazy" src="/designpattern/1572573309472.png" alt="1572573309472" srcset="/designpattern/1572573309472.png?size=small, /designpattern/1572573309472.png?size=medium 1.5x, /designpattern/1572573309472.png?size=large 2x" data-title="1572573309472" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></li>
+</ul>
+</li>
+<li>动机
+<ul>
+<li>代码可以理解应该是我们虔诚最求的目标。</li>
+</ul>
+</li>
+<li>什么时候做
+<ul>
+<li>某个函数返回一个特定的代码，用以表示某种错误情况</li>
+</ul>
+</li>
+<li>怎么做
+<ul>
+<li>改用异常</li>
+<li>决定应该抛出受控(checked)异常还是非受控(unchecked)异常
+<ul>
+<li>如果调用者有责任在调用前检查必要状态，就抛出非受控异常</li>
+<li>如果想抛出受控异常，可以新建一个异常类，也可以使用现有的异常类。</li>
+</ul>
+</li>
+<li>找到该函数的所有调用者，对它们进行相应调整。
+<ul>
+<li>如果函数抛出非受控异常，那么就调整调用者，使其在调用函数前做适当检查，</li>
+<li>如果函数抛出受控异常，那么就调整调用者，使其在try区段中调用该函数。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="15以测试取代异常" class="heading-element"><span>15、以测试取代异常</span>
+  <a href="#15%e4%bb%a5%e6%b5%8b%e8%af%95%e5%8f%96%e4%bb%a3%e5%bc%82%e5%b8%b8" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><ul>
+<li>Replace Exception with Test
+<ul>
+<li><img loading="lazy" src="/designpattern/1572576674845.png" alt="1572576674845" srcset="/designpattern/1572576674845.png?size=small, /designpattern/1572576674845.png?size=medium 1.5x, /designpattern/1572576674845.png?size=large 2x" data-title="1572576674845" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></li>
+</ul>
+</li>
+<li>动机
+<ul>
+<li>在异常被滥用的时候</li>
+</ul>
+</li>
+<li>什么时候做
+<ul>
+<li>面对一个调用者可以预先检查的体哦阿健，你抛出一个异常</li>
+</ul>
+</li>
+<li>怎么做
+<ul>
+<li>修改调用者，使它在调用函数之前先做检查</li>
+</ul>
+</li>
+</ul>
+</div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title="更新于 2019-11-13 17:09:22">更新于 2019-11-13&nbsp;</span>
+      </div><div class="post-info-license">
+            <span><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0 转载请注明来源</a></span>
+          </div></div><div class="post-info-line">
+        <div class="post-info-md"><span><a href="https://github.com/DDuuuu/issues/new?title=[BUG]%20%E9%87%8D%E6%9E%84%E6%94%B9%E5%96%84%E6%97%A2%E6%9C%89%E4%BB%A3%E7%A0%81&#43;%E7%AE%80%E5%8C%96%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8&amp;body=%7cField%7cValue%7c%0A%7c-%7c-%7c%0A%7cTitle%7c%E9%87%8D%E6%9E%84%E6%94%B9%E5%96%84%E6%97%A2%E6%9C%89%E4%BB%A3%E7%A0%81&#43;%E7%AE%80%E5%8C%96%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8%7c%0A%7cURL%7chttps://DDuuuu.github.io/2019/11/designpattern10-refactoring6/%7c%0A%7cFilename%7c%7c" title="报告问题"target="_blank" rel="external nofollow noopener noreferrer" class="link-to-report">报告问题</a></span></div>
+        <div class="post-info-share">
+          <span></span>
+        </div>
+      </div></div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href="/tags/%E9%87%8D%E6%9E%84%E6%94%B9%E5%96%84%E6%97%A2%E6%9C%89%E4%BB%A3%E7%A0%81/" class="post-tag" title="标签 - 重构改善既有代码">重构改善既有代码</a><a href="/tags/%E7%AE%80%E5%8C%96%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8/" class="post-tag" title="标签 - 简化函数调用">简化函数调用</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/2019/11/designpattern9-refactoring5/" class="post-nav-item" rel="prev" title="重构改善既有代码 简化条件表达式"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>重构改善既有代码 简化条件表达式</a>
+      <a href="/2019/11/designpattern11-refactoring7/" class="post-nav-item" rel="next" title="重构改善既有代码 处理继承关系">重构改善既有代码 处理继承关系<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div class="post-reward">
+    <div class="comment">为爱发电,请我喝杯咖啡吧</div>
+    <input type="checkbox" class="reward-input" name="reward" id="fi-reward" hidden />
+    <label class="reward-button" for="fi-reward"><i class="fa-solid fa-qrcode fa-fw" aria-hidden="true"></i>赞赏</label>
+    <div class="reward-ways" data-mode="static"><div><img loading="lazy" src="/images/alipay.jpg" alt="AndrewDu 支付宝" data-title="AndrewDu 支付宝" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/><span data-animation>支付宝</span>
+          </div><div><img loading="lazy" src="/images/wechat.jpg" alt="AndrewDu 微信" data-title="AndrewDu 微信" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/><span data-animation>微信</span>
+          </div></div>
+  </div><div id="comments"><div id="giscus" class="comment">
+          <script
+            src="https://giscus.app/client.js"
+            data-repo="DDuuuu/DDuuuu.github.io"
+            data-repo-id="R_kgDOMOxQVQ"
+            data-category="Announcements"
+            data-category-id="DIC_kwDOMOxQVc4Cgd23"
+            data-mapping="pathname"
+            data-strict="0"
+            
+            data-theme="preferred_color_scheme"
+            data-reactions-enabled="1"
+            data-emit-metadata="0"
+            data-input-position="bottom"
+            data-lang="zh-CN"
+            data-loading="lazy"
+            crossorigin="anonymous"
+            async
+            defer
+          ></script>
+        </div>
+        <noscript>
+          Please enable JavaScript to view the comments powered by <a href="https://giscus.app/" rel="external nofollow noopener noreferrer">giscus</a>.
+        </noscript></div></article>
+
+  <aside class="toc" id="toc-auto" aria-label="目录"><h2 class="toc-title">目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2018 - 2024</span><span class="author" itemprop="copyrightHolder">
+              <a href="https://github.com/DDuuuu"target="_blank" rel="external nofollow noopener noreferrer">AndrewDu</a></span></div><div class="footer-line statistics"><span class="site-time" title='网站运行中……'><i class="fa-solid fa-heartbeat fa-fw animate-icon" aria-hidden="true"></i><span class="ms-1 d-none">网站运行时间:</span><span class="run-times ms-1">网站运行中……</span></span></div><div class="footer-line visitor">
+          <span id="busuanzi_container_site_uv" title='总访客数'><i class="fa-regular fa-user fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span><span id="busuanzi_container_site_pv" class="footer-divider" title='总访问量'><i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span>
+        </div></div>
+  </footer></div><div class="widgets"><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role="button" aria-label="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i><span class="variant-numeric d-none">0%</span>
+        </div><div class="fixed-button view-comments d-none" role="button" aria-label="查看评论"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></div></div><a href="https://github.com/DDuuuu" title="AndrewDu GitHub"target="_blank" rel="external nofollow" class="github-corner right d-none-mobile"><svg viewBox="0 0 250 250" aria-hidden="true" width="56" height="56"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><div id="mask"></div><div class="reading-progress-bar" style="left: 0;top: 0;"></div><noscript>
+    <div class="noscript-warning">该网站在启用 JavaScript 的情况下效果最佳。</div>
+  </noscript>
+</div><link rel="stylesheet" href="/lib/lightgallery/css/lightgallery-bundle.min.css"><link rel="preload" href="/lib/katex/katex.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/lib/katex/katex.min.css"></noscript><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><link rel="stylesheet" href="/lib/pace/themes/blue/pace-theme-minimal.css"><script src="https://polyfill.io/v3/polyfill.min.js?features=Array.prototype.fill%2CArray.prototype.find%2CArray.from%2CIntersectionObserver%2CMath.sign%2CObject.assign%2CPromise%2CObject.entries%2Chtml5shiv%2CObject.values%2Cfetch%2CElement.prototype.after"></script><script src="/lib/object-fit-images/ofi.min.js"></script><script src="/lib/autocomplete/autocomplete.min.js" defer></script><script src="/lib/fuse/fuse.min.js" defer></script><script src="/lib/instant-page/instantpage.min.js" async defer type="module"></script><script src="/lib/twemoji/twemoji.min.js" defer></script><script src="/lib/lightgallery/lightgallery.min.js" defer></script><script src="/lib/lightgallery/plugins/thumbnail/lg-thumbnail.min.js" defer></script><script src="/lib/lightgallery/plugins/zoom/lg-zoom.min.js" defer></script><script src="/lib/typeit/index.umd.js" defer></script><script src="/lib/katex/katex.min.js" defer></script><script src="/lib/katex/auto-render.min.js" defer></script><script src="/lib/katex/copy-tex.min.js" defer></script><script src="/lib/katex/mhchem.min.js" defer></script><script src="/lib/cookieconsent/cookieconsent.min.js" defer></script><script src="/lib/pangu/pangu.min.js" defer></script><script src="/lib/cell-watermark/watermark.min.js" defer></script><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async defer></script><script src="/lib/pace/pace.min.js" async defer></script><script>window.config={"autoBookmark":true,"code":{"copyTitle":"复制到剪贴板","maxShownLines":999999},"comment":{"enable":true,"expired":false,"giscus":{"darkTheme":"dark","lightTheme":"light","origin":"https://giscus.app"}},"cookieconsent":{"content":{"dismiss":"同意","link":"了解更多","message":"本网站使用 Cookies 来改善您的浏览体验。"},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"enablePWA":true,"lightgallery":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"pangu":{"enable":true,"selector":"article"},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":12,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":100,"threshold":0.3,"type":"fuse","useExtendedSearch":false},"siteTime":"2018-02-22T04:10:22+08:00","twemoji":true,"typeit":{"cursorChar":"|","cursorSpeed":1000,"duration":-1,"loop":false,"speed":100},"version":"v0.3.8","watermark":{"colspacing":300,"content":"Andrew.Du","enable":true,"fontfamily":"inherit","fontsize":0.85,"height":20,"opacity":0.1,"rotate":15,"rowspacing":300,"width":150}};</script><script src="/js/theme.min.js" defer></script></body>
+</html>

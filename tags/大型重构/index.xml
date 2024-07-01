@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>大型重构 - 标签 - AndrewDu&#39;s blog</title>
+    <link>https://DDuuuu.github.io/tags/%E5%A4%A7%E5%9E%8B%E9%87%8D%E6%9E%84/</link>
+    <description>大型重构 - 标签 | AndrewDu&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>978089234@qq.com (AndrewDu)</managingEditor>
+      <webMaster>978089234@qq.com (AndrewDu)</webMaster><copyright>Copyright© Andrew.Du</copyright><lastBuildDate>Fri, 15 Nov 2019 17:09:22 &#43;0800</lastBuildDate><atom:link href="https://DDuuuu.github.io/tags/%E5%A4%A7%E5%9E%8B%E9%87%8D%E6%9E%84/" rel="self" type="application/rss+xml" /><item>
+  <title>重构改善既有代码 大型重构</title>
+  <link>https://DDuuuu.github.io/2019/11/designpattern12-refactoring8/</link>
+  <pubDate>Fri, 15 Nov 2019 17:09:22 &#43;0800</pubDate>
+  <author>AndrewDu</author>
+  <guid>https://DDuuuu.github.io/2019/11/designpattern12-refactoring8/</guid>
+  <description><![CDATA[大型重构 1、梳理并分解继承体系 Tease Apart Inheritance 就是让每个类的职责更明确更单一，当一个类的职责混乱时，通过绘制职责图来分离职责，并创建另一个超类，将相关]]></description>
+</item>
+</channel>
+</rss>

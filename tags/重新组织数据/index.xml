@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>重新组织数据 - 标签 - AndrewDu&#39;s blog</title>
+    <link>https://DDuuuu.github.io/tags/%E9%87%8D%E6%96%B0%E7%BB%84%E7%BB%87%E6%95%B0%E6%8D%AE/</link>
+    <description>重新组织数据 - 标签 | AndrewDu&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>978089234@qq.com (AndrewDu)</managingEditor>
+      <webMaster>978089234@qq.com (AndrewDu)</webMaster><copyright>Copyright© Andrew.Du</copyright><lastBuildDate>Mon, 11 Nov 2019 17:09:22 &#43;0800</lastBuildDate><atom:link href="https://DDuuuu.github.io/tags/%E9%87%8D%E6%96%B0%E7%BB%84%E7%BB%87%E6%95%B0%E6%8D%AE/" rel="self" type="application/rss+xml" /><item>
+  <title>重构改善既有代码 重新组织数据</title>
+  <link>https://DDuuuu.github.io/2019/11/designpattern8-refactoring4/</link>
+  <pubDate>Mon, 11 Nov 2019 17:09:22 &#43;0800</pubDate>
+  <author>AndrewDu</author>
+  <guid>https://DDuuuu.github.io/2019/11/designpattern8-refactoring4/</guid>
+  <description><![CDATA[**对于这个类的任何修改都应该通过该类的方法。类拥有一些数据却无所觉，拥有一些依赖无所觉是非常危险的。**所以才要封装字段，封装集合，监视数]]></description>
+</item>
+</channel>
+</rss>
