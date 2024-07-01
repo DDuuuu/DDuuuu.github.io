@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>Commanding - 标签 - AndrewDu&#39;s blog</title>
+    <link>https://DDuuuu.github.io/tags/commanding/</link>
+    <description>Commanding - 标签 | AndrewDu&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>978089234@qq.com (AndrewDu)</managingEditor>
+      <webMaster>978089234@qq.com (AndrewDu)</webMaster><copyright>Copyright© Andrew.Du</copyright><lastBuildDate>Sun, 23 Jun 2019 17:09:22 &#43;0800</lastBuildDate><atom:link href="https://DDuuuu.github.io/tags/commanding/" rel="self" type="application/rss+xml" /><item>
+  <title>Prism Commanding</title>
+  <link>https://DDuuuu.github.io/2019/06/prism2-commanding/</link>
+  <pubDate>Sun, 23 Jun 2019 17:09:22 &#43;0800</pubDate>
+  <author>AndrewDu</author>
+  <guid>https://DDuuuu.github.io/2019/06/prism2-commanding/</guid>
+  <description><![CDATA[注意：该版本为Prism6,最新版已有较大改动。 除了提供对要在视图中显示或编辑的数据的访问之外，ViewModel还可能定义可由用户执行的一]]></description>
+</item>
+</channel>
+</rss>

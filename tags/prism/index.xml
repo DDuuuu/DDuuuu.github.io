@@ -1,0 +1,88 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>Prism - 标签 - AndrewDu&#39;s blog</title>
+    <link>https://DDuuuu.github.io/tags/prism/</link>
+    <description>Prism - 标签 | AndrewDu&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>978089234@qq.com (AndrewDu)</managingEditor>
+      <webMaster>978089234@qq.com (AndrewDu)</webMaster><copyright>Copyright© Andrew.Du</copyright><lastBuildDate>Sat, 06 Jul 2019 17:09:22 &#43;0800</lastBuildDate><atom:link href="https://DDuuuu.github.io/tags/prism/" rel="self" type="application/rss+xml" /><item>
+  <title>Prism Deploying</title>
+  <link>https://DDuuuu.github.io/2019/07/prism14-deploying/</link>
+  <pubDate>Sat, 06 Jul 2019 17:09:22 &#43;0800</pubDate>
+  <author>AndrewDu</author>
+  <guid>https://DDuuuu.github.io/2019/07/prism14-deploying/</guid>
+  <description><![CDATA[注意：该版本为Prism6,最新版已有较大改动。 要成功将Prism应用程序移植到生产环境中，您需要计划部署作为应用程序设计过程的一部分。本主]]></description>
+</item>
+<item>
+  <title>Prism Communication</title>
+  <link>https://DDuuuu.github.io/2019/07/prism13-communication/</link>
+  <pubDate>Fri, 05 Jul 2019 17:09:22 &#43;0800</pubDate>
+  <author>AndrewDu</author>
+  <guid>https://DDuuuu.github.io/2019/07/prism13-communication/</guid>
+  <description><![CDATA[注意：该版本为Prism6,最新版已有较大改动。 在构建大型复杂WPF应用程序时，常见的方法是将功能划分为离散模块程序集。还希望最小化这些模块]]></description>
+</item>
+<item>
+  <title>Prism 导航</title>
+  <link>https://DDuuuu.github.io/2019/07/prism12-navigation/</link>
+  <pubDate>Thu, 04 Jul 2019 17:09:22 &#43;0800</pubDate>
+  <author>AndrewDu</author>
+  <guid>https://DDuuuu.github.io/2019/07/prism12-navigation/</guid>
+  <description><![CDATA[注意：该版本为Prism6,最新版已有较大改动。 当用户与富客户端应用程序交互时，其用户界面（UI）将不断更新以反映用户正在处理的当前任务和数]]></description>
+</item>
+<item>
+  <title>Prism Region</title>
+  <link>https://DDuuuu.github.io/2019/07/prism11-region/</link>
+  <pubDate>Wed, 03 Jul 2019 17:09:22 &#43;0800</pubDate>
+  <author>AndrewDu</author>
+  <guid>https://DDuuuu.github.io/2019/07/prism11-region/</guid>
+  <description><![CDATA[注意：该版本为Prism6,最新版已有较大改动。 复合应用程序用户界面（UI）由松散耦合的可视组件组成，这些组件称为View，通常包含在应用程]]></description>
+</item>
+<item>
+  <title>Prism 高级MVVM</title>
+  <link>https://DDuuuu.github.io/2019/07/prism10-advancemvvm/</link>
+  <pubDate>Tue, 02 Jul 2019 17:09:22 &#43;0800</pubDate>
+  <author>AndrewDu</author>
+  <guid>https://DDuuuu.github.io/2019/07/prism10-advancemvvm/</guid>
+  <description><![CDATA[注意：该版本为Prism6,最新版已有较大改动。 上一个主题描述了如何通过将应用程序的用户界面（UI），表示逻辑和业务逻辑分成三个独立的类（V]]></description>
+</item>
+<item>
+  <title>Prism MVVM</title>
+  <link>https://DDuuuu.github.io/2019/07/prism9-mvvm/</link>
+  <pubDate>Mon, 01 Jul 2019 17:09:22 &#43;0800</pubDate>
+  <author>AndrewDu</author>
+  <guid>https://DDuuuu.github.io/2019/07/prism9-mvvm/</guid>
+  <description><![CDATA[注意：该版本为Prism6,最新版已有较大改动。 Model-View-ViewModel（MVVM）模式可帮助您将应用程序的业务和表示逻辑与]]></description>
+</item>
+<item>
+  <title>Prism Modular</title>
+  <link>https://DDuuuu.github.io/2019/06/prism8-modular/</link>
+  <pubDate>Sat, 29 Jun 2019 17:09:22 &#43;0800</pubDate>
+  <author>AndrewDu</author>
+  <guid>https://DDuuuu.github.io/2019/06/prism8-modular/</guid>
+  <description><![CDATA[注意：该版本为Prism6,最新版已有较大改动。 Modular Application Development Using Prism Library for WPF 模块化应用程序是一个应用程序，它被分成一组松散耦合的功能单元（命名模块），可]]></description>
+</item>
+<item>
+  <title>Prism UnityContainer</title>
+  <link>https://DDuuuu.github.io/2019/06/prism7-unitycontainer/</link>
+  <pubDate>Fri, 28 Jun 2019 17:09:22 &#43;0800</pubDate>
+  <author>AndrewDu</author>
+  <guid>https://DDuuuu.github.io/2019/06/prism7-unitycontainer/</guid>
+  <description><![CDATA[注意：该版本为Prism6,最新版已有较大改动。 Managing Dependencies Between Components Using the Prism Library for WPF 基于Prism库的应用程序是复合应用程序，可能包含许多松散耦合的类型和服]]></description>
+</item>
+<item>
+  <title>Prism 使用Prism</title>
+  <link>https://DDuuuu.github.io/2019/06/prism6-usingprism/</link>
+  <pubDate>Thu, 27 Jun 2019 17:09:22 &#43;0800</pubDate>
+  <author>AndrewDu</author>
+  <guid>https://DDuuuu.github.io/2019/06/prism6-usingprism/</guid>
+  <description><![CDATA[使用Prism 注意：该版本为Prism6,最新版已有较大改动。 使用Prism Library开发复合应用程序时所需的常见活动。 此示例，描述了创]]></description>
+</item>
+<item>
+  <title>Prism ViewModel Locator</title>
+  <link>https://DDuuuu.github.io/2019/06/prism5-viewmodellocator/</link>
+  <pubDate>Wed, 26 Jun 2019 17:09:22 &#43;0800</pubDate>
+  <author>AndrewDu</author>
+  <guid>https://DDuuuu.github.io/2019/06/prism5-viewmodellocator/</guid>
+  <description><![CDATA[注意：该版本为Prism6,最新版已有较大改动。 ViewModelLocator用于绑定视图的DataContext，以使用标准命名约定的一]]></description>
+</item>
+</channel>
+</rss>

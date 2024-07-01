@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>Modular - 标签 - AndrewDu&#39;s blog</title>
+    <link>https://DDuuuu.github.io/tags/modular/</link>
+    <description>Modular - 标签 | AndrewDu&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>978089234@qq.com (AndrewDu)</managingEditor>
+      <webMaster>978089234@qq.com (AndrewDu)</webMaster><copyright>Copyright© Andrew.Du</copyright><lastBuildDate>Sat, 29 Jun 2019 17:09:22 &#43;0800</lastBuildDate><atom:link href="https://DDuuuu.github.io/tags/modular/" rel="self" type="application/rss+xml" /><item>
+  <title>Prism Modular</title>
+  <link>https://DDuuuu.github.io/2019/06/prism8-modular/</link>
+  <pubDate>Sat, 29 Jun 2019 17:09:22 &#43;0800</pubDate>
+  <author>AndrewDu</author>
+  <guid>https://DDuuuu.github.io/2019/06/prism8-modular/</guid>
+  <description><![CDATA[注意：该版本为Prism6,最新版已有较大改动。 Modular Application Development Using Prism Library for WPF 模块化应用程序是一个应用程序，它被分成一组松散耦合的功能单元（命名模块），可]]></description>
+</item>
+</channel>
+</rss>

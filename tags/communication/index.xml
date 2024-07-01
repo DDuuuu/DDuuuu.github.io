@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>Communication - 标签 - AndrewDu&#39;s blog</title>
+    <link>https://DDuuuu.github.io/tags/communication/</link>
+    <description>Communication - 标签 | AndrewDu&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>978089234@qq.com (AndrewDu)</managingEditor>
+      <webMaster>978089234@qq.com (AndrewDu)</webMaster><copyright>Copyright© Andrew.Du</copyright><lastBuildDate>Fri, 05 Jul 2019 17:09:22 &#43;0800</lastBuildDate><atom:link href="https://DDuuuu.github.io/tags/communication/" rel="self" type="application/rss+xml" /><item>
+  <title>Prism Communication</title>
+  <link>https://DDuuuu.github.io/2019/07/prism13-communication/</link>
+  <pubDate>Fri, 05 Jul 2019 17:09:22 &#43;0800</pubDate>
+  <author>AndrewDu</author>
+  <guid>https://DDuuuu.github.io/2019/07/prism13-communication/</guid>
+  <description><![CDATA[注意：该版本为Prism6,最新版已有较大改动。 在构建大型复杂WPF应用程序时，常见的方法是将功能划分为离散模块程序集。还希望最小化这些模块]]></description>
+</item>
+</channel>
+</rss>

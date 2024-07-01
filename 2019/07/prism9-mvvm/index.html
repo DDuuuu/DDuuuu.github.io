@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>Prism MVVM - AndrewDu&#39;s blog</title><meta name="author" content="AndrewDu">
+<meta name="author-link" content="https://github.com/DDuuuu">
+<meta name="description" content="注意：该版本为Prism6,最新版已有较大改动。 Model-View-ViewModel（MVVM）模式可帮助您将应用程序的业务和表示逻辑与" /><meta name="keywords" content='Prism, MVVM' />
+  <meta itemprop="name" content="Prism MVVM">
+  <meta itemprop="description" content="注意：该版本为Prism6,最新版已有较大改动。 Model-View-ViewModel（MVVM）模式可帮助您将应用程序的业务和表示逻辑与">
+  <meta itemprop="datePublished" content="2019-07-01T17:09:22+08:00">
+  <meta itemprop="dateModified" content="2019-07-01T17:09:22+08:00">
+  <meta itemprop="wordCount" content="15654">
+  <meta itemprop="image" content="https://DDuuuu.github.io/images/logo150.png">
+  <meta itemprop="keywords" content="Prism,MVVM"><meta property="og:url" content="https://DDuuuu.github.io/2019/07/prism9-mvvm/">
+  <meta property="og:site_name" content="AndrewDu&#39;s blog">
+  <meta property="og:title" content="Prism MVVM">
+  <meta property="og:description" content="注意：该版本为Prism6,最新版已有较大改动。 Model-View-ViewModel（MVVM）模式可帮助您将应用程序的业务和表示逻辑与">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2019-07-01T17:09:22+08:00">
+    <meta property="article:modified_time" content="2019-07-01T17:09:22+08:00">
+    <meta property="article:tag" content="Prism">
+    <meta property="article:tag" content="MVVM">
+    <meta property="og:image" content="https://DDuuuu.github.io/images/logo150.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://DDuuuu.github.io/images/logo150.png">
+  <meta name="twitter:title" content="Prism MVVM">
+  <meta name="twitter:description" content="注意：该版本为Prism6,最新版已有较大改动。 Model-View-ViewModel（MVVM）模式可帮助您将应用程序的业务和表示逻辑与">
+<meta name="application-name" content="Andrew.Du">
+<meta name="apple-mobile-web-app-title" content="Andrew.Du"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://DDuuuu.github.io/2019/07/prism9-mvvm/" /><link rel="prev" href="https://DDuuuu.github.io/2019/06/prism8-modular/" /><link rel="next" href="https://DDuuuu.github.io/2019/07/prism10-advancemvvm/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Prism MVVM",
+    "inLanguage": "zh-CN",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https:\/\/DDuuuu.github.io\/2019\/07\/prism9-mvvm\/"
+    },"image": ["https:\/\/DDuuuu.github.io\/images\/logo192.png"],"genre": "posts","keywords": "Prism, MVVM","wordcount":  15654 ,
+    "url": "https:\/\/DDuuuu.github.io\/2019\/07\/prism9-mvvm\/","datePublished": "2019-07-01T17:09:22+08:00","dateModified": "2019-07-01T17:09:22+08:00","license": "Copyright© Andrew.Du","publisher": {
+      "@type": "Organization",
+      "name": "AndrewDu"},"author": {
+        "@type": "Person",
+        "name": "AndrewDu"
+      },"description": ""
+  }
+  </script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage?.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper" data-page-style="normal"><header class="desktop animate__faster" id="header-desktop">
+  <div class="header-wrapper" data-github-corner="right">
+    <div class="header-title">
+      <a href="/" title="AndrewDu&#39;s blog"><span class="typeit"><template>AndrewDu&#39;s blog</template></span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/"
+                title="主页"
+                
+              ><i class="fa-solid fa-home fa-fw fa-sm" aria-hidden="true"></i> 主页</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/archives/"
+                title="归档"
+                
+              ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 归档</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              ><i class="fa-solid fa-folder-tree fa-fw fa-sm" aria-hidden="true"></i> 类别</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/about/"
+                
+                
+              ><i class="fa-solid fa-link fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item delimiter"></li><li class="menu-item search" id="search-desktop">
+            <input type="text" placeholder="搜索文章标题或内容……" id="search-input-desktop">
+            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+              <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+            </a>
+            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+              <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+            </a>
+            <span class="search-button search-loading" id="search-loading-desktop">
+              <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+            </span>
+          </li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><header class="mobile animate__faster" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="AndrewDu&#39;s blog"><span class="typeit"><template>AndrewDu&#39;s blog</template></span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li class="search-wrapper">
+            <div class="search mobile" id="search-mobile">
+              <input type="text" placeholder="搜索文章标题或内容……" id="search-input-mobile">
+              <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+              </a>
+              <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+              </a>
+              <span class="search-button search-loading" id="search-loading-mobile">
+                <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+              </span>
+            </div>
+            <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+              取消
+            </a>
+          </li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/"
+                  title="主页"
+                  
+                ><i class="fa-solid fa-home fa-fw fa-sm" aria-hidden="true"></i> 主页</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/archives/"
+                  title="归档"
+                  
+                ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 归档</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/categories/"
+                  
+                  
+                ><i class="fa-solid fa-folder-tree fa-fw fa-sm" aria-hidden="true"></i> 类别</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/about/"
+                  
+                  
+                ><i class="fa-solid fa-link fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item menu-system">
+          <span class="menu-system-item theme-switch" title="切换主题"><i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i></span></li>
+      </ul>
+    </nav>
+  </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+  </div>
+  <div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+  </div><nav aria-label="breadcrumb" class="breadcrumb-container sticky">
+    <ol class="breadcrumb"><li class="breadcrumb-item"><a href="/" title="AndrewDu&#39;s Blog">主页</a></li><li class="breadcrumb-item"><a href="/posts/" title="Posts">文章</a></li><li class="breadcrumb-item active" aria-current="page">Prism MVVM</li>
+    </ol>
+  </nav><main class="container"><aside class="aside-collection animate__animated animate__fadeIn animate__faster" aria-label="合集"></aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX"><span>Prism MVVM</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><a href="https://github.com/DDuuuu" title="作者"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+    AndrewDu</a></span><span class="post-included-in">&nbsp;收录于 <a href="/categories/prism/" class="post-category" title="分类 - Prism"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> Prism</a></span></div><div class="post-meta-line"><span title="发布于 2019-07-01 17:09:22"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2019-07-01">2019-07-01</time></span>&nbsp;<span title="15654 字"><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>约 15700 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>预计阅读 32 分钟</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="Prism MVVM">
+              <i class="fa-regular fa-eye fa-fw me-1" aria-hidden="true"></i><span id="busuanzi_value_page_pv">-</span>&nbsp;次阅读
+            </span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>目录</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#class-responsibilities-and-characteristics">Class Responsibilities and Characteristics</a>
+          <ul>
+            <li><a href="#mvvm类及其交互">MVVM类及其交互</a></li>
+            <li><a href="#视图类">视图类</a></li>
+            <li><a href="#视图模型类">视图模型类</a></li>
+            <li><a href="#模型类">模型类</a></li>
+            <li><a href="#viewviewmodelmodel互动">View,ViewModel,Model互动</a></li>
+          </ul>
+        </li>
+        <li><a href="#数据绑定">数据绑定</a>
+          <ul>
+            <li><a href="#实现inotifypropertychanged">实现INotifyPropertyChanged</a></li>
+            <li><a href="#实现inotifycollectionchanged">实现INotifyCollectionChanged</a></li>
+            <li><a href="#实现icollectionview">实现ICollectionView</a></li>
+          </ul>
+        </li>
+        <li><a href="#命令">命令</a>
+          <ul>
+            <li><a href="#实现基于任务的委托命令">实现基于任务的委托命令</a></li>
+          </ul>
+        </li>
+        <li><a href="#实现命令对象">实现命令对象</a>
+          <ul>
+            <li><a href="#从视图调用命令对象">从视图调用命令对象</a></li>
+            <li><a href="#数据验证和错误报告">数据验证和错误报告</a></li>
+            <li><a href="#实现idataerrorinfo">实现IDataErrorInfo</a></li>
+            <li><a href="#实现inotifydataerrorinfo">实现INotifyDataErrorInfo</a></li>
+          </ul>
+        </li>
+        <li><a href="#construction-and-wire-up">Construction and Wire-Up</a>
+          <ul>
+            <li><a href="#使用xaml创建视图模型">使用XAML创建视图模型</a></li>
+            <li><a href="#以编程方式创建视图模型">以编程方式创建视图模型</a></li>
+            <li><a href="#使用视图模型定位器创建视图模型">使用视图模型定位器创建视图模型</a></li>
+            <li><a href="#创建定义为数据模板的视图">创建定义为数据模板的视图</a></li>
+          </ul>
+        </li>
+        <li><a href="#关键决定">关键决定</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+      </div><div class="content" id="content" data-end-flag="感谢阅读！"><p>注意：该版本为Prism6,最新版已有较大改动。</p>
+<p>Model-View-ViewModel（MVVM）模式可帮助您将应用程序的业务和表示逻辑与其用户界面（UI）完全分离。在应用程序逻辑和UI之间保持清晰的分离有助于解决许多开发和设计问题，并使您的应用程序更容易测试，维护和发展。它还可以极大地改善代码重用机会，并允许开发人员和UI设计人员在开发应用程序的各个部分时更轻松地进行协作。</p>
+<p>使用MVVM模式，应用程序的UI以及底层表示和业务逻辑被分成三个独立的类：视图(view)，它封装了UI和UI逻辑; 视图模型(viewmodel)，它封装了表示逻辑和状态; 模型（model）封装了应用程序的业务逻辑和数据。</p>
+<p>Prism包含示例和参考实现，展示如何在Windows Presentation Foundation（WPF）应用程序中实现MVVM模式。Prism Library还提供了可以帮助您在自己的应用程序中实现模式的功能。这些功能体现了实现MVVM模式的最常见实践，旨在支持可测试性并与Expression Blend和Visual Studio配合使用。</p>
+<h3 id="class-responsibilities-and-characteristics" class="heading-element"><span>Class Responsibilities and Characteristics</span>
+  <a href="#class-responsibilities-and-characteristics" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p>类的责任和特征</p>
+<p>MVVM模式是Presentation Model模式的近似变体，经过优化以利用WPF的一些核心功能，例如数据绑定，数据模板，命令和行为。</p>
+<p>在MVVM模式中，视图封装了UI和任何UI逻辑，视图模型封装了表示逻辑和状态，模型封装了业务逻辑和数据。视图通过数据绑定，命令和更改通知事件与视图模型交互。视图模型查询，观察和协调模型的更新，转换，验证和聚合数据，以便在视图中显示。</p>
+<p>下图显示了三个MVVM类及其交互。</p>
+<p><img loading="lazy" src="/prism/image-20240701162241711.png" alt="image-20240701162241711" srcset="/prism/image-20240701162241711.png?size=small, /prism/image-20240701162241711.png?size=medium 1.5x, /prism/image-20240701162241711.png?size=large 2x" data-title="image-20240701162241711" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<h4 id="mvvm类及其交互" class="heading-element"><span>MVVM类及其交互</span>
+  <a href="#mvvm%e7%b1%bb%e5%8f%8a%e5%85%b6%e4%ba%a4%e4%ba%92" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h4><p>与所有分离的表示模式一样，有效使用MVVM模式的关键在于理解将应用程序代码分解为正确类的适当方式，以及理解这些类在各种场景中交互的方式。以下部分描述了MVVM模式中每个类的职责和特征。</p>
+<h4 id="视图类" class="heading-element"><span>视图类</span>
+  <a href="#%e8%a7%86%e5%9b%be%e7%b1%bb" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h4><p>视图的职责是定义用户在屏幕上看到的内容的结构和外观。理想情况下，视图的代码隐藏只包含一个调用<strong>InitializeComponent</strong>方法的构造函数。在某些情况下，代码隐藏可能包含UI逻辑代码，该代码实现了在可扩展应用程序标记语言（XAML）中表达难以或低效的视觉行为，例如复杂的动画，或者当代码需要直接操作视觉元素时部分观点。您不应该在视图中放置任何需要进行单元测试的逻辑代码。通常，视图的代码隐藏中的逻辑代码将通过UI自动化测试方法进行测试。</p>
+<p>在WPF中，视图中的数据绑定表达式将根据其数据上下文进行评估。在MVVM中，视图的数据上下文设置为视图模型。视图模型实现视图可以绑定的属性和命令，并通过更改通知事件通知视图状态的任何更改。视图与其视图模型之间通常存在一对一的关系。</p>
+<p>通常，视图是<strong>Control- derived</strong>或<strong>UserControl</strong>派生的类。但是，在某些情况下，视图可以由数据模板表示，该数据模板指定用于在显示对象时可视地表示对象的UI元素。使用数据模板，可视化设计人员可以轻松定义视图模型的呈现方式，也可以修改其默认的可视化表示，而无需更改底层对象本身或用于显示它的控件的行为。</p>
+<p>可以将数据模板视为没有任何代码隐藏的视图。它们旨在绑定到特定的视图模型类型，只要需要在UI中显示一个。在运行时，将自动实例化由数据模板定义的视图，并将其数据上下文设置为相应的视图模型。</p>
+<p>在WPF中，您可以在应用程序级别将数据模板与视图模型类型相关联。然后，无论何时在UI中显示，WPF都会自动将数据模板应用于指定类型的任何视图模型对象。这称为隐式数据模板。数据模板可以与使用它的控件一起定义，也可以在父视图外的资源字典中定义，并以声明方式合并到视图的资源字典中。</p>
+<p>总而言之，该视图具有以下主要特征：</p>
+<ul>
+<li>视图是可视元素，例如窗口，页面，用户控件或数据模板。视图定义视图中包含的控件及其可视布局和样式。</li>
+<li>视图通过其<strong>DataContext</strong>属性引用视图模型。视图中的控件是绑定到视图模型公开的属性和命令的数据。</li>
+<li>视图可以自定义视图和视图模型之间的数据绑定行为。例如，视图可以使用值转换器来格式化要在UI中显示的数据，或者它可以使用验证规则来向用户提供额外的输入数据验证。</li>
+<li>视图定义并处理UI视觉行为，例如可以从视图模型中的状态更改或通过用户与UI的交互触发的动画或过渡。</li>
+<li>视图的代码隐藏可以定义UI逻辑以实现在XAML中难以表达的视觉行为，或者需要直接引用视图中定义的特定UI控件。</li>
+</ul>
+<h4 id="视图模型类" class="heading-element"><span>视图模型类</span>
+  <a href="#%e8%a7%86%e5%9b%be%e6%a8%a1%e5%9e%8b%e7%b1%bb" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h4><p>MVVM模式中的视图模型封装了视图的表示逻辑和数据。它没有直接引用视图或有关视图的特定实现或类型的任何知识。视图模型实现视图可以绑定数据的属性和命令，并通过更改通知事件通知视图任何状态更改。视图模型提供的属性和命令定义UI提供的功能，但视图确定如何呈现该功能。</p>
+<p>视图模型负责协调视图与所需的任何模型类的交互。通常，视图模型和模型类之间存在一对多关系。视图模型可以选择直接将模型类公开给视图，以便视图中的控件可以直接将数据绑定到它们。在这种情况下，需要设计模型类以支持数据绑定和相关的更改通知事件。有关此方案的详细信息，请参阅本主题后面的“ <a href="https://prismlibrary.github.io/docs/wpf/legacy/Implementing-MVVM.html#data-binding"target="_blank" rel="external nofollow noopener noreferrer">数据绑定</a> ”一节。</p>
+<p>视图模型可以转换或操纵模型数据，以便视图可以轻松地使用它。视图模型可以定义其他属性以专门支持视图; 这些属性通常不属于模型的一部分（或不能添加到模型中）。例如，视图模型可以组合两个字段的值以使视图更容易呈现，或者它可以计算具有最大长度的字段的输入剩余字符数。视图模型还可以实现数据验证逻辑以确保数据一致性。</p>
+<p>视图模型还可以定义视图可以用于在UI中提供视觉变化的逻辑状态。视图可以定义反映视图模型状态的布局或样式更改。例如，视图模型可以定义指示数据异步提交到Web服务的状态。视图可以在此状态期间显示动画，以向用户提供视觉反馈。</p>
+<p>通常，视图模型将定义可在UI中表示并且用户可以调用的命令或操作。一个常见示例是视图模型提供允许用户将数据提交到Web服务或数据存储库的<strong>Submit</strong>命令。视图可以选择用按钮表示该命令，以便用户可以单击按钮来提交数据。通常，当命令变得不可用时，其关联的UI表示将被禁用。命令提供了一种封装用户操作并将其与UI中的可视表示清晰分离的方法。</p>
+<p>总而言之，视图模型具有以下关键特征：</p>
+<ul>
+<li>视图模型是非可视类，不是从任何WPF基类派生的。它封装了支持应用程序中的用例或用户任务所需的表示逻辑。视图模型可以独立于视图和模型进行测试。</li>
+<li>视图模型通常不直接引用视图。它实现了视图可以绑定数据的属性和命令。它通过<strong>INotifyPropertyChanged</strong>和<strong>INotifyCollectionChanged</strong>接口通过更改通知事件通知视图任何状态更改。</li>
+<li>视图模型协调视图与模型的交互。它可以转换或操作数据，以便视图可以轻松使用它，并可以实现模型上可能不存在的其他属性。它还可以通过<strong>IDataErrorInfo</strong>或<strong>INotifyDataErrorInfo</strong>接口实现数据验证。</li>
+<li>视图模型可以定义视图可以在视觉上向用户表示的逻辑状态。</li>
+</ul>
+<p><strong>注意：查看或查看模型？</strong> 很多时候，确定应该实现某些功能的地方并不明显。一般的经验法则是：任何与屏幕上UI的特定视觉外观有关并且可以在以后重新设置样式的内容（即使您当前没有计划重新设置样式）也应该进入视图; 对应用程序的逻辑行为很重要的任何内容都应该进入视图模型。此外，由于视图模型应该不具有视图中特定可视元素的明确知识，因此以编程方式操作视图中的可视元素的代码应驻留在视图的代码隐藏中或封装在行为中。同样，检索或操作要通过数据绑定在视图中显示的数据项的代码应驻留在视图模型中。</p>
+<h4 id="模型类" class="heading-element"><span>模型类</span>
+  <a href="#%e6%a8%a1%e5%9e%8b%e7%b1%bb" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h4><p>MVVM模式中的模型封装了业务逻辑和数据。业务逻辑被定义为与应用程序数据的检索和管理有关的任何应用程序逻辑，并确保强制执行确保数据一致性和有效性的任何业务规则。为了最大化重用机会，模型不应包含任何特定于用例或特定于用户任务的行为或应用程序逻辑。</p>
+<p>通常，模型表示应用程序的客户端域模型。它可以基于应用程序的数据模型和任何支持业务和验证逻辑来定义数据结构。该模型还可以包括支持数据访问和缓存的代码，尽管通常使用单独的数据存储库或服务。通常，模型和数据访问层是作为数据访问或服务策略的一部分生成的，例如ADO.NET实体框架，WCF数据服务或WCF RIA服务。</p>
+<p>通常，模型实现了可以轻松绑定到视图的工具。这通常意味着它通过<strong>INotifyPropertyChanged</strong>和<strong>INotifyCollectionChanged</strong>接口支持属性和集合更改通知。表示对象集合的模型类通常派生自<strong>ObservableCollection <T><strong>类，该类提供</strong>INotifyCollectionChanged</strong>接口的实现。</p>
+<p>该模型还可以通过<strong>IDataErrorInfo</strong>（或<strong>INotifyDataErrorInfo</strong>）接口支持数据验证和错误报告。该<strong>IDataErrorInfo的</strong>和<strong>INotifyDataErrorInfo</strong>接口使WPF数据绑定时通知值发生改变，这样的UI可以更新。它们还支持UI层中的数据验证和错误报告。</p>
+<p><strong>注意：如果您的模型类没有实现所需的接口，该怎么办？</strong> 有时您需要使用未实现<strong>INotifyPropertyChanged</strong>，<strong>INotifyCollectionChanged</strong>，<strong>IDataErrorInfo</strong>或<strong>INotifyDataErrorInfo</strong>接口的模型对象。在这些情况下，视图模型可能需要包装模型对象并将所需的属性公开给视图。这些属性的值将由模型对象直接提供。视图模型将为它公开的属性实现所需的接口，以便视图可以轻松地将数据绑定到它们。</p>
+<p>该模型具有以下主要特征：</p>
+<ul>
+<li>模型类是非可视类，它封装了应用程序的数据和业务逻辑。他们负责管理应用程序的数据，并通过封装所需的业务规则和数据验证逻辑来确保其一致性和有效性。</li>
+<li>模型类不直接引用视图或视图模型类，也不依赖于它们的实现方式。</li>
+<li>模型类通常通过<strong>INotifyPropertyChanged</strong>和<strong>INotifyCollectionChanged</strong>接口提供属性和集合更改通知事件。这允许它们在视图中容易地数据绑定。表示对象集合的模型类通常派生自**ObservableCollection <T>**类。</li>
+<li>模型类通常通过<strong>IDataErrorInfo</strong>或<strong>INotifyDataErrorInfo</strong>接口提供数据验证和错误报告。</li>
+<li>模型类通常与封装数据访问和缓存的服务或存储库结合使用。</li>
+</ul>
+<h4 id="viewviewmodelmodel互动" class="heading-element"><span>View,ViewModel,Model互动</span>
+  <a href="#viewviewmodelmodel%e4%ba%92%e5%8a%a8" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h4><p>MVVM模式通过将每个应用程序的用户界面，其表示逻辑以及业务逻辑和数据分离为单独的类，提供了清晰的分离。因此，在实现MVVM时，重要的是将应用程序的代码分解为正确的类，如上一节所述。</p>
+<p>精心设计的视图，视图模型和模型类不仅会封装正确类型的代码和行为; 它们的设计也使它们可以通过数据绑定，命令和数据验证接口轻松地相互交互。</p>
+<p>视图与其视图模型之间的交互可能是最重要的考虑因素，但模型类和视图模型之间的交互也很重要。以下部分描述了这些交互的各种模式，并描述了在应用程序中实现MVVM模式时如何设计它们。</p>
+<h3 id="数据绑定" class="heading-element"><span>数据绑定</span>
+  <a href="#%e6%95%b0%e6%8d%ae%e7%bb%91%e5%ae%9a" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p>数据绑定在MVVM模式中起着非常重要的作用。WPF提供强大的数据绑定功能。您的视图模型和（理想情况下）您的模型类应设计为支持数据绑定，以便它们可以利用这些功能。通常，这意味着它们必须实现正确的接口。</p>
+<p>WPF数据绑定支持多种数据绑定模式。通过单向数据绑定，可以将UI控件绑定到视图模型，以便在呈现显示时它们反映基础数据的值。当用户在UI中修改基础数据时，双向数据绑定也将自动更新基础数据。</p>
+<p>为确保在视图模型中数据发生更改时UI保持最新，它应实现相应的更改通知界面。如果它定义了可以绑定数据的属性，它应该实现<strong>INotifyPropertyChanged</strong>接口。如果视图模型<strong>表示集合</strong>，则它应实现<strong>INotifyCollectionChanged</strong>接口，或者从提供此接口实现的**ObservableCollection <T>**类派生。这两个接口都定义了每当基础数据发生更改时引发的事件。引发这些事件时，将自动更新任何数据绑定控件。</p>
+<p>在许多情况下，视图模型将定义返回对象的属性（反过来，可以定义返回其他对象的属性）。WPF数据绑定支持通过<strong>Path</strong>属性绑定到嵌套属性。因此，视图的视图模型返回对其他视图模型或模型类的引用是很常见的。视图可访问的所有视图模型和模型类应根据需要实现<strong>INotifyPropertyChanged</strong>或<strong>INotifyCollectionChanged</strong>接口。</p>
+<p>以下部分描述了如何实现所需的接口以支持MVVM模式中的数据绑定。</p>
+<h4 id="实现inotifypropertychanged" class="heading-element"><span>实现INotifyPropertyChanged</span>
+  <a href="#%e5%ae%9e%e7%8e%b0inotifypropertychanged" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h4><p>在视图模型或模型类中实现<strong>INotifyPropertyChanged</strong>接口允许它们在基础属性值更改时向视图中的任何数据绑定控件提供更改通知。实现此接口非常简单，如以下代码示例所示。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c#" data-lang="c#"><span class="line"><span class="cl"><span class="kd">public</span> <span class="k">class</span> <span class="nc">Questionnaire</span> <span class="p">:</span> <span class="n">INotifyPropertyChanged</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="kt">string</span> <span class="n">favoriteColor</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="k">event</span> <span class="n">PropertyChangedEventHandler</span> <span class="n">PropertyChanged</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">...</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">string</span> <span class="n">FavoriteColor</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">get</span> <span class="p">{</span> <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="n">favoriteColor</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">set</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="p">(</span><span class="k">value</span> <span class="p">!=</span> <span class="k">this</span><span class="p">.</span><span class="n">favoriteColor</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="k">this</span><span class="p">.</span><span class="n">favoriteColor</span> <span class="p">=</span> <span class="k">value</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                <span class="kt">var</span> <span class="n">handler</span> <span class="p">=</span> <span class="k">this</span><span class="p">.</span><span class="n">PropertyChanged</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">                <span class="k">if</span> <span class="p">(</span><span class="n">handler</span> <span class="p">!=</span> <span class="kc">null</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">handler</span><span class="p">(</span><span class="k">this</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                            <span class="k">new</span> <span class="n">PropertyChangedEventArgs</span><span class="p">(</span><span class="s">&#34;FavoriteColor&#34;</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">                <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>由于需要在event参数中指定属性名称，因此在许多视图模型类上实现<strong>INotifyPropertyChanged</strong>接口可能是重复且容易出错的。Prism库提供了BindableBase基类，您可以从中派生以类型安全的方式实现<strong>INotifyPropertyChanged</strong>接口的视图模型类，如此处所示。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c#" data-lang="c#"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">abstract</span> <span class="k">class</span> <span class="nc">BindableBase</span> <span class="p">:</span> <span class="n">INotifyPropertyChanged</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="k">event</span> <span class="n">PropertyChangedEventHandler</span> <span class="n">PropertyChanged</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">...</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">protected</span> <span class="k">virtual</span> <span class="kt">bool</span> <span class="n">SetProperty</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;(</span><span class="k">ref</span> <span class="n">T</span> <span class="n">storage</span><span class="p">,</span> <span class="n">T</span> <span class="k">value</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="na">                            [CallerMemberName]</span> <span class="kt">string</span> <span class="n">propertyName</span> <span class="p">=</span> <span class="kc">null</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{...}</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">protected</span> <span class="k">void</span> <span class="n">OnPropertyChanged</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;(</span>
+</span></span><span class="line"><span class="cl">                            <span class="n">Expression</span><span class="p">&lt;</span><span class="n">Func</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;&gt;</span> <span class="n">propertyExpression</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{...}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">protected</span> <span class="k">void</span> <span class="n">OnPropertyChanged</span><span class="p">(</span><span class="kt">string</span> <span class="n">propertyName</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{...}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>派生视图模型类可以通过调用<strong>SetProperty</strong>方法在setter中引发属性更改事件。所述的<strong>SetProperty</strong>方法检查被设定的值支持字段是否是不同的。如果不同，则更新后备字段并引发<strong>PropertyChanged</strong>事件。</p>
+<p>下面的代码示例演示如何设置属性，并通过在<strong>OnPropertyChanged</strong>方法中使用lambda表达式同时发出另一个属性的更改。此示例来自Stock Trader RI。该<strong>TransactionInfo</strong>和<strong>TickerSymbol</strong>属性相关。如果<strong>TransactionInfo</strong>属性更改，则<strong>TickerSymbol</strong>也可能会更新。通过调用<strong>OnPropertyChanged</strong>的<strong>TickerSymbol</strong>中的setter属性<strong>TransactionInfo</strong>财产，二的<strong>PropertyChanged</strong>事件将提高，一个用于<strong>TransactionInfo</strong>，一个用于<strong>TickerSymbol</strong>。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c#" data-lang="c#"><span class="line"><span class="cl"><span class="kd">public</span> <span class="n">TransactionInfo</span> <span class="n">TransactionInfo</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">get</span> <span class="p">{</span> <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="n">transactionInfo</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">set</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">SetProperty</span><span class="p">(</span><span class="k">ref</span> <span class="k">this</span><span class="p">.</span><span class="n">transactionInfo</span><span class="p">,</span> <span class="k">value</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="p">.</span><span class="n">OnPropertyChanged</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="k">this</span><span class="p">.</span><span class="n">TickerSymbol</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>**注意：**以这种方式使用lambda表达式会产生很小的性能成本，因为必须为每次调用计算lambda表达式。好处是，如果重命名属性，此方法可提供编译时类型安全性和重构支持。虽然性能成本很低，并且通常不会影响您的应用程序，但如果您有许多更改通知，则会产生成本。在这种情况下，您应该考虑使用非lambda方法重载。</p>
+<p>通常，模型或视图模型将包含其值从模型或视图模型中的其他属性计算的属性。处理属性更改时，请务必同时为任何计算属性引发通知事件。</p>
+<h4 id="实现inotifycollectionchanged" class="heading-element"><span>实现INotifyCollectionChanged</span>
+  <a href="#%e5%ae%9e%e7%8e%b0inotifycollectionchanged" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h4><p>您的视图模型或模型类可以表示项的集合，也可以定义一个或多个返回项集合的属性。在任何一种情况下，您可能希望在<strong>ItemsControl中</strong>显示集合，例如<strong>ListBox</strong>，或者在视图中的<strong>DataGrid</strong>控件中。这些控件可以是绑定到视图模型的数据，该视图模型表示集合或通过<strong>ItemSource</strong>属性返回集合的属性。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl">    <span class="nt">&lt;DataGrid</span> <span class="na">ItemsSource=</span><span class="s">&#34;{Binding Path=LineItems}&#34;</span> <span class="nt">/&gt;</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>为了正确支持更改通知请求，视图模型或模型类（如果它表示集合）应实现<strong>INotifyCollectionChanged</strong>接口（除了<strong>INotifyPropertyChanged</strong>接口）。如果视图模型或模型类定义了返回对集合的引用的属性，则返回的集合类应实现<strong>INotifyCollectionChanged</strong>接口。</p>
+<p>但是，实现<strong>INotifyCollectionChanged</strong>接口可能具有挑战性，因为它必须在集合中添加，删除或更改项目时提供通知。它不是直接实现接口，而是通常更容易使用或派生自已实现它的集合类。所述**的ObservableCollection <T>**类提供这个接口的实现和通常用作任一个基类或执行该代表项的集合的性质。</p>
+<p>如果需要为视图提供数据绑定的集合，并且不需要跟踪用户的选择或支持对集合中项目的过滤，排序或分组，则只需在视图模型上定义属性即可返回对**ObservableCollection <T>**实例的引用。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c#" data-lang="c#"><span class="line"><span class="cl"><span class="kd">public</span> <span class="k">class</span> <span class="nc">OrderViewModel</span> <span class="p">:</span> <span class="n">BindableBase</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">OrderViewModel</span><span class="p">(</span> <span class="n">IOrderService</span> <span class="n">orderService</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="p">.</span><span class="n">LineItems</span> <span class="p">=</span> <span class="k">new</span> <span class="n">ObservableCollection</span><span class="p">&lt;</span><span class="n">OrderLineItem</span><span class="p">&gt;(</span>
+</span></span><span class="line"><span class="cl">                                <span class="n">orderService</span><span class="p">.</span><span class="n">GetLineItemList</span><span class="p">()</span> <span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">ObservableCollection</span><span class="p">&lt;</span><span class="n">OrderLineItem</span><span class="p">&gt;</span> <span class="n">LineItems</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="kd">private</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果获得对集合类的引用（例如，来自未实现<strong>INotifyCollectionChanged的</strong>其他组件或服务），则通常可以使用其中一个构造函数将该集合包装在**ObservableCollection <T><strong>实例中，该构造函数采用</strong>IEnumerable <T><strong>或</strong>List <T>**参数。</p>
+<p><strong>注意：BindableBase</strong>可以在Prism.Mvvm命名空间中找到，该命名空间位于Prism.Core NuGet包中。</p>
+<h4 id="实现icollectionview" class="heading-element"><span>实现ICollectionView</span>
+  <a href="#%e5%ae%9e%e7%8e%b0icollectionview" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h4><p>上面的代码示例演示如何实现一个简单的视图模型属性，该属性返回可以通过视图中的数据绑定控件显示的项集合。由于<strong>ObservableCollection <T><strong>类实现了</strong>INotifyCollectionChanged</strong>接口，因此在添加或删除项目时，视图中的控件将自动更新以反映集合中的当前项目列表。</p>
+<p>但是，您通常需要更精细地控制项目集合在视图中的显示方式，或者在视图模型本身内跟踪用户与显示的项目集合的交互。例如，您可能需要根据视图模型中实现的表示逻辑来过滤或排序项目集合，或者您可能需要跟踪视图中当前选定的项目，以便在视图模型中实现命令可以对当前选定的项目采取行动。</p>
+<p>WPF通过提供实现<strong>ICollectionView</strong>接口的各种类来支持这些场景。此接口提供允许对集合进行过滤，排序或分组的属性和方法，并允许跟踪或更改当前选定的项目。WPF使用<strong>ListCollectionView</strong>类提供此接口的实现。</p>
+<p>集合视图类通过包装基础项目集合来工作，以便它们可以为它们提供自动选择跟踪和排序，过滤和分页。可以使用<strong>CollectionViewSource</strong>类在XAML中以编程方式或声明方式创建这些类的实例。</p>
+<p>**注意：**在WPF中，只要控件绑定到集合，就会自动创建默认集合视图。</p>
+<p>视图模型可以使用集合视图类来跟踪底层集合的重要状态信息，同时保持视图中的UI与模型中的基础数据之间的关注点的清晰分离。实际上，<strong>CollectionViews</strong>是专为支持集合而设计的视图模型。</p>
+<p>因此，如果需要在视图模型中对集合中的项目进行过滤，排序，分组或选择跟踪，则视图模型应为要向视图公开的每个集合创建集合视图类的实例。然后，您可以使用视图模型中集合视图类提供的方法订阅选择更改的事件（例如<strong>CurrentChanged</strong>事件）或控制过滤，排序或分组。</p>
+<p>视图模型应该实现一个只读属性，该属性返回<strong>ICollectionView</strong>引用，以便视图中的控件可以将数据绑定到集合视图对象并与之交互。从ItemsControl基类派生的所有WPF控件都可以自动与ICollectionView类交互。</p>
+<p>以下代码示例显示了在WPF中使用<strong>ListCollectionView</strong>来跟踪当前选定的客户。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c#" data-lang="c#"><span class="line"><span class="cl"><span class="kd">public</span> <span class="k">class</span> <span class="nc">MyViewModel</span> <span class="p">:</span> <span class="n">BindableBase</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">ICollectionView</span> <span class="n">Customers</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="kd">private</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">MyViewModel</span><span class="p">(</span> <span class="n">ObservableCollection</span><span class="p">&lt;</span><span class="n">Customer</span><span class="p">&gt;</span> <span class="n">customers</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// Initialize the CollectionView for the underlying model</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// and track the current selection.</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Customers</span> <span class="p">=</span> <span class="k">new</span> <span class="n">ListCollectionView</span><span class="p">(</span> <span class="n">customers</span> <span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">Customers</span><span class="p">.</span><span class="n">CurrentChanged</span> <span class="p">+=</span><span class="n">SelectedItemChanged</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="k">void</span> <span class="n">SelectedItemChanged</span><span class="p">(</span> <span class="kt">object</span> <span class="n">sender</span><span class="p">,</span> <span class="n">EventArgs</span> <span class="n">e</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Customer</span> <span class="n">current</span> <span class="p">=</span> <span class="n">Customers</span><span class="p">.</span><span class="n">CurrentItem</span> <span class="k">as</span> <span class="n">Customer</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">...</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">...</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>在视图中，您可以通过<strong>ItemsSource</strong>属性将<strong>ItemsControl</strong>（如<strong>ListBox）<strong>绑定到视图模型上的</strong>Customers</strong>属性，如此处所示。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;ListBox ItemsSource=&#34;{Binding Path=Customers}&#34;&gt;
+</span></span><span class="line"><span class="cl">    &lt;ListBox.ItemTemplate&gt;
+</span></span><span class="line"><span class="cl">        &lt;DataTemplate&gt;
+</span></span><span class="line"><span class="cl">            &lt;StackPanel&gt;
+</span></span><span class="line"><span class="cl">                &lt;TextBlock Text=&#34;{Binding Path=Name}&#34;/&gt;
+</span></span><span class="line"><span class="cl">            &lt;/StackPanel&gt;
+</span></span><span class="line"><span class="cl">        &lt;/DataTemplate&gt;
+</span></span><span class="line"><span class="cl">    &lt;/ListBox.ItemTemplate&gt;
+</span></span><span class="line"><span class="cl">&lt;/ListBox&gt;</span></span></code></pre></td></tr></table>
+</div>
+</div><p>当用户在UI中选择客户时，将通知视图模型，以便它可以应用与当前所选客户相关的命令。视图模型还可以通过调用集合视图对象上的方法以编程方式更改UI中的当前选择，如以下代码示例所示。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c#" data-lang="c#"><span class="line"><span class="cl"><span class="n">Customers</span><span class="p">.</span><span class="n">MoveCurrentToNext</span><span class="p">();</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>当选择在集合视图中更改时，UI会自动更新以直观地表示项目的选定状态。</p>
+<h3 id="命令" class="heading-element"><span>命令</span>
+  <a href="#%e5%91%bd%e4%bb%a4" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p>除了提供对要在视图中显示或编辑的数据的访问之外，视图模型还可能定义可由用户执行的一个或多个动作或操作。在WPF中，用户可以通过UI执行的操作或操作通常被定义为命令。命令提供了一种方便的方法来表示可以轻松绑定到UI中的控件的操作或操作。它们封装了实现操作或操作的实际代码，并有助于使其与视图中的实际可视化表示分离。</p>
+<p>当用户与视图交互时，用户可以以多种不同的方式直观地表示和调用命令。在大多数情况下，它们是通过鼠标单击调用的，但也可以通过快捷键按下，触摸手势或任何其他输入事件来调用它们。视图中的控件是绑定到视图模型命令的数据，以便用户可以使用控件定义的任何输入事件或手势来调用它们。视图中的UI控件与命令之间的交互可以是双向的。在这种情况下，可以在用户与UI交互时调用该命令，并且可以在启用或禁用基础命令时自动启用或禁用UI。</p>
+<p>视图模型可以将命令实现为<strong>命令方法</strong>或<strong>命令对象</strong>（实现<strong>ICommand</strong>接口的对象）。在任何一种情况下，视图与命令的交互都可以以声明方式定义，而不需要在视图的代码隐藏文件中使用复杂的事件处理代码。例如，WPF中的某些控件本身支持命令并提供<strong>Command</strong>属性，该属性可以是绑定到视图模型提供的<strong>ICommand</strong>对象的数据。在其他情况下，命令行为可用于将控件与视图模型提供的命令方法或命令对象相关联。</p>
+<p>**注意：**行为是一种功能强大且灵活的可扩展性机制，可用于封装交互逻辑和行为，然后可以与视图中的控件进行声明性关联。命令行为可用于将命令对象或方法与未专门设计用于与命令交互的控件相关联。</p>
+<p>以下部分描述了如何在视图中实现命令，命令方法或命令对象，以及如何将它们与视图中的控件相关联。</p>
+<h4 id="实现基于任务的委托命令" class="heading-element"><span>实现基于任务的委托命令</span>
+  <a href="#%e5%ae%9e%e7%8e%b0%e5%9f%ba%e4%ba%8e%e4%bb%bb%e5%8a%a1%e7%9a%84%e5%a7%94%e6%89%98%e5%91%bd%e4%bb%a4" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h4><p>在许多情况下，命令使用长时间运行的事务调用代码，这些事务无法阻止UI线程。对于这种情况，你应该使用<strong>FromAsyncHandler</strong>的方法<strong>DelegateCommand</strong>类，它创建的新实例<strong>DelegateCommand</strong>从一个异步处理方法。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c#" data-lang="c#"><span class="line"><span class="cl"><span class="c1">// DelegateCommand.cs</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">static</span> <span class="n">DelegateCommand</span> <span class="n">FromAsyncHandler</span><span class="p">(</span><span class="n">Func</span><span class="p">&lt;</span><span class="n">Task</span><span class="p">&gt;</span> <span class="n">executeMethod</span><span class="p">,</span> <span class="n">Func</span><span class="p">&lt;</span><span class="kt">bool</span><span class="p">&gt;</span> <span class="n">canExecuteMethod</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="k">new</span> <span class="n">DelegateCommand</span><span class="p">(</span><span class="n">executeMethod</span><span class="p">,</span> <span class="n">canExecuteMethod</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>例如，以下代码显示如何通过指定<strong>SignInAsync</strong>和<strong>CanSignIn</strong>视图模型方法的委托来构造表示登录命令的<strong>DelegateCommand</strong>实例。然后，该命令通过只读属性公开给视图，该属性返回对<a href="http://msdn.microsoft.com/en-us/library/windows/apps/windows.ui.xaml.input.icommand.aspx"target="_blank" rel="external nofollow noopener noreferrer"><strong>ICommand</strong></a>的引用。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c#" data-lang="c#"><span class="line"><span class="cl"><span class="c1">// SignInFlyoutViewModel.cs</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="n">DelegateCommand</span> <span class="n">SignInCommand</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="kd">private</span> <span class="k">set</span><span class="p">;</span>  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">...</span>
+</span></span><span class="line"><span class="cl"><span class="n">SignInCommand</span> <span class="p">=</span> <span class="n">DelegateCommand</span><span class="p">.</span><span class="n">FromAsyncHandler</span><span class="p">(</span><span class="n">SignInAsync</span><span class="p">,</span> <span class="n">CanSignIn</span><span class="p">);</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="实现命令对象" class="heading-element"><span>实现命令对象</span>
+  <a href="#%e5%ae%9e%e7%8e%b0%e5%91%bd%e4%bb%a4%e5%af%b9%e8%b1%a1" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p>命令对象是实现<strong>ICommand</strong>接口的对象。该接口定义了一个<strong>Execute</strong>方法，它封装了操作本身，以及一个<strong>CanExecute</strong>方法，它指示是否可以在特定时间调用该命令。这两种方法都只使用一个参数作为命令的参数。对命令对象中的操作的实现逻辑的封装意味着它可以更容易地进行单元测试和维护。</p>
+<p>实现<strong>ICommand</strong>接口非常简单。但是，您可以在应用程序中轻松使用此接口的许多实现。例如，您可以使用Blend for Visual Studio SDK中的<strong>ActionCommand</strong>类或Prism提供的<strong>DelegateCommand</strong>类。</p>
+<p><strong>注意：DelegateCommand</strong>可以在Prism.Commands命名空间中找到，该命名空间位于Prism.Core NuGet包中。</p>
+<p>Prism <strong>DelegateCommand</strong>类封装了两个委托，每个委托引用在视图模型类中实现的方法。它继承自<strong>DelegateCommandBase</strong>类，<strong>该类</strong>通过调用这些委托来实现<strong>ICommand</strong>接口的<strong>Execute</strong>和<strong>CanExecute</strong>方法。您可以在<strong>DelegateCommand</strong>类构造函数中为视图模型方法指定委托，其定义如下。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c#" data-lang="c#"><span class="line"><span class="cl"><span class="c1">// DelegateCommand.cs</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="k">class</span> <span class="nc">DelegateCommand</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span> <span class="p">:</span> <span class="n">DelegateCommandBase</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">DelegateCommand</span><span class="p">(</span><span class="n">Action</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span> <span class="n">executeMethod</span><span class="p">,</span><span class="n">Func</span><span class="p">&lt;</span><span class="n">T</span><span class="p">,</span><span class="kt">bool</span><span class="p">&gt;</span> <span class="n">canExecuteMethod</span> <span class="p">):</span> <span class="k">base</span><span class="p">((</span><span class="n">o</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="n">executeMethod</span><span class="p">((</span><span class="n">T</span><span class="p">)</span><span class="n">o</span><span class="p">),</span> <span class="p">(</span><span class="n">o</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="n">canExecuteMethod</span><span class="p">((</span><span class="n">T</span><span class="p">)</span><span class="n">o</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="p">...</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>例如，以下代码示例显示如何通过为<strong>OnSubmit</strong>和<strong>CanSubmit</strong>视图模型方法指定委托来构造表示<strong>Submit</strong>命令的<strong>DelegateCommand</strong>实例。然后，该命令通过只读属性公开给视图，该属性返回对<strong>ICommand</strong>的引用。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c#" data-lang="c#"><span class="line"><span class="cl"><span class="kd">public</span> <span class="k">class</span> <span class="nc">QuestionnaireViewModel</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">QuestionnaireViewModel</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="p">.</span><span class="n">SubmitCommand</span> <span class="p">=</span> <span class="k">new</span> <span class="n">DelegateCommand</span><span class="p">&lt;</span><span class="kt">object</span><span class="p">&gt;(</span>
+</span></span><span class="line"><span class="cl">                                        <span class="k">this</span><span class="p">.</span><span class="n">OnSubmit</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="n">CanSubmit</span> <span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">ICommand</span> <span class="n">SubmitCommand</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="kd">private</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="k">void</span> <span class="n">OnSubmit</span><span class="p">(</span><span class="kt">object</span> <span class="n">arg</span><span class="p">)</span>   <span class="p">{...}</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="kt">bool</span> <span class="n">CanSubmit</span><span class="p">(</span><span class="kt">object</span> <span class="n">arg</span><span class="p">)</span>  <span class="p">{</span> <span class="k">return</span> <span class="kc">true</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>当在<strong>DelegateCommand</strong>对象上调用<strong>Execute</strong>方法时，它只是通过您在构造函数中指定的委托将调用转发到视图模型类中的方法。同样，调用<strong>CanExecute</strong>方法时，将调用视图模型类中的相应方法。构造函数中<strong>CanExecute</strong>方法的委托是可选的。如果未指定<strong>委托</strong>，则<strong>DelegateCommand</strong>将始终为<strong>CanExecute</strong>返回<strong>true</strong>。</p>
+<p>该<strong>DelegateCommand</strong>类是一个泛型类型。type参数指定传递给<strong>Execute</strong>和<strong>CanExecute</strong>方法的命令参数的类型。在前面的示例中，command参数的类型为<strong>object</strong>。Prism还提供了非泛型版本的<strong>DelegateCommand</strong>类，以便在不需要命令参数时使用。</p>
+<p>视图模型可以通过调用<strong>DelegateCommand</strong>对象上的<strong>RaiseCanExecuteChanged</strong>方法来指示命令的<strong>CanExecute</strong>状态的更改。这会导致引发<strong>CanExecuteChanged</strong>事件。UI中绑定到该命令的任何控件都将更新其启用状态以反映绑定命令的可用性。</p>
+<p>可以使用<strong>ICommand</strong>接口的其他实现。Expression Blend SDK提供的<strong>ActionCommand</strong>类与前面描述的Prism的<strong>DelegateCommand</strong>类类似，但它仅支持单个<strong>Execute</strong>方法委托。Prism还提供了<strong>CompositeCommand</strong>类，它允许将<strong>DelegateCommands</strong>组合在一起执行。有关使用<strong>CompositeCommand</strong>类的更多信息，请参阅“ <a href="https://prismlibrary.github.io/docs/wpf/legacy/Advanced-MVVM.html"target="_blank" rel="external nofollow noopener noreferrer">高级MVVM方案</a> ”中的“复合命令” 。</p>
+<h4 id="从视图调用命令对象" class="heading-element"><span>从视图调用命令对象</span>
+  <a href="#%e4%bb%8e%e8%a7%86%e5%9b%be%e8%b0%83%e7%94%a8%e5%91%bd%e4%bb%a4%e5%af%b9%e8%b1%a1" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h4><p>有许多方法可以将视图中的控件与视图模型提供的命令对象相关联。某些WPF控件，特别是<strong>ButtonBase</strong>派生控件，如<strong>Button</strong>或<strong>RadioButton</strong>，以及<strong>Hyperlink</strong>或<strong>MenuItem</strong>派生控件，可以通过<strong>Command</strong>属性轻松地将数据绑定到命令对象。WPF还支持将视图模型<strong>ICommand</strong>绑定到<strong>KeyGesture</strong>。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;Button</span> <span class="na">Command=</span><span class="s">&#34;{Binding Path=SubmitCommand}&#34;</span> <span class="na">CommandParameter=</span><span class="s">&#34;SubmitOrder&#34;</span><span class="nt">/&gt;</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>也可以使用<strong>CommandParameter</strong>属性选择性地定义命令参数。预期参数的类型在<strong>Execute</strong>和<strong>CanExecute</strong>目标方法中指定。当用户与该控件交互时，控件将自动调用目标命令，并且命令参数（如果提供）将作为参数传递给命令的<strong>Execute</strong>方法。在前面的示例中，按钮将在<strong>单击</strong>时自动调用<strong>SubmitCommand</strong>。此外，如果指定了<strong>CanExecute</strong>处理程序，则在<strong>CanExecute</strong>返回<strong>false时</strong>将自动禁用该按钮，如果返回<strong>true</strong>，将启用它。</p>
+<p>另一种方法是使用Blend for Visual Studio 2013交互触发器和<strong>InvokeCommandAction</strong>行为。有关<strong>InvokeCommandAction</strong>行为以及将命令与事件关联的更多信息，请参阅“ <a href="https://prismlibrary.github.io/docs/wpf/legacy/Advanced-MVVM.html"target="_blank" rel="external nofollow noopener noreferrer">高级MVVM方案</a>”中的“交互触发器和命令” 。</p>
+<h4 id="数据验证和错误报告" class="heading-element"><span>数据验证和错误报告</span>
+  <a href="#%e6%95%b0%e6%8d%ae%e9%aa%8c%e8%af%81%e5%92%8c%e9%94%99%e8%af%af%e6%8a%a5%e5%91%8a" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h4><p>通常需要您的视图模型或模型来执行数据验证并向视图发出任何数据验证错误信号，以便用户可以采取行动纠正它们。</p>
+<p>WPF支持管理更改绑定到视图中控件的各个属性时发生的数据验证错误。对于与控件数据绑定的单个属性，视图模型或模型可以通过拒绝传入的错误值并抛出异常来表示属性设置器中的数据验证错误。如果数据绑定上的<strong>ValidatesOnExceptions</strong>属性为true，则WPF中的数据绑定引擎将处理该异常并向用户显示存在数据验证错误的可视提示。</p>
+<p>但是，应尽可能避免以这种方式抛出属性异常。另一种方法是在视图模型或模型类上实现IDataErrorInfo或INotifyDataErrorInfo接口。这些接口允许您的视图模型或模型对一个或多个属性值执行数据验证，并向视图返回错误消息，以便可以通知用户错误。</p>
+<h4 id="实现idataerrorinfo" class="heading-element"><span>实现IDataErrorInfo</span>
+  <a href="#%e5%ae%9e%e7%8e%b0idataerrorinfo" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h4><p>该<strong>IDataErrorInfo的</strong>接口提供了性能数据验证和错误报告的基本支持。它定义了两个只读属性：一个索引器属性，其属性名称为索引器参数，以及一个<strong>Error</strong>属性。两个属性都返回一个字符串值。</p>
+<p>indexer属性允许视图模型或模型类提供特定于命名属性的错误消息。空字符串或空返回值向视图指示已更改的属性值有效。的<strong>错误</strong>属性允许视图模型或模型类，以提供对整个对象的错误消息。但请注意，WPF数据绑定引擎当前不会调用此属性。</p>
+<p>所述<strong>IDataErrorInfo的</strong>时首先显示数据绑定属性索引器属性被访问，并且每当它随后被更改。因为为所有更改的属性调用了indexer属性，所以应该小心确保数据验证尽可能快速有效。</p>
+<p>将视图中的控件绑定到要通过<strong>IDataErrorInfo</strong>接口<strong>验证的</strong>属性时，请将数据绑定上的<strong>ValidatesOnDataErrors</strong>属性设置为<strong>true</strong>。这将确保数据绑定引擎将请求数据绑定属性的错误信息。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;TextBox
+</span></span><span class="line"><span class="cl">    Text=&#34;{Binding Path=CurrentEmployee.Name, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True }&#34;
+</span></span><span class="line"><span class="cl">/&gt;</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="实现inotifydataerrorinfo" class="heading-element"><span>实现INotifyDataErrorInfo</span>
+  <a href="#%e5%ae%9e%e7%8e%b0inotifydataerrorinfo" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h4><p>该<strong>INotifyDataErrorInfo</strong>界面比更灵活<strong>IDataErrorInfo的</strong>接口。它支持属性的多个错误，异步数据验证，以及在对象的错误状态更改时通知视图的能力。</p>
+<p>所述<strong>INotifyDataErrorInfo</strong>接口定义了一个<strong>HasErrors</strong>属性，该属性允许视图模型，以指示用于任何性质的误差（或多个误差）是否存在，和一个<strong>GetErrors</strong>方法，其允许视图模型返回错误消息的列表的特定属性。</p>
+<p>所述<strong>INotifyDataErrorInfo</strong>接口还限定<strong>ErrorsChanged</strong>事件。这通过允许视图或视图模型通过<strong>ErrorsChanged</strong>事件<strong>指示</strong>特定属性的错误状态更改来支持异步验证方案。可以通过多种方式更改属性值，而不仅仅是通过数据绑定 - 例如，作为Web服务调用或后台计算的结果。该<strong>ErrorsChanged</strong>事件使得一旦数据验证错误已被确定视图模型告知错误的观点。</p>
+<p>要支持<strong>INotifyDataErrorInfo</strong>，您需要维护每个属性的错误列表。Model-View-ViewModel参考实现（MVVM RI）演示了一种使用<strong>ErrorsContainer</strong>集合类来实现此目的的方法，该集合类跟踪对象中的所有验证错误。如果错误列表发生更改，它还会引发通知事件。以下代码示例显示了<strong>DomainObject</strong>（根模型对象），并使用<strong>ErrorsContainer</strong>类显示了<strong>INotifyDataErrorInfo</strong>的示例实现。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c#" data-lang="c#"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">abstract</span> <span class="k">class</span> <span class="nc">DomainObject</span> <span class="p">:</span> <span class="n">INotifyPropertyChanged</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">                                        <span class="n">INotifyDataErrorInfo</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">ErrorsContainer</span><span class="p">&lt;</span><span class="n">ValidationResult</span><span class="p">&gt;</span> <span class="n">errorsContainer</span> <span class="p">=</span>
+</span></span><span class="line"><span class="cl">                    <span class="k">new</span> <span class="n">ErrorsContainer</span><span class="p">&lt;</span><span class="n">ValidationResult</span><span class="p">&gt;(</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">pn</span> <span class="p">=&gt;</span> <span class="k">this</span><span class="p">.</span><span class="n">RaiseErrorsChanged</span><span class="p">(</span> <span class="n">pn</span> <span class="p">)</span> <span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="k">event</span> <span class="n">EventHandler</span><span class="p">&lt;</span><span class="n">DataErrorsChangedEventArgs</span><span class="p">&gt;</span> <span class="n">ErrorsChanged</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">bool</span> <span class="n">HasErrors</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">get</span> <span class="p">{</span> <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="n">ErrorsContainer</span><span class="p">.</span><span class="n">HasErrors</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">IEnumerable</span> <span class="n">GetErrors</span><span class="p">(</span> <span class="kt">string</span> <span class="n">propertyName</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="n">errorsContainer</span><span class="p">.</span><span class="n">GetErrors</span><span class="p">(</span> <span class="n">propertyName</span> <span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">protected</span> <span class="k">void</span> <span class="n">RaiseErrorsChanged</span><span class="p">(</span> <span class="kt">string</span> <span class="n">propertyName</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">var</span> <span class="n">handler</span> <span class="p">=</span> <span class="k">this</span><span class="p">.</span><span class="n">ErrorsChanged</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">handler</span> <span class="p">!=</span> <span class="kc">null</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">handler</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="k">new</span> <span class="n">DataErrorsChangedEventArgs</span><span class="p">(</span><span class="n">propertyName</span><span class="p">)</span> <span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">...</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="construction-and-wire-up" class="heading-element"><span>Construction and Wire-Up</span>
+  <a href="#construction-and-wire-up" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p>MVVM模式可以帮助您将UI与表示和业务逻辑和数据完全分离，因此在正确的类中实现正确的代码是有效使用MVVM模式的重要第一步。通过数据绑定和命令管理视图和视图模型类之间的交互也是需要考虑的重要方面。下一步是考虑如何在运行时实例化视图，视图模型和模型类并将它们相互关联。</p>
+<p>**注意：**如果在应用程序中使用依赖项注入容器，则选择适当的策略来管理此步骤尤为重要。托管可扩展性框架（MEF）和Unity应用程序块（Unity）都提供了指定视图，视图模型和模型类之间的依赖关系以及使容器满足它们的能力。有关更高级的方案，请参阅<a href="https://prismlibrary.github.io/docs/wpf/legacy/Advanced-MVVM.html"target="_blank" rel="external nofollow noopener noreferrer">高级MVVM方案</a>。</p>
+<p>通常，视图与其视图模型之间存在一对一的关系。视图和视图模型通过视图的数据上下文属性松散耦合; 这允许视图中的可视元素和行为是绑定到视图模型上的属性，命令和方法的数据。您将需要决定如何在运行时通过<strong>DataContext</strong>属性来管理视图的实例化以及查看模型类及其关联。</p>
+<p>在构建和连接视图和视图模型时也必须小心，以确保保持松耦合。如前一节所述，视图模型理想情况下不应依赖于视图的任何特定实现。同样，理想情况下，视图应该不依赖于视图模型的任何特定实现。</p>
+<p>**注意：**但是，应该注意，视图将<em>隐式</em>依赖于视图模型上的特定属性，命令和方法，因为它定义了数据绑定。如果视图模型未实现所需的属性，命令或方法，则数据绑定引擎将生成运行时异常，该异常将在调试期间显示在Visual Studio输出窗口中。</p>
+<p>可以通过多种方式在运行时构建视图和视图模型并将其关联。适合您的应用程序的方法在很大程度上取决于您是首先创建视图还是视图模型，以及是以编程方式还是以声明方式创建视图模型。以下部分描述了在运行时可以创建视图和视图模型类以及相互关联的常用方法。</p>
+<h4 id="使用xaml创建视图模型" class="heading-element"><span>使用XAML创建视图模型</span>
+  <a href="#%e4%bd%bf%e7%94%a8xaml%e5%88%9b%e5%bb%ba%e8%a7%86%e5%9b%be%e6%a8%a1%e5%9e%8b" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h4><p>也许最简单的方法是视图以声明方式在XAML中实例化其对应的视图模型。构造视图时，还将构造相应的视图模型对象。您还可以在XAML中指定将视图模型设置为视图的数据上下文。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;UserControl.DataContext&gt;
+</span></span><span class="line"><span class="cl">    &lt;my:MyViewModel/&gt;
+</span></span><span class="line"><span class="cl">&lt;/UserControl.DataContext&gt;</span></span></code></pre></td></tr></table>
+</div>
+</div><p>创建此视图时，将自动构建<strong>MyViewModel</strong>的实例并将其设置为视图的数据上下文。此方法要求您的视图模型具有默认（无参数）构造函数。</p>
+<p>视图的声明性构造和视图模型的分配具有以下优点：它很简单并且在诸如Microsoft Expression Blend或Microsoft Visual Studio的设计时工具中运行良好。此方法的缺点是视图具有相应视图模型类型的知识，并且视图模型类型必须具有默认构造函数。</p>
+<h4 id="以编程方式创建视图模型" class="heading-element"><span>以编程方式创建视图模型</span>
+  <a href="#%e4%bb%a5%e7%bc%96%e7%a8%8b%e6%96%b9%e5%bc%8f%e5%88%9b%e5%bb%ba%e8%a7%86%e5%9b%be%e6%a8%a1%e5%9e%8b" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h4><p>另一种方法是视图在其构造函数中以编程方式实例化其对应的视图模型实例。然后，它可以将其设置为其数据上下文，如以下代码示例所示。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c#" data-lang="c#"><span class="line"><span class="cl"><span class="kd">public</span> <span class="n">MyView</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">InitializeComponent</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="p">.</span><span class="n">DataContext</span> <span class="p">=</span> <span class="k">new</span> <span class="n">MyViewModel</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="使用视图模型定位器创建视图模型" class="heading-element"><span>使用视图模型定位器创建视图模型</span>
+  <a href="#%e4%bd%bf%e7%94%a8%e8%a7%86%e5%9b%be%e6%a8%a1%e5%9e%8b%e5%ae%9a%e4%bd%8d%e5%99%a8%e5%88%9b%e5%bb%ba%e8%a7%86%e5%9b%be%e6%a8%a1%e5%9e%8b" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h4><p>创建视图模型实例并将其与视图关联的另一种方法是使用视图模型定位器。</p>
+<p>Prism视图模型定位器具有<strong>AutoWireViewModel</strong>附加属性，在设置时调用<strong>ViewModelLocationProvider</strong>类中的<strong>AutoWireViewModelChanged</strong>方法来解析视图的视图模型。默认情况下，它使用基于约定的方法。</p>
+<p>在Basic MVVM QuickStart中，MainWindow.xaml使用视图模型定位器来解析视图模型。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;Window</span> <span class="na">x:Class=</span><span class="s">&#34;QuickStart.Views.MainWindow&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="err">...</span>
+</span></span><span class="line"><span class="cl">    <span class="na">xmlns:prism=</span><span class="s">&#34;http://prismlibrary.com/&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">prism:ViewModelLocator.AutoWireViewModel=</span><span class="s">&#34;True&#34;</span><span class="nt">&gt;</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>Prism的<strong>ViewModelLocator</strong>类有一个附加属性<strong>AutoWireViewMode</strong> l，当设置为true时，将尝试定位视图的视图模型，然后将视图的数据上下文设置为视图模型的实例。若要查找相应的视图模型，<strong>ViewModelLocationProvider</strong>首先尝试从<strong>ViewModelLocationProvider</strong>类的<strong>Register</strong>方法注册的任何映射中解析视图模型。如果使用此方法无法解析视图模型，例如，如果未创建映射，则<strong>ViewModelLocationProvider</strong>回归到基于约定的方法来解决正确的视图模型类型。此约定假定视图模型与视图类型在同一个程序集中，视图模型位于a。<strong>ViewModels</strong>子命名空间，该视图位于。<strong>查看</strong>子命名空间，该视图模型名称与视图名称对应，以“ViewModel”结尾。有关如何更改Prism的视图模型定位器约定的说明，请参阅<a href="https://prismlibrary.github.io/docs/wpf/legacy/Appendix-D-Extending-Prism.html"target="_blank" rel="external nofollow noopener noreferrer">附录D：扩展棱镜</a>。</p>
+<p><strong>注意：ViewModelLocationProvider</strong>可以在<strong>Prism.Core</strong> NuGet包中的<strong>Prism.Mvvm</strong>命名空间中找到。<strong>ViewModelLocator</strong>可以在<strong>Prism.WPF</strong> NuGet包中的<strong>Prism.Mvvm</strong>命名空间中找到。</p>
+<h4 id="创建定义为数据模板的视图" class="heading-element"><span>创建定义为数据模板的视图</span>
+  <a href="#%e5%88%9b%e5%bb%ba%e5%ae%9a%e4%b9%89%e4%b8%ba%e6%95%b0%e6%8d%ae%e6%a8%a1%e6%9d%bf%e7%9a%84%e8%a7%86%e5%9b%be" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h4><p>视图可以定义为数据模板并与视图模型类型相关联。数据模板可以定义为资源，也可以在显示视图模型的控件中内联定义。控件的“内容”是视图模型实例，数据模板用于直观地表示它。WPF将自动实例化数据模板，并在运行时将其数据上下文设置为视图模型实例。此技术是首先实例化视图模型，然后创建视图的情况的示例。</p>
+<p>数据模板灵活轻便。UI设计人员可以使用它们轻松定义视图模型的可视化表示，而无需任何复杂的代码。数据模板仅限于不需要任何UI逻辑（代码隐藏）的视图。Microsoft Blend for Visual Studio 2013可用于可视化设计和编辑数据模板。</p>
+<p>以下示例显示绑定到客户列表的<strong>ItemsControl</strong>。底层集合中的每个客户对象都是一个视图模型实例。客户的视图由内联数据模板定义。在以下示例中，每个客户视图模型的视图由一个<strong>StackPanel</strong>组成，其中标签和文本框控件绑定到视图模型上的<strong>Name</strong>属性。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;ItemsControl ItemsSource=&#34;{Binding Customers}&#34;&gt;
+</span></span><span class="line"><span class="cl">    &lt;ItemsControl.ItemTemplate&gt;
+</span></span><span class="line"><span class="cl">        &lt;DataTemplate&gt;
+</span></span><span class="line"><span class="cl">            &lt;StackPanel Orientation=&#34;Horizontal&#34;&gt;
+</span></span><span class="line"><span class="cl">                &lt;TextBlock VerticalAlignment=&#34;Center&#34; Text=&#34;Customer Name: &#34; /&gt;
+</span></span><span class="line"><span class="cl">                &lt;TextBox Text=&#34;{Binding Name}&#34; /&gt;
+</span></span><span class="line"><span class="cl">            &lt;/StackPanel&gt;
+</span></span><span class="line"><span class="cl">        &lt;/DataTemplate&gt;
+</span></span><span class="line"><span class="cl">    &lt;/ItemsControl.ItemTemplate&gt;
+</span></span><span class="line"><span class="cl">&lt;/ItemsControl&gt;</span></span></code></pre></td></tr></table>
+</div>
+</div><p>您还可以将数据模板定义为资源。以下示例显示了数据模板定义的资源，并通过<strong>StaticResource</strong>标记扩展应用于内容控件。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;UserControl ...&gt;
+</span></span><span class="line"><span class="cl">    &lt;UserControl.Resources&gt;
+</span></span><span class="line"><span class="cl">        &lt;DataTemplate x:Key=&#34;CustomerViewTemplate&#34;&gt;
+</span></span><span class="line"><span class="cl">            &lt;local:CustomerContactView /&gt;
+</span></span><span class="line"><span class="cl">        &lt;/DataTemplate&gt;
+</span></span><span class="line"><span class="cl">    &lt;/UserControl.Resources&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    &lt;Grid&gt;
+</span></span><span class="line"><span class="cl">        &lt;ContentControl Content=&#34;{Binding Customer}&#34;
+</span></span><span class="line"><span class="cl">                ContentTemplate=&#34;{StaticResource CustomerViewTemplate}&#34; /&gt;
+</span></span><span class="line"><span class="cl">    &lt;/Grid&gt;
+</span></span><span class="line"><span class="cl">&lt;/UserControl&gt;</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这里，数据模板包装了一个具体的视图类型。这允许视图定义代码隐藏行为。通过这种方式，数据模板机制可用于从外部提供视图和视图模型之间的关联。虽然前面的示例显示了<strong>UserControl</strong>资源中的模板，但它通常会放在应用程序的资源中以供重用。</p>
+<h3 id="关键决定" class="heading-element"><span>关键决定</span>
+  <a href="#%e5%85%b3%e9%94%ae%e5%86%b3%e5%ae%9a" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p>当您选择使用MVVM模式构建应用程序时，您将不得不做出某些难以在以后更改的设计决策。通常，这些决策是应用程序范围的，并且它们在整个应用程序中的一致使用将提高开发人员和设 以下总结了实现MVVM模式时最重要的决策：</p>
+<ul>
+<li>确定查看和查看您将使用的模型构造的方法。您需要确定您的应用程序是首先构造视图还是视图模型，以及是否使用依赖注入容器，例如Unity或MEF。您通常希望这在整个应用程序范围内保持一致。有关详细信息，请参阅部分，<a href="https://prismlibrary.github.io/docs/wpf/legacy/Implementing-MVVM.html#construction-and-wire-up"target="_blank" rel="external nofollow noopener noreferrer">建设和线向上</a>，这个主题和部分先进施工和线向上，在<a href="https://prismlibrary.github.io/docs/wpf/legacy/Advanced-MVVM.html"target="_blank" rel="external nofollow noopener noreferrer">高级MVVM方案</a>。</li>
+<li>确定是否将视图模型中的命令作为命令方法或命令对象公开。命令方法很容易公开，可以通过视图中的行为来调用。命令对象可以巧妙地封装命令和启用/禁用逻辑，并且可以通过行为或通过<strong>ButtonBase</strong>派生控件上的<strong>Command</strong>属性调用。为了使开发人员和设计人员更容易，最好将其作为应用程序范围内的选择。有关更多信息，请参阅本主题中的“ <a href="https://prismlibrary.github.io/docs/wpf/legacy/Implementing-MVVM.html#commands"target="_blank" rel="external nofollow noopener noreferrer">命令</a> ”一节。</li>
+<li>确定视图模型和模型如何向视图报告错误。您的模型可以支持<strong>IDataErrorInfo</strong>或<strong>INotifyDataErrorInfo</strong>。并非所有模型都需要报告错误信息，但对于那些模型，最好为开发人员提供一致的方法。有关详细信息，请参阅本主题中的“ <a href="https://prismlibrary.github.io/docs/wpf/legacy/Implementing-MVVM.html#data-validation-and-error-reporting"target="_blank" rel="external nofollow noopener noreferrer">数据验证和错误报告</a> ”部分。</li>
+<li>确定Microsoft Blend for Visual Studio 2013设计时数据支持对您的团队是否重要。如果您将使用Blend来设计和维护UI并希望查看设计时数据，请确保您的视图和视图模型提供的构造函数没有参数，并且您的视图提供了设计时数据上下文。或者，考虑使用Microsoft Blend for Visual Studio 2013提供的设计时功能，使用设计时属性，例如<strong>d：DataContext</strong>和<strong>d：DesignSource</strong>。有关更多信息，请参阅在<a href="https://prismlibrary.github.io/docs/wpf/legacy/Composing-the-UI.html"target="_blank" rel="external nofollow noopener noreferrer">编写用户界面中</a>创建设计器友好视图的准则。</li>
+</ul>
+</div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title="更新于 2019-07-01 17:09:22">更新于 2019-07-01&nbsp;</span>
+      </div><div class="post-info-license">
+            <span><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0 转载请注明来源</a></span>
+          </div></div><div class="post-info-line">
+        <div class="post-info-md"><span><a href="https://github.com/DDuuuu/issues/new?title=[BUG]%20Prism&#43;MVVM&amp;body=%7cField%7cValue%7c%0A%7c-%7c-%7c%0A%7cTitle%7cPrism&#43;MVVM%7c%0A%7cURL%7chttps://DDuuuu.github.io/2019/07/prism9-mvvm/%7c%0A%7cFilename%7c%7c" title="报告问题"target="_blank" rel="external nofollow noopener noreferrer" class="link-to-report">报告问题</a></span></div>
+        <div class="post-info-share">
+          <span></span>
+        </div>
+      </div></div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href="/tags/prism/" class="post-tag" title="标签 - Prism">Prism</a><a href="/tags/mvvm/" class="post-tag" title="标签 - MVVM">MVVM</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/2019/06/prism8-modular/" class="post-nav-item" rel="prev" title="Prism Modular"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>Prism Modular</a>
+      <a href="/2019/07/prism10-advancemvvm/" class="post-nav-item" rel="next" title="Prism 高级MVVM">Prism 高级MVVM<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div class="post-reward">
+    <div class="comment">为爱发电,请我喝杯咖啡吧</div>
+    <input type="checkbox" class="reward-input" name="reward" id="fi-reward" hidden />
+    <label class="reward-button" for="fi-reward"><i class="fa-solid fa-qrcode fa-fw" aria-hidden="true"></i>赞赏</label>
+    <div class="reward-ways" data-mode="static"><div><img loading="lazy" src="/images/alipay.jpg" alt="AndrewDu 支付宝" data-title="AndrewDu 支付宝" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/><span data-animation>支付宝</span>
+          </div><div><img loading="lazy" src="/images/wechat.jpg" alt="AndrewDu 微信" data-title="AndrewDu 微信" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/><span data-animation>微信</span>
+          </div></div>
+  </div><div id="comments"><div id="giscus" class="comment">
+          <script
+            src="https://giscus.app/client.js"
+            data-repo="DDuuuu/DDuuuu.github.io"
+            data-repo-id="R_kgDOMOxQVQ"
+            data-category="Announcements"
+            data-category-id="DIC_kwDOMOxQVc4Cgd23"
+            data-mapping="pathname"
+            data-strict="0"
+            
+            data-theme="preferred_color_scheme"
+            data-reactions-enabled="1"
+            data-emit-metadata="0"
+            data-input-position="bottom"
+            data-lang="zh-CN"
+            data-loading="lazy"
+            crossorigin="anonymous"
+            async
+            defer
+          ></script>
+        </div>
+        <noscript>
+          Please enable JavaScript to view the comments powered by <a href="https://giscus.app/" rel="external nofollow noopener noreferrer">giscus</a>.
+        </noscript></div></article>
+
+  <aside class="toc" id="toc-auto" aria-label="目录"><h2 class="toc-title">目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2018 - 2024</span><span class="author" itemprop="copyrightHolder">
+              <a href="https://github.com/DDuuuu"target="_blank" rel="external nofollow noopener noreferrer">AndrewDu</a></span></div><div class="footer-line statistics"><span class="site-time" title='网站运行中……'><i class="fa-solid fa-heartbeat fa-fw animate-icon" aria-hidden="true"></i><span class="ms-1 d-none">网站运行时间:</span><span class="run-times ms-1">网站运行中……</span></span></div><div class="footer-line visitor">
+          <span id="busuanzi_container_site_uv" title='总访客数'><i class="fa-regular fa-user fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span><span id="busuanzi_container_site_pv" class="footer-divider" title='总访问量'><i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span>
+        </div></div>
+  </footer></div><div class="widgets"><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role="button" aria-label="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i><span class="variant-numeric d-none">0%</span>
+        </div><div class="fixed-button view-comments d-none" role="button" aria-label="查看评论"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></div></div><a href="https://github.com/DDuuuu" title="AndrewDu GitHub"target="_blank" rel="external nofollow" class="github-corner right d-none-mobile"><svg viewBox="0 0 250 250" aria-hidden="true" width="56" height="56"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><div id="mask"></div><div class="reading-progress-bar" style="left: 0;top: 0;"></div><noscript>
+    <div class="noscript-warning">该网站在启用 JavaScript 的情况下效果最佳。</div>
+  </noscript>
+</div><link rel="stylesheet" href="/lib/lightgallery/css/lightgallery-bundle.min.css"><link rel="preload" href="/lib/katex/katex.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/lib/katex/katex.min.css"></noscript><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><link rel="stylesheet" href="/lib/pace/themes/blue/pace-theme-minimal.css"><script src="https://polyfill.io/v3/polyfill.min.js?features=Array.prototype.fill%2CArray.prototype.find%2CArray.from%2CIntersectionObserver%2CMath.sign%2CObject.assign%2CPromise%2CObject.entries%2Chtml5shiv%2CObject.values%2Cfetch%2CElement.prototype.after"></script><script src="/lib/object-fit-images/ofi.min.js"></script><script src="/lib/autocomplete/autocomplete.min.js" defer></script><script src="/lib/fuse/fuse.min.js" defer></script><script src="/lib/instant-page/instantpage.min.js" async defer type="module"></script><script src="/lib/twemoji/twemoji.min.js" defer></script><script src="/lib/lightgallery/lightgallery.min.js" defer></script><script src="/lib/lightgallery/plugins/thumbnail/lg-thumbnail.min.js" defer></script><script src="/lib/lightgallery/plugins/zoom/lg-zoom.min.js" defer></script><script src="/lib/typeit/index.umd.js" defer></script><script src="/lib/katex/katex.min.js" defer></script><script src="/lib/katex/auto-render.min.js" defer></script><script src="/lib/katex/copy-tex.min.js" defer></script><script src="/lib/katex/mhchem.min.js" defer></script><script src="/lib/cookieconsent/cookieconsent.min.js" defer></script><script src="/lib/pangu/pangu.min.js" defer></script><script src="/lib/cell-watermark/watermark.min.js" defer></script><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async defer></script><script src="/lib/pace/pace.min.js" async defer></script><script>window.config={"autoBookmark":true,"code":{"copyTitle":"复制到剪贴板","maxShownLines":999999},"comment":{"enable":true,"expired":false,"giscus":{"darkTheme":"dark","lightTheme":"light","origin":"https://giscus.app"}},"cookieconsent":{"content":{"dismiss":"同意","link":"了解更多","message":"本网站使用 Cookies 来改善您的浏览体验。"},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"enablePWA":true,"lightgallery":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"pangu":{"enable":true,"selector":"article"},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":12,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":100,"threshold":0.3,"type":"fuse","useExtendedSearch":false},"siteTime":"2018-02-22T04:10:22+08:00","twemoji":true,"typeit":{"cursorChar":"|","cursorSpeed":1000,"duration":-1,"loop":false,"speed":100},"version":"v0.3.8","watermark":{"colspacing":300,"content":"Andrew.Du","enable":true,"fontfamily":"inherit","fontsize":0.85,"height":20,"opacity":0.1,"rotate":15,"rowspacing":300,"width":150}};</script><script src="/js/theme.min.js" defer></script></body>
+</html>

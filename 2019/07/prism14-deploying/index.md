@@ -1,0 +1,66 @@
+# Prism Deploying
+
+
+注意：该版本为Prism6,最新版已有较大改动。
+
+要成功将Prism应用程序移植到生产环境中，您需要计划部署作为应用程序设计过程的一部分。本主题介绍了为**部署**准备组合或模块化应用程序所需执行的注意事项和操作，以及为将应用程序提供给用户所需执行的操作。
+
+### 部署应用程序
+
+WPF Prism应用程序可以由可执行文件和任意数量的附加DLL组成。主要的可执行文件是shell应用程序项目。一些额外的DLL将是应用程序的模块。可能有一些额外的DLL只是应用程序的shell和模块使用的共享程序集。此外，您可能拥有一组与应用程序一起部署的资源或内容文件。
+
+要部署WPF Prism应用程序，您有三种选择：
+
+- “XCopy部署”
+- ClickOnce部署
+- Windows Installer部署
+
+“XCopy部署”用作通过某种文件复制操作进行手动部署的通用术语，可能包括也可能不包括使用XCOPY命令行工具。如果选择以这种方式部署应用程序，则由您手动打包文件并将其移动到目标计算机。只要保持shell应用程序可执行文件，模块DLL和内容文件的预期文件夹结构和相对位置，应用程序就可以运行了。
+
+通常，需要更自动的部署方式，以确保将事物放置在正确的位置，并且用户可以轻松访问以运行应用程序。为方便起见，您可以选择使用ClickOnce或Windows Installer（.msi文件），具体取决于应用程序存在哪些其他安装要求。
+
+是否使用ClickOnce或Windows Installer的决定经常被误解。ClickOnce并非旨在成为一种通用的部署技术。它适用于需要在客户端计算机上进行低影响安装的应用程序。如果您的应用程序需要在安装时进行计算机范围的更改 - 例如安装驱动程序，与其他应用程序集成，安装服务以及超出仅运行可执行文件范围的其他内容，则ClickOnce可能不是适当的部署选择。但是，如果您在客户端计算机上进行了轻量级安装，并且希望从WPF应用程序的网络部署和更新中受益，则ClickOnce可能是一个很好的选择。
+
+要为应用程序创建Windows Installer部署包（.msi文件），您有多种选择，包括Visual Studio安装项目，Windows Installer XML（WiX）项目或众多第三方安装程序创建产品。
+
+### 使用ClickOnce部署WPF Prism应用程序
+
+ClickOnce是Windows Presentation Foundation（WPF）或Windows Forms部署机制，自2.0版以来一直是.NET Framework的一部分。ClickOnce支持从部署服务器通过网络自动部署和更新WPF应用程序。WPF Prism应用程序可以使用ClickOnce来获取部署到客户端计算机的shell，模块和任何其他依赖项。Prism应用程序的主要挑战是ClickOnce的Visual Studio发布过程不会自动在已发布的应用程序中包含动态加载的模块。
+
+使用ClickOnce部署WPF应用程序需要两个步骤。首先，您必须从Visual Studio发布应用程序，然后才能将其部署到客户端计算机。发布应用程序会生成两个清单（部署清单和应用程序清单），并将应用程序文件复制到发布目录。然后可以将该发布文件夹移动到可能无法从开发者计算机直接访问的另一服务器，以使得已发布的应用程序可从已知位置和URL访问客户端计算机。将应用程序部署到客户端计算机只需要提供用户可以导航到的URL或链接。URL指向发布部署服务器上的部署清单。在浏览器中加载该URL时 客户端计算机上的ClickOnce下载清单指定的清单和应用程序文件。下载文件并将其存储在用户配置文件下后，ClickOnce然后启动该应用程序。如果将后续更新发布到部署服务器，ClickOnce可以自动检测这些更新，下载并应用它们，或者有一些设置允许您在应用程序启动后按需或在后台检测和应用更新。
+
+当您发布具有动态加载模块的WPF Prism应用程序时，shell项目通常不会对动态加载的模块具有项目引用。因此，发布的ClickOnce应用程序清单也不包含这些模块文件，如果使用ClickOnce部署应用程序，则客户端计算机将无法获取模块文件。要解决此问题，您必须修改应用程序清单以包含shell应用程序项目未引用的模块文件。
+
+### ClickOnce发布流程
+
+您可以使用名为Manifest Generating and Editing工具（Mage）的Windows软件开发工具包（SDK）工具或使用ClickOnce发布API的自定义工具从Visual Studio 2013发布ClickOnce应用程序。Visual Studio公开了ClickOnce发布所需的大部分功能。但是，对于管理服务器上的ClickOnce部署的IT管理员，可能无法使用或不需要Visual Studio。Mage旨在解决ClickOnce的大多数常见管理任务; 它是一个轻量级的.NET Framework基于Windows的应用程序，可以提供给您的管理员。但是，Mage需要太多详细步骤（按正确顺序执行）才能成功完成常见任务，例如修改应用程序清单中列出的应用程序文件。为了使这些任务更简单，
+
+Manifest Manager Utility示例实用程序演示了如何使用ClickOnce发布API以更简单的方式管理部署和应用程序清单。此实用程序用于在单个用户界面（UI）中更新应用程序清单文件列表和部署清单设置，本主题后面的部分将介绍其用法，以便初步部署和更新Prism应用程序。Manifest Manager Utility使用**Microsoft.Build.Tasks.Deployment**命名空间中公开的API 来加载，操作和保存ClickOnce部署的已修改清单文件。您可以下载[Manifest Manager Utility](http://compositewpf.codeplex.com/releases/view/14771)来自Codeplex的Prism社区网站。要了解发布和更新使用动态模块加载的WPF Prism应用程序所涉及的具体步骤，请参阅[WPF Prism部署动手实验：使用ClickOnce发布和更新](http://prismlibrary.github.io/docs/wpf/legacy/Appendix-E-Click-Once.html)。
+
+下图显示了ClickOnce应用程序发布的典型结构，基于Visual Studio在使用ClickOnce发布应用程序时生成部署文件夹的方式。它包含应用程序的根文件夹，其中包含默认部署清单（.application文件）。默认部署清单通常指向Visual Studio生成的最近发布的版本，但可以将其更改为指向管理员选择的任何版本。根文件夹还包含Setup.exe引导程序，它允许您在使用ClickOnce部署应用程序之前部署可能需要运行安装程序或可执行文件的应用程序的先决条件。然后有一个特定于应用程序的文件的子文件夹，在其下为您发布的每个版本获取单独的子文件夹。发布版本是部署清单文件中的单独项目设置和条目，用于对部署作为整体进行版本控制，而不是包含的程序集的各个程序集版本。ClickOnce使用发布版本来确定何时可以从已安装ClickOnce应用程序的客户端获得更新。
+
+![ClickOnce发布文件夹结构](/prism/Ch10DeployingFig1.png)
+
+### ClickOnce发布文件夹结构
+
+在每个发布版本的应用程序文件文件夹下，您拥有可用于将特定版本部署到客户端计算机的部署清单（.application文件）的另一个副本，或者可以将其复制到根文件夹以导致服务器端回滚到以前的版本。除了任何依赖库（例如Prism模块程序集）和资源文件之外，应用程序可执行文件也将位于此文件夹中，并且在由Visual Studio发布时将自动以.deploy文件扩展名为后缀。这样做是为了简化发布Web服务器上的文件扩展名映射，这样您就不必下载.dll，.exe以及组成应用程序的大量其他潜在文件类型。
+
+应用程序清单（.exe.manifest）文件也包含在此文件夹中，并由部署清单引用。它包含应用程序组成的文件列表，每个文件都有哈希值，以帮助进行变更检测; 它还包含应用程序运行所需的权限列表，因为如果需要，ClickOnce可以在部分信任AppDomain中启动应用程序。
+
+如果使用Mage或自定义工具手动生成或更新ClickOnce应用程序发布，则不限于此文件夹和文件结构。对于任何特定的ClickOnce发布，依赖链包括以下内容：
+
+- 它包括一个部署清单，通过嵌入的代码库URL指向应用程序清单。
+- 它包括一个应用程序清单，其中包含每个应用程序文件的相对路径。这些文件必须位于应用程序清单所在的同一文件夹或子文件夹中。
+
+它包括应用程序文件本身，通常在文件名后附加.deploy文件扩展名，以简化将这些文件映射到部署服务器上的MIME类型。下载文件后，ClickOnce会自动剥离客户端上的.deploy文件扩展名。
+
+### ClickOnce部署和更新过程
+
+通过ClickOnce将应用程序实际部署到用户几乎总是通过在部署服务器上提供已发布应用程序的部署清单的URL或超链接来启动。用户可以单击超链接或在浏览器中输入地址，并调用ClickOnce部署过程。将清单和应用程序文件下载到客户端计算机后，将启动该应用程序。有一些ClickOnce选项允许您在初始部署期间安装应用程序以供脱机使用，或者您可以要求用户每次都使用链接或URL启动应用程序。将新版本的应用程序发布到部署服务器时，ClickOnce可以自动或手动检查更新，并在下次启动应用程序时下载并应用更新。
+
+
+---
+
+> 作者: [AndrewDu](https://github.com/DDuuuu)  
+> URL: https://DDuuuu.github.io/2019/07/prism14-deploying/  
+

@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>EventAggregator - 标签 - AndrewDu&#39;s blog</title>
+    <link>https://DDuuuu.github.io/tags/eventaggregator/</link>
+    <description>EventAggregator - 标签 | AndrewDu&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>978089234@qq.com (AndrewDu)</managingEditor>
+      <webMaster>978089234@qq.com (AndrewDu)</webMaster><copyright>Copyright© Andrew.Du</copyright><lastBuildDate>Tue, 25 Jun 2019 17:09:22 &#43;0800</lastBuildDate><atom:link href="https://DDuuuu.github.io/tags/eventaggregator/" rel="self" type="application/rss+xml" /><item>
+  <title>Prism Event Aggregator</title>
+  <link>https://DDuuuu.github.io/2019/06/prism4-eventaggregator/</link>
+  <pubDate>Tue, 25 Jun 2019 17:09:22 &#43;0800</pubDate>
+  <author>AndrewDu</author>
+  <guid>https://DDuuuu.github.io/2019/06/prism4-eventaggregator/</guid>
+  <description><![CDATA[注意：该版本为Prism6,最新版已有较大改动。 Prism库提供了一种事件机制，可以在应用程序中松散耦合的组件之间进行通信。该机制基于事件聚]]></description>
+</item>
+</channel>
+</rss>

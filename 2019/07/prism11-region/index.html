@@ -1,0 +1,1627 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>Prism Region - AndrewDu&#39;s blog</title><meta name="author" content="AndrewDu">
+<meta name="author-link" content="https://github.com/DDuuuu">
+<meta name="description" content="注意：该版本为Prism6,最新版已有较大改动。 复合应用程序用户界面（UI）由松散耦合的可视组件组成，这些组件称为View，通常包含在应用程" /><meta name="keywords" content='Prism, Region' />
+  <meta itemprop="name" content="Prism Region">
+  <meta itemprop="description" content="注意：该版本为Prism6,最新版已有较大改动。 复合应用程序用户界面（UI）由松散耦合的可视组件组成，这些组件称为View，通常包含在应用程">
+  <meta itemprop="datePublished" content="2019-07-03T17:09:22+08:00">
+  <meta itemprop="dateModified" content="2019-07-03T17:09:22+08:00">
+  <meta itemprop="wordCount" content="23852">
+  <meta itemprop="image" content="https://DDuuuu.github.io/images/logo150.png">
+  <meta itemprop="keywords" content="Prism,Region"><meta property="og:url" content="https://DDuuuu.github.io/2019/07/prism11-region/">
+  <meta property="og:site_name" content="AndrewDu&#39;s blog">
+  <meta property="og:title" content="Prism Region">
+  <meta property="og:description" content="注意：该版本为Prism6,最新版已有较大改动。 复合应用程序用户界面（UI）由松散耦合的可视组件组成，这些组件称为View，通常包含在应用程">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2019-07-03T17:09:22+08:00">
+    <meta property="article:modified_time" content="2019-07-03T17:09:22+08:00">
+    <meta property="article:tag" content="Prism">
+    <meta property="article:tag" content="Region">
+    <meta property="og:image" content="https://DDuuuu.github.io/images/logo150.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://DDuuuu.github.io/images/logo150.png">
+  <meta name="twitter:title" content="Prism Region">
+  <meta name="twitter:description" content="注意：该版本为Prism6,最新版已有较大改动。 复合应用程序用户界面（UI）由松散耦合的可视组件组成，这些组件称为View，通常包含在应用程">
+<meta name="application-name" content="Andrew.Du">
+<meta name="apple-mobile-web-app-title" content="Andrew.Du"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://DDuuuu.github.io/2019/07/prism11-region/" /><link rel="prev" href="https://DDuuuu.github.io/2019/07/prism10-advancemvvm/" /><link rel="next" href="https://DDuuuu.github.io/2019/07/prism12-navigation/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Prism Region",
+    "inLanguage": "zh-CN",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https:\/\/DDuuuu.github.io\/2019\/07\/prism11-region\/"
+    },"image": ["https:\/\/DDuuuu.github.io\/images\/logo192.png"],"genre": "posts","keywords": "Prism, Region","wordcount":  23852 ,
+    "url": "https:\/\/DDuuuu.github.io\/2019\/07\/prism11-region\/","datePublished": "2019-07-03T17:09:22+08:00","dateModified": "2019-07-03T17:09:22+08:00","license": "Copyright© Andrew.Du","publisher": {
+      "@type": "Organization",
+      "name": "AndrewDu"},"author": {
+        "@type": "Person",
+        "name": "AndrewDu"
+      },"description": ""
+  }
+  </script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage?.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper" data-page-style="normal"><header class="desktop animate__faster" id="header-desktop">
+  <div class="header-wrapper" data-github-corner="right">
+    <div class="header-title">
+      <a href="/" title="AndrewDu&#39;s blog"><span class="typeit"><template>AndrewDu&#39;s blog</template></span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/"
+                title="主页"
+                
+              ><i class="fa-solid fa-home fa-fw fa-sm" aria-hidden="true"></i> 主页</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/archives/"
+                title="归档"
+                
+              ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 归档</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              ><i class="fa-solid fa-folder-tree fa-fw fa-sm" aria-hidden="true"></i> 类别</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/about/"
+                
+                
+              ><i class="fa-solid fa-link fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item delimiter"></li><li class="menu-item search" id="search-desktop">
+            <input type="text" placeholder="搜索文章标题或内容……" id="search-input-desktop">
+            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+              <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+            </a>
+            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+              <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+            </a>
+            <span class="search-button search-loading" id="search-loading-desktop">
+              <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+            </span>
+          </li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><header class="mobile animate__faster" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="AndrewDu&#39;s blog"><span class="typeit"><template>AndrewDu&#39;s blog</template></span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li class="search-wrapper">
+            <div class="search mobile" id="search-mobile">
+              <input type="text" placeholder="搜索文章标题或内容……" id="search-input-mobile">
+              <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+              </a>
+              <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+              </a>
+              <span class="search-button search-loading" id="search-loading-mobile">
+                <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+              </span>
+            </div>
+            <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+              取消
+            </a>
+          </li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/"
+                  title="主页"
+                  
+                ><i class="fa-solid fa-home fa-fw fa-sm" aria-hidden="true"></i> 主页</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/archives/"
+                  title="归档"
+                  
+                ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 归档</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/categories/"
+                  
+                  
+                ><i class="fa-solid fa-folder-tree fa-fw fa-sm" aria-hidden="true"></i> 类别</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/about/"
+                  
+                  
+                ><i class="fa-solid fa-link fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item menu-system">
+          <span class="menu-system-item theme-switch" title="切换主题"><i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i></span></li>
+      </ul>
+    </nav>
+  </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+  </div>
+  <div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+  </div><nav aria-label="breadcrumb" class="breadcrumb-container sticky">
+    <ol class="breadcrumb"><li class="breadcrumb-item"><a href="/" title="AndrewDu&#39;s Blog">主页</a></li><li class="breadcrumb-item"><a href="/posts/" title="Posts">文章</a></li><li class="breadcrumb-item active" aria-current="page">Prism Region</li>
+    </ol>
+  </nav><main class="container"><aside class="aside-collection animate__animated animate__fadeIn animate__faster" aria-label="合集"></aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX"><span>Prism Region</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><a href="https://github.com/DDuuuu" title="作者"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+    AndrewDu</a></span><span class="post-included-in">&nbsp;收录于 <a href="/categories/prism/" class="post-category" title="分类 - Prism"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> Prism</a></span></div><div class="post-meta-line"><span title="发布于 2019-07-03 17:09:22"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2019-07-03">2019-07-03</time></span>&nbsp;<span title="23852 字"><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>约 23900 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>预计阅读 48 分钟</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="Prism Region">
+              <i class="fa-regular fa-eye fa-fw me-1" aria-hidden="true"></i><span id="busuanzi_value_page_pv">-</span>&nbsp;次阅读
+            </span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>目录</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#ui布局概念">UI布局概念</a></li>
+        <li><a href="#shell">shell</a></li>
+        <li><a href="#views">Views</a>
+          <ul>
+            <li><a href="#composite-views">Composite Views</a></li>
+            <li><a href="#视图和设计模式">视图和设计模式</a></li>
+          </ul>
+        </li>
+        <li><a href="#commands-ui-triggers-actions-and-behaviors">Commands, UI Triggers, Actions, and Behaviors</a>
+          <ul>
+            <li>
+              <ul>
+                <li><a href="#命令">命令</a></li>
+                <li><a href="#ui-triggers-actions-and-behaviors">UI Triggers, Actions, and Behaviors</a></li>
+                <li><a href="#用户交互">用户交互</a></li>
+              </ul>
+            </li>
+            <li><a href="#数据绑定">数据绑定</a></li>
+          </ul>
+        </li>
+        <li><a href="#regions">Regions</a>
+          <ul>
+            <li><a href="#region-manager">Region Manager</a></li>
+            <li><a href="#region-implementation">Region Implementation</a>
+              <ul>
+                <li><a href="#模块用户控制到区域映射">模块用户控制到区域映射</a></li>
+              </ul>
+            </li>
+            <li><a href="#default-region-functionality">Default Region Functionality</a>
+              <ul>
+                <li><a href="#region-adapter">Region Adapter</a></li>
+                <li><a href="#region-behaviors">Region Behaviors</a></li>
+                <li><a href="#注册行为">注册行为</a></li>
+                <li><a href="#auto-population-behavior">Auto-Population Behavior</a></li>
+                <li><a href="#region-context-behaviors">Region Context Behaviors</a></li>
+                <li><a href="#activation-behavior">Activation Behavior</a></li>
+                <li><a href="#region-lifetime-behavior">Region Lifetime Behavior</a></li>
+                <li><a href="#control-specific-behaviors">Control-Specific Behaviors</a></li>
+              </ul>
+            </li>
+            <li><a href="#extending-the-region-implementation">Extending the Region Implementation</a></li>
+          </ul>
+        </li>
+        <li><a href="#view-composition">View Composition</a>
+          <ul>
+            <li><a href="#view-discovery">View Discovery</a></li>
+            <li><a href="#view-injection">View Injection</a></li>
+            <li><a href="#view-injection-1">View Injection</a></li>
+            <li><a href="#使用view-discovery与view-injection">使用View Discovery与View Injection</a></li>
+          </ul>
+        </li>
+        <li><a href="#ui布局方案">UI布局方案</a></li>
+        <li><a href="#实现shell">实现Shell</a>
+          <ul>
+            <li><a href="#股票交易员ri-shell">股票交易员RI Shell</a></li>
+          </ul>
+        </li>
+        <li><a href="#定义区域">定义区域</a>
+          <ul>
+            <li><a href="#股票交易者ri-shell-regions">股票交易者RI shell Regions</a></li>
+            <li><a href="#iregion">IRegion</a></li>
+            <li><a href="#adding-a-region-in-xaml">Adding a Region in XAML</a></li>
+            <li><a href="#adding-a-region-by-using-code">Adding a Region by Using Code</a></li>
+          </ul>
+        </li>
+        <li><a href="#displaying-views-in-a-region-when-the-region-loads">Displaying Views in a Region When the Region Loads</a></li>
+        <li><a href="#displaying-views-in-a-region-programmatically">Displaying Views in a Region Programmatically</a>
+          <ul>
+            <li><a href="#region-navigation">Region Navigation</a></li>
+            <li><a href="#ordering-views-in-a-region">Ordering Views in a Region</a></li>
+          </ul>
+        </li>
+        <li><a href="#在多个区域之间共享数据">在多个区域之间共享数据</a></li>
+        <li><a href="#创建区域的多个实例">创建区域的多个实例</a></li>
+        <li><a href="#创建视图">创建视图</a></li>
+        <li><a href="#用户控件">用户控件</a>
+          <ul>
+            <li><a href="#自定义控件">自定义控件</a></li>
+            <li><a href="#数据模板">数据模板</a></li>
+            <li><a href="#资源">资源</a>
+              <ul>
+                <li><a href="#application-resources">Application Resources</a></li>
+                <li><a href="#module-resources">Module Resources</a></li>
+                <li><a href="#control-resources">Control Resources</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><a href="#ui设计指南">UI设计指南</a>
+          <ul>
+            <li><a href="#设计用户界面的指南">设计用户界面的指南</a></li>
+            <li><a href="#容器组成">容器组成</a></li>
+            <li><a href="#在设计时查看复合应用程序">在设计时查看复合应用程序</a></li>
+            <li><a href="#布局">布局</a></li>
+            <li><a href="#动画">动画</a></li>
+            <li><a href="#运行时优化">运行时优化</a></li>
+            <li><a href="#设计时优化">设计时优化</a></li>
+            <li><a href="#large-solutions-with-many-xaml-resources">Large Solutions with Many XAML Resources</a></li>
+            <li><a href="#xamlassets">XAMLAssets</a></li>
+            <li><a href="#visual-designers-and-referenced-assemblies">Visual Designers and Referenced Assemblies</a></li>
+          </ul>
+        </li>
+        <li><a href="#创建设计友好视图的指南">创建设计友好视图的指南</a>
+          <ul>
+            <li><a href="#编码设计时间">编码设计时间</a></li>
+            <li><a href="#减少设计时用户代码中的问题">减少设计时用户代码中的问题</a></li>
+            <li><a href="#了解用户控制代码何时在设计时执行">了解用户控制代码何时在设计时执行</a></li>
+            <li><a href="#设计时属性">设计时属性</a>
+              <ul>
+                <li><a href="#ddatacontext属性">d：DataContext属性</a></li>
+                <li><a href="#ddesigninstance标记扩展">d：DesignInstance标记扩展</a></li>
+                <li><a href="#typical-ddatacontext-scenario">Typical d:DataContext Scenario</a></li>
+              </ul>
+            </li>
+            <li><a href="#使用设计时样本数据">使用设计时样本数据</a></li>
+          </ul>
+        </li>
+        <li><a href="#using-design-time-sample-data">Using Design-Time Sample Data</a>
+          <ul>
+            <li><a href="#示例数据源">示例数据源</a></li>
+            <li><a href="#混合xml示例数据">混合XML示例数据</a></li>
+            <li><a href="#visual-studio-2013和visual-studio-2013-xaml示例数据的混合">Visual Studio 2013和Visual Studio 2013 XAML示例数据的混合</a></li>
+            <li><a href="#xaml资源">XAML资源</a>
+              <ul>
+                <li><a href="#code">Code</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><a href="#ui布局关键决策">UI布局关键决策</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+      </div><div class="content" id="content" data-end-flag="感谢阅读！"><p>注意：该版本为Prism6,最新版已有较大改动。</p>
+<p>复合应用程序用户界面（UI）由松散耦合的可视组件组成，这些组件称为<strong>View</strong>，通常包含在应用程序模块中，但它们并非必须如此。如果将应用程序划分为模块，则需要一些方法来松散地组合UI，但即使视图不在模块中，您也可以选择使用此方法。对用户而言，该应用程序提供了无缝的用户体验，并提供了完全集成的应用程序。</p>
+<p>要构建UI，您需要一个体系结构，允许您创建由在运行时生成的松散耦合的可视元素组成的布局。此外，该体系结构应该为这些可视元素提供以松散耦合方式进行通信的策略。</p>
+<p>可以使用以下范例之一构建应用程序UI：</p>
+<ul>
+<li>表单的所有必需控件都包含在单个可扩展应用程序标记语言（<strong>XAML</strong>）文件中，在设计时组成表单。</li>
+<li>表单的逻辑区域被分成不同的部分，通常是用户控件。部件由表单引用，表单在设计时组成。</li>
+<li>表单的逻辑区域被分成不同的部分，通常是用户控件。表单中的部分未知，并在运行时动态添加到表单中。使用此方法的应用程序称为使用UI组合模式的复合应用程序。</li>
+</ul>
+<p>股票交易者参考实施（股票交易者RI）是通过将来自不同模块的多个视图加载到由shell公开的区域组成的，如下图所示。</p>
+<p><img loading="lazy" src="/prism/Ch7UIFig11.png" alt="股票交易者RI地区和视图" srcset="/prism/Ch7UIFig11.png?size=small, /prism/Ch7UIFig11.png?size=medium 1.5x, /prism/Ch7UIFig11.png?size=large 2x" data-title="股票交易者RI地区和视图" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<h3 id="ui布局概念" class="heading-element"><span>UI布局概念</span>
+  <a href="#ui%e5%b8%83%e5%b1%80%e6%a6%82%e5%bf%b5" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p>复合应用程序中的根对象称为<em>shell</em>。shell充当应用程序的母版页。shell包含一个或多个regions。regions是将在运行时加载的内容的占位符。区域附加到UI元素，例如<strong>ContentControl</strong>，<strong>ItemsControl</strong>，<strong>TabControl</strong>或自定义控件，并管理UI元素的内容。区域内容可以自动或按需加载，具体取决于应用程序要求。</p>
+<p>通常，区域的内容是视图。视图将您希望保留的UI的一部分封装为尽可能与应用程序的其他部分分离。您可以将视图定义为用户控件，数据模板甚至自定义控件。</p>
+<p>区域管理视图的显示和布局。区域可以通过其名称以分离的方式访问，并支持动态添加或删除视图。区域附加到主机控件。将区域视为动态加载视图的容器。</p>
+<p>以下部分介绍了复合应用程序开发的高级核心概念。</p>
+<h3 id="shell" class="heading-element"><span>shell</span>
+  <a href="#shell" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p>shell是包含主UI内容的应用程序根对象。在Windows Presentation Foundation（WPF）应用程序中，shell是<strong>Window</strong>对象。</p>
+<p>shell扮演master page的角色，为应用程序提供布局结构。shell包含一个或多个named regions，其中模块可以指定将显示的视图。它还可以定义某些顶级UI元素，例如背景，主菜单和工具栏。</p>
+<p>shell定义了应用程序的整体外观。它可以定义在shell布局本身中存在和可见的样式和边框，还可以定义将应用于插入到shell中的视图的样式，模板和主题。</p>
+<p>通常，shell是WPF应用程序项目的一部分。包含shell的程序集可能引用也可能不引用包含要在shell的区域中加载的视图的程序集。</p>
+<h3 id="views" class="heading-element"><span>Views</span>
+  <a href="#views" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p>View是复合应用程序中UI构造的主要单元。您可以将视图定义为 user control，page，data template或custom control。视图将您希望保留的UI的一部分封装为尽可能与应用程序的其他部分分离。您可以根据封装或功能选择视图中的内容，也可以选择将某些内容定义为视图，因为您的应用程序中将包含该视图的多个实例。</p>
+<p>由于WPF的内容模型，定义视图所需的Prism库没有特定的内容。定义视图的最简单方法是定义用户控件。要向UI添加视图，您只需要一种方法来构建它并将其添加到容器中。WPF提供了执行此操作的机制。Prism Library添加了定义可在运行时动态添加视图的区域的功能。</p>
+<h4 id="composite-views" class="heading-element"><span>Composite Views</span>
+  <a href="#composite-views" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h4><p>支持特定功能的视图可能会变得复杂。在这种情况下，您可能希望将视图划分为多个子视图，并让父视图句柄通过将子视图用作部件来构建自身。应用程序可能会在设计时静态地执行此操作，或者它可能支持让模块在运行时通过包含的区域添加子视图。如果某个视图未在单个视图类中完全定义，则可以将其称为复合视图。在许多情况下，复合视图负责构建子视图和协调它们之间的交互。您可以使用Prism Library命令和事件聚合器设计从其兄弟视图及其父组合视图中更松散耦合的子视图。</p>
+<h4 id="视图和设计模式" class="heading-element"><span>视图和设计模式</span>
+  <a href="#%e8%a7%86%e5%9b%be%e5%92%8c%e8%ae%be%e8%ae%a1%e6%a8%a1%e5%bc%8f" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h4><p>虽然Prism Library不要求您使用它们，但在实现视图时应考虑使用多种UI设计模式之一。Stock Trader RI和QuickStart演示了Model-View-ViewModel（MVVM）模式，作为在视图布局和视图逻辑之间实现清晰分离的一种方式。</p>
+<p>建议使用MVVM UI设计模式，因为它非常适合Microsoft XAML平台。这些平台的依赖属性系统和富数据绑定堆栈使视图和视图模型能够以松散耦合的方式进行通信。</p>
+<p>将逻辑与视图分离对于可测试性和可维护性非常重要，并且它改进了开发人员 - 设计人员的工作流程。</p>
+<p>如果使用用户控件或自定义控件创建视图并将所有逻辑放在代码隐藏文件中，则您的视图可能难以测试，因为您必须创建视图实例以对逻辑进行单元测试。如果视图派生或依赖于将WPF组件作为其执行上下文的一部分运行，则这是一个问题。为了确保您可以在没有这些依赖关系的情况下单独测试视图逻辑，您需要能够创建视图的模型以删除执行上下文的依赖关系，这需要视图和逻辑的单独类。</p>
+<p>如果将视图定义为数据模板，则没有与视图本身关联的代码。因此，您必须将关联逻辑放在其他位置。逻辑与可测试性所需的布局清晰分离也有助于使视图更易于维护。</p>
+<p>注意：单元测试和UI自动化测试是两种不同类型的测试，具有不同的覆盖范围。*</p>
+<p>单元测试最佳实践建议单独测试对象。要实现对象隔离，每个外部依赖项都需要一个模型或存根。然后针对该对象运行粒度单元测试。</p>
+<p><em>UI自动化测试运行应用程序，将手势应用于UI，然后测试预期结果。此类测试验证UI元素是否正确连接到应用程序逻辑。</em></p>
+<p>将逻辑与视图分开可以清晰地分离关注点。除了可测试性考虑因素之外，这种分离使设计人员能够独立于开发人员在UI上工作。有关MVVM的更多信息，请参阅<a href="http://prismlibrary.github.io/docs/wpf/legacy/Implementing-MVVM.html"target="_blank" rel="external nofollow noopener noreferrer">实现MVVM模式</a>。</p>
+<h3 id="commands-ui-triggers-actions-and-behaviors" class="heading-element"><span>Commands, UI Triggers, Actions, and Behaviors</span>
+  <a href="#commands-ui-triggers-actions-and-behaviors" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p>在代码隐藏文件中使用其逻辑实现视图时，可以向服务UI交互添加事件处理程序。但是，使用MVVM时，视图模型无法直接处理UI引发的事件。要将UI手势事件路由到视图模型，您可以使用命令或UI触发器，操作和行为。</p>
+<h5 id="命令" class="heading-element"><span>命令</span>
+  <a href="#%e5%91%bd%e4%bb%a4" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h5><p>命令将语义和从执行命令的逻辑调用命令的对象分开。内置命令是指示操作是否可用的能力。UI中的命令是绑定到视图模型上的<strong>ICommand</strong>属性的数据。有关命令的详细信息，请参阅<a href="http://prismlibrary.github.io/docs/wpf/legacy/Implementing-MVVM.html#commands"target="_blank" rel="external nofollow noopener noreferrer">命令</a>在<a href="http://prismlibrary.github.io/docs/wpf/legacy/Implementing-MVVM.html"target="_blank" rel="external nofollow noopener noreferrer">实现MVVM模式</a>。</p>
+<h5 id="ui-triggers-actions-and-behaviors" class="heading-element"><span>UI Triggers, Actions, and Behaviors</span>
+  <a href="#ui-triggers-actions-and-behaviors" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h5><p>触发器，操作和行为是<strong>Microsoft.Expression.Interactivity</strong>命名空间的一部分，随Blend for Visual Studio 2013一起提供。它们也是Blend SDK的一部分。触发器，操作和行为提供了一个用于处理UI事件或命令的综合API，然后将它们路由到<strong>DataContext</strong>公开的<strong>ICommand</strong>属性方法。有关UI触发器，操作和行为的更多信息，请参阅在<a href="http://prismlibrary.github.io/docs/wpf/legacy/Advanced-MVVM.html"target="_blank" rel="external nofollow noopener noreferrer">高级MVVM方案中</a><a href="http://prismlibrary.github.io/docs/wpf/legacy/Implementing-MVVM.html"target="_blank" rel="external nofollow noopener noreferrer">实现MVVM模式</a>和<a href="http://prismlibrary.github.io/docs/wpf/legacy/Advanced-MVVM.html#interaction-triggers-and-commands"target="_blank" rel="external nofollow noopener noreferrer">交互触发器和事件到命令的部分</a>。</p>
+<h5 id="用户交互" class="heading-element"><span>用户交互</span>
+  <a href="#%e7%94%a8%e6%88%b7%e4%ba%a4%e4%ba%92" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h5><p>用户交互是应用程序向用户呈现的交互。这些交互通常是呈现给用户的弹出窗口。在MVVM场景中，可以从视图或视图模型生成这些用户交互。Prism为视图模型需要请求用户交互时的情况提供<strong>InteractionRequests</strong>和<strong>InteractionRequestTriggers</strong>，为触发指定事件时视图需要调用命令时提供<strong>InvokeCommandAction</strong>操作。</p>
+<p>有关用户交互，示例以及如何使用它们的更多信息，请参阅<a href="https://msdn.microsoft.com/en-us/library/ff921081%28v=pandp.40%29.aspx"target="_blank" rel="external nofollow noopener noreferrer">Interactivity QuickStart</a>。</p>
+<h4 id="数据绑定" class="heading-element"><span>数据绑定</span>
+  <a href="#%e6%95%b0%e6%8d%ae%e7%bb%91%e5%ae%9a" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h4><p>数据绑定是XAML平台最重要的框架功能之一。要在XAML平台上成功开发应用程序，您需要充分了解数据绑定。</p>
+<p>数据绑定充分利用了依赖属性系统提供的内在更改通知。当与<strong>INotifyPropertyChanged</strong>接口的公共语言运行时（CLR）类实现结合使用时，更改通知将启用参与数据绑定的目标和源对象之间的无代码交互。</p>
+<p>通过使用值转换器将一种类型转换为另一种类型，数据绑定可以使不同的目标和源类型与数据绑定。数据绑定在其管道中有多个验证挂钩，可用于验证用户输入。</p>
+<p>强烈建议您阅读MSDN上的<a href="http://msdn.microsoft.com/en-us/library/ms752914.aspx"target="_blank" rel="external nofollow noopener noreferrer">依赖项属性概述</a>和<a href="http://msdn.microsoft.com/en-us/library/ms752347.aspx"target="_blank" rel="external nofollow noopener noreferrer">数据绑定概述</a>主题。完全了解这两个主题对于在Microsoft XAML平台上成功开发应用程序至关重要。有关数据绑定的更多信息，请参阅<a href="http://prismlibrary.github.io/docs/wpf/legacy/Implementing-MVVM.html#data-binding"target="_blank" rel="external nofollow noopener noreferrer">数据绑定</a>在<a href="http://prismlibrary.github.io/docs/wpf/legacy/Implementing-MVVM.html"target="_blank" rel="external nofollow noopener noreferrer">实现MVVM模式</a>。</p>
+<h3 id="regions" class="heading-element"><span>Regions</span>
+  <a href="#regions" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p>通过区域管理器，区域和区域适配器在Prism库中启用区域。接下来的部分将介绍它们如何协同工作。</p>
+<h4 id="region-manager" class="heading-element"><span>Region Manager</span>
+  <a href="#region-manager" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h4><p>该<strong>RegionManager</strong>类负责创建和维护区域的集合主机控制。该<strong>RegionManager</strong>使用一个新的区域与主机控制相关联的特定控制适配器。下图显示了<strong>RegionManager</strong>设置的区域，控件和适配器之间的关系。</p>
+<p><img loading="lazy" src="/prism/Ch7UIFig12.png" alt="区域，控件和适配器关系" srcset="/prism/Ch7UIFig12.png?size=small, /prism/Ch7UIFig12.png?size=medium 1.5x, /prism/Ch7UIFig12.png?size=large 2x" data-title="区域，控件和适配器关系" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>该<strong>RegionManager</strong>可以在代码中创建或XAML地区。所述<strong>RegionManager.RegionName</strong>附加属性是用来通过将附加属性到主机控制以在XAML的区域。</p>
+<p>应用程序可以包含<strong>RegionManager的</strong>一个或多个实例。您可以指定要在其中注册区域的<strong>RegionManager</strong>实例。如果要在可视树中移动控件并且不希望在删除附加属性值时清除区域，则此选项非常有用。</p>
+<p>所述<strong>RegionManager</strong>提供RegionContext附加属性，允许其区域共享数据。</p>
+<h4 id="region-implementation" class="heading-element"><span>Region Implementation</span>
+  <a href="#region-implementation" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h4><p>区域是实现<strong>IRegion</strong>接口的类。术语<em>区域</em>表示可以保存UI中呈现的动态数据的容器。区域允许Prism库将包含在模块中的动态内容放置在UI容器中的预定义占位符中。</p>
+<p>区域可以包含任何类型的UI内容。模块可以包含作为用户控件呈现的UI内容，与数据模板相关联的数据类型，自定义控件或这些的任何组合。这使您可以定义UI区域的外观，然后让模块将内容放在这些预定区域中。</p>
+<p>区域可以包含零个或多个项目。根据区域管理的主机控件的类型，可以看到一个或多个项目。例如，<strong>ContentControl</strong>只能显示单个对象。但是，它所在的区域可以包含许多项目，<strong>ItemsControl</strong>可以显示多个项目。这允许区域中的每个项目在UI中可见。</p>
+<p>在下图中，Stock Trader RI shell包含四个区域：<strong>MainRegion</strong>，<strong>MainToolbarRegion</strong>，<strong>ResearchRegion</strong>和<strong>ActionRegion</strong>。这些区域由应用程序中的各种模块填充 - 内容可以随时更改。</p>
+<p><img loading="lazy" src="/prism/Ch7UIFig13.png" alt="股票交易者RI地区" srcset="/prism/Ch7UIFig13.png?size=small, /prism/Ch7UIFig13.png?size=medium 1.5x, /prism/Ch7UIFig13.png?size=large 2x" data-title="股票交易者RI地区" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<h5 id="模块用户控制到区域映射" class="heading-element"><span>模块用户控制到区域映射</span>
+  <a href="#%e6%a8%a1%e5%9d%97%e7%94%a8%e6%88%b7%e6%8e%a7%e5%88%b6%e5%88%b0%e5%8c%ba%e5%9f%9f%e6%98%a0%e5%b0%84" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h5><p>Module User Control to Region Mapping</p>
+<p>要演示模块和内容如何与区域关联，请参阅下图。它显示了<strong>WatchModule</strong>和<strong>NewsModule</strong>与shell中相应区域的关联。</p>
+<p>所述<strong>MainRegion</strong>包含<strong>WatchListView</strong>用户控制，这被包含在<strong>WatchModule</strong>。所述<strong>ResearchRegion</strong>还包含<strong>ArticleView</strong>用户控制，这被包含在<strong>NewsModule</strong>。</p>
+<p>在使用Prism Library创建的应用程序中，这样的映射将成为设计过程的一部分，因为设计人员和开发人员使用它们来确定在特定区域中建议的内容。这允许设计人员确定所需的总空间以及必须添加的任何其他项目，以确保内容在可允许的空间中可见。</p>
+<p><img loading="lazy" src="/prism/Ch7UIFig14.png" alt="模块用户控制到区域映射" srcset="/prism/Ch7UIFig14.png?size=small, /prism/Ch7UIFig14.png?size=medium 1.5x, /prism/Ch7UIFig14.png?size=large 2x" data-title="模块用户控制到区域映射" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<h4 id="default-region-functionality" class="heading-element"><span>Default Region Functionality</span>
+  <a href="#default-region-functionality" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h4><p>虽然您不需要完全理解区域实现以使用它们，但了解控件和区域如何关联以及默认区域功能可能很有用：例如，区域如何定位和实例化视图，以及如何在视图时通知视图是活动视图，还是视图生命周期如何与激活相关联。</p>
+<p>以下部分描述了区域适配器和区域行为。</p>
+<h5 id="region-adapter" class="heading-element"><span>Region Adapter</span>
+  <a href="#region-adapter" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h5><p>要将UI控件公开为区域，它必须具有区域适配器。区域适配器负责创建区域并将其与控件相关联。这允许您使用<strong>IRegion</strong>接口以一致的方式管理UI控件内容。每个区域适配器都适应特定类型的UI控件。Prism库提供以下三种区域适配器：</p>
+<ul>
+<li><strong>ContentControlRegionAdapter</strong>。此适配器适应<strong>System.Windows.Controls.ContentControl</strong>类型和派生类的控件。</li>
+<li><strong>SelectorRegionAdapter</strong>。此适配器适应从<strong>System.Windows.Controls.Primitives.Selector</strong>类派生的控件，例如<strong>System.Windows.Controls.TabControl</strong>控件。</li>
+<li><strong>ItemsControlRegionAdapter</strong>。此适配器适应<strong>System.Windows.Controls.ItemsControl</strong>类型和派生类的控件。</li>
+</ul>
+<h5 id="region-behaviors" class="heading-element"><span>Region Behaviors</span>
+  <a href="#region-behaviors" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h5><p>PrismLibrary介绍了区域行为的概念。这些是可插拔(pluggable )组件，为区域提供了大部分功能。引入了区域行为以支持视图发现和区域上下文（在本主题后面描述），并创建在WPF和Silverlight中一致的API。此外，行为提供了扩展区域实施的有效方式。</p>
+<p>区域行为是附加到区域的类，以为该区域提供附加功能。此行为附加到该区域，并在该区域的生命周期内保持活动状态。例如，当<strong>AutoPopulateRegionBehavior</strong>附加到某个区域时，它会自动实例化并添加针对具有该名称的区域注册的任何<strong>ViewType</strong>。对于该区域的生命周期，它会持续监视<strong>RegionViewRegistry</strong>以进行新注册。可以在系统范围或每个区域的基础上轻松添加自定义区域行为或替换现有行为。</p>
+<p>下一节将介绍自动添加到所有区域的默认行为。一种行为<strong>SelectorItemsSourceSyncBehavior</strong>仅附加到从<strong>Selector</strong>派生的控件。</p>
+<h5 id="注册行为" class="heading-element"><span>注册行为</span>
+  <a href="#%e6%b3%a8%e5%86%8c%e8%a1%8c%e4%b8%ba" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h5><p>该<strong>RegionManagerRegistrationBehavior</strong>是负责确保该区域被注册到正确的<strong>RegionManager</strong>。当视图或控件作为另一个控件或区域的子项添加到可视树中时，控件中定义的任何区域都应该在父控件的<strong>RegionManager</strong>中注册。删除子控件后，注册的区域将取消注册。</p>
+<h5 id="auto-population-behavior" class="heading-element"><span>Auto-Population Behavior</span>
+  <a href="#auto-population-behavior" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h5><p>有两个类负责实现视图发现。其中之一是<strong>AutoPopulateRegionBehavior</strong>。当它附加到某个区域时，它会检索在该区域名称下注册的所有视图类型。然后，它创建这些视图的实例并将它们添加到该区域。创建区域后，<strong>AutoPopulateRegionBehavior将</strong>监视<strong>RegionViewRegistry</strong>以查找该区域名称的任何新注册的视图类型。</p>
+<p>如果您想要更多地控制视图发现过程，请考虑创建自己的<strong>IRegionViewRegistry</strong>实现和<strong>AutoPopulateRegionBehavior</strong>。</p>
+<h5 id="region-context-behaviors" class="heading-element"><span>Region Context Behaviors</span>
+  <a href="#region-context-behaviors" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h5><p>区域上下文功能包含在两个行为中：<strong>SyncRegionContextWithHostBehavior</strong>和<strong>BindRegionContextToDependencyObjectBehavior</strong>。这些行为负责监视对区域所做的上下文的更改，然后将上下文与附加到视图的上下文依赖项属性同步。</p>
+<h5 id="activation-behavior" class="heading-element"><span>Activation Behavior</span>
+  <a href="#activation-behavior" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h5><p>所述<strong>RegionActiveAwareBehavior</strong>负责通知的图，如果它是有效或无效。视图必须实现<strong>IActiveAware</strong>才能接收这些更改通知。此主动感知通知是单向的（它从行为传播到视图）。通过更改<strong>IActiveAware</strong>接口上的活动属性，视图不会影响其活动状态。</p>
+<h5 id="region-lifetime-behavior" class="heading-element"><span>Region Lifetime Behavior</span>
+  <a href="#region-lifetime-behavior" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h5><p>所述<strong>RegionMemberLifetimeBehavior</strong>负责确定如果一个项目应该从区域时被去激活被移除。该<strong>RegionMemberLifetimeBehavior</strong>监控区域的<strong>ActiveViews</strong>收集发现的项目，过渡到非激活状态。该行为检查已删除的项目是否为<strong>IRegionMemberLifetime</strong>或<strong>RegionMemberLifetimeAttribute</strong>（<strong>按此</strong>顺序），以确定它是否应在删除时保持活动状态。</p>
+<p>如果集合中的项是<strong>System.Windows.FrameworkElement</strong>，它还将检查其<strong>DataContext</strong>的<strong>IRegionMemberLifetime</strong>或<strong>RegionMemberLifetimeAttribute</strong>。</p>
+<p>按以下顺序检查区域项：</p>
+<ol>
+<li><strong>IRegionMemberLifetime.KeepAlive</strong>值</li>
+<li><strong>DataContext的IRegionMemberLifetime.KeepAlive</strong>值</li>
+<li><strong>RegionMemberLifetimeAttribute.KeepAlive</strong>值</li>
+<li><strong>DataContext的RegionMemberLifetimeAttribute.KeepAlive</strong>值</li>
+</ol>
+<h5 id="control-specific-behaviors" class="heading-element"><span>Control-Specific Behaviors</span>
+  <a href="#control-specific-behaviors" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h5><p>所述<strong>SelectorItemsSourceSyncBehavior</strong>仅用于从导出的控制<strong>选择器</strong>，例如在一个WPF标签控制。它负责将区域中的视图与选择器的项同步，然后将区域中的活动视图与选择器的选定项同步。</p>
+<h4 id="extending-the-region-implementation" class="heading-element"><span>Extending the Region Implementation</span>
+  <a href="#extending-the-region-implementation" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h4><p>Prism Library提供了扩展点，允许您自定义或扩展所提供API的默认行为。例如，您可以编写自己的区域适配器，区域行为或更改Navigation API分析URI的方式。有关扩展棱镜库的更多信息，请参阅<a href="http://prismlibrary.github.io/docs/wpf/legacy/Appendix-D-Extending-Prism.html"target="_blank" rel="external nofollow noopener noreferrer">扩展棱镜库</a>。</p>
+<h3 id="view-composition" class="heading-element"><span>View Composition</span>
+  <a href="#view-composition" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p>视图合成是视图的构建。在复合应用程序中，必须在运行时在应用程序UI中的特定位置显示来自多个模块的视图。要实现此目的，您需要定义视图的显示位置以及在这些位置创建和显示视图的方式。</p>
+<p>可以通过视图发现自动创建和显示视图，也可以通过视图注入以编程方式显示视图。这两种技术决定了各个视图如何映射到应用程序UI中的命名位置。</p>
+<h4 id="view-discovery" class="heading-element"><span>View Discovery</span>
+  <a href="#view-discovery" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h4><p>在视图发现中，您可以在<strong>RegionViewRegistry中</strong>在区域名称和视图类型之间建立关系。创建区域时，该区域将查找与该区域关联的所有<strong>ViewType</strong>，并自动实例化并加载相应的视图。因此，使用视图发现时，您无法明确控制何时加载和显示与区域对应的视图。</p>
+<h4 id="view-injection" class="heading-element"><span>View Injection</span>
+  <a href="#view-injection" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h4><p>在视图注入中，您的代码获取对区域的引用，然后以编程方式向其中添加视图。通常，这在模块初始化或作为用户操作的结果时完成。您的代码将按名称查询<strong>RegionManager</strong>中的特定区域，然后将视图注入其中。通过视图注入，您可以更好地控制何时加载和显示视图。您还可以从该地区删除视图。但是，使用视图注入时，无法将视图添加到尚未创建的区域。</p>
+<h4 id="view-injection-1" class="heading-element"><span>View Injection</span>
+  <a href="#view-injection-1" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h4><p>Prism Library 4.0包含导航API。Navigation API允许您将区域导航到URI，从而简化了视图注入过程。Navigation API实例化视图，将其添加到区域，然后激活它。此外，Navigation API允许导航回包含在区域中的先前创建的视图。有关导航API的更多信息，请参阅<a href="http://prismlibrary.github.io/docs/wpf/legacy/Navigation.html"target="_blank" rel="external nofollow noopener noreferrer">导航</a>。</p>
+<h4 id="使用view-discovery与view-injection" class="heading-element"><span>使用View Discovery与View Injection</span>
+  <a href="#%e4%bd%bf%e7%94%a8view-discovery%e4%b8%8eview-injection" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h4><p>选择要用于区域的视图加载策略取决于应用程序要求和区域的功能。</p>
+<p>在以下情况下使用视图发现：</p>
+<ul>
+<li>需要或需要自动加载视图。</li>
+<li>视图的单个实例将加载到该区域中。</li>
+</ul>
+<p>在以下情况下使用视图注入：</p>
+<ul>
+<li>您的应用程序使用导航API。</li>
+<li>您需要对创建和显示视图的时间进行显式或程序控制，或者需要从区域中删除视图; 例如，作为应用程序逻辑或导航的结果。</li>
+<li>您需要在区域中显示相同视图的多个实例，其中每个视图实例都绑定到不同的数据。</li>
+<li>您需要控制添加视图的区域的哪个实例。例如，您要将客户详细信息视图添加到特定客户详细信息区域。（此方案需要实现作用域，如本主题后面所述。）</li>
+</ul>
+<h3 id="ui布局方案" class="heading-element"><span>UI布局方案</span>
+  <a href="#ui%e5%b8%83%e5%b1%80%e6%96%b9%e6%a1%88" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p>在复合应用程序中，来自多个模块的视图在运行时显示在应用程序UI中的特定位置。要实现此目的，您需要定义视图的显示位置以及在这些位置创建和显示视图的方式。</p>
+<p>视图和将在其中显示的UI中的位置的分离允许应用程序的外观和布局独立于区域内出现的视图而发展。</p>
+<p>下一节将介绍开发复合应用程序时将遇到的核心方案。适当时，Stock Trader RI的示例将用于演示该场景的解决方案。</p>
+<h3 id="实现shell" class="heading-element"><span>实现Shell</span>
+  <a href="#%e5%ae%9e%e7%8e%b0shell" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p>shell是应用程序根对象，其中包含主UI内容。在Windows Presentation Foundation（WPF）应用程序中，shell是<strong>Window</strong>对象。</p>
+<p>shell可以包含命名区域，其中模块可以指定将出现的视图。它还可以定义某些顶级UI元素，例如主菜单和工具栏。shell定义应用程序的整体结构和外观，类似于ASP.NET母版页控件。它可以定义在shell布局本身中存在和可见的样式和边框，还可以定义应用于插入到shell中的视图的样式，模板和主题。</p>
+<p>作为应用程序体系结构的一部分，您不需要使用独特的shell来使用Prism库。如果要构建一个全新的复合应用程序，实现一个shell提供了一个定义良好的根和初始化模式，用于设置应用程序的主UI。但是，如果要将Prism Library功能添加到现有应用程序，则无需更改应用程序的基本体系结构即可添加shell。相反，您可以更改现有的窗口定义或控件，以添加可根据需要提取视图的区域。</p>
+<p>您的应用程序中也可以有多个shell。如果您的应用程序旨在为用户打开多个顶级窗口，则每个顶级窗口都充当其包含的内容的shell。</p>
+<h4 id="股票交易员ri-shell" class="heading-element"><span>股票交易员RI Shell</span>
+  <a href="#%e8%82%a1%e7%a5%a8%e4%ba%a4%e6%98%93%e5%91%98ri-shell" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h4><p>WPF Stock Trader RI有一个shell作为主窗口。在下图中，将突出显示shell和视图。shell是Stock Trader RI启动时显示的主窗口，其中包含所有视图。它定义了模块添加其视图的区域以及一些顶级UI项目，包括CFI Stock Trader标题和Watch List撕下横幅。</p>
+<p><img loading="lazy" src="/prism/Ch7UIFig18.png" alt="股票交易者RI壳窗口，区域和视图" srcset="/prism/Ch7UIFig18.png?size=small, /prism/Ch7UIFig18.png?size=medium 1.5x, /prism/Ch7UIFig18.png?size=large 2x" data-title="股票交易者RI壳窗口，区域和视图" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>Stock Trader RI中的shell实现由Shell.xaml及其代码隐藏文件Shell.xaml.cs及其视图模型ShellViewModel.cs提供。Shell.xaml包括作为shell一部分的布局和UI元素，包括模块添加其视图的区域的定义。</p>
+<p>以下XAML显示了定义shell的结构和主要XAML元素。请注意，<strong>RegionName</strong>附加属性用于定义四个区域，窗口背景图像为shell提供背景。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;!--Shell.xaml (WPF) --&gt;
+</span></span><span class="line"><span class="cl">&lt;Window x:Class=&#34;StockTraderRI.Shell&#34;&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    &lt;!--shell background --&gt;
+</span></span><span class="line"><span class="cl">    &lt;Window.Background&gt;
+</span></span><span class="line"><span class="cl">        &lt;ImageBrush ImageSource=&#34;Resources/background.png&#34; Stretch=&#34;UniformToFill&#34;/&gt;
+</span></span><span class="line"><span class="cl">    &lt;/Window.Background&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    &lt;Grid&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        &lt;!-- logo --&gt;
+</span></span><span class="line"><span class="cl">        &lt;Canvas x:Name=&#34;Logo&#34; ...&gt;
+</span></span><span class="line"><span class="cl">            &lt;TextBlock Text=&#34;CFI&#34; ... /&gt;
+</span></span><span class="line"><span class="cl">            &lt;TextBlock Text=&#34;STOCKTRADER&#34; .../&gt;
+</span></span><span class="line"><span class="cl">        &lt;/Canvas&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        &lt;!-- main bar --&gt;
+</span></span><span class="line"><span class="cl">        &lt;ItemsControl 
+</span></span><span class="line"><span class="cl">            x:Name=&#34;MainToolbar&#34;
+</span></span><span class="line"><span class="cl">            prism:RegionManager.RegionName=&#34;{x:Static inf:RegionNames.MainToolBarRegion}&#34;/&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        &lt;!-- content --&gt;
+</span></span><span class="line"><span class="cl">        &lt;Grid&gt;
+</span></span><span class="line"><span class="cl">            &lt;Controls:AnimatedTabControl
+</span></span><span class="line"><span class="cl">                x:Name=&#34;PositionBuySellTab&#34;
+</span></span><span class="line"><span class="cl">                prism:RegionManager.RegionName=&#34;{x:Static inf:RegionNames.MainRegion}&#34;/&gt;
+</span></span><span class="line"><span class="cl">        &lt;/Grid&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        &lt;!-- details --&gt;
+</span></span><span class="line"><span class="cl">        &lt;Grid&gt;
+</span></span><span class="line"><span class="cl">            &lt;ContentControl
+</span></span><span class="line"><span class="cl">                x:Name=&#34;ActionContent&#34;
+</span></span><span class="line"><span class="cl">                prism:RegionManager.RegionName=&#34;{x:Static inf:RegionNames.ActionRegion}&#34;/&gt;
+</span></span><span class="line"><span class="cl">        &lt;/Grid&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        &lt;!-- sidebar --&gt;
+</span></span><span class="line"><span class="cl">        &lt;Grid x:Name=&#34;SideGrid&#34;&gt;
+</span></span><span class="line"><span class="cl">            &lt;Controls:ResearchControl
+</span></span><span class="line"><span class="cl">                prism:RegionManager.RegionName=&#34;{x:Static inf:RegionNames.ResearchRegion}&#34; /&gt;
+</span></span><span class="line"><span class="cl">        &lt;/Grid&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    &lt;/Grid&gt;
+</span></span><span class="line"><span class="cl">&lt;/Window&gt;</span></span></code></pre></td></tr></table>
+</div>
+</div><p>在实施<strong>Shell</strong>代码隐藏文件是非常简单的。当引导程序创建<strong>Shell</strong>，它的依赖将被托管扩展框架（MEF）解决。shell具有单一依赖关系 - <strong>ShellViewModel -<strong>在构造期间</strong>注入</strong>，如以下示例所示。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c#" data-lang="c#"><span class="line"><span class="cl"><span class="c1">// Shell.xaml.cs</span>
+</span></span><span class="line"><span class="cl"><span class="na">[Export]</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">partial</span> <span class="k">class</span> <span class="nc">Shell</span> <span class="p">:</span> <span class="n">Window</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">Shell</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">InitializeComponent</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="na">
+</span></span></span><span class="line"><span class="cl"><span class="na">    [Import]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ShellViewModel</span> <span class="n">ViewModel</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">set</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">this</span><span class="p">.</span><span class="n">DataContext</span> <span class="p">=</span> <span class="k">value</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// ShellViewModel.cs</span>
+</span></span><span class="line"><span class="cl"><span class="na">[Export]</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="k">class</span> <span class="nc">ShellViewModel</span> <span class="p">:</span> <span class="n">BindableBase</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// This is where any view model logic for the shell would go.</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>代码隐藏文件中的最小代码说明了复合应用程序体系结构的强大功能和简单性以及shell与其组成视图之间的松散耦合。</p>
+<h3 id="定义区域" class="heading-element"><span>定义区域</span>
+  <a href="#%e5%ae%9a%e4%b9%89%e5%8c%ba%e5%9f%9f" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p>您可以通过定义具有命名位置的布局（称为区域）来定义视图的显示位置。区域充当将在运行时显示的一个或多个视图的占位符。模块可以在布局中的区域中定位和添加内容，而无需知道区域的显示方式和位置。这允许更改布局而不影响将内容添加到布局的模块。</p>
+<p>通过将区域名称分配给WPF控件（在上一个Shell.xaml文件中显示的XAML中或代码中）来定义区域。可以通过区域名称访问区域。在运行时，视图将添加到命名的Region控件，然后根据视图实现的布局策略显示视图。例如，选项卡控件区域将以选项卡式排列其子视图。区域支持添加或删除视图。可以通过编程方式或自动方式在区域中创建和显示视图。在Prism Library中，前者通过视图注入实现，后者通过视图发现实现。这两种技术决定了各个视图如何映射到应用程序UI中的命名区域。</p>
+<p>应用程序的shell定义了最高级别的应用程序布局; 例如，通过指定主要内容和导航内容的位置，如下图所示。这些高级视图中的布局类似地定义，允许以递归方式组合整个UI。</p>
+<p><img loading="lazy" src="/prism/Ch7UIFig16.png" alt="shell" srcset="/prism/Ch7UIFig16.png?size=small, /prism/Ch7UIFig16.png?size=medium 1.5x, /prism/Ch7UIFig16.png?size=large 2x" data-title="shell" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>区域有时用于定义逻辑上相关的多个视图的位置。在这种情况下，区域控件通常是一个<strong>ItemsControl</strong>派生的控件，它将根据它实现的布局策略显示视图，例如以堆叠或选项卡式布局排列。</p>
+<p>区域也可用于定义单个视图的位置; 例如，通过使用<strong>ContentControl</strong>。在这种情况下，区域控件一次只显示一个视图，即使多个视图映射到该区域位置也是如此。</p>
+<h4 id="股票交易者ri-shell-regions" class="heading-element"><span>股票交易者RI shell Regions</span>
+  <a href="#%e8%82%a1%e7%a5%a8%e4%ba%a4%e6%98%93%e8%80%85ri-shell-regions" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h4><p><img loading="lazy" src="/prism/Ch7UIFig21.png" alt="股票交易者RI壳区域" srcset="/prism/Ch7UIFig21.png?size=small, /prism/Ch7UIFig21.png?size=medium 1.5x, /prism/Ch7UIFig21.png?size=large 2x" data-title="股票交易者RI壳区域" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>当应用程序购买或出售股票时，股票交易者RI也会演示多视图布局。买/卖区域是一个列表样式区域，显示多个买入/卖出视图（<strong>OrderCompositeView</strong>）作为其列表的一部分，如下图所示。</p>
+<p><img loading="lazy" src="/prism/Ch7UIFig22.png" alt="ItemsControl区域" srcset="/prism/Ch7UIFig22.png?size=small, /prism/Ch7UIFig22.png?size=medium 1.5x, /prism/Ch7UIFig22.png?size=large 2x" data-title="ItemsControl区域" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>shell的<strong>ActionRegion</strong>包含<strong>OrdersView</strong>。该<strong>OrdersView</strong>包含<strong>提交所有</strong>和<strong>取消所有</strong>按钮还有<strong>OrdersRegion</strong>。所述<strong>OrdersRegion</strong>附着到<strong>列表框</strong>，其显示多个控制<strong>OrderCompositeViews</strong>。</p>
+<h4 id="iregion" class="heading-element"><span>IRegion</span>
+  <a href="#iregion" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h4><p>区域是实现<strong>IRegion</strong>接口的类。该区域是容纳控件显示内容的容器。以下代码显示了<strong>IRegion</strong>接口。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c#" data-lang="c#"><span class="line"><span class="cl"><span class="kd">public</span> <span class="k">interface</span> <span class="nc">IRegion</span> <span class="p">:</span> <span class="n">INavigateAsync</span><span class="p">,</span> <span class="n">INotifyPropertyChanged</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">IViewsCollection</span> <span class="n">Views</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">IViewsCollection</span> <span class="n">ActiveViews</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">object</span> <span class="n">Context</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">string</span> <span class="n">Name</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Comparison</span><span class="p">&lt;</span><span class="kt">object</span><span class="p">&gt;</span> <span class="n">SortComparison</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">IRegionManager</span> <span class="n">Add</span><span class="p">(</span><span class="kt">object</span> <span class="n">view</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">IRegionManager</span> <span class="n">Add</span><span class="p">(</span><span class="kt">object</span> <span class="n">view</span><span class="p">,</span> <span class="kt">string</span> <span class="n">viewName</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">IRegionManager</span> <span class="n">Add</span><span class="p">(</span><span class="kt">object</span> <span class="n">view</span><span class="p">,</span> <span class="kt">string</span> <span class="n">viewName</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">createRegionManagerScope</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">void</span> <span class="n">Remove</span><span class="p">(</span><span class="kt">object</span> <span class="n">view</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">void</span> <span class="n">Deactivate</span><span class="p">(</span><span class="kt">object</span> <span class="n">view</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">object</span> <span class="n">GetView</span><span class="p">(</span><span class="kt">string</span> <span class="n">viewName</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">IRegionManager</span> <span class="n">RegionManager</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">IRegionBehaviorCollection</span> <span class="n">Behaviors</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">IRegionNavigationService</span> <span class="n">NavigationService</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="adding-a-region-in-xaml" class="heading-element"><span>Adding a Region in XAML</span>
+  <a href="#adding-a-region-in-xaml" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h4><p>该<strong>RegionManager</strong>提供一个附加属性，您可以使用在XAML简单的区域生成。要使用附加属性，必须将Prism Library命名空间加载到XAML中，然后使用<strong>RegionName</strong>附加属性。以下示例显示如何在具有<strong>AnimatedTabControl</strong>的窗口中使用附加属性。</p>
+<p>注意使用<strong>x：Static</strong>标记扩展来引用<strong>MainRegion</strong>字符串常量。这种做法消除了XAML中的魔术字符串。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;!-- (WPF) --&gt;
+</span></span><span class="line"><span class="cl">&lt;Controls:AnimatedTabControl 
+</span></span><span class="line"><span class="cl">    x:Name=&#34;PositionBuySellTab&#34;
+</span></span><span class="line"><span class="cl">    prism:RegionManager.RegionName=&#34;{x:Static inf:RegionNames.MainRegion}&#34;/&gt;</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="adding-a-region-by-using-code" class="heading-element"><span>Adding a Region by Using Code</span>
+  <a href="#adding-a-region-by-using-code" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h4><p>所述<strong>RegionManager</strong>可以直接在不使用XAML寄存器区域。以下代码示例演示如何从代码隐藏文件向控件添加区域。首先，获得对区域管理者的引用。然后，使用<strong>RegionManager</strong>静态方法<strong>SetRegionManager</strong>和<strong>SetRegionName</strong>，将该区域附加到UI的<strong>ActionContent</strong>控件，然后将该区域命名为<strong>ActionRegion</strong>。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cs" data-lang="cs"><span class="line"><span class="cl"><span class="n">IRegionManager</span> <span class="n">regionManager</span> <span class="p">=</span> <span class="n">ServiceLocator</span><span class="p">.</span><span class="n">Current</span><span class="p">.</span><span class="n">GetInstance</span><span class="p">&lt;</span><span class="n">IRegionManager</span><span class="p">&gt;();</span>
+</span></span><span class="line"><span class="cl"><span class="n">RegionManager</span><span class="p">.</span><span class="n">SetRegionManager</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="n">ActionContent</span><span class="p">,</span> <span class="n">regionManager</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">RegionManager</span><span class="p">.</span><span class="n">SetRegionName</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="n">ActionContent</span><span class="p">,</span> <span class="s">&#34;ActionRegion&#34;</span><span class="p">);</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="displaying-views-in-a-region-when-the-region-loads" class="heading-element"><span>Displaying Views in a Region When the Region Loads</span>
+  <a href="#displaying-views-in-a-region-when-the-region-loads" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p>使用视图发现方法，模块可以为特定的命名位置注册视图（视图模型或表示模型）。在运行时显示该位置时，将自动创建并在其中显示已为该位置注册的所有视图。</p>
+<p>模块使用注册表注册视图。父视图查询此注册表以发现为命名位置注册的视图。发现它们之后，父视图会将这些视图添加到占位符控件中，从而将这些视图放在屏幕上。</p>
+<p>加载应用程序后，将通知组合视图以处理已添加到注册表的新视图的放置。</p>
+<p>下图显示了视图发现方法。</p>
+<p><img loading="lazy" src="/prism/Ch7UIFig19.png" alt="查看发现" srcset="/prism/Ch7UIFig19.png?size=small, /prism/Ch7UIFig19.png?size=medium 1.5x, /prism/Ch7UIFig19.png?size=large 2x" data-title="查看发现" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>Prism Library定义了一个标准注册表<strong>RegionViewRegistry</strong>，用于注册这些命名位置的视图。</p>
+<p>要显示区域中的视图，请使用区域管理器注册视图，如以下代码示例所示。您可以直接向区域注册视图类型，在这种情况下，视图将由依赖项注入容器构造，并在加载托管区域的控件时添加到区域。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c#" data-lang="c#"><span class="line"><span class="cl"><span class="c1">// View discovery</span>
+</span></span><span class="line"><span class="cl"><span class="k">this</span><span class="p">.</span><span class="n">regionManager</span><span class="p">.</span><span class="n">RegisterViewWithRegion</span><span class="p">(</span><span class="s">&#34;MainRegion&#34;</span><span class="p">,</span> <span class="k">typeof</span><span class="p">(</span><span class="n">EmployeeView</span><span class="p">));</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>（可选）您可以提供一个返回要显示的视图的委托，如下一个示例所示。区域管理器将在创建区域时显示视图。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c#" data-lang="c#"><span class="line"><span class="cl"><span class="c1">// View discovery</span>
+</span></span><span class="line"><span class="cl"><span class="k">this</span><span class="p">.</span><span class="n">regionManager</span><span class="p">.</span><span class="n">RegisterViewWithRegion</span><span class="p">(</span><span class="s">&#34;MainRegion&#34;</span><span class="p">,</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="k">this</span><span class="p">.</span><span class="n">container</span><span class="p">.</span><span class="n">Resolve</span><span class="p">&lt;</span><span class="n">EmployeeView</span><span class="p">&gt;());</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>UI Composition QuickStart在EmployeeModule ModuleInit.cs文件中有一个演练，演示了如何使用<strong>RegisterViewWithRegion</strong>方法。</p>
+<h3 id="displaying-views-in-a-region-programmatically" class="heading-element"><span>Displaying Views in a Region Programmatically</span>
+  <a href="#displaying-views-in-a-region-programmatically" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p>在视图注入方法中，视图以编程方式添加或由管理它们的模块从命名位置删除。要启用此功能，应用程序将在UI中包含命名位置的注册表。模块可以使用注册表查找其中一个位置，然后以编程方式将视图注入其中。为了确保可以类似地访问注册表中的位置，每个命名位置都遵循用于注入视图的公共接口。下图显示了视图注入方法。</p>
+<p><img loading="lazy" src="/prism/Ch7UIFig20.png" alt="查看注射" srcset="/prism/Ch7UIFig20.png?size=small, /prism/Ch7UIFig20.png?size=medium 1.5x, /prism/Ch7UIFig20.png?size=large 2x" data-title="查看注射" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>Prism库定义了一个标准注册表<strong>RegionManager</strong>和一个标准接口<strong>IRegion</strong>，用于访问这些位置。</p>
+<p>要使用视图注入向区域添加视图，请从区域管理器中获取区域，然后调用<strong>Add</strong>方法，如以下代码所示。使用视图注入时，仅在将视图添加到区域后才会显示视图，这可能在加载模块或用户操作完成预定义操作时发生。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c#" data-lang="c#"><span class="line"><span class="cl"><span class="c1">// View injection</span>
+</span></span><span class="line"><span class="cl"><span class="n">IRegion</span> <span class="n">region</span> <span class="p">=</span> <span class="n">regionManager</span><span class="p">.</span><span class="n">Regions</span><span class="p">[</span><span class="s">&#34;MainRegion&#34;</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">var</span> <span class="n">ordersView</span> <span class="p">=</span> <span class="n">container</span><span class="p">.</span><span class="n">Resolve</span><span class="p">&lt;</span><span class="n">OrdersView</span><span class="p">&gt;();</span>
+</span></span><span class="line"><span class="cl"><span class="n">region</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="n">ordersView</span><span class="p">,</span> <span class="s">&#34;OrdersView&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">region</span><span class="p">.</span><span class="n">Activate</span><span class="p">(</span><span class="n">ordersView</span><span class="p">);</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>除了Stock Trader RI之外，UI Composition QuickStart还有一个实现视图注入的演练。</p>
+<h4 id="region-navigation" class="heading-element"><span>Region Navigation</span>
+  <a href="#region-navigation" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h4><p>Prism Library 5.0包含导航API，它提供了丰富且一致的API，用于在WPF应用程序中实现导航。</p>
+<p>区域导航是视图注入的一种形式。处理导航请求时，它将尝试在可以满足请求的区域中查找视图。如果找不到匹配的视图，它会调用应用程序容器来创建对象，然后将对象注入目标区域并激活它。</p>
+<p>Stock Trader RI <strong>ArticleViewModel</strong>的以下代码示例说明了如何发起导航请求。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c#" data-lang="c#"><span class="line"><span class="cl"><span class="k">this</span><span class="p">.</span><span class="n">regionManager</span><span class="p">.</span><span class="n">RequestNavigate</span><span class="p">(</span><span class="n">RegionNames</span><span class="p">.</span><span class="n">SecondaryRegion</span><span class="p">,</span> <span class="k">new</span> <span class="n">Uri</span><span class="p">(</span><span class="s">&#34;/NewsReaderView&#34;</span><span class="p">,</span> <span class="n">UriKind</span><span class="p">.</span><span class="n">Relative</span><span class="p">));</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>有关区域导航的更多信息，请参阅<a href="http://prismlibrary.github.io/docs/wpf/legacy/Navigation.html"target="_blank" rel="external nofollow noopener noreferrer">导航</a>。视图切换导航快速入门和基于状态的导航快速入门也是实现应用程序导航的示例。</p>
+<h4 id="ordering-views-in-a-region" class="heading-element"><span>Ordering Views in a Region</span>
+  <a href="#ordering-views-in-a-region" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h4><p>无论是使用视图发现还是查看注入，应用程序都可能需要命令视图在<strong>TabControl</strong>，<strong>ItemsControl</strong>或显示多个活动视图的任何其他控件中的显示方式。默认情况下，视图按其注册顺序显示并添加到区域中。</p>
+<p>构建复合应用程序时，通常会从不同的模块注册视图。声明模块之间的依赖关系有助于缓解问题，但是当模块和视图没有任何真正的相互依赖关系时，声明人工依赖会不必要地耦合模块。</p>
+<p>为了允许视图参与自己的排序，Prism库提供了<strong>ViewSortHint</strong>属性。此属性包含字符串<strong>Hint</strong>属性，该属性允许视图声明在区域中如何排序的提示。</p>
+<p>显示视图时，<strong>Region</strong>类使用默认视图排序例程，该例程使用提示对视图进行排序。这是一个简单的区分大小写的排序。具有sort hint属性的视图在没有排序的视图之前排序。此外，没有属性的那些按照添加到区域的顺序显示。</p>
+<p>如果要更改视图的排序方式，<strong>Region</strong>类提供了一个<strong>SortComparison</strong>属性，您可以使用自己的<strong>Comparison &lt; object &gt;<strong>委托方法设置该属性。值得注意的是，区域的</strong>Views</strong>和<strong>ActiveViews</strong>属性的顺序会反映在UI中，因为诸如<strong>ItemsControlRegionAdapter之类的</strong>适配器直接绑定到这些属性。自定义区域适配器可以实现自己的排序和过滤器，它将覆盖区域命令视图的方式。</p>
+<p>View Switching QuickStart演示了一种简单的编号方案，用于对左侧导航区域中的视图进行排序。以下代码示例显示应用于每个导航项视图的<strong>ViewSortHint</strong>。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c#" data-lang="c#"><span class="line"><span class="cl"><span class="na">[Export]</span>
+</span></span><span class="line"><span class="cl"><span class="na">[ViewSortHint(&#34;01&#34;)]</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">partial</span> <span class="k">class</span> <span class="nc">EmailNavigationItemView</span> <span class="p">{</span> <span class="p">...</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="na">
+</span></span></span><span class="line"><span class="cl"><span class="na">[Export]</span>
+</span></span><span class="line"><span class="cl"><span class="na">[ViewSortHint(&#34;02&#34;)]</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">partial</span> <span class="k">class</span> <span class="nc">CalendarNavigationItemView</span> <span class="p">{</span> <span class="p">...</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="na">
+</span></span></span><span class="line"><span class="cl"><span class="na">[Export]</span>
+</span></span><span class="line"><span class="cl"><span class="na">[ViewSortHint(&#34;03&#34;)]</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">partial</span> <span class="k">class</span> <span class="nc">ContactsDetailNavigationItemView</span> <span class="p">{</span> <span class="p">...</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="na">
+</span></span></span><span class="line"><span class="cl"><span class="na">[Export]</span>
+</span></span><span class="line"><span class="cl"><span class="na">[ViewSortHint(&#34;04&#34;)]</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">partial</span> <span class="k">class</span> <span class="nc">ContactsAvatarNavigationItemView</span> <span class="p">{</span> <span class="p">...</span> <span class="p">}</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="在多个区域之间共享数据" class="heading-element"><span>在多个区域之间共享数据</span>
+  <a href="#%e5%9c%a8%e5%a4%9a%e4%b8%aa%e5%8c%ba%e5%9f%9f%e4%b9%8b%e9%97%b4%e5%85%b1%e4%ba%ab%e6%95%b0%e6%8d%ae" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p>Prism Library提供了多种方法来在视图之间进行通信，具体取决于您的方案。区域管理器提供<strong>RegionContext</strong>属性作为这些方法之一。</p>
+<p>当您想要共享父视图和区域中托管的子视图之间的上下文时，<strong>RegionContext</strong>非常有用。<strong>RegionContext</strong>是附加属性。您可以在区域控件上设置上下文的值，以便可以使该区域控件中显示的所有子视图都可以使用它。区域上下文可以是任何简单或复杂的对象，也可以是数据绑定值。该<strong>RegionContext</strong>可以与任一视图中发现或视图注射使用。</p>
+<p>注意： WPF中的<strong>DataContext</strong>属性用于设置视图的本地数据上下文。它允许视图使用数据绑定与视图模型，本地演示者或模型进行通信。<strong>RegionContext</strong>用于在多个视图之间共享上下文，而不是单个视图的本地视图。它提供了一种在多个视图之间共享上下文的简单机制。</p>
+<p>以下代码显示了如何在XAML中使用<strong>RegionContext</strong>附加属性。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;TabControl AutomationProperties.AutomationId=&#34;DetailsTabControl&#34; 
+</span></span><span class="line"><span class="cl">    prism:RegionManager.RegionName=&#34;{x:Static local:RegionNames.TabRegion}&#34;
+</span></span><span class="line"><span class="cl">    prism:RegionManager.RegionContext=&#34;{Binding Path=SelectedEmployee.EmployeeId}&#34;
+</span></span><span class="line"><span class="cl">...&gt;</span></span></code></pre></td></tr></table>
+</div>
+</div><p>您还可以在代码中设置<strong>RegionContext</strong>，如以下示例所示。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c#" data-lang="c#"><span class="line"><span class="cl"><span class="n">RegionManager</span><span class="p">.</span><span class="n">Regions</span><span class="p">[</span><span class="s">&#34;Region1&#34;</span><span class="p">].</span><span class="n">Context</span> <span class="p">=</span> <span class="n">employeeId</span><span class="p">;</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>要在视图中检索<strong>RegionContext</strong>，请使用<strong>RegionContext</strong>类的<strong>GetObservableContext</strong>静态方法。它将视图作为参数传递，然后访问其<strong>Value</strong>属性，如以下代码示例所示。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c#" data-lang="c#"><span class="line"><span class="cl"><span class="kd">private</span> <span class="k">void</span> <span class="n">GetRegionContext</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="p">.</span><span class="n">Model</span><span class="p">.</span><span class="n">EmployeeId</span> <span class="p">=</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">RegionContext</span><span class="p">.</span><span class="n">GetObservableContext</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="n">Value</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>所述的值<strong>RegionContext</strong>可以从视图中通过简单地分配一个新的值到它的改变<strong>值</strong>属性。通过订阅<strong>GetObservableContext</strong>方法返回的<strong>ObservableObject</strong>上的<strong>PropertyChanged</strong>事件，可以选择通过视图通知<strong>RegionContext</strong>的更改。这允许在更改<strong>RegionContext</strong>时保持多个视图同步。以下代码示例演示了订阅<strong>PropertyChanged</strong>事件。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c#" data-lang="c#"><span class="line"><span class="cl"><span class="n">ObservableObject</span><span class="p">&lt;</span><span class="kt">object</span><span class="p">&gt;</span> <span class="n">viewRegionContext</span> <span class="p">=</span> 
+</span></span><span class="line"><span class="cl">                <span class="n">RegionContext</span><span class="p">.</span><span class="n">GetObservableContext</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">viewRegionContext</span><span class="p">.</span><span class="n">PropertyChanged</span> <span class="p">+=</span> <span class="k">this</span><span class="p">.</span><span class="n">ViewRegionContext_OnPropertyChangedEvent</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">private</span> <span class="k">void</span> <span class="n">ViewRegionContext_OnPropertyChangedEvent</span><span class="p">(</span><span class="kt">object</span> <span class="n">sender</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">                    <span class="n">PropertyChangedEventArgs</span> <span class="n">args</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">args</span><span class="p">.</span><span class="n">PropertyName</span> <span class="p">==</span> <span class="s">&#34;Value&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">var</span> <span class="n">context</span> <span class="p">=</span> <span class="p">(</span><span class="n">ObservableObject</span><span class="p">&lt;</span><span class="kt">object</span><span class="p">&gt;)</span> <span class="n">sender</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">newValue</span> <span class="p">=</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">context</span><span class="p">.</span><span class="n">Value</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>注意：该<strong>RegionContext</strong>被设置为在该区域托管内容对象上附加属性。这意味着内容对象必须从<strong>DependencyObject</strong>派生。在前面的示例中，视图是一个可视控件，最终从<strong>DependencyObject</strong>派生。</p>
+<p><em>如果选择使用WPF数据模板来定义视图，则内容对象将表示<strong>ViewModel</strong>或<strong>PresentationModel</strong>。如果视图模型或表示模型需要检索<strong>RegionContext</strong>，则需要从<strong>DependencyObject</strong>基类派生。</em></p>
+<h3 id="创建区域的多个实例" class="heading-element"><span>创建区域的多个实例</span>
+  <a href="#%e5%88%9b%e5%bb%ba%e5%8c%ba%e5%9f%9f%e7%9a%84%e5%a4%9a%e4%b8%aa%e5%ae%9e%e4%be%8b" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p>只有视图注入才能使用范围区域。如果您需要视图以拥有自己的区域实例，则应使用它们。定义具有附加属性的区域的视图会自动继承其父级的<strong>RegionManager</strong>。通常，这是在shell窗口中注册的全局<strong>RegionManager</strong>。如果应用程序创建该视图的多个实例，则每个实例都会尝试使用父<strong>RegionManager</strong>注册其区域。<strong>RegionManager</strong>只允许唯一命名的区域; 因此，第二次注册会产生错误。</p>
+<p>相反，使用作用域区域，以便每个视图都有自己的<strong>RegionManager</strong>，其区域将使用该<strong>RegionManager</strong>而不是父<strong>RegionManager注册</strong>，如下图所示。</p>
+<p><img loading="lazy" src="/prism/Ch7UIFig31.png" alt="父级和范围的RegionManagers" srcset="/prism/Ch7UIFig31.png?size=small, /prism/Ch7UIFig31.png?size=medium 1.5x, /prism/Ch7UIFig31.png?size=large 2x" data-title="父级和范围的RegionManagers" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>要为视图创建本地<strong>RegionManager</strong>，请指定在将视图添加到区域时应创建新的<strong>RegionManager</strong>，如以下代码示例所示。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c#" data-lang="c#"><span class="line"><span class="cl"><span class="n">IRegion</span> <span class="n">detailsRegion</span> <span class="p">=</span> <span class="k">this</span><span class="p">.</span><span class="n">regionManager</span><span class="p">.</span><span class="n">Regions</span><span class="p">[</span><span class="s">&#34;DetailsRegion&#34;</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="n">View</span> <span class="n">view</span> <span class="p">=</span> <span class="k">new</span> <span class="n">View</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="kt">bool</span> <span class="n">createRegionManagerScope</span> <span class="p">=</span> <span class="kc">true</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">IRegionManager</span> <span class="n">detailsRegionManager</span> <span class="p">=</span> <span class="n">detailsRegion</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="n">view</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="n">createRegionManagerScope</span><span class="p">);</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>该<strong>添加</strong>方法将返回新<strong>RegionManager</strong>该视图可以保留进一步访问本地范围。</p>
+<h3 id="创建视图" class="heading-element"><span>创建视图</span>
+  <a href="#%e5%88%9b%e5%bb%ba%e8%a7%86%e5%9b%be" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p>应用程序的可视化表示形式可以采用多种形式，包括用户控件，自定义控件和数据模板等。对于Stock Trader RI，用户控件通常用于表示主窗口上的不同部分，但这不是标准。在您的应用程序中，您应该使用您最熟悉的方法，这种方法适合您作为设计师的工作方式。无论应用程序中的主要可视化表示如何，您都将不可避免地在整体设计中使用用户控件，自定义控件和数据模板的组合。下图显示了Stock Trader RI使用这些不同项目的位置。此图还可作为以下部分的参考，这些部分描述了每个项目。</p>
+<p><img loading="lazy" src="/prism/Ch7UIFig32.png" alt="股票交易者RI用户控件，自定义控件和数据模板的使用" srcset="/prism/Ch7UIFig32.png?size=small, /prism/Ch7UIFig32.png?size=medium 1.5x, /prism/Ch7UIFig32.png?size=large 2x" data-title="股票交易者RI用户控件，自定义控件和数据模板的使用" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<h3 id="用户控件" class="heading-element"><span>用户控件</span>
+  <a href="#%e7%94%a8%e6%88%b7%e6%8e%a7%e4%bb%b6" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p>Blend for Visual Studio 2013和Visual Studio 2013都为创建用户控件提供了丰富的支持。因此，建议使用这些工具创建的用户控件使用Prism Library创建UI内容。如本主题前面所述，Stock Trader RI广泛使用它们来创建将插入区域的内容。所述<strong>WatchListView.xaml</strong>用户控制是包含内部的简单的用户界面表示的一个很好的例子<strong>WatchModule</strong>。此控件是一个非常简单的控件，使用此模型可以直接创建。</p>
+<h4 id="自定义控件" class="heading-element"><span>自定义控件</span>
+  <a href="#%e8%87%aa%e5%ae%9a%e4%b9%89%e6%8e%a7%e4%bb%b6" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h4><p>在某些情况下，用户控制太有限。在这些情况下，自定义布局或可扩展性比创建的简便性更重要。这是自定义控件有用的地方。在Stock Trader RI中，饼图控件就是一个很好的例子。该控制由来自头寸的数据组成，并显示整个投资组合的图表。与用户控件相比，这种类型的控件比创建用户控件更具挑战性，与用户控件相比，它在Blend for Visual Studio 2013和Visual Studio 2013中的视觉设计支持有限。</p>
+<h4 id="数据模板" class="heading-element"><span>数据模板</span>
+  <a href="#%e6%95%b0%e6%8d%ae%e6%a8%a1%e6%9d%bf" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h4><p>数据模板是大多数类型的数据驱动应用程序的重要组成部分。基于列表的控件的数据模板的使用在整个股票交易者RI中很普遍。在许多情况下，您可以使用数据模板来创建完整的可视化表示，而无需创建任何类型的控件。该<strong>ResearchRegion</strong>使用数据模板显示的文章，并与一个联合<strong>项目</strong>的风格，提供了的选择项目的指示。</p>
+<p>Visual Studio 2013和Visual Studio 2013的Blend具有对数据模板的完全可视化设计支持。</p>
+<h4 id="资源" class="heading-element"><span>资源</span>
+  <a href="#%e8%b5%84%e6%ba%90" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h4><p>样式，资源字典和控件模板等资源可以分散在整个应用程序中。复合应用程序尤其如此。在考虑放置资源的位置时，请特别注意UI元素与所需资源之间的依赖关系。Stock Trader RI解决方案（如下图所示）包含指示资源可以存在的各个区域的标签。</p>
+<p><img loading="lazy" src="/prism/Ch7UIFig33.png" alt="跨解决方案的资源分配" srcset="/prism/Ch7UIFig33.png?size=small, /prism/Ch7UIFig33.png?size=medium 1.5x, /prism/Ch7UIFig33.png?size=large 2x" data-title="跨解决方案的资源分配" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<h5 id="application-resources" class="heading-element"><span>Application Resources</span>
+  <a href="#application-resources" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h5><p>通常，应用程序资源是整个应用程序可用的资源。这些资源往往集中在根应用程序上，但它们也可以在模型或控件的类型基础上提供默认样式。例如，文本框样式应用于根应用程序中的文本框类型。除非在模块或控件级别覆盖样式，否则此样式将可用于应用程序中的所有文本框。</p>
+<h5 id="module-resources" class="heading-element"><span>Module Resources</span>
+  <a href="#module-resources" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h5><p>模块资源与根应用程序资源的作用相同，因为它们可以应用于模块中的所有项目。使用此级别的资源可以在整个模块中提供一致的外观，并且还允许在跨越一个或多个可视组件的更具体实例中重用。模块级别的资源使用应包含在单个模块中。在UI元素显示不正确时，创建模块之间的依赖关系可能导致难以找到的问题。</p>
+<h5 id="control-resources" class="heading-element"><span>Control Resources</span>
+  <a href="#control-resources" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h5><p>控制资源通常包含在控制库中，可供控制库中的所有控件使用。这些资源往往具有最有限的范围，因为控制库通常包含非常特定的控件，并且不包含用户控件。（在使用Prism Library创建的应用程序中，用户控件通常放在使用它们的模块中。）</p>
+<h3 id="ui设计指南" class="heading-element"><span>UI设计指南</span>
+  <a href="#ui%e8%ae%be%e8%ae%a1%e6%8c%87%e5%8d%97" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p>本主题的目标是为正在使用Prism Library和WPF构建应用程序的XAML设计人员和开发人员提供一些高级指导。本主题描述UI布局，可视化表示，数据绑定，资源和表示模型。阅读本主题后，您应该高度了解如何基于Prism库设计应用程序的UI，以及一些可以帮助您在复合应用程序中创建可维护UI的技术。</p>
+<h4 id="设计用户界面的指南" class="heading-element"><span>设计用户界面的指南</span>
+  <a href="#%e8%ae%be%e8%ae%a1%e7%94%a8%e6%88%b7%e7%95%8c%e9%9d%a2%e7%9a%84%e6%8c%87%e5%8d%97" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h4><p>使用Prism Library创建的复合应用程序的布局建立在WPF的标准主体上 - 布局使用包含相关项的面板的概念。但是，对于复合应用程序，各种面板内的内容是动态的，在设计时不知道。这迫使设计人员和开发人员创建可以包含布局内容的页面结构，然后分别设计适合布局的每个元素。作为设计人员或开发人员，这意味着您必须考虑Prism库中的两个主要布局概念：容器组合和区域。</p>
+<h4 id="容器组成" class="heading-element"><span>容器组成</span>
+  <a href="#%e5%ae%b9%e5%99%a8%e7%bb%84%e6%88%90" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h4><p>容器组合实际上只是WPF本身提供的包含模型的扩展。术语<em>容器</em>可以表示任何元素，包括窗口，页面，用户控件，面板，自定义控件，控件模板或数据模板，它们可以包含其他元素。</p>
+<p>您可视化UI的方式因实现而异，但您会发现突出的重复主题。您将创建包含固定内容和动态内容的窗口，页面或用户控件。固定内容将包含包含UI元素的整体结构，动态内容将放置在区域内。</p>
+<p>例如，WPF Stock Trader RI有一个名为Shell.xaml的启动窗口，其中包含应用程序的整体结构。下图显示了Blend for Visual Studio 2013中加载的shell。请注意，只有UI的固定部分可见。当应用程序加载时，shell的其余部分由模块动态插入到各个区域中。</p>
+<p>在这种类型的应用程序中，设计时体验有点受限，但是您知道内容将在运行时放置在不同区域这一事实是您需要设计的。要查看此示例，请将下一个插图中主页面的设计器视图与其后的插图中的运行时视图进行比较。在设计器视图中，页面大多是空的。与运行时视图对比，其中存在包含具有位置数据的选项卡控件的位置区域，以及与所选股票相关的趋势线，饼图和新闻区域。设计器视图和运行时视图之间的差异表明了设计人员和开发人员在创建使用Prism Library构建的应用程序时所面临的挑战。</p>
+<p>在设计时间内无法看到物品; 因此，确定它们的大小以及它们如何适应应用程序的整体外观有点困难。在为容器创建布局时，请考虑以下事项：</p>
+<ul>
+<li>是否有任何大小限制会限制内容的大小？如果有，请考虑使用支持滚动的容器。</li>
+<li>考虑使用扩展器和<strong>ScrollViewer</strong>组合，以适应大量动态内容需要适应受限区域的情况。</li>
+<li>密切关注内容随着屏幕内容的增长而扩大的程度，以确保应用程序的外观在任何分辨率下都具有吸引力。</li>
+</ul>
+<p><img loading="lazy" src="/prism/StockTraderRIExpressionBlend.png" alt="股票交易者RI主窗口在Blend for Visual Studio 2013" srcset="/prism/StockTraderRIExpressionBlend.png?size=small, /prism/StockTraderRIExpressionBlend.png?size=medium 1.5x, /prism/StockTraderRIExpressionBlend.png?size=large 2x" data-title="股票交易者RI主窗口在Blend for Visual Studio 2013" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>股票交易者RI主窗口在Blend for Visual Studio 2013</p>
+<p><img loading="lazy" src="/prism/StockTraderRI.png" alt="在运行时间的股票交易商RI主窗口" srcset="/prism/StockTraderRI.png?size=small, /prism/StockTraderRI.png?size=medium 1.5x, /prism/StockTraderRI.png?size=large 2x" data-title="在运行时间的股票交易商RI主窗口" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>在运行时间的股票交易商RI主窗口</p>
+<h4 id="在设计时查看复合应用程序" class="heading-element"><span>在设计时查看复合应用程序</span>
+  <a href="#%e5%9c%a8%e8%ae%be%e8%ae%a1%e6%97%b6%e6%9f%a5%e7%9c%8b%e5%a4%8d%e5%90%88%e5%ba%94%e7%94%a8%e7%a8%8b%e5%ba%8f" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h4><p>前面的两个图说明了使用在运行时组成的高级视图的挑战之一。复合应用程序中的每个UI元素必须单独设计。这使得很难直观地看出复合页面或窗口在运行时的外观。要在组合状态下可视化组合视图，可以使用包含要测试的视图的所有UI元素的页面或窗口创建测试项目。</p>
+<p>此外，请考虑在Blend for Visual Studio 2013和Visual Studio 2013中使用设计时样本数据功能，以使用数据填充UI元素。使用数据模板，列表控件，图表或图形时，设计时数据非常有用。有关更多信息，请参阅<a href="http://prismlibrary.github.io/docs/wpf/legacy/Composing-the-UI.html#guidelines-for-design-time-sample-data"target="_blank" rel="external nofollow noopener noreferrer">设计时样本数据指南</a>部分。</p>
+<h4 id="布局" class="heading-element"><span>布局</span>
+  <a href="#%e5%b8%83%e5%b1%80" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h4><p>在设计复合应用程序的布局时，请考虑以下事项：</p>
+<ul>
+<li>shell定义了应用程序的主要布局。布局的每个区域都是一个区域，应保留为空容器。不要在设计时将内容放在区域内，因为内容将在运行时加载到那里。</li>
+<li>shell应包含背景，标题和页脚。将shell视为ASP.NET母版页。</li>
+<li>充当区域的控制容器与它们包含的视图分离。因此，您应该能够在不修改控件的情况下更改视图的大小，并且应该能够在不修改视图的情况下更改控件的大小。定义视图大小时应考虑以下事项：
+<ul>
+<li>如果视图将在多个区域中使用，或者如果不确定将在何处使用，请使用动态宽度和高度进行设计。</li>
+<li>如果视图具有固定大小，则shell的区域应使用动态大小。</li>
+<li>如果shell区域具有固定大小，则视图应使用动态大小。</li>
+<li>视图可能需要固定的高度和动态宽度。这方面的一个例子是位于Stock Trader RI侧栏的<strong>PositionPieChart</strong>视图。</li>
+<li>其他视图可能需要动态高度和宽度**。<strong>例如，<strong>StockTrader</strong> RI侧栏中的</strong>NewsReader<strong>视图。高度本身取决于标题的长度，宽度应始终适应区域的大小（侧边栏宽度）。这同样适用于</strong>PositionSummaryView**视图，其中网格的宽度应适应屏幕大小，高度应适应网格中的行数。</li>
+</ul>
+</li>
+<li>视图通常应具有透明背景，允许shell背景提供应用程序视觉背景。</li>
+<li>始终使用命名资源来分配颜色，画笔，字体和字体大小，而不是直接在XAML中分配属性值。这使得应用程序维护更容易。它还允许应用程序在运行时响应资源字典中的更改。</li>
+</ul>
+<h4 id="动画" class="heading-element"><span>动画</span>
+  <a href="#%e5%8a%a8%e7%94%bb" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h4><p>在shell或视图中使用动画时，请考虑以下事项：</p>
+<ul>
+<li>您可以为shell的布局设置动画，但您必须单独为其内容和视图设置动画。</li>
+<li>分别设计和动画每个视图。</li>
+<li>使用柔和或温和的动画来提供UI元素被带入视图或从视图中移除的视觉线索。这为应用程序提供了抛光的外观和感觉。</li>
+</ul>
+<p>Blend for Visual Studio 2013提供了丰富的行为，简化功能，以及基于可视状态更改或事件动画和转换UI元素的出色编辑体验。有关更多信息，请参阅MSDN上的<a href="https://msdn.microsoft.com/en-us/library/cc626338%28v=VS.95%29.aspx"target="_blank" rel="external nofollow noopener noreferrer">VisualStateManager类</a>。</p>
+<h4 id="运行时优化" class="heading-element"><span>运行时优化</span>
+  <a href="#%e8%bf%90%e8%a1%8c%e6%97%b6%e4%bc%98%e5%8c%96" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h4><p>请考虑以下有关性能优化的提示：</p>
+<ul>
+<li>将任何公共资源放在App.xaml文件或合并字典中以避免重复样式。</li>
+</ul>
+<h4 id="设计时优化" class="heading-element"><span>设计时优化</span>
+  <a href="#%e8%ae%be%e8%ae%a1%e6%97%b6%e4%bc%98%e5%8c%96" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h4><p>以下部分描述了设计时方案，并提供了充分利用设计时体验的解决方案。</p>
+<h4 id="large-solutions-with-many-xaml-resources" class="heading-element"><span>Large Solutions with Many XAML Resources</span>
+  <a href="#large-solutions-with-many-xaml-resources" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h4><p>在具有许多XAML资源的大型应用程序中，可视化设计器的加载时间可能会受到影响，有时会显着影响。这种性能下降的存在是因为可视化设计器必须解析所有合并的XAML资源。此问题的解决方案是将所有XAML资源移动到另一个解决方案，编译该解决方案，然后从大型解决方案引用新的XAML资源DLL。由于XAML资源位于二进制引用的程序集中，因此可视化设计器不会解析XAML资源，从而提高了设计时性能。将XAML资源移动到外部程序集时，您可能需要考虑为您的资源公开<strong>ComponentResourceKeys</strong>。有关更多信息，请参阅MSDN上的<a href="http://msdn.microsoft.com/en-us/library/ms753186.aspx"target="_blank" rel="external nofollow noopener noreferrer">ComponentResourceKey标记扩展</a>。</p>
+<h4 id="xamlassets" class="heading-element"><span>XAMLAssets</span>
+  <a href="#xamlassets" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h4><p>XAML是一种功能强大且富有表现力的语言，用于创建图像，图表，绘图和三维场景等资源。一些开发人员和设计人员更喜欢创建XAML资产，而不是使用.ico，.jpg或.png图像文件。他们更喜欢XAML方法的一个原因是利用XAML渲染的分辨率独立性。另一个是他们可以使用一个工具集Blend for Visual Studio 2013来创建所有必需的资产并设计他们的应用程序。</p>
+<p>如果解决方案具有许多这些资产，则可能会影响设计时可视化设计器的加载。将资产移动到单独的DLL可以解决性能问题。移动资产还可以跨多个解决方案重用。</p>
+<h4 id="visual-designers-and-referenced-assemblies" class="heading-element"><span>Visual Designers and Referenced Assemblies</span>
+  <a href="#visual-designers-and-referenced-assemblies" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h4><p>将XAML资源和资产移动到二进制引用程序集的一个令人遗憾的副作用是，Blend for 2013和Visual Studio 2013属性编辑器不会列出位于二进制引用程序集中的资源。这意味着您将无法从工具提供的其中一个资源选择器中选择命名资源。相反，您需要输入资源的名称。</p>
+<h3 id="创建设计友好视图的指南" class="heading-element"><span>创建设计友好视图的指南</span>
+  <a href="#%e5%88%9b%e5%bb%ba%e8%ae%be%e8%ae%a1%e5%8f%8b%e5%a5%bd%e8%a7%86%e5%9b%be%e7%9a%84%e6%8c%87%e5%8d%97" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p>以下是设计人员友好（也称为<em>可混合</em>或<em>可**工具</em>）应用程序的一些特征：</p>
+<ul>
+<li>它通过使用Visual Studio和Blend设计器提供了高效的编辑体验。</li>
+<li>它是启用工具的。例如，它允许您使用绑定构建器。</li>
+<li>它在需要时提供设计时样本数据。</li>
+<li>它允许在设计时执行代码，而不会导致未处理的异常。</li>
+</ul>
+<p>在编辑会话期间多次执行以下操作。非设计友好的用户代码将导致这些操作中的一个或多个失败，从而降低开发人员或设计人员的工作效率和创造力。</p>
+<ul>
+<li>设计表面动作：
+<ul>
+<li>构造对象</li>
+<li>加载对象</li>
+<li>设置属性值</li>
+<li>执行设计表面手势</li>
+<li>使用控件作为根元素</li>
+<li>在另一个控件内部托管控件</li>
+<li>重复打开，关闭和重新打开XAML文件</li>
+<li>重建项目</li>
+<li>重塑设计师</li>
+</ul>
+</li>
+<li>绑定构建器操作：
+<ul>
+<li>发现<strong>DataContext</strong></li>
+<li>列出可用的数据源</li>
+<li>列出数据源类型属性</li>
+</ul>
+</li>
+<li>设计时样本数据操作：
+<ul>
+<li>使用设计图面上的控件正确显示样本数据</li>
+</ul>
+</li>
+</ul>
+<h4 id="编码设计时间" class="heading-element"><span>编码设计时间</span>
+  <a href="#%e7%bc%96%e7%a0%81%e8%ae%be%e8%ae%a1%e6%97%b6%e9%97%b4" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h4><p>为了给您丰富的设计时体验，Visual Studio和Blend设计人员在设计时实例化对象并运行代码。但是，在实例化之前尝试访问引用类型的代码导致的空引用异常会导致高百分比的加载失败和不必要的设计时异常。</p>
+<p>下表列出了设计时体验不佳的主要原因。通过避免以下问题并使用这些技术来缓解这些问题，您的设计时体验和生产力将大大提高，开发人员到设计人员的工作流程将更加顺畅。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left"><strong>用户代码中避免使用此功能</strong></th>
+<th style="text-align:left"><strong>Visual Studio 2013</strong></th>
+<th style="text-align:left"><strong>混合Visual Studio 2013</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">在设计时旋转多个线程。例如，在构造函数中实例化和启动<strong>Timer</strong>或在设计时启动<strong>Loaded</strong>事件。</td>
+<td style="text-align:left"><img loading="lazy" src="http://prismlibrary.github.io/docs/wpf/legacy/images/No.png" alt="没有" srcset="http://prismlibrary.github.io/docs/wpf/legacy/images/No.png?size=small, http://prismlibrary.github.io/docs/wpf/legacy/images/No.png?size=medium 1.5x, http://prismlibrary.github.io/docs/wpf/legacy/images/No.png?size=large 2x" data-title="没有" style="--width: 16px;--aspect-ratio: 16 / 15;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></td>
+<td style="text-align:left"><img loading="lazy" src="http://prismlibrary.github.io/docs/wpf/legacy/images/No.png" alt="没有" srcset="http://prismlibrary.github.io/docs/wpf/legacy/images/No.png?size=small, http://prismlibrary.github.io/docs/wpf/legacy/images/No.png?size=medium 1.5x, http://prismlibrary.github.io/docs/wpf/legacy/images/No.png?size=large 2x" data-title="没有" style="--width: 16px;--aspect-ratio: 16 / 15;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></td>
+</tr>
+<tr>
+<td style="text-align:left">使用在设计时导致堆栈溢出的控件。 使用尝试递归加载自身的控件。</td>
+<td style="text-align:left"><img loading="lazy" src="http://prismlibrary.github.io/docs/wpf/legacy/images/No.png" alt="没有" srcset="http://prismlibrary.github.io/docs/wpf/legacy/images/No.png?size=small, http://prismlibrary.github.io/docs/wpf/legacy/images/No.png?size=medium 1.5x, http://prismlibrary.github.io/docs/wpf/legacy/images/No.png?size=large 2x" data-title="没有" style="--width: 16px;--aspect-ratio: 16 / 15;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></td>
+<td style="text-align:left"><img loading="lazy" src="http://prismlibrary.github.io/docs/wpf/legacy/images/No.png" alt="没有" srcset="http://prismlibrary.github.io/docs/wpf/legacy/images/No.png?size=small, http://prismlibrary.github.io/docs/wpf/legacy/images/No.png?size=medium 1.5x, http://prismlibrary.github.io/docs/wpf/legacy/images/No.png?size=large 2x" data-title="没有" style="--width: 16px;--aspect-ratio: 16 / 15;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></td>
+</tr>
+<tr>
+<td style="text-align:left">在转换器或数据模板选择器中抛出空引用异常。</td>
+<td style="text-align:left"><img loading="lazy" src="http://prismlibrary.github.io/docs/wpf/legacy/images/No.png" alt="没有" srcset="http://prismlibrary.github.io/docs/wpf/legacy/images/No.png?size=small, http://prismlibrary.github.io/docs/wpf/legacy/images/No.png?size=medium 1.5x, http://prismlibrary.github.io/docs/wpf/legacy/images/No.png?size=large 2x" data-title="没有" style="--width: 16px;--aspect-ratio: 16 / 15;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></td>
+<td style="text-align:left"><img loading="lazy" src="http://prismlibrary.github.io/docs/wpf/legacy/images/No.png" alt="没有" srcset="http://prismlibrary.github.io/docs/wpf/legacy/images/No.png?size=small, http://prismlibrary.github.io/docs/wpf/legacy/images/No.png?size=medium 1.5x, http://prismlibrary.github.io/docs/wpf/legacy/images/No.png?size=large 2x" data-title="没有" style="--width: 16px;--aspect-ratio: 16 / 15;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></td>
+</tr>
+<tr>
+<td style="text-align:left">在构造函数中抛出null引用或其他异常。这些是由：使用调用业务或数据层的代码在设计时从数据库或网络返回数据。在引导或容器初始化代码运行之前，尝试使用MEF，控制反转（IoC）或服务定位器来解决依赖关系。</td>
+<td style="text-align:left"><img loading="lazy" src="http://prismlibrary.github.io/docs/wpf/legacy/images/No.png" alt="没有" srcset="http://prismlibrary.github.io/docs/wpf/legacy/images/No.png?size=small, http://prismlibrary.github.io/docs/wpf/legacy/images/No.png?size=medium 1.5x, http://prismlibrary.github.io/docs/wpf/legacy/images/No.png?size=large 2x" data-title="没有" style="--width: 16px;--aspect-ratio: 16 / 15;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></td>
+<td style="text-align:left"><img loading="lazy" src="http://prismlibrary.github.io/docs/wpf/legacy/images/No.png" alt="没有" srcset="http://prismlibrary.github.io/docs/wpf/legacy/images/No.png?size=small, http://prismlibrary.github.io/docs/wpf/legacy/images/No.png?size=medium 1.5x, http://prismlibrary.github.io/docs/wpf/legacy/images/No.png?size=large 2x" data-title="没有" style="--width: 16px;--aspect-ratio: 16 / 15;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></td>
+</tr>
+<tr>
+<td style="text-align:left">在控件或用户控件的<strong>Loaded</strong>事件中抛出空引用或其他异常。当您对运行时可能为真的控件状态进行假设但在设计时不正确时会发生这种情况。</td>
+<td style="text-align:left"><img loading="lazy" src="http://prismlibrary.github.io/docs/wpf/legacy/images/No.png" alt="没有" srcset="http://prismlibrary.github.io/docs/wpf/legacy/images/No.png?size=small, http://prismlibrary.github.io/docs/wpf/legacy/images/No.png?size=medium 1.5x, http://prismlibrary.github.io/docs/wpf/legacy/images/No.png?size=large 2x" data-title="没有" style="--width: 16px;--aspect-ratio: 16 / 15;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></td>
+<td style="text-align:left"><img loading="lazy" src="http://prismlibrary.github.io/docs/wpf/legacy/images/No.png" alt="没有" srcset="http://prismlibrary.github.io/docs/wpf/legacy/images/No.png?size=small, http://prismlibrary.github.io/docs/wpf/legacy/images/No.png?size=medium 1.5x, http://prismlibrary.github.io/docs/wpf/legacy/images/No.png?size=large 2x" data-title="没有" style="--width: 16px;--aspect-ratio: 16 / 15;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></td>
+</tr>
+<tr>
+<td style="text-align:left">尝试在设计时访问<strong>Application</strong>或<strong>Application.Current</strong>对象。</td>
+<td style="text-align:left"><img loading="lazy" src="http://prismlibrary.github.io/docs/wpf/legacy/images/No.png" alt="没有" srcset="http://prismlibrary.github.io/docs/wpf/legacy/images/No.png?size=small, http://prismlibrary.github.io/docs/wpf/legacy/images/No.png?size=medium 1.5x, http://prismlibrary.github.io/docs/wpf/legacy/images/No.png?size=large 2x" data-title="没有" style="--width: 16px;--aspect-ratio: 16 / 15;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></td>
+<td style="text-align:left"><img loading="lazy" src="http://prismlibrary.github.io/docs/wpf/legacy/images/No.png" alt="没有" srcset="http://prismlibrary.github.io/docs/wpf/legacy/images/No.png?size=small, http://prismlibrary.github.io/docs/wpf/legacy/images/No.png?size=medium 1.5x, http://prismlibrary.github.io/docs/wpf/legacy/images/No.png?size=large 2x" data-title="没有" style="--width: 16px;--aspect-ratio: 16 / 15;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></td>
+</tr>
+<tr>
+<td style="text-align:left">创建非常大的项目。</td>
+<td style="text-align:left"><img loading="lazy" src="http://prismlibrary.github.io/docs/wpf/legacy/images/Yes.png" alt="是" srcset="http://prismlibrary.github.io/docs/wpf/legacy/images/Yes.png?size=small, http://prismlibrary.github.io/docs/wpf/legacy/images/Yes.png?size=medium 1.5x, http://prismlibrary.github.io/docs/wpf/legacy/images/Yes.png?size=large 2x" data-title="是" style="--width: 16px;--aspect-ratio: 16 / 15;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></td>
+<td style="text-align:left"><img loading="lazy" src="http://prismlibrary.github.io/docs/wpf/legacy/images/No.png" alt="没有" srcset="http://prismlibrary.github.io/docs/wpf/legacy/images/No.png?size=small, http://prismlibrary.github.io/docs/wpf/legacy/images/No.png?size=medium 1.5x, http://prismlibrary.github.io/docs/wpf/legacy/images/No.png?size=large 2x" data-title="没有" style="--width: 16px;--aspect-ratio: 16 / 15;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></td>
+</tr>
+</tbody>
+</table>
+<h4 id="减少设计时用户代码中的问题" class="heading-element"><span>减少设计时用户代码中的问题</span>
+  <a href="#%e5%87%8f%e5%b0%91%e8%ae%be%e8%ae%a1%e6%97%b6%e7%94%a8%e6%88%b7%e4%bb%a3%e7%a0%81%e4%b8%ad%e7%9a%84%e9%97%ae%e9%a2%98" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h4><p>一些防御性编码实践将消除上表中描述的大多数问题。但是，在您可以缓解设计时用户代码中的问题之前，您必须了解您的应用程序控件和代码是由设计人员在未初始化的应用程序域中单独执行的。在这种情况下，<em>未初始化</em>意味着通常的启动，引导或初始化代码尚未运行。</p>
+<p>当您的应用程序在运行时执行时，将运行App.xaml.cs或App.xaml.vb中的启动代码。如果您的应用程序的其余部分依赖于此代码，则此代码将不会在设计时执行。如果您在代码中没有预料到这一点，则会发生不必要的异常。（这就是为什么在设计时尝试在用户代码中访问<strong>Application</strong>或<strong>Application.Current</strong>对象会导致异常。）为了缓解这些问题：</p>
+<ul>
+<li>
+<p>永远不要假设引用的对象将在设计时代码中实例化。在可以在设计时执行的代码中，始终在访问任何引用对象之前执行空检查。</p>
+</li>
+<li>
+<p>如果您的代码访问<strong>Application</strong>或<strong>Application.Current</strong>对象，请在访问对象之前执行空引用检查。</p>
+</li>
+<li>
+<p>如果构造函数或<strong>Loaded</strong>事件处理程序需要运行访问数据库或调用网络的复杂代码或代码，请考虑以下解决方案之一：</p>
+<ul>
+<li>将代码包装在一个检查中，该检查通过调用<strong>System.ComponentModel DesignerProperties</strong>方法<strong>DesignerProperties.GetIsInDesignMode</strong>来确定代码是否在设计时运行。</li>
+<li>而不是直接在构造函数或<strong>Loaded</strong>事件处理程序中运行代码，抽象调用接口后面的类，然后使用许多技术之一在设计时，运行时和测试时以不同方式解析该依赖项。</li>
+</ul>
+<p>例如，不是直接调用数据服务来检索数据，而是将数据服务调用包装在通过接口公开方法的类中。然后，在设计时，使用模拟或设计时对象解析接口。</p>
+</li>
+</ul>
+<h4 id="了解用户控制代码何时在设计时执行" class="heading-element"><span>了解用户控制代码何时在设计时执行</span>
+  <a href="#%e4%ba%86%e8%a7%a3%e7%94%a8%e6%88%b7%e6%8e%a7%e5%88%b6%e4%bb%a3%e7%a0%81%e4%bd%95%e6%97%b6%e5%9c%a8%e8%ae%be%e8%ae%a1%e6%97%b6%e6%89%a7%e8%a1%8c" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h4><p>Blend和Visual Studio都使用设计器窗格中显示的根对象的模型。这对于提供所需的设计体验是必要的。因为根对象是模拟的，所以它的构造函数和<strong>Loaded</strong>事件代码不会在设计时执行。但是，场景中的其余控件正常构造，并且它们的<strong>Loaded</strong>事件就像在运行时一样被引发。</p>
+<p>在下图中，将不执行根<strong>Windows</strong>构造函数和<strong>已加载</strong>事件代码。子用户控件构造函数和<strong>Loaded</strong>事件代码将被执行。</p>
+<p><img loading="lazy" src="/prism/Ch7UIFig35.png" alt="用户控制代码在Design-Time执行" srcset="/prism/Ch7UIFig35.png?size=small, /prism/Ch7UIFig35.png?size=medium 1.5x, /prism/Ch7UIFig35.png?size=large 2x" data-title="用户控制代码在Design-Time执行" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>这些概念很重要，尤其是在构建在运行时动态构建的复合应用程序或应用程序时。</p>
+<p>大多数应用程序视图都是独立编码和设计 因为它们是独立设计的，所以它们通常是设计器中的根对象。因此，它们的构造函数和<strong>Loaded</strong>事件代码永远不会执行。</p>
+<p>但是，如果您使用相同的用户控件并将其作为另一个控件的子项放置在设计图面上，则曾经隔离的用户控件代码现在正在设计时执行。如果您没有遵循上述减轻设计时代码问题的做法，那么现在托管的用户控件可能会变得不友好并导致设计器加载问题。</p>
+<h4 id="设计时属性" class="heading-element"><span>设计时属性</span>
+  <a href="#%e8%ae%be%e8%ae%a1%e6%97%b6%e5%b1%9e%e6%80%a7" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h4><p>内置的“d：”设计时属性为成功的设计时工具体验提供了平稳的道路。</p>
+<p>我们需要解决的问题是如何在设计时为Binding Builder工具提供形状。在这种情况下，形状是Binding Builder可以反映的实例化<strong>类型</strong>，然后在构建绑定时列出这些属性以供选择。</p>
+<p>形状也由设计时样本数据提供。样本数据包含在<a href="http://prismlibrary.github.io/docs/wpf/legacy/Composing-the-UI.html#guidelines-for-design-time-sample-data"target="_blank" rel="external nofollow noopener noreferrer">“设计时样本数据指南”</a>一节中。</p>
+<p>以下部分描述了如何使用<strong>d：DataContext</strong>属性和<strong>d：DesignInstance</strong>标记扩展。</p>
+<p>属性和标记扩展中的“d：”是设计属性所属的设计命名空间的别名。有关更多信息，请参阅WPDN主题，<a href="http://msdn.microsoft.com/en-us/library/ee839627.aspx"target="_blank" rel="external nofollow noopener noreferrer">WPF设计器中的设计时属性</a>。</p>
+<p>无法在用户代码中创建或扩展“d：”属性和标记扩展; 它们只能在XAML中使用。“d：”属性和标记扩展名未编译到您的应用程序中; 它们仅由Visual Studio和Blend工具使用。</p>
+<h5 id="ddatacontext属性" class="heading-element"><span>d：DataContext属性</span>
+  <a href="#ddatacontext%e5%b1%9e%e6%80%a7" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h5><p><strong>d：DataContext</strong>，为控件及其子控件指定设计时数据上下文。指定<strong>d：DataContext时</strong>，应始终为设计时<strong>DataContext</strong>提供与运行时<strong>DataContext</strong>相同的形状。</p>
+<p>如果为控件指定了<strong>DataContext</strong>和<strong>d：DataContext</strong>，则工具将使用<strong>d：DataContext</strong>。</p>
+<h5 id="ddesigninstance标记扩展" class="heading-element"><span>d：DesignInstance标记扩展</span>
+  <a href="#ddesigninstance%e6%a0%87%e8%ae%b0%e6%89%a9%e5%b1%95" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h5><p>如果标记扩展对您来说是新手，请在MSDN上阅读<a href="http://msdn.microsoft.com/en-us/library/ms747254.aspx"target="_blank" rel="external nofollow noopener noreferrer">标记扩展和WPF XAML</a>。</p>
+<p><strong>d：DesignInstance</strong>返回一个实例化的Type（“shape”），您希望将其指定为绑定到设计器中控件的数据源。该类型不需要是可创建的以用于建立形状。下表说明了<strong>d：DesignInstance</strong>标记扩展属性。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left"><strong>标记扩展属性</strong></th>
+<th style="text-align:left"><strong>定义</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>类型</strong></td>
+<td style="text-align:left">要创建的类型的名称。Type是构造函数中的默认参数。</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>IsDesignTimeCreatable</strong></td>
+<td style="text-align:left">Can the specified Type be created? If false, a faux Type will be created rather than the real Type. The default is false.</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>CreateList</strong></td>
+<td style="text-align:left">If true, returns a generic list of the specified Type. The default is false.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="typical-ddatacontext-scenario" class="heading-element"><span>Typical d:DataContext Scenario</span>
+  <a href="#typical-ddatacontext-scenario" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h5><p>The following three code examples demonstrate a repeatable pattern for wiring up views and view models and enabling the designer&rsquo;s tooling.</p>
+<p>The <strong>PersonViewModel</strong> is a dependency that the <strong>PersonView</strong> has at run time. While the view model in the example is incredibly simple, real-world view models typically have one or more external dependencies that must be resolved, and those dependencies are typically injected into their constructor.</p>
+<p>当<strong>PersonView</strong>被构造，其依赖<strong>PersonViewModel</strong>将建及其依赖由MEF或依赖注入容器解决。</p>
+<p>注意：如果视图模型没有需要解析的外部依赖项，则可以在视图的XAML中实例化视图模型，并且不需要其<strong>DataContext</strong>和<strong>d：DataContext</strong>。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c#" data-lang="c#"><span class="line"><span class="cl"><span class="c1">// PersonViewModel.cs</span>
+</span></span><span class="line"><span class="cl"><span class="na">[Export]</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="k">class</span> <span class="nc">PersonViewModel</span> 
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">String</span> <span class="n">FirstName</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">String</span> <span class="n">LasName</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// PersonView.xaml.cs</span>
+</span></span><span class="line"><span class="cl"><span class="na">[Export]</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">partial</span> <span class="k">class</span> <span class="nc">PersonView</span> <span class="p">:</span> <span class="n">UserControl</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">PersonView</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">InitializeComponent</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="na">
+</span></span></span><span class="line"><span class="cl"><span class="na">    [Import]</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">PersonViewModel</span> <span class="n">ViewModel</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">get</span> <span class="p">{</span> <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="n">DataContext</span> <span class="k">as</span> <span class="n">PersonViewModel</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">set</span> <span class="p">{</span> <span class="k">this</span><span class="p">.</span><span class="n">DataContext</span> <span class="p">=</span> <span class="k">value</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>这是一个很好的模式，用于连接视图和视图模型; 但是，它在设计时让视图不知道它的<strong>DataContext</strong>的形状（视图模型）。</p>
+<p>在下面的XAML示例中，您可以看到<strong>网格</strong>上使用的<strong>d：DesignInstance</strong>标记扩展，用于返回<strong>PersonViewModel</strong>的虚假实例，然后由<strong>d：DataContext</strong>公开。因此，<strong>Grid的</strong>所有子控件都将继承<strong>d：DataContext</strong>，使设计器工具能够发现并使用其类型和属性，从而为开发人员和设计人员提供更高效的设计体验。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;!--PersonView.xaml --&gt;
+</span></span><span class="line"><span class="cl">&lt;UserControl
+</span></span><span class="line"><span class="cl">    xmlns:local=&#34;clr-namespace:WpfApplication1&#34;
+</span></span><span class="line"><span class="cl">    x:Class=&#34;WpfApplication1.PersonView&#34;
+</span></span><span class="line"><span class="cl">    xmlns=&#34;http://schemas.microsoft.com/winfx/2006/xaml/presentation&#34;
+</span></span><span class="line"><span class="cl">    xmlns:x=&#34;http://schemas.microsoft.com/winfx/2006/xaml&#34;
+</span></span><span class="line"><span class="cl">    xmlns:mc=&#34;http://schemas.openxmlformats.org/markup-compatibility/2006&#34;
+</span></span><span class="line"><span class="cl">    xmlns:d=&#34;http://schemas.microsoft.com/expression/blend/2008&#34;
+</span></span><span class="line"><span class="cl">    mc:Ignorable=&#34;d&#34;
+</span></span><span class="line"><span class="cl">    d:DesignHeight=&#34;300&#34; d:DesignWidth=&#34;300&#34;&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    &lt;Border BorderBrush=&#34;LightGray&#34; BorderThickness=&#34;1&#34; CornerRadius=&#34;10&#34; Padding=&#34;10&#34;&gt;
+</span></span><span class="line"><span class="cl">        &lt;Grid d:DataContext=&#34;{d:DesignInstance local:PersonViewModel}&#34;&gt;
+</span></span><span class="line"><span class="cl">            &lt;Grid.RowDefinitions&gt;
+</span></span><span class="line"><span class="cl">                &lt;RowDefinition Height=&#34;Auto&#34; /&gt;
+</span></span><span class="line"><span class="cl">                &lt;RowDefinition Height=&#34;Auto&#34; /&gt;
+</span></span><span class="line"><span class="cl">            &lt;/Grid.RowDefinitions&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            &lt;Grid.ColumnDefinitions&gt;
+</span></span><span class="line"><span class="cl">                &lt;ColumnDefinition Width=&#34;100&#34; /&gt;
+</span></span><span class="line"><span class="cl">                &lt;ColumnDefinition Width=&#34;Auto&#34; /&gt;
+</span></span><span class="line"><span class="cl">            &lt;/Grid.ColumnDefinitions&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            &lt;Label Grid.Column=&#34;0&#34; Grid.Row=&#34;0&#34; Content=&#34;First Name&#34; /&gt;
+</span></span><span class="line"><span class="cl">            &lt;Label Grid.Column=&#34;0&#34; Grid.Row=&#34;1&#34; Content=&#34;Las Name&#34; /&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            &lt;TextBox
+</span></span><span class="line"><span class="cl">                Grid.Column=&#34;1&#34; Grid.Row=&#34;0&#34; Width=&#34;150&#34; MaxLength=&#34;50&#34;
+</span></span><span class="line"><span class="cl">                HorizontalAlignment=&#34;Left&#34; VerticalAlignment=&#34;Top&#34;
+</span></span><span class="line"><span class="cl">                Text=&#34;{Binding Path=FirstName, Mode=TwoWay}&#34; /&gt;
+</span></span><span class="line"><span class="cl">            &lt;TextBox 
+</span></span><span class="line"><span class="cl">                Grid.Column=&#34;1&#34; Grid.Row=&#34;1&#34; Width=&#34;150&#34; MaxLength=&#34;50&#34;
+</span></span><span class="line"><span class="cl">                HorizontalAlignment=&#34;Left&#34; VerticalAlignment=&#34;Top&#34;
+</span></span><span class="line"><span class="cl">                Text=&#34;{Binding Path=LasName, Mode=TwoWay}&#34; /&gt;
+</span></span><span class="line"><span class="cl">        &lt;/Grid&gt;
+</span></span><span class="line"><span class="cl">    &lt;/Border&gt;
+</span></span><span class="line"><span class="cl">&lt;/UserControl&gt;</span></span></code></pre></td></tr></table>
+</div>
+</div><p>注意：<strong>附加属性和ViewModel定位器解决方案</strong></p>
+<p><em>有几种替代技术可用于关联开发人员社区提供的视图和视图模型。其中一个挑战是在运行时运行良好的解决方案并不总是在设计时工作。一种这样的解决方案是使用附加属性和视图模型定位器来分配视图的<strong>DataContext</strong>。视图模型定位器是必需的，以便可以构建视图模型并解析其依赖关系。</em></p>
+<p><em>此解决方案的问题在于您还必须包含<strong>d：DataContext</strong> - <strong>d：DesignInstance</strong>组合，因为可视化设计器工具无法以<strong>d：DesignInstance</strong>的方式反映在附加属性的结果中。</em></p>
+<p><em>无论您在应用程序中使用哪种技术在设计时解决形状，最重要的目标是在整个应用程序中保持一致。一致性将使应用程序维护变得更加容易，并将导致成功的设计人员 - 开发人员工作流程。</em></p>
+<h4 id="使用设计时样本数据" class="heading-element"><span>使用设计时样本数据</span>
+  <a href="#%e4%bd%bf%e7%94%a8%e8%ae%be%e8%ae%a1%e6%97%b6%e6%a0%b7%e6%9c%ac%e6%95%b0%e6%8d%ae" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h4><p>如果使用可视化设计工具（如Blend或Visual Studio 2013），则设计时样本数据变得非常重要。视图可以填充数据和图像，使设计任务更容易，更快速地完成。这样可以提高生产力和创造力。</p>
+<p>包含数据模板的空列表控件将不可见，除非它们填充了数据，使编辑空控件的任务更耗时，因为您需要运行应用程序以查看上次编辑在运行时的外观。</p>
+<h3 id="using-design-time-sample-data" class="heading-element"><span>Using Design-Time Sample Data</span>
+  <a href="#using-design-time-sample-data" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p>如果使用可视化设计工具（如Blend或Visual Studio 2013），则设计时样本数据变得非常重要。视图可以填充数据和图像，使设计任务更容易，更快速地完成。这样可以提高生产力和创造力。</p>
+<p>包含数据模板的空列表控件将不可见，除非它们填充了数据，使编辑空控件的任务更耗时，因为您需要运行应用程序以查看上次编辑在运行时的外观。</p>
+<h4 id="示例数据源" class="heading-element"><span>示例数据源</span>
+  <a href="#%e7%a4%ba%e4%be%8b%e6%95%b0%e6%8d%ae%e6%ba%90" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h4><p>您可以使用以下任何来源的示例数据：</p>
+<ul>
+<li>混合Visual Studio 2013 XML示例数据</li>
+<li>混合Visual Studio 2013和Visual Studio 2013 XAML示例数据</li>
+<li>XAML资源</li>
+<li>码</li>
+</ul>
+<p>以下各小节介绍了每个来源的数据。</p>
+<h4 id="混合xml示例数据" class="heading-element"><span>混合XML示例数据</span>
+  <a href="#%e6%b7%b7%e5%90%88xml%e7%a4%ba%e4%be%8b%e6%95%b0%e6%8d%ae" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h4><p>Blend使您能够快速创建XML模式并填充相应的XML文件。这是在不依赖任何项目类的情况下完成的。</p>
+<p>此类示例数据的目的是让设计人员快速启动他们的项目，而无需等待开发人员或应用程序类可供使用之前。</p>
+<p>虽然Blend和Visual Studio设计器都支持大多数示例数据，但XML示例数据是Blend功能，并且不在Visual Studio设计器中呈现。</p>
+<p><em><strong>注意：</strong> XML样本数据文件在构建时不会编译或添加到程序集中; 但是，XML模式将编译到构建的程序集中。</em></p>
+<h4 id="visual-studio-2013和visual-studio-2013-xaml示例数据的混合" class="heading-element"><span>Visual Studio 2013和Visual Studio 2013 XAML示例数据的混合</span>
+  <a href="#visual-studio-2013%e5%92%8cvisual-studio-2013-xaml%e7%a4%ba%e4%be%8b%e6%95%b0%e6%8d%ae%e7%9a%84%e6%b7%b7%e5%90%88" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h4><p>从Expression Blend 4和Visual Studio 2010开始，添加了<strong>d：DesignData</strong>标记扩展，以启用XAML样本数据的设计时加载。</p>
+<p>示例数据XAML文件包含实例化一个或多个类型的XAML，并为属性分配值。</p>
+<p><strong>d：DesignData</strong>具有<strong>Source</strong>属性，该属性将统一资源标识符（URI）提取到位于项目中的示例数据XAML文件。的<strong>d：DesignData</strong>标记扩展加载XAML文件，解析它，然后返回一个对象图。对象图可以由<strong>d：DataContext</strong>属性，<strong>CollectionViewSource d：DesignSource</strong>属性或<strong>DomainDataSource d：DesignData</strong>属性使用。</p>
+<p><strong>d：DesignData</strong>标记扩展克服的挑战之一是它可以为不可创建的用户类型创建样本数据。例如，无法在代码中创建WCF富Internet应用程序（RIA）服务实体派生对象。此外，开发人员可能拥有自己的类型，这些类型不可创建，但仍希望拥有这些类型的示例数据。</p>
+<p>您可以通过在<strong>解决方案资源管理器中</strong>设置示例数据文件上的<strong>Build Action</strong>属性来更改<strong>d：DesignData</strong>处理示例数据文件的方式，如下所示：</p>
+<ul>
+<li><strong>Build Action = DesignData</strong> - 将创建虚拟类型</li>
+<li><strong>Build Action = DesignDataWithDesignTimeCreatableTypes</strong> - 将创建真实类型</li>
+</ul>
+<p>当Blend用于为类创建示例数据时，它会创建一个XAML示例数据文件，并将<strong>Build Action</strong>设置为<strong>DesignData</strong>。如果需要实际类型，请在Visual Studio中打开解决方案，并将示例数据文件的<strong>Build Action</strong>更改为<strong>DesignDataWithDesignTimeCreatableTypes</strong>。</p>
+<p>***注意：**在下图中，“ **自定义工具”*<em>属性为空。这是样本数据正常工作所必需的。默认情况下，Blend正确地将此属性设置为空。</em></p>
+<p>*使用Visual Studio 2013添加示例数据文件时，通常会添加新的资源字典项并从那里进行编辑。在这种情况下，您必须设置“ **构建操作”**并清除“ **自定义工具”*<em>属性。</em></p>
+<p><img loading="lazy" src="/prism/Ch7UIFig37.png" alt="示例数据文件属性" srcset="/prism/Ch7UIFig37.png?size=small, /prism/Ch7UIFig37.png?size=medium 1.5x, /prism/Ch7UIFig37.png?size=large 2x" data-title="示例数据文件属性" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>Expression Blend提供了用于快速创建和绑定XAML样本数据的工具。可以在Visual Studio 2013设计器中使用和查看XAML示例数据，如下图所示。</p>
+<p><img loading="lazy" src="/prism/BlendCreateSampleData.png" alt="Blend for Visual Studio 2013中的示例数据" srcset="/prism/BlendCreateSampleData.png?size=small, /prism/BlendCreateSampleData.png?size=medium 1.5x, /prism/BlendCreateSampleData.png?size=large 2x" data-title="Blend for Visual Studio 2013中的示例数据" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>生成样本数据后，数据将显示在“数据”窗格中，如下图所示。</p>
+<p><img loading="lazy" src="/prism/Ch7UIFig39.png" alt="数据窗格" srcset="/prism/Ch7UIFig39.png?size=small, /prism/Ch7UIFig39.png?size=medium 1.5x, /prism/Ch7UIFig39.png?size=large 2x" data-title="数据窗格" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>然后，您可以将其拖到视图的根元素（例如<strong>UserControl</strong>）上，并将其设置为<strong>d：DataContext</strong>属性。您还可以将样本数据集合拖放到项目控件上，Blend会将示例数据连接到控件。</p>
+<p><em><strong>注意</strong>：XAML示例数据文件不会编译到构建的程序集中或包含在构建的程序集中。</em></p>
+<h4 id="xaml资源" class="heading-element"><span>XAML资源</span>
+  <a href="#xaml%e8%b5%84%e6%ba%90" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h4><p>您可以在XAML中创建实例化所需类型的资源，然后将该资源绑定到<strong>DataContext</strong>或列表控件。</p>
+<p>此技术可用于快速创建用于编辑数据模板的丢弃样本数据，该数据模板在没有样本数据的情况下编辑需要更长时间。</p>
+<h5 id="code" class="heading-element"><span>Code</span>
+  <a href="#code" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h5><p>如果您更喜欢在代码中创建示例数据，则可以编写一个类，该类公开将样本数据返回给其使用者的属性或方法。例如，您可以编写一个<strong>Customers</strong>类，该类在其默认的空构造函数中填充了<strong>Customer</strong>类的多个实例。每个<strong>Customer</strong>实例也将设置适当的属性值。</p>
+<p>可用于使用前面描述的示例数据类的一种技术是使用<strong>d：DataContext</strong>，<strong>d：DesignInstance</strong>组合，确保将<strong>d：</strong> <strong>DesignInstance IsDesignTimeCreatable</strong>属性设置为<strong>True</strong>。<strong>IsDesignTimeCreatable</strong>必须为<strong>True</strong>的原因是您希望执行customer构造函数，以便运行填充该类的代码。如果将客户视为虚假类型，则客户代码将永远不会运行，并且工具只能发现“形状”。</p>
+<p>以下XAML示例实例化<strong>Customers</strong>类，然后将其设置为<strong>d：DataContext</strong>。此<strong>Grid的</strong>子控件可以使用<strong>Customers</strong>类公开的数据。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;Grid d:DataContext=&#34;{d:DesignInstance local:Customers, IsDesignTimeCreatable=True}&#34;&gt;</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="ui布局关键决策" class="heading-element"><span>UI布局关键决策</span>
+  <a href="#ui%e5%b8%83%e5%b1%80%e5%85%b3%e9%94%ae%e5%86%b3%e7%ad%96" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p>当您开始复合应用程序项目时，您需要做出一些UI设计决策，这些决策以后很难更改。通常，这些决策是应用程序范围的，它们的一致性有助于开发人员和设</p>
+<p>以下是重要的UI布局决策：</p>
+<ul>
+<li>确定应用程序流程并相应地定义区域。</li>
+<li>确定加载每个区域将使用的视图类型。</li>
+<li>确定是否要使用区域导航API。</li>
+<li>确定要使用的UI设计模式（MVVM，演示模型等）。</li>
+<li>确定样本数据策略。</li>
+</ul>
+</div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title="更新于 2019-07-03 17:09:22">更新于 2019-07-03&nbsp;</span>
+      </div><div class="post-info-license">
+            <span><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0 转载请注明来源</a></span>
+          </div></div><div class="post-info-line">
+        <div class="post-info-md"><span><a href="https://github.com/DDuuuu/issues/new?title=[BUG]%20Prism&#43;Region&amp;body=%7cField%7cValue%7c%0A%7c-%7c-%7c%0A%7cTitle%7cPrism&#43;Region%7c%0A%7cURL%7chttps://DDuuuu.github.io/2019/07/prism11-region/%7c%0A%7cFilename%7c%7c" title="报告问题"target="_blank" rel="external nofollow noopener noreferrer" class="link-to-report">报告问题</a></span></div>
+        <div class="post-info-share">
+          <span></span>
+        </div>
+      </div></div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href="/tags/prism/" class="post-tag" title="标签 - Prism">Prism</a><a href="/tags/region/" class="post-tag" title="标签 - Region">Region</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/2019/07/prism10-advancemvvm/" class="post-nav-item" rel="prev" title="Prism 高级MVVM"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>Prism 高级MVVM</a>
+      <a href="/2019/07/prism12-navigation/" class="post-nav-item" rel="next" title="Prism 导航">Prism 导航<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div class="post-reward">
+    <div class="comment">为爱发电,请我喝杯咖啡吧</div>
+    <input type="checkbox" class="reward-input" name="reward" id="fi-reward" hidden />
+    <label class="reward-button" for="fi-reward"><i class="fa-solid fa-qrcode fa-fw" aria-hidden="true"></i>赞赏</label>
+    <div class="reward-ways" data-mode="static"><div><img loading="lazy" src="/images/alipay.jpg" alt="AndrewDu 支付宝" data-title="AndrewDu 支付宝" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/><span data-animation>支付宝</span>
+          </div><div><img loading="lazy" src="/images/wechat.jpg" alt="AndrewDu 微信" data-title="AndrewDu 微信" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/><span data-animation>微信</span>
+          </div></div>
+  </div><div id="comments"><div id="giscus" class="comment">
+          <script
+            src="https://giscus.app/client.js"
+            data-repo="DDuuuu/DDuuuu.github.io"
+            data-repo-id="R_kgDOMOxQVQ"
+            data-category="Announcements"
+            data-category-id="DIC_kwDOMOxQVc4Cgd23"
+            data-mapping="pathname"
+            data-strict="0"
+            
+            data-theme="preferred_color_scheme"
+            data-reactions-enabled="1"
+            data-emit-metadata="0"
+            data-input-position="bottom"
+            data-lang="zh-CN"
+            data-loading="lazy"
+            crossorigin="anonymous"
+            async
+            defer
+          ></script>
+        </div>
+        <noscript>
+          Please enable JavaScript to view the comments powered by <a href="https://giscus.app/" rel="external nofollow noopener noreferrer">giscus</a>.
+        </noscript></div></article>
+
+  <aside class="toc" id="toc-auto" aria-label="目录"><h2 class="toc-title">目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2018 - 2024</span><span class="author" itemprop="copyrightHolder">
+              <a href="https://github.com/DDuuuu"target="_blank" rel="external nofollow noopener noreferrer">AndrewDu</a></span></div><div class="footer-line statistics"><span class="site-time" title='网站运行中……'><i class="fa-solid fa-heartbeat fa-fw animate-icon" aria-hidden="true"></i><span class="ms-1 d-none">网站运行时间:</span><span class="run-times ms-1">网站运行中……</span></span></div><div class="footer-line visitor">
+          <span id="busuanzi_container_site_uv" title='总访客数'><i class="fa-regular fa-user fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span><span id="busuanzi_container_site_pv" class="footer-divider" title='总访问量'><i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span>
+        </div></div>
+  </footer></div><div class="widgets"><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role="button" aria-label="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i><span class="variant-numeric d-none">0%</span>
+        </div><div class="fixed-button view-comments d-none" role="button" aria-label="查看评论"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></div></div><a href="https://github.com/DDuuuu" title="AndrewDu GitHub"target="_blank" rel="external nofollow" class="github-corner right d-none-mobile"><svg viewBox="0 0 250 250" aria-hidden="true" width="56" height="56"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><div id="mask"></div><div class="reading-progress-bar" style="left: 0;top: 0;"></div><noscript>
+    <div class="noscript-warning">该网站在启用 JavaScript 的情况下效果最佳。</div>
+  </noscript>
+</div><link rel="stylesheet" href="/lib/lightgallery/css/lightgallery-bundle.min.css"><link rel="preload" href="/lib/katex/katex.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/lib/katex/katex.min.css"></noscript><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><link rel="stylesheet" href="/lib/pace/themes/blue/pace-theme-minimal.css"><script src="https://polyfill.io/v3/polyfill.min.js?features=Array.prototype.fill%2CArray.prototype.find%2CArray.from%2CIntersectionObserver%2CMath.sign%2CObject.assign%2CPromise%2CObject.entries%2Chtml5shiv%2CObject.values%2Cfetch%2CElement.prototype.after"></script><script src="/lib/object-fit-images/ofi.min.js"></script><script src="/lib/autocomplete/autocomplete.min.js" defer></script><script src="/lib/fuse/fuse.min.js" defer></script><script src="/lib/instant-page/instantpage.min.js" async defer type="module"></script><script src="/lib/twemoji/twemoji.min.js" defer></script><script src="/lib/lightgallery/lightgallery.min.js" defer></script><script src="/lib/lightgallery/plugins/thumbnail/lg-thumbnail.min.js" defer></script><script src="/lib/lightgallery/plugins/zoom/lg-zoom.min.js" defer></script><script src="/lib/typeit/index.umd.js" defer></script><script src="/lib/katex/katex.min.js" defer></script><script src="/lib/katex/auto-render.min.js" defer></script><script src="/lib/katex/copy-tex.min.js" defer></script><script src="/lib/katex/mhchem.min.js" defer></script><script src="/lib/cookieconsent/cookieconsent.min.js" defer></script><script src="/lib/pangu/pangu.min.js" defer></script><script src="/lib/cell-watermark/watermark.min.js" defer></script><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async defer></script><script src="/lib/pace/pace.min.js" async defer></script><script>window.config={"autoBookmark":true,"code":{"copyTitle":"复制到剪贴板","maxShownLines":999999},"comment":{"enable":true,"expired":false,"giscus":{"darkTheme":"dark","lightTheme":"light","origin":"https://giscus.app"}},"cookieconsent":{"content":{"dismiss":"同意","link":"了解更多","message":"本网站使用 Cookies 来改善您的浏览体验。"},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"enablePWA":true,"lightgallery":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"pangu":{"enable":true,"selector":"article"},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":12,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":100,"threshold":0.3,"type":"fuse","useExtendedSearch":false},"siteTime":"2018-02-22T04:10:22+08:00","twemoji":true,"typeit":{"cursorChar":"|","cursorSpeed":1000,"duration":-1,"loop":false,"speed":100},"version":"v0.3.8","watermark":{"colspacing":300,"content":"Andrew.Du","enable":true,"fontfamily":"inherit","fontsize":0.85,"height":20,"opacity":0.1,"rotate":15,"rowspacing":300,"width":150}};</script><script src="/js/theme.min.js" defer></script></body>
+</html>

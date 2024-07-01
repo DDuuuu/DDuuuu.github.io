@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>重构改善既有代码 - 标签 - AndrewDu&#39;s blog</title>
+    <link>https://DDuuuu.github.io/tags/%E9%87%8D%E6%9E%84%E6%94%B9%E5%96%84%E6%97%A2%E6%9C%89%E4%BB%A3%E7%A0%81/</link>
+    <description>重构改善既有代码 - 标签 | AndrewDu&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>978089234@qq.com (AndrewDu)</managingEditor>
+      <webMaster>978089234@qq.com (AndrewDu)</webMaster><copyright>Copyright© Andrew.Du</copyright><lastBuildDate>Fri, 08 Nov 2019 17:09:22 &#43;0800</lastBuildDate><atom:link href="https://DDuuuu.github.io/tags/%E9%87%8D%E6%9E%84%E6%94%B9%E5%96%84%E6%97%A2%E6%9C%89%E4%BB%A3%E7%A0%81/" rel="self" type="application/rss+xml" /><item>
+  <title>重构改善既有代码 坏代码的味道</title>
+  <link>https://DDuuuu.github.io/2019/11/designpattern5-refactoring1/</link>
+  <pubDate>Fri, 08 Nov 2019 17:09:22 &#43;0800</pubDate>
+  <author>AndrewDu</author>
+  <guid>https://DDuuuu.github.io/2019/11/designpattern5-refactoring1/</guid>
+  <description><![CDATA[第一次做某件事情的时候尽管去做，第二次做类似的事会产生反感，第三次再做类似的事，你就应该重构。 小型函数优美动人 一个类最好是常量类，任何的改变]]></description>
+</item>
+</channel>
+</rss>

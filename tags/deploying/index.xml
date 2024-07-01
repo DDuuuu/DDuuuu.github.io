@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>Deploying - 标签 - AndrewDu&#39;s blog</title>
+    <link>https://DDuuuu.github.io/tags/deploying/</link>
+    <description>Deploying - 标签 | AndrewDu&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>978089234@qq.com (AndrewDu)</managingEditor>
+      <webMaster>978089234@qq.com (AndrewDu)</webMaster><copyright>Copyright© Andrew.Du</copyright><lastBuildDate>Sat, 06 Jul 2019 17:09:22 &#43;0800</lastBuildDate><atom:link href="https://DDuuuu.github.io/tags/deploying/" rel="self" type="application/rss+xml" /><item>
+  <title>Prism Deploying</title>
+  <link>https://DDuuuu.github.io/2019/07/prism14-deploying/</link>
+  <pubDate>Sat, 06 Jul 2019 17:09:22 &#43;0800</pubDate>
+  <author>AndrewDu</author>
+  <guid>https://DDuuuu.github.io/2019/07/prism14-deploying/</guid>
+  <description><![CDATA[注意：该版本为Prism6,最新版已有较大改动。 要成功将Prism应用程序移植到生产环境中，您需要计划部署作为应用程序设计过程的一部分。本主]]></description>
+</item>
+</channel>
+</rss>
