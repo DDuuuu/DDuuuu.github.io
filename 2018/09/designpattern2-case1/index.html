@@ -12,7 +12,7 @@
   <meta itemprop="description" content="这本书的实例非常好，给了我非常多的启发。主要讲了两个实例，咖啡机和薪水支付实例，咖啡机实例比较简单并没有用什么设计模式，薪水支付实例用了很多">
   <meta itemprop="datePublished" content="2018-09-29T17:09:22+08:00">
   <meta itemprop="dateModified" content="2018-09-29T17:09:22+08:00">
-  <meta itemprop="wordCount" content="3810">
+  <meta itemprop="wordCount" content="4471">
   <meta itemprop="image" content="https://DDuuuu.github.io/images/logo150.png">
   <meta itemprop="keywords" content="敏捷软件开发原则模式与实践,咖啡机"><meta property="og:url" content="https://DDuuuu.github.io/2018/09/designpattern2-case1/">
   <meta property="og:site_name" content="AndrewDu&#39;s blog">
@@ -34,7 +34,7 @@
 <meta name="application-name" content="Andrew.Du">
 <meta name="apple-mobile-web-app-title" content="Andrew.Du"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://DDuuuu.github.io/2018/09/designpattern2-case1/" /><link rel="prev" href="https://DDuuuu.github.io/2018/09/designpattern1-uml/" /><link rel="next" href="https://DDuuuu.github.io/2022/06/algorithm1-queuesandlinks/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://DDuuuu.github.io/2018/09/designpattern2-case1/" /><link rel="prev" href="https://DDuuuu.github.io/2018/09/designpattern1-uml/" /><link rel="next" href="https://DDuuuu.github.io/2018/10/designpattern4-designpattern/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
   {
@@ -45,7 +45,7 @@
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "https:\/\/DDuuuu.github.io\/2018\/09\/designpattern2-case1\/"
-    },"image": ["https:\/\/DDuuuu.github.io\/images\/logo192.png"],"genre": "posts","keywords": "敏捷软件开发原则模式与实践, 咖啡机","wordcount":  3810 ,
+    },"image": ["https:\/\/DDuuuu.github.io\/images\/logo192.png"],"genre": "posts","keywords": "敏捷软件开发原则模式与实践, 咖啡机","wordcount":  4471 ,
     "url": "https:\/\/DDuuuu.github.io\/2018\/09\/designpattern2-case1\/","datePublished": "2018-09-29T17:09:22+08:00","dateModified": "2018-09-29T17:09:22+08:00","license": "Copyright© Andrew.Du","publisher": {
       "@type": "Organization",
       "name": "AndrewDu"},"author": {
@@ -172,7 +172,7 @@
     <div class="header"><h1 class="single-title animate__animated animate__flipInX"><span>敏捷软件开发原则模式与实践 咖啡机</span>
       </h1></div><div class="post-meta">
       <div class="post-meta-line"><span class="post-author"><a href="https://github.com/DDuuuu" title="作者"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
-    AndrewDu</a></span><span class="post-included-in">&nbsp;收录于 <a href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" class="post-category" title="分类 - 设计模式"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 设计模式</a></span></div><div class="post-meta-line"><span title="发布于 2018-09-29 17:09:22"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2018-09-29">2018-09-29</time></span>&nbsp;<span title="3810 字"><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>约 3900 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>预计阅读 8 分钟</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="敏捷软件开发原则模式与实践 咖啡机">
+    AndrewDu</a></span><span class="post-included-in">&nbsp;收录于 <a href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" class="post-category" title="分类 - 设计模式"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 设计模式</a></span></div><div class="post-meta-line"><span title="发布于 2018-09-29 17:09:22"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2018-09-29">2018-09-29</time></span>&nbsp;<span title="4471 字"><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>约 4500 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>预计阅读 9 分钟</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="敏捷软件开发原则模式与实践 咖啡机">
               <i class="fa-regular fa-eye fa-fw me-1" aria-hidden="true"></i><span id="busuanzi_value_page_pv">-</span>&nbsp;次阅读
             </span>&nbsp;</div>
     </div><div class="details toc" id="toc-static" data-kept="false">
@@ -269,24 +269,44 @@
 <p>这样整个咖啡机的抽象就完成了，按职责划分，各司其职。这三个抽象类不能知道任何关于咖啡机的任何信息。这就是依赖倒置原则。</p>
 <p>系统的控制流如何检测传感器呢？是选择线程还是轮询。最好的总是假设消息都是可以异步发送的，就像存在有独立的线程一样，把使用轮询还是线程的决策推迟到最后一刻。
 这样设置了一个接口，main()程序就待在一个循环中，不停地一遍遍调用这个方法实现轮询。</p>
-<pre><code>public static void Main(string[] args)
-{
-	CoffeeMakerAPI api = new M4CoffeeMakerAPI();
-	M4UserInterface ui = new M4UserInterface(api);
-	M4HotWaterSOurce hws = new M4HotWaterSOurce(api);
-	M4ContainmentVessel cv = new M4ContainmentVessel(api);
-	ui.Init(hws,cv);
-	hws.Init(ui,cv);
-	cv.Init(hws,ui);
-	while(true)
-	{
-		ui.Poll();
-		hws.Poll();
-		cv.Poll();
-	}
-}
-</code></pre>
-<p><img loading="lazy" src="/designpattern/9amR9CG-1719811783364-68.png" alt="/designpattern/9amR9CG-1719811783364-68.png" srcset="/designpattern/9amR9CG-1719811783364-68.png?size=small, /designpattern/9amR9CG-1719811783364-68.png?size=medium 1.5x, /designpattern/9amR9CG-1719811783364-68.png?size=large 2x" data-title="/designpattern/9amR9CG-1719811783364-68.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">CoffeeMakerAPI</span> <span class="n">api</span> <span class="p">=</span> <span class="k">new</span> <span class="n">M4CoffeeMakerAPI</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">	<span class="n">M4UserInterface</span> <span class="n">ui</span> <span class="p">=</span> <span class="k">new</span> <span class="n">M4UserInterface</span><span class="p">(</span><span class="n">api</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">M4HotWaterSOurce</span> <span class="n">hws</span> <span class="p">=</span> <span class="k">new</span> <span class="n">M4HotWaterSOurce</span><span class="p">(</span><span class="n">api</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">M4ContainmentVessel</span> <span class="n">cv</span> <span class="p">=</span> <span class="k">new</span> <span class="n">M4ContainmentVessel</span><span class="p">(</span><span class="n">api</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">ui</span><span class="p">.</span><span class="n">Init</span><span class="p">(</span><span class="n">hws</span><span class="p">,</span><span class="n">cv</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">hws</span><span class="p">.</span><span class="n">Init</span><span class="p">(</span><span class="n">ui</span><span class="p">,</span><span class="n">cv</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">cv</span><span class="p">.</span><span class="n">Init</span><span class="p">(</span><span class="n">hws</span><span class="p">,</span><span class="n">ui</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="k">while</span><span class="p">(</span><span class="kc">true</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">ui</span><span class="p">.</span><span class="n">Poll</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">		<span class="n">hws</span><span class="p">.</span><span class="n">Poll</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">		<span class="n">cv</span><span class="p">.</span><span class="n">Poll</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><img loading="lazy" src="/designpattern/9amR9CG-1719811783364-68.png" alt="/designpattern/9amR9CG-1719811783364-68.png" srcset="/designpattern/9amR9CG-1719811783364-68.png?size=small, /designpattern/9amR9CG-1719811783364-68.png?size=medium 1.5x, /designpattern/9amR9CG-1719811783364-68.png?size=large 2x" data-title="/designpattern/9amR9CG-1719811783364-68.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>依赖倒置，不允许高层的咖啡制作中依赖底层实现。</p>
 <h2 id="薪水支付实例" class="heading-element"><span>薪水支付实例</span>
   <a href="#%e8%96%aa%e6%b0%b4%e6%94%af%e4%bb%98%e5%ae%9e%e4%be%8b" class="heading-mark">
@@ -380,68 +400,132 @@
 </ul>
 <p><img loading="lazy" src="/designpattern/aOp2NGw-1719811783364-79.png" alt="/designpattern/aOp2NGw-1719811783364-79.png" srcset="/designpattern/aOp2NGw-1719811783364-79.png?size=small, /designpattern/aOp2NGw-1719811783364-79.png?size=medium 1.5x, /designpattern/aOp2NGw-1719811783364-79.png?size=large 2x" data-title="/designpattern/aOp2NGw-1719811783364-79.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p><img loading="lazy" src="/designpattern/image-20240701133000020.png" alt="image-20240701133000020" srcset="/designpattern/image-20240701133000020.png?size=small, /designpattern/image-20240701133000020.png?size=medium 1.5x, /designpattern/image-20240701133000020.png?size=large 2x" data-title="image-20240701133000020" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
-<pre><code>public abstract class AddEmployeeTransaction : Transaction
-{
-	private readonly int empid;
-	private readonly string name;
-	private readonly string address;
-
-	public AddEmployeeTransaction(int empid, 
-		string name, string address, PayrollDatabase database)
-		: base (database)
-	{
-		this.empid = empid;
-		this.name = name;
-		this.address = address;
-	}
-
-	protected abstract 
-		PaymentClassification MakeClassification();
-	protected abstract 
-		PaymentSchedule MakeSchedule();
-
-	public override void Execute()
-	{
-		PaymentClassification pc = MakeClassification();
-		PaymentSchedule ps = MakeSchedule();
-		PaymentMethod pm = new HoldMethod();
-
-		Employee e = new Employee(empid, name, address);
-		e.Classification = pc;
-		e.Schedule = ps;
-		e.Method = pm;
-		database.AddEmployee(e);
-	}
-
-	public override string ToString()
-	{
-		return String.Format(&quot;{0}  id:{1}   name:{2}   address:{3}&quot;, GetType().Name, empid, name,address);
-	} 
-}
-
-public class AddSalariedEmployee : AddEmployeeTransaction
-{
-	private readonly double salary;
-
-	public AddSalariedEmployee(int id, string name, string address, double salary, PayrollDatabase database) 
-		: base(id, name, address, database)
-	{
-		this.salary = salary;
-	}
-
-	protected override 
-		PaymentClassification MakeClassification()
-	{
-		return new SalariedClassification(salary);
-	}
-
-	protected override PaymentSchedule MakeSchedule()
-	{
-		return new MonthlySchedule();
-	}
-}
-</code></pre>
-<ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">abstract</span> <span class="k">class</span> <span class="nc">AddEmployeeTransaction</span> <span class="p">:</span> <span class="n">Transaction</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">private</span> <span class="k">readonly</span> <span class="kt">int</span> <span class="n">empid</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">private</span> <span class="k">readonly</span> <span class="kt">string</span> <span class="n">name</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">private</span> <span class="k">readonly</span> <span class="kt">string</span> <span class="n">address</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="kd">public</span> <span class="n">AddEmployeeTransaction</span><span class="p">(</span><span class="kt">int</span> <span class="n">empid</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">		<span class="kt">string</span> <span class="n">name</span><span class="p">,</span> <span class="kt">string</span> <span class="n">address</span><span class="p">,</span> <span class="n">PayrollDatabase</span> <span class="n">database</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="p">:</span> <span class="k">base</span> <span class="p">(</span><span class="n">database</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">this</span><span class="p">.</span><span class="n">empid</span> <span class="p">=</span> <span class="n">empid</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="k">this</span><span class="p">.</span><span class="n">name</span> <span class="p">=</span> <span class="n">name</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="k">this</span><span class="p">.</span><span class="n">address</span> <span class="p">=</span> <span class="n">address</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="kd">protected</span> <span class="kd">abstract</span> 
+</span></span><span class="line"><span class="cl">		<span class="n">PaymentClassification</span> <span class="n">MakeClassification</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">protected</span> <span class="kd">abstract</span> 
+</span></span><span class="line"><span class="cl">		<span class="n">PaymentSchedule</span> <span class="n">MakeSchedule</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="kd">public</span> <span class="kd">override</span> <span class="k">void</span> <span class="n">Execute</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">PaymentClassification</span> <span class="n">pc</span> <span class="p">=</span> <span class="n">MakeClassification</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">		<span class="n">PaymentSchedule</span> <span class="n">ps</span> <span class="p">=</span> <span class="n">MakeSchedule</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">		<span class="n">PaymentMethod</span> <span class="n">pm</span> <span class="p">=</span> <span class="k">new</span> <span class="n">HoldMethod</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">		<span class="n">Employee</span> <span class="n">e</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Employee</span><span class="p">(</span><span class="n">empid</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">address</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">		<span class="n">e</span><span class="p">.</span><span class="n">Classification</span> <span class="p">=</span> <span class="n">pc</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="n">e</span><span class="p">.</span><span class="n">Schedule</span> <span class="p">=</span> <span class="n">ps</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="n">e</span><span class="p">.</span><span class="n">Method</span> <span class="p">=</span> <span class="n">pm</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="n">database</span><span class="p">.</span><span class="n">AddEmployee</span><span class="p">(</span><span class="n">e</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="kd">public</span> <span class="kd">override</span> <span class="kt">string</span> <span class="n">ToString</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">return</span> <span class="n">String</span><span class="p">.</span><span class="n">Format</span><span class="p">(</span><span class="s">&#34;{0}  id:{1}   name:{2}   address:{3}&#34;</span><span class="p">,</span> <span class="n">GetType</span><span class="p">().</span><span class="n">Name</span><span class="p">,</span> <span class="n">empid</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span><span class="n">address</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span> 
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="k">class</span> <span class="nc">AddSalariedEmployee</span> <span class="p">:</span> <span class="n">AddEmployeeTransaction</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">private</span> <span class="k">readonly</span> <span class="kt">double</span> <span class="n">salary</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="kd">public</span> <span class="n">AddSalariedEmployee</span><span class="p">(</span><span class="kt">int</span> <span class="n">id</span><span class="p">,</span> <span class="kt">string</span> <span class="n">name</span><span class="p">,</span> <span class="kt">string</span> <span class="n">address</span><span class="p">,</span> <span class="kt">double</span> <span class="n">salary</span><span class="p">,</span> <span class="n">PayrollDatabase</span> <span class="n">database</span><span class="p">)</span> 
+</span></span><span class="line"><span class="cl">		<span class="p">:</span> <span class="k">base</span><span class="p">(</span><span class="n">id</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">address</span><span class="p">,</span> <span class="n">database</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">this</span><span class="p">.</span><span class="n">salary</span> <span class="p">=</span> <span class="n">salary</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="kd">protected</span> <span class="kd">override</span> 
+</span></span><span class="line"><span class="cl">		<span class="n">PaymentClassification</span> <span class="n">MakeClassification</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">return</span> <span class="k">new</span> <span class="n">SalariedClassification</span><span class="p">(</span><span class="n">salary</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="kd">protected</span> <span class="kd">override</span> <span class="n">PaymentSchedule</span> <span class="n">MakeSchedule</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">return</span> <span class="k">new</span> <span class="n">MonthlySchedule</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
 <li>删除雇员</li>
 </ul>
 <p>提供雇员id，去数据库删除雇员，没啥好说的。</p>
@@ -451,64 +535,124 @@ public class AddSalariedEmployee : AddEmployeeTransaction
 <p>考勤卡：需要参数，雇员id,日期，工作时间</p>
 <p><img loading="lazy" src="/designpattern/HKh6NFO-1719811783365-80.png" alt="/designpattern/HKh6NFO-1719811783365-80.png" srcset="/designpattern/HKh6NFO-1719811783365-80.png?size=small, /designpattern/HKh6NFO-1719811783365-80.png?size=medium 1.5x, /designpattern/HKh6NFO-1719811783365-80.png?size=large 2x" data-title="/designpattern/HKh6NFO-1719811783365-80.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
 <img loading="lazy" src="/designpattern/Q5vkdbO-1719811783365-81.png" alt="/designpattern/Q5vkdbO-1719811783365-81.png" srcset="/designpattern/Q5vkdbO-1719811783365-81.png?size=small, /designpattern/Q5vkdbO-1719811783365-81.png?size=medium 1.5x, /designpattern/Q5vkdbO-1719811783365-81.png?size=large 2x" data-title="/designpattern/Q5vkdbO-1719811783365-81.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
-<pre><code>public class TimeCard
-{
-	private readonly DateTime date;
-	private readonly double hours;
-
-	public TimeCard(DateTime date, double hours)
-	{
-		this.date = date;
-		this.hours = hours;
-	}
-
-	public double Hours
-	{
-		get { return hours; }
-	}
-
-	public DateTime Date
-	{
-		get { return date; }
-	}
-}
-public class TimeCardTransaction : Transaction
-{
-	private readonly DateTime date;
-	private readonly double hours;
-	private readonly int empId;
-
-	public TimeCardTransaction(DateTime date, double hours, int empId, PayrollDatabase database)
-		: base(database)
-	{
-		this.date = date;
-		this.hours = hours;
-		this.empId = empId;
-	}
-
-	public override void Execute()
-	{
-		Employee e = database.GetEmployee(empId);
-
-		if (e != null)
-		{
-			HourlyClassification hc =
-				e.Classification as HourlyClassification;
-
-			if (hc != null)
-				hc.AddTimeCard(new TimeCard(date, hours));
-			else
-				throw new ApplicationException(
-					&quot;Tried to add timecard to&quot; +
-						&quot;non-hourly employee&quot;);
-		}
-		else
-			throw new ApplicationException(
-				&quot;No such employee.&quot;);
-	}
-}
-</code></pre>
-<p>其他两种与这类似</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="kd">public</span> <span class="k">class</span> <span class="nc">TimeCard</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">private</span> <span class="k">readonly</span> <span class="n">DateTime</span> <span class="n">date</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">private</span> <span class="k">readonly</span> <span class="kt">double</span> <span class="n">hours</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="kd">public</span> <span class="n">TimeCard</span><span class="p">(</span><span class="n">DateTime</span> <span class="n">date</span><span class="p">,</span> <span class="kt">double</span> <span class="n">hours</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">this</span><span class="p">.</span><span class="n">date</span> <span class="p">=</span> <span class="n">date</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="k">this</span><span class="p">.</span><span class="n">hours</span> <span class="p">=</span> <span class="n">hours</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="kd">public</span> <span class="kt">double</span> <span class="n">Hours</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">get</span> <span class="p">{</span> <span class="k">return</span> <span class="n">hours</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="kd">public</span> <span class="n">DateTime</span> <span class="n">Date</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">get</span> <span class="p">{</span> <span class="k">return</span> <span class="n">date</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="k">class</span> <span class="nc">TimeCardTransaction</span> <span class="p">:</span> <span class="n">Transaction</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">private</span> <span class="k">readonly</span> <span class="n">DateTime</span> <span class="n">date</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">private</span> <span class="k">readonly</span> <span class="kt">double</span> <span class="n">hours</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">private</span> <span class="k">readonly</span> <span class="kt">int</span> <span class="n">empId</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="kd">public</span> <span class="n">TimeCardTransaction</span><span class="p">(</span><span class="n">DateTime</span> <span class="n">date</span><span class="p">,</span> <span class="kt">double</span> <span class="n">hours</span><span class="p">,</span> <span class="kt">int</span> <span class="n">empId</span><span class="p">,</span> <span class="n">PayrollDatabase</span> <span class="n">database</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="p">:</span> <span class="k">base</span><span class="p">(</span><span class="n">database</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">this</span><span class="p">.</span><span class="n">date</span> <span class="p">=</span> <span class="n">date</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="k">this</span><span class="p">.</span><span class="n">hours</span> <span class="p">=</span> <span class="n">hours</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="k">this</span><span class="p">.</span><span class="n">empId</span> <span class="p">=</span> <span class="n">empId</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="kd">public</span> <span class="kd">override</span> <span class="k">void</span> <span class="n">Execute</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">Employee</span> <span class="n">e</span> <span class="p">=</span> <span class="n">database</span><span class="p">.</span><span class="n">GetEmployee</span><span class="p">(</span><span class="n">empId</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">		<span class="k">if</span> <span class="p">(</span><span class="n">e</span> <span class="p">!=</span> <span class="kc">null</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="n">HourlyClassification</span> <span class="n">hc</span> <span class="p">=</span>
+</span></span><span class="line"><span class="cl">				<span class="n">e</span><span class="p">.</span><span class="n">Classification</span> <span class="k">as</span> <span class="n">HourlyClassification</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">			<span class="k">if</span> <span class="p">(</span><span class="n">hc</span> <span class="p">!=</span> <span class="kc">null</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">				<span class="n">hc</span><span class="p">.</span><span class="n">AddTimeCard</span><span class="p">(</span><span class="k">new</span> <span class="n">TimeCard</span><span class="p">(</span><span class="n">date</span><span class="p">,</span> <span class="n">hours</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">			<span class="k">else</span>
+</span></span><span class="line"><span class="cl">				<span class="k">throw</span> <span class="k">new</span> <span class="n">ApplicationException</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">					<span class="s">&#34;Tried to add timecard to&#34;</span> <span class="p">+</span>
+</span></span><span class="line"><span class="cl">						<span class="s">&#34;non-hourly employee&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">		<span class="k">else</span>
+</span></span><span class="line"><span class="cl">			<span class="k">throw</span> <span class="k">new</span> <span class="n">ApplicationException</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">				<span class="s">&#34;No such employee.&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>其他两种与这类似</p>
 <ul>
 <li>更改雇员属性</li>
 </ul>
@@ -518,253 +662,503 @@ public class TimeCardTransaction : Transaction
 <img loading="lazy" src="/designpattern/uUHuGdd-1719811783366-84.png" alt="/designpattern/uUHuGdd-1719811783366-84.png" srcset="/designpattern/uUHuGdd-1719811783366-84.png?size=small, /designpattern/uUHuGdd-1719811783366-84.png?size=medium 1.5x, /designpattern/uUHuGdd-1719811783366-84.png?size=large 2x" data-title="/designpattern/uUHuGdd-1719811783366-84.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
 <img loading="lazy" src="/designpattern/o7yQ9r5-1719811783366-85.png" alt="/designpattern/o7yQ9r5-1719811783366-85.png" srcset="/designpattern/o7yQ9r5-1719811783366-85.png?size=small, /designpattern/o7yQ9r5-1719811783366-85.png?size=medium 1.5x, /designpattern/o7yQ9r5-1719811783366-85.png?size=large 2x" data-title="/designpattern/o7yQ9r5-1719811783366-85.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>改名字事务：</p>
-<pre><code>public abstract class ChangeEmployeeTransaction : Transaction
-{
-	private readonly int empId;
-
-	public ChangeEmployeeTransaction(int empId, PayrollDatabase database)
-		: base (database)
-	{
-		this.empId = empId;
-	}
-
-	public override void Execute()
-	{
-		Employee e = database.GetEmployee(empId);
-		
-		if(e != null)
-			Change(e);
-		else
-			throw new ApplicationException(
-				&quot;No such employee.&quot;);
-	}
-
-	protected abstract void Change(Employee e);
-}
-public class ChangeNameTransaction 
-	: ChangeEmployeeTransaction
-{
-	private readonly string newName;
-
-	public ChangeNameTransaction(int id, string newName, PayrollDatabase database)
-		: base(id, database)
-	{
-		this.newName = newName;
-	}
-
-	protected override void Change(Employee e)
-	{
-		e.Name = newName;
-	}
-}
-</code></pre>
-<p>更改雇员类别</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">abstract</span> <span class="k">class</span> <span class="nc">ChangeEmployeeTransaction</span> <span class="p">:</span> <span class="n">Transaction</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">private</span> <span class="k">readonly</span> <span class="kt">int</span> <span class="n">empId</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="kd">public</span> <span class="n">ChangeEmployeeTransaction</span><span class="p">(</span><span class="kt">int</span> <span class="n">empId</span><span class="p">,</span> <span class="n">PayrollDatabase</span> <span class="n">database</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="p">:</span> <span class="k">base</span> <span class="p">(</span><span class="n">database</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">this</span><span class="p">.</span><span class="n">empId</span> <span class="p">=</span> <span class="n">empId</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="kd">public</span> <span class="kd">override</span> <span class="k">void</span> <span class="n">Execute</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">Employee</span> <span class="n">e</span> <span class="p">=</span> <span class="n">database</span><span class="p">.</span><span class="n">GetEmployee</span><span class="p">(</span><span class="n">empId</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">		
+</span></span><span class="line"><span class="cl">		<span class="k">if</span><span class="p">(</span><span class="n">e</span> <span class="p">!=</span> <span class="kc">null</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">			<span class="n">Change</span><span class="p">(</span><span class="n">e</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">		<span class="k">else</span>
+</span></span><span class="line"><span class="cl">			<span class="k">throw</span> <span class="k">new</span> <span class="n">ApplicationException</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">				<span class="s">&#34;No such employee.&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="kd">protected</span> <span class="kd">abstract</span> <span class="k">void</span> <span class="n">Change</span><span class="p">(</span><span class="n">Employee</span> <span class="n">e</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="k">class</span> <span class="nc">ChangeNameTransaction</span> 
+</span></span><span class="line"><span class="cl">	<span class="p">:</span> <span class="n">ChangeEmployeeTransaction</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">private</span> <span class="k">readonly</span> <span class="kt">string</span> <span class="n">newName</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="kd">public</span> <span class="n">ChangeNameTransaction</span><span class="p">(</span><span class="kt">int</span> <span class="n">id</span><span class="p">,</span> <span class="kt">string</span> <span class="n">newName</span><span class="p">,</span> <span class="n">PayrollDatabase</span> <span class="n">database</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="p">:</span> <span class="k">base</span><span class="p">(</span><span class="n">id</span><span class="p">,</span> <span class="n">database</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">this</span><span class="p">.</span><span class="n">newName</span> <span class="p">=</span> <span class="n">newName</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="kd">protected</span> <span class="kd">override</span> <span class="k">void</span> <span class="n">Change</span><span class="p">(</span><span class="n">Employee</span> <span class="n">e</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">e</span><span class="p">.</span><span class="n">Name</span> <span class="p">=</span> <span class="n">newName</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>更改雇员类别</p>
 <p><img loading="lazy" src="/designpattern/GeW3N7q-1719811783366-86.png" alt="/designpattern/GeW3N7q-1719811783366-86.png" srcset="/designpattern/GeW3N7q-1719811783366-86.png?size=small, /designpattern/GeW3N7q-1719811783366-86.png?size=medium 1.5x, /designpattern/GeW3N7q-1719811783366-86.png?size=large 2x" data-title="/designpattern/GeW3N7q-1719811783366-86.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
 <img loading="lazy" src="/designpattern/joOQrUG-1719811783366-87.png" alt="/designpattern/joOQrUG-1719811783366-87.png" srcset="/designpattern/joOQrUG-1719811783366-87.png?size=small, /designpattern/joOQrUG-1719811783366-87.png?size=medium 1.5x, /designpattern/joOQrUG-1719811783366-87.png?size=large 2x" data-title="/designpattern/joOQrUG-1719811783366-87.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
 <img loading="lazy" src="/designpattern/kDPETN3-1719811783366-88.png" alt="/designpattern/kDPETN3-1719811783366-88.png" srcset="/designpattern/kDPETN3-1719811783366-88.png?size=small, /designpattern/kDPETN3-1719811783366-88.png?size=medium 1.5x, /designpattern/kDPETN3-1719811783366-88.png?size=large 2x" data-title="/designpattern/kDPETN3-1719811783366-88.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
 <img loading="lazy" src="/designpattern/Y4oG5M0-1719811783366-89.png" alt="/designpattern/Y4oG5M0-1719811783366-89.png" srcset="/designpattern/Y4oG5M0-1719811783366-89.png?size=small, /designpattern/Y4oG5M0-1719811783366-89.png?size=medium 1.5x, /designpattern/Y4oG5M0-1719811783366-89.png?size=large 2x" data-title="/designpattern/Y4oG5M0-1719811783366-89.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
-<pre><code>public abstract class ChangeClassificationTransaction
-	: ChangeEmployeeTransaction
-{
-	public ChangeClassificationTransaction(int id, PayrollDatabase database)
-		: base (id, database)
-	{}
-
-	protected override void Change(Employee e)
-	{
-		e.Classification = Classification;
-		e.Schedule = Schedule;
-	}
-
-	protected abstract 
-		PaymentClassification Classification { get; }
-	protected abstract PaymentSchedule Schedule { get; }
-}
-public class ChangeHourlyTransaction 
-	: ChangeClassificationTransaction
-{
-	private readonly double hourlyRate;
-
-	public ChangeHourlyTransaction(int id, double hourlyRate, PayrollDatabase database)
-		: base(id, database)
-	{
-		this.hourlyRate = hourlyRate;
-	}
-
-	protected override PaymentClassification Classification
-	{
-		get { return new HourlyClassification(hourlyRate); }
-	}
-
-	protected override PaymentSchedule Schedule
-	{
-		get { return new WeeklySchedule(); }
-	}
-}
-public class ChangeSalariedTransaction : ChangeClassificationTransaction
-{
-	private readonly double salary;
-
-	public ChangeSalariedTransaction(int id, double salary, PayrollDatabase database)
-		: base(id, database)
-	{
-		this.salary = salary;
-	}
-
-	protected override PaymentClassification Classification
-	{
-		get { return new SalariedClassification(salary); }
-	}
-
-	protected override PaymentSchedule Schedule
-	{
-		get { return new MonthlySchedule(); }
-	}
-}
-public class ChangeCommissionedTransaction
-	: ChangeClassificationTransaction
-{
-	private readonly double baseSalary;
-	private readonly double commissionRate;
-
-	public ChangeCommissionedTransaction(int id, double baseSalary, double commissionRate, PayrollDatabase database)
-		: base(id, database)
-	{
-		this.baseSalary = baseSalary;
-		this.commissionRate = commissionRate;
-	}
-
-	protected override PaymentClassification Classification
-	{
-		get { return new CommissionClassification(baseSalary, commissionRate); }
-	}
-
-	protected override PaymentSchedule Schedule
-	{
-		get { return new BiWeeklySchedule(); }
-	}
-}
-</code></pre>
-<p>改变方法和改变工会实现方式基本与改变雇佣类别相似</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span><span class="lnt">76
+</span><span class="lnt">77
+</span><span class="lnt">78
+</span><span class="lnt">79
+</span><span class="lnt">80
+</span><span class="lnt">81
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">abstract</span> <span class="k">class</span> <span class="nc">ChangeClassificationTransaction</span>
+</span></span><span class="line"><span class="cl">	<span class="p">:</span> <span class="n">ChangeEmployeeTransaction</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">public</span> <span class="n">ChangeClassificationTransaction</span><span class="p">(</span><span class="kt">int</span> <span class="n">id</span><span class="p">,</span> <span class="n">PayrollDatabase</span> <span class="n">database</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="p">:</span> <span class="k">base</span> <span class="p">(</span><span class="n">id</span><span class="p">,</span> <span class="n">database</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="kd">protected</span> <span class="kd">override</span> <span class="k">void</span> <span class="n">Change</span><span class="p">(</span><span class="n">Employee</span> <span class="n">e</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">e</span><span class="p">.</span><span class="n">Classification</span> <span class="p">=</span> <span class="n">Classification</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="n">e</span><span class="p">.</span><span class="n">Schedule</span> <span class="p">=</span> <span class="n">Schedule</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="kd">protected</span> <span class="kd">abstract</span> 
+</span></span><span class="line"><span class="cl">		<span class="n">PaymentClassification</span> <span class="n">Classification</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">protected</span> <span class="kd">abstract</span> <span class="n">PaymentSchedule</span> <span class="n">Schedule</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="k">class</span> <span class="nc">ChangeHourlyTransaction</span> 
+</span></span><span class="line"><span class="cl">	<span class="p">:</span> <span class="n">ChangeClassificationTransaction</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">private</span> <span class="k">readonly</span> <span class="kt">double</span> <span class="n">hourlyRate</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="kd">public</span> <span class="n">ChangeHourlyTransaction</span><span class="p">(</span><span class="kt">int</span> <span class="n">id</span><span class="p">,</span> <span class="kt">double</span> <span class="n">hourlyRate</span><span class="p">,</span> <span class="n">PayrollDatabase</span> <span class="n">database</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="p">:</span> <span class="k">base</span><span class="p">(</span><span class="n">id</span><span class="p">,</span> <span class="n">database</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">this</span><span class="p">.</span><span class="n">hourlyRate</span> <span class="p">=</span> <span class="n">hourlyRate</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="kd">protected</span> <span class="kd">override</span> <span class="n">PaymentClassification</span> <span class="n">Classification</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">get</span> <span class="p">{</span> <span class="k">return</span> <span class="k">new</span> <span class="n">HourlyClassification</span><span class="p">(</span><span class="n">hourlyRate</span><span class="p">);</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="kd">protected</span> <span class="kd">override</span> <span class="n">PaymentSchedule</span> <span class="n">Schedule</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">get</span> <span class="p">{</span> <span class="k">return</span> <span class="k">new</span> <span class="n">WeeklySchedule</span><span class="p">();</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="k">class</span> <span class="nc">ChangeSalariedTransaction</span> <span class="p">:</span> <span class="n">ChangeClassificationTransaction</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">private</span> <span class="k">readonly</span> <span class="kt">double</span> <span class="n">salary</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="kd">public</span> <span class="n">ChangeSalariedTransaction</span><span class="p">(</span><span class="kt">int</span> <span class="n">id</span><span class="p">,</span> <span class="kt">double</span> <span class="n">salary</span><span class="p">,</span> <span class="n">PayrollDatabase</span> <span class="n">database</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="p">:</span> <span class="k">base</span><span class="p">(</span><span class="n">id</span><span class="p">,</span> <span class="n">database</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">this</span><span class="p">.</span><span class="n">salary</span> <span class="p">=</span> <span class="n">salary</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="kd">protected</span> <span class="kd">override</span> <span class="n">PaymentClassification</span> <span class="n">Classification</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">get</span> <span class="p">{</span> <span class="k">return</span> <span class="k">new</span> <span class="n">SalariedClassification</span><span class="p">(</span><span class="n">salary</span><span class="p">);</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="kd">protected</span> <span class="kd">override</span> <span class="n">PaymentSchedule</span> <span class="n">Schedule</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">get</span> <span class="p">{</span> <span class="k">return</span> <span class="k">new</span> <span class="n">MonthlySchedule</span><span class="p">();</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="k">class</span> <span class="nc">ChangeCommissionedTransaction</span>
+</span></span><span class="line"><span class="cl">	<span class="p">:</span> <span class="n">ChangeClassificationTransaction</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">private</span> <span class="k">readonly</span> <span class="kt">double</span> <span class="n">baseSalary</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">private</span> <span class="k">readonly</span> <span class="kt">double</span> <span class="n">commissionRate</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="kd">public</span> <span class="n">ChangeCommissionedTransaction</span><span class="p">(</span><span class="kt">int</span> <span class="n">id</span><span class="p">,</span> <span class="kt">double</span> <span class="n">baseSalary</span><span class="p">,</span> <span class="kt">double</span> <span class="n">commissionRate</span><span class="p">,</span> <span class="n">PayrollDatabase</span> <span class="n">database</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="p">:</span> <span class="k">base</span><span class="p">(</span><span class="n">id</span><span class="p">,</span> <span class="n">database</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">this</span><span class="p">.</span><span class="n">baseSalary</span> <span class="p">=</span> <span class="n">baseSalary</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="k">this</span><span class="p">.</span><span class="n">commissionRate</span> <span class="p">=</span> <span class="n">commissionRate</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="kd">protected</span> <span class="kd">override</span> <span class="n">PaymentClassification</span> <span class="n">Classification</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">get</span> <span class="p">{</span> <span class="k">return</span> <span class="k">new</span> <span class="n">CommissionClassification</span><span class="p">(</span><span class="n">baseSalary</span><span class="p">,</span> <span class="n">commissionRate</span><span class="p">);</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="kd">protected</span> <span class="kd">override</span> <span class="n">PaymentSchedule</span> <span class="n">Schedule</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">get</span> <span class="p">{</span> <span class="k">return</span> <span class="k">new</span> <span class="n">BiWeeklySchedule</span><span class="p">();</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>改变方法和改变工会实现方式基本与改变雇佣类别相似</p>
 <p>改变支付方法：</p>
-<pre><code>public abstract class ChangeMethodTransaction : ChangeEmployeeTransaction
-{
-	public ChangeMethodTransaction(int empId, PayrollDatabase database)
-		: base(empId, database)
-	{}
-
-	protected override void Change(Employee e)
-	{
-		PaymentMethod method = Method;
-		e.Method = method;
-	}
-
-	protected abstract PaymentMethod Method { get; }
-}
-public class ChangeMailTransaction : ChangeMethodTransaction
-{
-	public ChangeMailTransaction(int empId, PayrollDatabase database)
-		: base(empId, database)
-	{
-	}
-
-	protected override PaymentMethod Method
-	{
-		get { return new MailMethod(&quot;3.14 Pi St&quot;); }
-	}
-
-}
-public class ChangeHoldTransaction : ChangeMethodTransaction
-{
-	public ChangeHoldTransaction(int empId, PayrollDatabase database)
-		: base(empId, database)
-	{
-	}
-
-	protected override PaymentMethod Method
-	{
-		get { return new HoldMethod(); }
-	}
-
-}
-public class ChangeDirectTransaction : ChangeMethodTransaction
-{
-	public ChangeDirectTransaction(int empId, PayrollDatabase database)
-		: base(empId, database)
-	{
-	}
-
-	protected override PaymentMethod Method
-	{
-		get { return new DirectDepositMethod(&quot;Bank -1&quot;, &quot;123&quot;); }
-	}
-
-}
-</code></pre>
-<p>改变工会：</p>
-<pre><code>public abstract class ChangeAffiliationTransaction : ChangeEmployeeTransaction
-{
-	public ChangeAffiliationTransaction(int empId, PayrollDatabase database)
-		: base(empId, database)
-	{}
-
-	protected override void Change(Employee e)
-	{
-		RecordMembership(e);
-		Affiliation affiliation = Affiliation;
-		e.Affiliation = affiliation;
-	}
-
-	protected abstract Affiliation Affiliation { get; }
-	protected abstract void RecordMembership(Employee e);
-}
-public class ChangeUnaffiliatedTransaction : ChangeAffiliationTransaction
-{
-	public ChangeUnaffiliatedTransaction(int empId, PayrollDatabase database)
-		: base(empId, database)
-	{}
-
-	protected override Affiliation Affiliation
-	{
-		get { return new NoAffiliation(); }
-	}
-
-	protected override void RecordMembership(Employee e)
-	{
-		Affiliation affiliation = e.Affiliation;
-		if(affiliation is UnionAffiliation)
-		{
-			UnionAffiliation unionAffiliation = 
-				affiliation as UnionAffiliation;
-			int memberId = unionAffiliation.MemberId;
-			database.RemoveUnionMember(memberId);
-		}
-	}
-}
-public class ChangeMemberTransaction : ChangeAffiliationTransaction
-{
-	private readonly int memberId;
-	private readonly double dues;
-
-	public ChangeMemberTransaction(int empId, int memberId, double dues, PayrollDatabase database)
-		: base(empId, database)
-	{
-		this.memberId = memberId;
-		this.dues = dues;
-	}
-
-	protected override Affiliation Affiliation
-	{
-		get { return new UnionAffiliation(memberId, dues); }
-	}
-
-	protected override void RecordMembership(Employee e)
-	{
-		database.AddUnionMember(memberId, e);
-	}
-}
-</code></pre>
-<ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">abstract</span> <span class="k">class</span> <span class="nc">ChangeMethodTransaction</span> <span class="p">:</span> <span class="n">ChangeEmployeeTransaction</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">public</span> <span class="n">ChangeMethodTransaction</span><span class="p">(</span><span class="kt">int</span> <span class="n">empId</span><span class="p">,</span> <span class="n">PayrollDatabase</span> <span class="n">database</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="p">:</span> <span class="k">base</span><span class="p">(</span><span class="n">empId</span><span class="p">,</span> <span class="n">database</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="kd">protected</span> <span class="kd">override</span> <span class="k">void</span> <span class="n">Change</span><span class="p">(</span><span class="n">Employee</span> <span class="n">e</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">PaymentMethod</span> <span class="n">method</span> <span class="p">=</span> <span class="n">Method</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="n">e</span><span class="p">.</span><span class="n">Method</span> <span class="p">=</span> <span class="n">method</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="kd">protected</span> <span class="kd">abstract</span> <span class="n">PaymentMethod</span> <span class="n">Method</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="k">class</span> <span class="nc">ChangeMailTransaction</span> <span class="p">:</span> <span class="n">ChangeMethodTransaction</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">public</span> <span class="n">ChangeMailTransaction</span><span class="p">(</span><span class="kt">int</span> <span class="n">empId</span><span class="p">,</span> <span class="n">PayrollDatabase</span> <span class="n">database</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="p">:</span> <span class="k">base</span><span class="p">(</span><span class="n">empId</span><span class="p">,</span> <span class="n">database</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="kd">protected</span> <span class="kd">override</span> <span class="n">PaymentMethod</span> <span class="n">Method</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">get</span> <span class="p">{</span> <span class="k">return</span> <span class="k">new</span> <span class="n">MailMethod</span><span class="p">(</span><span class="s">&#34;3.14 Pi St&#34;</span><span class="p">);</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="k">class</span> <span class="nc">ChangeHoldTransaction</span> <span class="p">:</span> <span class="n">ChangeMethodTransaction</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">public</span> <span class="n">ChangeHoldTransaction</span><span class="p">(</span><span class="kt">int</span> <span class="n">empId</span><span class="p">,</span> <span class="n">PayrollDatabase</span> <span class="n">database</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="p">:</span> <span class="k">base</span><span class="p">(</span><span class="n">empId</span><span class="p">,</span> <span class="n">database</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="kd">protected</span> <span class="kd">override</span> <span class="n">PaymentMethod</span> <span class="n">Method</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">get</span> <span class="p">{</span> <span class="k">return</span> <span class="k">new</span> <span class="n">HoldMethod</span><span class="p">();</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="k">class</span> <span class="nc">ChangeDirectTransaction</span> <span class="p">:</span> <span class="n">ChangeMethodTransaction</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">public</span> <span class="n">ChangeDirectTransaction</span><span class="p">(</span><span class="kt">int</span> <span class="n">empId</span><span class="p">,</span> <span class="n">PayrollDatabase</span> <span class="n">database</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="p">:</span> <span class="k">base</span><span class="p">(</span><span class="n">empId</span><span class="p">,</span> <span class="n">database</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="kd">protected</span> <span class="kd">override</span> <span class="n">PaymentMethod</span> <span class="n">Method</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">get</span> <span class="p">{</span> <span class="k">return</span> <span class="k">new</span> <span class="n">DirectDepositMethod</span><span class="p">(</span><span class="s">&#34;Bank -1&#34;</span><span class="p">,</span> <span class="s">&#34;123&#34;</span><span class="p">);</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>改变工会：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">abstract</span> <span class="k">class</span> <span class="nc">ChangeAffiliationTransaction</span> <span class="p">:</span> <span class="n">ChangeEmployeeTransaction</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">public</span> <span class="n">ChangeAffiliationTransaction</span><span class="p">(</span><span class="kt">int</span> <span class="n">empId</span><span class="p">,</span> <span class="n">PayrollDatabase</span> <span class="n">database</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="p">:</span> <span class="k">base</span><span class="p">(</span><span class="n">empId</span><span class="p">,</span> <span class="n">database</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="kd">protected</span> <span class="kd">override</span> <span class="k">void</span> <span class="n">Change</span><span class="p">(</span><span class="n">Employee</span> <span class="n">e</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">RecordMembership</span><span class="p">(</span><span class="n">e</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">		<span class="n">Affiliation</span> <span class="n">affiliation</span> <span class="p">=</span> <span class="n">Affiliation</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="n">e</span><span class="p">.</span><span class="n">Affiliation</span> <span class="p">=</span> <span class="n">affiliation</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="kd">protected</span> <span class="kd">abstract</span> <span class="n">Affiliation</span> <span class="n">Affiliation</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">protected</span> <span class="kd">abstract</span> <span class="k">void</span> <span class="n">RecordMembership</span><span class="p">(</span><span class="n">Employee</span> <span class="n">e</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="k">class</span> <span class="nc">ChangeUnaffiliatedTransaction</span> <span class="p">:</span> <span class="n">ChangeAffiliationTransaction</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">public</span> <span class="n">ChangeUnaffiliatedTransaction</span><span class="p">(</span><span class="kt">int</span> <span class="n">empId</span><span class="p">,</span> <span class="n">PayrollDatabase</span> <span class="n">database</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="p">:</span> <span class="k">base</span><span class="p">(</span><span class="n">empId</span><span class="p">,</span> <span class="n">database</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="kd">protected</span> <span class="kd">override</span> <span class="n">Affiliation</span> <span class="n">Affiliation</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">get</span> <span class="p">{</span> <span class="k">return</span> <span class="k">new</span> <span class="n">NoAffiliation</span><span class="p">();</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="kd">protected</span> <span class="kd">override</span> <span class="k">void</span> <span class="n">RecordMembership</span><span class="p">(</span><span class="n">Employee</span> <span class="n">e</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">Affiliation</span> <span class="n">affiliation</span> <span class="p">=</span> <span class="n">e</span><span class="p">.</span><span class="n">Affiliation</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="k">if</span><span class="p">(</span><span class="n">affiliation</span> <span class="k">is</span> <span class="n">UnionAffiliation</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="n">UnionAffiliation</span> <span class="n">unionAffiliation</span> <span class="p">=</span> 
+</span></span><span class="line"><span class="cl">				<span class="n">affiliation</span> <span class="k">as</span> <span class="n">UnionAffiliation</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">			<span class="kt">int</span> <span class="n">memberId</span> <span class="p">=</span> <span class="n">unionAffiliation</span><span class="p">.</span><span class="n">MemberId</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">			<span class="n">database</span><span class="p">.</span><span class="n">RemoveUnionMember</span><span class="p">(</span><span class="n">memberId</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="k">class</span> <span class="nc">ChangeMemberTransaction</span> <span class="p">:</span> <span class="n">ChangeAffiliationTransaction</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">private</span> <span class="k">readonly</span> <span class="kt">int</span> <span class="n">memberId</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">private</span> <span class="k">readonly</span> <span class="kt">double</span> <span class="n">dues</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="kd">public</span> <span class="n">ChangeMemberTransaction</span><span class="p">(</span><span class="kt">int</span> <span class="n">empId</span><span class="p">,</span> <span class="kt">int</span> <span class="n">memberId</span><span class="p">,</span> <span class="kt">double</span> <span class="n">dues</span><span class="p">,</span> <span class="n">PayrollDatabase</span> <span class="n">database</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="p">:</span> <span class="k">base</span><span class="p">(</span><span class="n">empId</span><span class="p">,</span> <span class="n">database</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">this</span><span class="p">.</span><span class="n">memberId</span> <span class="p">=</span> <span class="n">memberId</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="k">this</span><span class="p">.</span><span class="n">dues</span> <span class="p">=</span> <span class="n">dues</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="kd">protected</span> <span class="kd">override</span> <span class="n">Affiliation</span> <span class="n">Affiliation</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">get</span> <span class="p">{</span> <span class="k">return</span> <span class="k">new</span> <span class="n">UnionAffiliation</span><span class="p">(</span><span class="n">memberId</span><span class="p">,</span> <span class="n">dues</span><span class="p">);</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="kd">protected</span> <span class="kd">override</span> <span class="k">void</span> <span class="n">RecordMembership</span><span class="p">(</span><span class="n">Employee</span> <span class="n">e</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">database</span><span class="p">.</span><span class="n">AddUnionMember</span><span class="p">(</span><span class="n">memberId</span><span class="p">,</span> <span class="n">e</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
 <li>支付薪水</li>
 </ul>
 <p><img loading="lazy" src="/designpattern/VYRcwVf-1719811783366-90.png" alt="/designpattern/VYRcwVf-1719811783366-90.png" srcset="/designpattern/VYRcwVf-1719811783366-90.png?size=small, /designpattern/VYRcwVf-1719811783366-90.png?size=medium 1.5x, /designpattern/VYRcwVf-1719811783366-90.png?size=large 2x" data-title="/designpattern/VYRcwVf-1719811783366-90.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
@@ -773,308 +1167,612 @@ public class ChangeMemberTransaction : ChangeAffiliationTransaction
 <img loading="lazy" src="/designpattern/4LJ7uRl-1719811783366-93.png" alt="/designpattern/4LJ7uRl-1719811783366-93.png" srcset="/designpattern/4LJ7uRl-1719811783366-93.png?size=small, /designpattern/4LJ7uRl-1719811783366-93.png?size=medium 1.5x, /designpattern/4LJ7uRl-1719811783366-93.png?size=large 2x" data-title="/designpattern/4LJ7uRl-1719811783366-93.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
 <img loading="lazy" src="/designpattern/vPEAMS0-1719811783366-94.png" alt="/designpattern/vPEAMS0-1719811783366-94.png" srcset="/designpattern/vPEAMS0-1719811783366-94.png?size=small, /designpattern/vPEAMS0-1719811783366-94.png?size=medium 1.5x, /designpattern/vPEAMS0-1719811783366-94.png?size=large 2x" data-title="/designpattern/vPEAMS0-1719811783366-94.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>支付月薪：</p>
-<pre><code>public class PaydayTransaction : Transaction
-{
-	private readonly DateTime payDate;
-	private Hashtable paychecks = new Hashtable();
-
-	public PaydayTransaction(DateTime payDate, PayrollDatabase database)
-		: base (database)
-	{
-		this.payDate = payDate;
-	}
-
-	public override void Execute()
-	{
-		ArrayList empIds = database.GetAllEmployeeIds();
-		  
-		foreach(int empId in empIds)
-		{
-			Employee employee = database.GetEmployee(empId);
-			if (employee.IsPayDate(payDate)) 
-			{
-				DateTime startDate = 
-					employee.GetPayPeriodStartDate(payDate);
-				Paycheck pc = new Paycheck(startDate, payDate);
-				paychecks[empId] = pc;
-				employee.Payday(pc);
-			}
-		}
-	}
-
-	public Paycheck GetPaycheck(int empId)
-	{
-		return paychecks[empId] as Paycheck;
-	}
-}
-public class MonthlySchedule : PaymentSchedule
-{
-	private bool IsLastDayOfMonth(DateTime date)
-	{
-		int m1 = date.Month;
-		int m2 = date.AddDays(1).Month;
-		return (m1 != m2);
-	}
-
-	public bool IsPayDate(DateTime payDate)
-	{
-		return IsLastDayOfMonth(payDate);
-	}
-
-	public DateTime GetPayPeriodStartDate(DateTime date)
-	{
-		int days = 0;
-		while(date.AddDays(days - 1).Month == date.Month)
-			days--;
-
-		return date.AddDays(days);
-	}
-
-	public override string ToString()
-	{
-		return &quot;monthly&quot;;
-	}
-}
-</code></pre>
-<p>其中有paycheck类。该类有日期，总薪酬，服务扣费，实际薪酬</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="kd">public</span> <span class="k">class</span> <span class="nc">PaydayTransaction</span> <span class="p">:</span> <span class="n">Transaction</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">private</span> <span class="k">readonly</span> <span class="n">DateTime</span> <span class="n">payDate</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">private</span> <span class="n">Hashtable</span> <span class="n">paychecks</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Hashtable</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="kd">public</span> <span class="n">PaydayTransaction</span><span class="p">(</span><span class="n">DateTime</span> <span class="n">payDate</span><span class="p">,</span> <span class="n">PayrollDatabase</span> <span class="n">database</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="p">:</span> <span class="k">base</span> <span class="p">(</span><span class="n">database</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">this</span><span class="p">.</span><span class="n">payDate</span> <span class="p">=</span> <span class="n">payDate</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="kd">public</span> <span class="kd">override</span> <span class="k">void</span> <span class="n">Execute</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">ArrayList</span> <span class="n">empIds</span> <span class="p">=</span> <span class="n">database</span><span class="p">.</span><span class="n">GetAllEmployeeIds</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">		  
+</span></span><span class="line"><span class="cl">		<span class="k">foreach</span><span class="p">(</span><span class="kt">int</span> <span class="n">empId</span> <span class="k">in</span> <span class="n">empIds</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="n">Employee</span> <span class="n">employee</span> <span class="p">=</span> <span class="n">database</span><span class="p">.</span><span class="n">GetEmployee</span><span class="p">(</span><span class="n">empId</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">			<span class="k">if</span> <span class="p">(</span><span class="n">employee</span><span class="p">.</span><span class="n">IsPayDate</span><span class="p">(</span><span class="n">payDate</span><span class="p">))</span> 
+</span></span><span class="line"><span class="cl">			<span class="p">{</span>
+</span></span><span class="line"><span class="cl">				<span class="n">DateTime</span> <span class="n">startDate</span> <span class="p">=</span> 
+</span></span><span class="line"><span class="cl">					<span class="n">employee</span><span class="p">.</span><span class="n">GetPayPeriodStartDate</span><span class="p">(</span><span class="n">payDate</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">				<span class="n">Paycheck</span> <span class="n">pc</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Paycheck</span><span class="p">(</span><span class="n">startDate</span><span class="p">,</span> <span class="n">payDate</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">				<span class="n">paychecks</span><span class="p">[</span><span class="n">empId</span><span class="p">]</span> <span class="p">=</span> <span class="n">pc</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">				<span class="n">employee</span><span class="p">.</span><span class="n">Payday</span><span class="p">(</span><span class="n">pc</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">			<span class="p">}</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="kd">public</span> <span class="n">Paycheck</span> <span class="n">GetPaycheck</span><span class="p">(</span><span class="kt">int</span> <span class="n">empId</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">return</span> <span class="n">paychecks</span><span class="p">[</span><span class="n">empId</span><span class="p">]</span> <span class="k">as</span> <span class="n">Paycheck</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="k">class</span> <span class="nc">MonthlySchedule</span> <span class="p">:</span> <span class="n">PaymentSchedule</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">private</span> <span class="kt">bool</span> <span class="n">IsLastDayOfMonth</span><span class="p">(</span><span class="n">DateTime</span> <span class="n">date</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="kt">int</span> <span class="n">m1</span> <span class="p">=</span> <span class="n">date</span><span class="p">.</span><span class="n">Month</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="kt">int</span> <span class="n">m2</span> <span class="p">=</span> <span class="n">date</span><span class="p">.</span><span class="n">AddDays</span><span class="p">(</span><span class="m">1</span><span class="p">).</span><span class="n">Month</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="k">return</span> <span class="p">(</span><span class="n">m1</span> <span class="p">!=</span> <span class="n">m2</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="kd">public</span> <span class="kt">bool</span> <span class="n">IsPayDate</span><span class="p">(</span><span class="n">DateTime</span> <span class="n">payDate</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">return</span> <span class="n">IsLastDayOfMonth</span><span class="p">(</span><span class="n">payDate</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="kd">public</span> <span class="n">DateTime</span> <span class="n">GetPayPeriodStartDate</span><span class="p">(</span><span class="n">DateTime</span> <span class="n">date</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="kt">int</span> <span class="n">days</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="k">while</span><span class="p">(</span><span class="n">date</span><span class="p">.</span><span class="n">AddDays</span><span class="p">(</span><span class="n">days</span> <span class="p">-</span> <span class="m">1</span><span class="p">).</span><span class="n">Month</span> <span class="p">==</span> <span class="n">date</span><span class="p">.</span><span class="n">Month</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">			<span class="n">days</span><span class="p">--;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">		<span class="k">return</span> <span class="n">date</span><span class="p">.</span><span class="n">AddDays</span><span class="p">(</span><span class="n">days</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="kd">public</span> <span class="kd">override</span> <span class="kt">string</span> <span class="n">ToString</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">return</span> <span class="s">&#34;monthly&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>其中有paycheck类。该类有日期，总薪酬，服务扣费，实际薪酬</p>
 <ul>
-<li>
-<p>临时工</p>
-<p>public class HourlyClassification : PaymentClassification
-{
-private double hourlyRate;</p>
-<pre><code>  private Hashtable timeCards = new Hashtable();
-
-  public HourlyClassification(double rate)
-  {
-      this.hourlyRate = rate;
-  }
-
-  public double HourlyRate
-  {
-      get { return hourlyRate; }
-  }
-
-  public TimeCard GetTimeCard(DateTime date)
-  {
-      return timeCards[date] as TimeCard;
-  }
-
-  public void AddTimeCard(TimeCard card)
-  {
-      timeCards[card.Date] = card;
-  }
-
-  public override double CalculatePay(Paycheck paycheck)
-  {
-      double totalPay = 0.0;
-      foreach(TimeCard timeCard in timeCards.Values)
-      {
-          if(DateUtil.IsInPayPeriod(timeCard.Date, 
-              paycheck.PayPeriodStartDate, 
-              paycheck.PayPeriodEndDate))
-              totalPay += CalculatePayForTimeCard(timeCard);
-      }
-      return totalPay;
-  }
-
-  private double CalculatePayForTimeCard(TimeCard card)
-  {
-      double overtimeHours = Math.Max(0.0, card.Hours - 8);
-      double normalHours = card.Hours - overtimeHours;
-      return hourlyRate * normalHours + 
-          hourlyRate * 1.5 * overtimeHours;
-  }
-
-  public override string ToString()
-  {
-      return String.Format(&quot;${0}/hr&quot;, hourlyRate);
-  }
-</code></pre>
-<p>}
-public class WeeklySchedule : PaymentSchedule
-{
-public bool IsPayDate(DateTime payDate)
-{
-return payDate.DayOfWeek == DayOfWeek.Friday;
-}</p>
-<pre><code>  public DateTime GetPayPeriodStartDate(DateTime date)
-  {
-      return date.AddDays(-6);
-  }
-
-  public override string ToString()
-  {
-      return &quot;weekly&quot;;
-  }
-</code></pre>
-<p>}</p>
-<p>public class Employee
-{
-private readonly int empid;
-private string name;
-private readonly string address;
-private PaymentClassification classification;
-private PaymentSchedule schedule;
-private PaymentMethod method;
-private Affiliation affiliation = new NoAffiliation();</p>
-<pre><code>  public Employee(int empid, string name, string address)
-  {
-      this.empid = empid;
-      this.name = name;
-      this.address = address;
-  }
-
-  public string Name
-  {
-      get { return name; }
-      set { name = value; }
-  }
-
-  public string Address
-  {
-      get { return address; }
-  }
-
-  public PaymentClassification Classification
-  {
-      get { return classification; }
-      set { classification = value; }
-  }
-
-  public PaymentSchedule Schedule
-  {
-      get { return schedule; }
-      set { schedule = value; }
-  }
-
-  public PaymentMethod Method
-  {
-      get { return method; }
-      set { method = value; }
-  }
-
-  public Affiliation Affiliation
-  {
-      get { return affiliation; }
-      set { affiliation = value; }
-  }
-
-  public bool IsPayDate(DateTime date)
-  {
-      return schedule.IsPayDate(date);
-  }
-
-  public void Payday(Paycheck paycheck)
-  {
-      //计算总的薪资
-      double grossPay = classification.CalculatePay(paycheck);
-      //计算扣除薪资
-      double deductions = affiliation.CalculateDeductions(paycheck);
-      //计算实际薪资
-      double netPay = grossPay - deductions;
-      paycheck.GrossPay = grossPay;
-      paycheck.Deductions = deductions;
-      paycheck.NetPay = netPay;
-      //通过支付方式支付
-      method.Pay(paycheck);
-  }
-
-  public DateTime GetPayPeriodStartDate(DateTime date)
-  {
-      return schedule.GetPayPeriodStartDate(date);
-  }
-
-  public int EmpId
-  {
-      get { return empid; }
-  }
-
-  public override string ToString()
-  {
-      StringBuilder builder = new StringBuilder();
-      builder.Append(&quot;Emp#: &quot;).Append(empid).Append(&quot;   &quot;);
-      builder.Append(name).Append(&quot;   &quot;);
-      builder.Append(address).Append(&quot;   &quot;);
-      builder.Append(&quot;Paid &quot;).Append(classification).Append(&quot; &quot;);
-      builder.Append(schedule);
-      builder.Append(&quot; by &quot;).Append(method);
-      return builder.ToString();
-  }
-</code></pre>
-<p>}</p>
-<p>public class UnionAffiliation : Affiliation
-{
-private Hashtable charges = new Hashtable();
-private int memberId;
-private readonly double dues;</p>
-<pre><code>  public UnionAffiliation(int memberId, double dues)
-  {
-      this.memberId = memberId;
-      this.dues = dues;
-  }
-
-  public UnionAffiliation()
-      : this(-1, 0.0)
-  {}
-
-  public ServiceCharge GetServiceCharge(DateTime time)
-  {
-      return charges[time] as ServiceCharge;
-  }
-
-  public void AddServiceCharge(ServiceCharge sc)
-  {
-      charges[sc.Time] = sc;
-  }
-
-  public double Dues
-  {
-      get { return dues;	}
-  }
-
-  public int MemberId
-  {
-      get { return memberId; }
-  }
-
-  public double CalculateDeductions(Paycheck paycheck)
-  {
-      double totalDues = 0;
-
-      int fridays = NumberOfFridaysInPayPeriod(
-          paycheck.PayPeriodStartDate, paycheck.PayPeriodEndDate);
-      totalDues = dues * fridays;
-
-      foreach(ServiceCharge charge in charges.Values)
-      {
-          if(DateUtil.IsInPayPeriod(charge.Time,
-              paycheck.PayPeriodStartDate,
-              paycheck.PayPeriodEndDate))
-          totalDues += charge.Amount;
-      }
-
-      return totalDues;
-  }
-
-  private int NumberOfFridaysInPayPeriod(
-      DateTime payPeriodStart, DateTime payPeriodEnd)
-  {
-      int fridays = 0;
-      for (DateTime day = payPeriodStart; 
-          day &lt;= payPeriodEnd; day = day.AddDays(1)) 
-      {
-          if (day.DayOfWeek == DayOfWeek.Friday)
-              fridays++;
-      }
-      return fridays;
-  }
-</code></pre>
-<p>}</p>
-</li>
-<li>
-<p>主程序</p>
-</li>
+<li>临时工</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span><span class="lnt">105
+</span><span class="lnt">106
+</span><span class="lnt">107
+</span><span class="lnt">108
+</span><span class="lnt">109
+</span><span class="lnt">110
+</span><span class="lnt">111
+</span><span class="lnt">112
+</span><span class="lnt">113
+</span><span class="lnt">114
+</span><span class="lnt">115
+</span><span class="lnt">116
+</span><span class="lnt">117
+</span><span class="lnt">118
+</span><span class="lnt">119
+</span><span class="lnt">120
+</span><span class="lnt">121
+</span><span class="lnt">122
+</span><span class="lnt">123
+</span><span class="lnt">124
+</span><span class="lnt">125
+</span><span class="lnt">126
+</span><span class="lnt">127
+</span><span class="lnt">128
+</span><span class="lnt">129
+</span><span class="lnt">130
+</span><span class="lnt">131
+</span><span class="lnt">132
+</span><span class="lnt">133
+</span><span class="lnt">134
+</span><span class="lnt">135
+</span><span class="lnt">136
+</span><span class="lnt">137
+</span><span class="lnt">138
+</span><span class="lnt">139
+</span><span class="lnt">140
+</span><span class="lnt">141
+</span><span class="lnt">142
+</span><span class="lnt">143
+</span><span class="lnt">144
+</span><span class="lnt">145
+</span><span class="lnt">146
+</span><span class="lnt">147
+</span><span class="lnt">148
+</span><span class="lnt">149
+</span><span class="lnt">150
+</span><span class="lnt">151
+</span><span class="lnt">152
+</span><span class="lnt">153
+</span><span class="lnt">154
+</span><span class="lnt">155
+</span><span class="lnt">156
+</span><span class="lnt">157
+</span><span class="lnt">158
+</span><span class="lnt">159
+</span><span class="lnt">160
+</span><span class="lnt">161
+</span><span class="lnt">162
+</span><span class="lnt">163
+</span><span class="lnt">164
+</span><span class="lnt">165
+</span><span class="lnt">166
+</span><span class="lnt">167
+</span><span class="lnt">168
+</span><span class="lnt">169
+</span><span class="lnt">170
+</span><span class="lnt">171
+</span><span class="lnt">172
+</span><span class="lnt">173
+</span><span class="lnt">174
+</span><span class="lnt">175
+</span><span class="lnt">176
+</span><span class="lnt">177
+</span><span class="lnt">178
+</span><span class="lnt">179
+</span><span class="lnt">180
+</span><span class="lnt">181
+</span><span class="lnt">182
+</span><span class="lnt">183
+</span><span class="lnt">184
+</span><span class="lnt">185
+</span><span class="lnt">186
+</span><span class="lnt">187
+</span><span class="lnt">188
+</span><span class="lnt">189
+</span><span class="lnt">190
+</span><span class="lnt">191
+</span><span class="lnt">192
+</span><span class="lnt">193
+</span><span class="lnt">194
+</span><span class="lnt">195
+</span><span class="lnt">196
+</span><span class="lnt">197
+</span><span class="lnt">198
+</span><span class="lnt">199
+</span><span class="lnt">200
+</span><span class="lnt">201
+</span><span class="lnt">202
+</span><span class="lnt">203
+</span><span class="lnt">204
+</span><span class="lnt">205
+</span><span class="lnt">206
+</span><span class="lnt">207
+</span><span class="lnt">208
+</span><span class="lnt">209
+</span><span class="lnt">210
+</span><span class="lnt">211
+</span><span class="lnt">212
+</span><span class="lnt">213
+</span><span class="lnt">214
+</span><span class="lnt">215
+</span><span class="lnt">216
+</span><span class="lnt">217
+</span><span class="lnt">218
+</span><span class="lnt">219
+</span><span class="lnt">220
+</span><span class="lnt">221
+</span><span class="lnt">222
+</span><span class="lnt">223
+</span><span class="lnt">224
+</span><span class="lnt">225
+</span><span class="lnt">226
+</span><span class="lnt">227
+</span><span class="lnt">228
+</span><span class="lnt">229
+</span><span class="lnt">230
+</span><span class="lnt">231
+</span><span class="lnt">232
+</span><span class="lnt">233
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="kd">public</span> <span class="k">class</span> <span class="nc">HourlyClassification</span> <span class="p">:</span> <span class="n">PaymentClassification</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="kt">double</span> <span class="n">hourlyRate</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">Hashtable</span> <span class="n">timeCards</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Hashtable</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">HourlyClassification</span><span class="p">(</span><span class="kt">double</span> <span class="n">rate</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="p">.</span><span class="n">hourlyRate</span> <span class="p">=</span> <span class="n">rate</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">double</span> <span class="n">HourlyRate</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">get</span> <span class="p">{</span> <span class="k">return</span> <span class="n">hourlyRate</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">TimeCard</span> <span class="n">GetTimeCard</span><span class="p">(</span><span class="n">DateTime</span> <span class="n">date</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">timeCards</span><span class="p">[</span><span class="n">date</span><span class="p">]</span> <span class="k">as</span> <span class="n">TimeCard</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="k">void</span> <span class="n">AddTimeCard</span><span class="p">(</span><span class="n">TimeCard</span> <span class="n">card</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">timeCards</span><span class="p">[</span><span class="n">card</span><span class="p">.</span><span class="n">Date</span><span class="p">]</span> <span class="p">=</span> <span class="n">card</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">override</span> <span class="kt">double</span> <span class="n">CalculatePay</span><span class="p">(</span><span class="n">Paycheck</span> <span class="n">paycheck</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">double</span> <span class="n">totalPay</span> <span class="p">=</span> <span class="m">0.0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">foreach</span><span class="p">(</span><span class="n">TimeCard</span> <span class="n">timeCard</span> <span class="k">in</span> <span class="n">timeCards</span><span class="p">.</span><span class="n">Values</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span><span class="p">(</span><span class="n">DateUtil</span><span class="p">.</span><span class="n">IsInPayPeriod</span><span class="p">(</span><span class="n">timeCard</span><span class="p">.</span><span class="n">Date</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">                <span class="n">paycheck</span><span class="p">.</span><span class="n">PayPeriodStartDate</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">                <span class="n">paycheck</span><span class="p">.</span><span class="n">PayPeriodEndDate</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">                <span class="n">totalPay</span> <span class="p">+=</span> <span class="n">CalculatePayForTimeCard</span><span class="p">(</span><span class="n">timeCard</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">totalPay</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="kt">double</span> <span class="n">CalculatePayForTimeCard</span><span class="p">(</span><span class="n">TimeCard</span> <span class="n">card</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">double</span> <span class="n">overtimeHours</span> <span class="p">=</span> <span class="n">Math</span><span class="p">.</span><span class="n">Max</span><span class="p">(</span><span class="m">0.0</span><span class="p">,</span> <span class="n">card</span><span class="p">.</span><span class="n">Hours</span> <span class="p">-</span> <span class="m">8</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">double</span> <span class="n">normalHours</span> <span class="p">=</span> <span class="n">card</span><span class="p">.</span><span class="n">Hours</span> <span class="p">-</span> <span class="n">overtimeHours</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">hourlyRate</span> <span class="p">*</span> <span class="n">normalHours</span> <span class="p">+</span> 
+</span></span><span class="line"><span class="cl">            <span class="n">hourlyRate</span> <span class="p">*</span> <span class="m">1.5</span> <span class="p">*</span> <span class="n">overtimeHours</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">override</span> <span class="kt">string</span> <span class="n">ToString</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">String</span><span class="p">.</span><span class="n">Format</span><span class="p">(</span><span class="s">&#34;${0}/hr&#34;</span><span class="p">,</span> <span class="n">hourlyRate</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="k">class</span> <span class="nc">WeeklySchedule</span> <span class="p">:</span> <span class="n">PaymentSchedule</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">bool</span> <span class="n">IsPayDate</span><span class="p">(</span><span class="n">DateTime</span> <span class="n">payDate</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">payDate</span><span class="p">.</span><span class="n">DayOfWeek</span> <span class="p">==</span> <span class="n">DayOfWeek</span><span class="p">.</span><span class="n">Friday</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">DateTime</span> <span class="n">GetPayPeriodStartDate</span><span class="p">(</span><span class="n">DateTime</span> <span class="n">date</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">date</span><span class="p">.</span><span class="n">AddDays</span><span class="p">(-</span><span class="m">6</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">override</span> <span class="kt">string</span> <span class="n">ToString</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="s">&#34;weekly&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="k">class</span> <span class="nc">Employee</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="k">readonly</span> <span class="kt">int</span> <span class="n">empid</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="kt">string</span> <span class="n">name</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="k">readonly</span> <span class="kt">string</span> <span class="n">address</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">PaymentClassification</span> <span class="n">classification</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">PaymentSchedule</span> <span class="n">schedule</span><span class="p">;</span>	
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">PaymentMethod</span> <span class="n">method</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">Affiliation</span> <span class="n">affiliation</span> <span class="p">=</span> <span class="k">new</span> <span class="n">NoAffiliation</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">Employee</span><span class="p">(</span><span class="kt">int</span> <span class="n">empid</span><span class="p">,</span> <span class="kt">string</span> <span class="n">name</span><span class="p">,</span> <span class="kt">string</span> <span class="n">address</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="p">.</span><span class="n">empid</span> <span class="p">=</span> <span class="n">empid</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="p">.</span><span class="n">name</span> <span class="p">=</span> <span class="n">name</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="p">.</span><span class="n">address</span> <span class="p">=</span> <span class="n">address</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">string</span> <span class="n">Name</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">get</span> <span class="p">{</span> <span class="k">return</span> <span class="n">name</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">set</span> <span class="p">{</span> <span class="n">name</span> <span class="p">=</span> <span class="k">value</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">string</span> <span class="n">Address</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">get</span> <span class="p">{</span> <span class="k">return</span> <span class="n">address</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">PaymentClassification</span> <span class="n">Classification</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">get</span> <span class="p">{</span> <span class="k">return</span> <span class="n">classification</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">set</span> <span class="p">{</span> <span class="n">classification</span> <span class="p">=</span> <span class="k">value</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">PaymentSchedule</span> <span class="n">Schedule</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">get</span> <span class="p">{</span> <span class="k">return</span> <span class="n">schedule</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">set</span> <span class="p">{</span> <span class="n">schedule</span> <span class="p">=</span> <span class="k">value</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">PaymentMethod</span> <span class="n">Method</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">get</span> <span class="p">{</span> <span class="k">return</span> <span class="n">method</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">set</span> <span class="p">{</span> <span class="n">method</span> <span class="p">=</span> <span class="k">value</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">Affiliation</span> <span class="n">Affiliation</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">get</span> <span class="p">{</span> <span class="k">return</span> <span class="n">affiliation</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">set</span> <span class="p">{</span> <span class="n">affiliation</span> <span class="p">=</span> <span class="k">value</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">bool</span> <span class="n">IsPayDate</span><span class="p">(</span><span class="n">DateTime</span> <span class="n">date</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">schedule</span><span class="p">.</span><span class="n">IsPayDate</span><span class="p">(</span><span class="n">date</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="k">void</span> <span class="n">Payday</span><span class="p">(</span><span class="n">Paycheck</span> <span class="n">paycheck</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//计算总的薪资</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">double</span> <span class="n">grossPay</span> <span class="p">=</span> <span class="n">classification</span><span class="p">.</span><span class="n">CalculatePay</span><span class="p">(</span><span class="n">paycheck</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//计算扣除薪资</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">double</span> <span class="n">deductions</span> <span class="p">=</span> <span class="n">affiliation</span><span class="p">.</span><span class="n">CalculateDeductions</span><span class="p">(</span><span class="n">paycheck</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//计算实际薪资</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">double</span> <span class="n">netPay</span> <span class="p">=</span> <span class="n">grossPay</span> <span class="p">-</span> <span class="n">deductions</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">paycheck</span><span class="p">.</span><span class="n">GrossPay</span> <span class="p">=</span> <span class="n">grossPay</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">paycheck</span><span class="p">.</span><span class="n">Deductions</span> <span class="p">=</span> <span class="n">deductions</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">paycheck</span><span class="p">.</span><span class="n">NetPay</span> <span class="p">=</span> <span class="n">netPay</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//通过支付方式支付</span>
+</span></span><span class="line"><span class="cl">        <span class="n">method</span><span class="p">.</span><span class="n">Pay</span><span class="p">(</span><span class="n">paycheck</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">DateTime</span> <span class="n">GetPayPeriodStartDate</span><span class="p">(</span><span class="n">DateTime</span> <span class="n">date</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">schedule</span><span class="p">.</span><span class="n">GetPayPeriodStartDate</span><span class="p">(</span><span class="n">date</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">int</span> <span class="n">EmpId</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">get</span> <span class="p">{</span> <span class="k">return</span> <span class="n">empid</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">override</span> <span class="kt">string</span> <span class="n">ToString</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">StringBuilder</span> <span class="n">builder</span> <span class="p">=</span> <span class="k">new</span> <span class="n">StringBuilder</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">builder</span><span class="p">.</span><span class="n">Append</span><span class="p">(</span><span class="s">&#34;Emp#: &#34;</span><span class="p">).</span><span class="n">Append</span><span class="p">(</span><span class="n">empid</span><span class="p">).</span><span class="n">Append</span><span class="p">(</span><span class="s">&#34;   &#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">builder</span><span class="p">.</span><span class="n">Append</span><span class="p">(</span><span class="n">name</span><span class="p">).</span><span class="n">Append</span><span class="p">(</span><span class="s">&#34;   &#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">builder</span><span class="p">.</span><span class="n">Append</span><span class="p">(</span><span class="n">address</span><span class="p">).</span><span class="n">Append</span><span class="p">(</span><span class="s">&#34;   &#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">builder</span><span class="p">.</span><span class="n">Append</span><span class="p">(</span><span class="s">&#34;Paid &#34;</span><span class="p">).</span><span class="n">Append</span><span class="p">(</span><span class="n">classification</span><span class="p">).</span><span class="n">Append</span><span class="p">(</span><span class="s">&#34; &#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">builder</span><span class="p">.</span><span class="n">Append</span><span class="p">(</span><span class="n">schedule</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">builder</span><span class="p">.</span><span class="n">Append</span><span class="p">(</span><span class="s">&#34; by &#34;</span><span class="p">).</span><span class="n">Append</span><span class="p">(</span><span class="n">method</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">builder</span><span class="p">.</span><span class="n">ToString</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="k">class</span> <span class="nc">UnionAffiliation</span> <span class="p">:</span> <span class="n">Affiliation</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">Hashtable</span> <span class="n">charges</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Hashtable</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="kt">int</span> <span class="n">memberId</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="k">readonly</span> <span class="kt">double</span> <span class="n">dues</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">UnionAffiliation</span><span class="p">(</span><span class="kt">int</span> <span class="n">memberId</span><span class="p">,</span> <span class="kt">double</span> <span class="n">dues</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="p">.</span><span class="n">memberId</span> <span class="p">=</span> <span class="n">memberId</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="p">.</span><span class="n">dues</span> <span class="p">=</span> <span class="n">dues</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">UnionAffiliation</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="p">:</span> <span class="k">this</span><span class="p">(-</span><span class="m">1</span><span class="p">,</span> <span class="m">0.0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">ServiceCharge</span> <span class="n">GetServiceCharge</span><span class="p">(</span><span class="n">DateTime</span> <span class="n">time</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">charges</span><span class="p">[</span><span class="n">time</span><span class="p">]</span> <span class="k">as</span> <span class="n">ServiceCharge</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="k">void</span> <span class="n">AddServiceCharge</span><span class="p">(</span><span class="n">ServiceCharge</span> <span class="n">sc</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">charges</span><span class="p">[</span><span class="n">sc</span><span class="p">.</span><span class="n">Time</span><span class="p">]</span> <span class="p">=</span> <span class="n">sc</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">double</span> <span class="n">Dues</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">get</span> <span class="p">{</span> <span class="k">return</span> <span class="n">dues</span><span class="p">;</span>	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">int</span> <span class="n">MemberId</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">get</span> <span class="p">{</span> <span class="k">return</span> <span class="n">memberId</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">double</span> <span class="n">CalculateDeductions</span><span class="p">(</span><span class="n">Paycheck</span> <span class="n">paycheck</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">double</span> <span class="n">totalDues</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">fridays</span> <span class="p">=</span> <span class="n">NumberOfFridaysInPayPeriod</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">            <span class="n">paycheck</span><span class="p">.</span><span class="n">PayPeriodStartDate</span><span class="p">,</span> <span class="n">paycheck</span><span class="p">.</span><span class="n">PayPeriodEndDate</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">totalDues</span> <span class="p">=</span> <span class="n">dues</span> <span class="p">*</span> <span class="n">fridays</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">foreach</span><span class="p">(</span><span class="n">ServiceCharge</span> <span class="n">charge</span> <span class="k">in</span> <span class="n">charges</span><span class="p">.</span><span class="n">Values</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span><span class="p">(</span><span class="n">DateUtil</span><span class="p">.</span><span class="n">IsInPayPeriod</span><span class="p">(</span><span class="n">charge</span><span class="p">.</span><span class="n">Time</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="n">paycheck</span><span class="p">.</span><span class="n">PayPeriodStartDate</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="n">paycheck</span><span class="p">.</span><span class="n">PayPeriodEndDate</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">            <span class="n">totalDues</span> <span class="p">+=</span> <span class="n">charge</span><span class="p">.</span><span class="n">Amount</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">totalDues</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="kt">int</span> <span class="n">NumberOfFridaysInPayPeriod</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="n">DateTime</span> <span class="n">payPeriodStart</span><span class="p">,</span> <span class="n">DateTime</span> <span class="n">payPeriodEnd</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">fridays</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="p">(</span><span class="n">DateTime</span> <span class="n">day</span> <span class="p">=</span> <span class="n">payPeriodStart</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl">            <span class="n">day</span> <span class="p">&lt;=</span> <span class="n">payPeriodEnd</span><span class="p">;</span> <span class="n">day</span> <span class="p">=</span> <span class="n">day</span><span class="p">.</span><span class="n">AddDays</span><span class="p">(</span><span class="m">1</span><span class="p">))</span> 
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="p">(</span><span class="n">day</span><span class="p">.</span><span class="n">DayOfWeek</span> <span class="p">==</span> <span class="n">DayOfWeek</span><span class="p">.</span><span class="n">Friday</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                <span class="n">fridays</span><span class="p">++;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">fridays</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>主程序</li>
 </ul>
 <p><img loading="lazy" src="/designpattern/TSzQlyi-1719811783366-95.png" alt="/designpattern/TSzQlyi-1719811783366-95.png" srcset="/designpattern/TSzQlyi-1719811783366-95.png?size=small, /designpattern/TSzQlyi-1719811783366-95.png?size=medium 1.5x, /designpattern/TSzQlyi-1719811783366-95.png?size=large 2x" data-title="/designpattern/TSzQlyi-1719811783366-95.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p><img loading="lazy" src="/designpattern/Uo40WBA-1719811783366-96.png" alt="/designpattern/Uo40WBA-1719811783366-96.png" srcset="/designpattern/Uo40WBA-1719811783366-96.png?size=small, /designpattern/Uo40WBA-1719811783366-96.png?size=medium 1.5x, /designpattern/Uo40WBA-1719811783366-96.png?size=large 2x" data-title="/designpattern/Uo40WBA-1719811783366-96.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
@@ -1105,7 +1803,7 @@ private readonly double dues;</p>
   </div>
 
   <div class="post-nav"><a href="/2018/09/designpattern1-uml/" class="post-nav-item" rel="prev" title="敏捷软件开发原则模式与实践 UML"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>敏捷软件开发原则模式与实践 UML</a>
-      <a href="/2022/06/algorithm1-queuesandlinks/" class="post-nav-item" rel="next" title="算法 队列与链表">算法 队列与链表<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+      <a href="/2018/10/designpattern4-designpattern/" class="post-nav-item" rel="next" title="敏捷软件开发原则模式与实践 设计原则">敏捷软件开发原则模式与实践 设计原则<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
 </div>
 <div class="post-reward">
     <div class="comment">为爱发电,请我喝杯咖啡吧</div>

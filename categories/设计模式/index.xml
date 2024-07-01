@@ -4,7 +4,23 @@
     <link>https://DDuuuu.github.io/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</link>
     <description>设计模式 - 分类 | AndrewDu&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>978089234@qq.com (AndrewDu)</managingEditor>
-      <webMaster>978089234@qq.com (AndrewDu)</webMaster><copyright>Copyright© Andrew.Du</copyright><lastBuildDate>Sat, 29 Sep 2018 17:09:22 &#43;0800</lastBuildDate><atom:link href="https://DDuuuu.github.io/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>978089234@qq.com (AndrewDu)</webMaster><copyright>Copyright© Andrew.Du</copyright><lastBuildDate>Wed, 10 Oct 2018 17:09:22 &#43;0800</lastBuildDate><atom:link href="https://DDuuuu.github.io/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="self" type="application/rss+xml" /><item>
+  <title>敏捷软件开发原则模式与实践 薪水支付</title>
+  <link>https://DDuuuu.github.io/2018/10/designpattern3-case2/</link>
+  <pubDate>Wed, 10 Oct 2018 17:09:22 &#43;0800</pubDate>
+  <author>AndrewDu</author>
+  <guid>https://DDuuuu.github.io/2018/10/designpattern3-case2/</guid>
+  <description><![CDATA[上一章中对薪水支付案例的用例和类做了详细的阐述，在本篇会介绍薪水支付案例包的划分和数据库，UI的设计。 包的划分 一个错误包的划分 为什么这个包是]]></description>
+</item>
+<item>
+  <title>敏捷软件开发原则模式与实践 设计原则</title>
+  <link>https://DDuuuu.github.io/2018/10/designpattern4-designpattern/</link>
+  <pubDate>Tue, 09 Oct 2018 17:09:22 &#43;0800</pubDate>
+  <author>AndrewDu</author>
+  <guid>https://DDuuuu.github.io/2018/10/designpattern4-designpattern/</guid>
+  <description><![CDATA[单一职责原则(single responsibilities principle,SRP) 原理：一个类应该只有一个变化 分离职责：如果不耦合的职责那么很简单，如果两个职责耦合，将两个职责抽象为接口，通过]]></description>
+</item>
+<item>
   <title>敏捷软件开发原则模式与实践 咖啡机</title>
   <link>https://DDuuuu.github.io/2018/09/designpattern2-case1/</link>
   <pubDate>Sat, 29 Sep 2018 17:09:22 &#43;0800</pubDate>

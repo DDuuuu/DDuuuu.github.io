@@ -64,22 +64,24 @@ a，b，c，d表示四种逻辑：
 系统的控制流如何检测传感器呢？是选择线程还是轮询。最好的总是假设消息都是可以异步发送的，就像存在有独立的线程一样，把使用轮询还是线程的决策推迟到最后一刻。
 这样设置了一个接口，main()程序就待在一个循环中，不停地一遍遍调用这个方法实现轮询。
 
-    public static void Main(string[] args)
-    {
-    	CoffeeMakerAPI api = new M4CoffeeMakerAPI();
-    	M4UserInterface ui = new M4UserInterface(api);
-    	M4HotWaterSOurce hws = new M4HotWaterSOurce(api);
-    	M4ContainmentVessel cv = new M4ContainmentVessel(api);
-    	ui.Init(hws,cv);
-    	hws.Init(ui,cv);
-    	cv.Init(hws,ui);
-    	while(true)
-    	{
-    		ui.Poll();
-    		hws.Poll();
-    		cv.Poll();
-    	}
-    }
+```C#
+public static void Main(string[] args)
+{
+	CoffeeMakerAPI api = new M4CoffeeMakerAPI();
+	M4UserInterface ui = new M4UserInterface(api);
+	M4HotWaterSOurce hws = new M4HotWaterSOurce(api);
+	M4ContainmentVessel cv = new M4ContainmentVessel(api);
+	ui.Init(hws,cv);
+	hws.Init(ui,cv);
+	cv.Init(hws,ui);
+	while(true)
+	{
+		ui.Poll();
+		hws.Poll();
+		cv.Poll();
+	}
+}
+```
 
 
 ![](/designpattern/9amR9CG-1719811783364-68.png)
@@ -174,66 +176,68 @@ Balarid：经理
 
 ![image-20240701133000020](/designpattern/image-20240701133000020.png)
 
-    public abstract class AddEmployeeTransaction : Transaction
-    {
-    	private readonly int empid;
-    	private readonly string name;
-    	private readonly string address;
-    
-    	public AddEmployeeTransaction(int empid, 
-    		string name, string address, PayrollDatabase database)
-    		: base (database)
-    	{
-    		this.empid = empid;
-    		this.name = name;
-    		this.address = address;
-    	}
-    
-    	protected abstract 
-    		PaymentClassification MakeClassification();
-    	protected abstract 
-    		PaymentSchedule MakeSchedule();
-    
-    	public override void Execute()
-    	{
-    		PaymentClassification pc = MakeClassification();
-    		PaymentSchedule ps = MakeSchedule();
-    		PaymentMethod pm = new HoldMethod();
-    
-    		Employee e = new Employee(empid, name, address);
-    		e.Classification = pc;
-    		e.Schedule = ps;
-    		e.Method = pm;
-    		database.AddEmployee(e);
-    	}
-    
-    	public override string ToString()
-    	{
-    		return String.Format(&#34;{0}  id:{1}   name:{2}   address:{3}&#34;, GetType().Name, empid, name,address);
-    	} 
-    }
-    
-    public class AddSalariedEmployee : AddEmployeeTransaction
-    {
-    	private readonly double salary;
-    
-    	public AddSalariedEmployee(int id, string name, string address, double salary, PayrollDatabase database) 
-    		: base(id, name, address, database)
-    	{
-    		this.salary = salary;
-    	}
-    
-    	protected override 
-    		PaymentClassification MakeClassification()
-    	{
-    		return new SalariedClassification(salary);
-    	}
-    
-    	protected override PaymentSchedule MakeSchedule()
-    	{
-    		return new MonthlySchedule();
-    	}
-    }
+```C#
+public abstract class AddEmployeeTransaction : Transaction
+{
+	private readonly int empid;
+	private readonly string name;
+	private readonly string address;
+
+	public AddEmployeeTransaction(int empid, 
+		string name, string address, PayrollDatabase database)
+		: base (database)
+	{
+		this.empid = empid;
+		this.name = name;
+		this.address = address;
+	}
+
+	protected abstract 
+		PaymentClassification MakeClassification();
+	protected abstract 
+		PaymentSchedule MakeSchedule();
+
+	public override void Execute()
+	{
+		PaymentClassification pc = MakeClassification();
+		PaymentSchedule ps = MakeSchedule();
+		PaymentMethod pm = new HoldMethod();
+
+		Employee e = new Employee(empid, name, address);
+		e.Classification = pc;
+		e.Schedule = ps;
+		e.Method = pm;
+		database.AddEmployee(e);
+	}
+
+	public override string ToString()
+	{
+		return String.Format(&#34;{0}  id:{1}   name:{2}   address:{3}&#34;, GetType().Name, empid, name,address);
+	} 
+}
+
+public class AddSalariedEmployee : AddEmployeeTransaction
+{
+	private readonly double salary;
+
+	public AddSalariedEmployee(int id, string name, string address, double salary, PayrollDatabase database) 
+		: base(id, name, address, database)
+	{
+		this.salary = salary;
+	}
+
+	protected override 
+		PaymentClassification MakeClassification()
+	{
+		return new SalariedClassification(salary);
+	}
+
+	protected override PaymentSchedule MakeSchedule()
+	{
+		return new MonthlySchedule();
+	}
+}
+```
 
 &#43; 删除雇员
 
@@ -246,62 +250,64 @@ Balarid：经理
 ![](/designpattern/HKh6NFO-1719811783365-80.png)
 ![](/designpattern/Q5vkdbO-1719811783365-81.png)
 
-	public class TimeCard
+```C#
+public class TimeCard
+{
+	private readonly DateTime date;
+	private readonly double hours;
+
+	public TimeCard(DateTime date, double hours)
 	{
-		private readonly DateTime date;
-		private readonly double hours;
-	
-		public TimeCard(DateTime date, double hours)
-		{
-			this.date = date;
-			this.hours = hours;
-		}
-	
-		public double Hours
-		{
-			get { return hours; }
-		}
-	
-		public DateTime Date
-		{
-			get { return date; }
-		}
+		this.date = date;
+		this.hours = hours;
 	}
-	public class TimeCardTransaction : Transaction
+
+	public double Hours
 	{
-		private readonly DateTime date;
-		private readonly double hours;
-		private readonly int empId;
-	
-		public TimeCardTransaction(DateTime date, double hours, int empId, PayrollDatabase database)
-			: base(database)
+		get { return hours; }
+	}
+
+	public DateTime Date
+	{
+		get { return date; }
+	}
+}
+public class TimeCardTransaction : Transaction
+{
+	private readonly DateTime date;
+	private readonly double hours;
+	private readonly int empId;
+
+	public TimeCardTransaction(DateTime date, double hours, int empId, PayrollDatabase database)
+		: base(database)
+	{
+		this.date = date;
+		this.hours = hours;
+		this.empId = empId;
+	}
+
+	public override void Execute()
+	{
+		Employee e = database.GetEmployee(empId);
+
+		if (e != null)
 		{
-			this.date = date;
-			this.hours = hours;
-			this.empId = empId;
-		}
-	
-		public override void Execute()
-		{
-			Employee e = database.GetEmployee(empId);
-	
-			if (e != null)
-			{
-				HourlyClassification hc =
-					e.Classification as HourlyClassification;
-	
-				if (hc != null)
-					hc.AddTimeCard(new TimeCard(date, hours));
-				else
-					throw new ApplicationException(
-						&#34;Tried to add timecard to&#34; &#43;
-							&#34;non-hourly employee&#34;);
-			}
+			HourlyClassification hc =
+				e.Classification as HourlyClassification;
+
+			if (hc != null)
+				hc.AddTimeCard(new TimeCard(date, hours));
 			else
 				throw new ApplicationException(
-					&#34;No such employee.&#34;);
+					&#34;Tried to add timecard to&#34; &#43;
+						&#34;non-hourly employee&#34;);
 		}
+		else
+			throw new ApplicationException(
+				&#34;No such employee.&#34;);
 	}
+}
+```
 
 其他两种与这类似
 
@@ -316,45 +322,47 @@ Balarid：经理
 
 改名字事务：
 
-	public abstract class ChangeEmployeeTransaction : Transaction
+```C#
+public abstract class ChangeEmployeeTransaction : Transaction
+{
+	private readonly int empId;
+
+	public ChangeEmployeeTransaction(int empId, PayrollDatabase database)
+		: base (database)
 	{
-		private readonly int empId;
-	
-		public ChangeEmployeeTransaction(int empId, PayrollDatabase database)
-			: base (database)
-		{
-			this.empId = empId;
-		}
-	
-		public override void Execute()
-		{
-			Employee e = database.GetEmployee(empId);
-			
-			if(e != null)
-				Change(e);
-			else
-				throw new ApplicationException(
-					&#34;No such employee.&#34;);
-		}
-	
-		protected abstract void Change(Employee e);
+		this.empId = empId;
 	}
-	public class ChangeNameTransaction 
-		: ChangeEmployeeTransaction
+
+	public override void Execute()
 	{
-		private readonly string newName;
-	
-		public ChangeNameTransaction(int id, string newName, PayrollDatabase database)
-			: base(id, database)
-		{
-			this.newName = newName;
-		}
-	
-		protected override void Change(Employee e)
-		{
-			e.Name = newName;
-		}
+		Employee e = database.GetEmployee(empId);
+		
+		if(e != null)
+			Change(e);
+		else
+			throw new ApplicationException(
+				&#34;No such employee.&#34;);
 	}
+
+	protected abstract void Change(Employee e);
+}
+public class ChangeNameTransaction 
+	: ChangeEmployeeTransaction
+{
+	private readonly string newName;
+
+	public ChangeNameTransaction(int id, string newName, PayrollDatabase database)
+		: base(id, database)
+	{
+		this.newName = newName;
+	}
+
+	protected override void Change(Employee e)
+	{
+		e.Name = newName;
+	}
+}
+```
 
 更改雇员类别
 
@@ -363,209 +371,215 @@ Balarid：经理
 ![](/designpattern/kDPETN3-1719811783366-88.png)
 ![](/designpattern/Y4oG5M0-1719811783366-89.png)
 
-	public abstract class ChangeClassificationTransaction
-		: ChangeEmployeeTransaction
+```C#
+public abstract class ChangeClassificationTransaction
+	: ChangeEmployeeTransaction
+{
+	public ChangeClassificationTransaction(int id, PayrollDatabase database)
+		: base (id, database)
+	{}
+
+	protected override void Change(Employee e)
 	{
-		public ChangeClassificationTransaction(int id, PayrollDatabase database)
-			: base (id, database)
-		{}
-	
-		protected override void Change(Employee e)
-		{
-			e.Classification = Classification;
-			e.Schedule = Schedule;
-		}
-	
-		protected abstract 
-			PaymentClassification Classification { get; }
-		protected abstract PaymentSchedule Schedule { get; }
+		e.Classification = Classification;
+		e.Schedule = Schedule;
 	}
-	public class ChangeHourlyTransaction 
-		: ChangeClassificationTransaction
+
+	protected abstract 
+		PaymentClassification Classification { get; }
+	protected abstract PaymentSchedule Schedule { get; }
+}
+public class ChangeHourlyTransaction 
+	: ChangeClassificationTransaction
+{
+	private readonly double hourlyRate;
+
+	public ChangeHourlyTransaction(int id, double hourlyRate, PayrollDatabase database)
+		: base(id, database)
 	{
-		private readonly double hourlyRate;
-	
-		public ChangeHourlyTransaction(int id, double hourlyRate, PayrollDatabase database)
-			: base(id, database)
-		{
-			this.hourlyRate = hourlyRate;
-		}
-	
-		protected override PaymentClassification Classification
-		{
-			get { return new HourlyClassification(hourlyRate); }
-		}
-	
-		protected override PaymentSchedule Schedule
-		{
-			get { return new WeeklySchedule(); }
-		}
+		this.hourlyRate = hourlyRate;
 	}
-	public class ChangeSalariedTransaction : ChangeClassificationTransaction
+
+	protected override PaymentClassification Classification
 	{
-		private readonly double salary;
-	
-		public ChangeSalariedTransaction(int id, double salary, PayrollDatabase database)
-			: base(id, database)
-		{
-			this.salary = salary;
-		}
-	
-		protected override PaymentClassification Classification
-		{
-			get { return new SalariedClassification(salary); }
-		}
-	
-		protected override PaymentSchedule Schedule
-		{
-			get { return new MonthlySchedule(); }
-		}
+		get { return new HourlyClassification(hourlyRate); }
 	}
-	public class ChangeCommissionedTransaction
-		: ChangeClassificationTransaction
+
+	protected override PaymentSchedule Schedule
 	{
-		private readonly double baseSalary;
-		private readonly double commissionRate;
-	
-		public ChangeCommissionedTransaction(int id, double baseSalary, double commissionRate, PayrollDatabase database)
-			: base(id, database)
-		{
-			this.baseSalary = baseSalary;
-			this.commissionRate = commissionRate;
-		}
-	
-		protected override PaymentClassification Classification
-		{
-			get { return new CommissionClassification(baseSalary, commissionRate); }
-		}
-	
-		protected override PaymentSchedule Schedule
-		{
-			get { return new BiWeeklySchedule(); }
-		}
+		get { return new WeeklySchedule(); }
 	}
+}
+public class ChangeSalariedTransaction : ChangeClassificationTransaction
+{
+	private readonly double salary;
+
+	public ChangeSalariedTransaction(int id, double salary, PayrollDatabase database)
+		: base(id, database)
+	{
+		this.salary = salary;
+	}
+
+	protected override PaymentClassification Classification
+	{
+		get { return new SalariedClassification(salary); }
+	}
+
+	protected override PaymentSchedule Schedule
+	{
+		get { return new MonthlySchedule(); }
+	}
+}
+public class ChangeCommissionedTransaction
+	: ChangeClassificationTransaction
+{
+	private readonly double baseSalary;
+	private readonly double commissionRate;
+
+	public ChangeCommissionedTransaction(int id, double baseSalary, double commissionRate, PayrollDatabase database)
+		: base(id, database)
+	{
+		this.baseSalary = baseSalary;
+		this.commissionRate = commissionRate;
+	}
+
+	protected override PaymentClassification Classification
+	{
+		get { return new CommissionClassification(baseSalary, commissionRate); }
+	}
+
+	protected override PaymentSchedule Schedule
+	{
+		get { return new BiWeeklySchedule(); }
+	}
+}
+```
 
 改变方法和改变工会实现方式基本与改变雇佣类别相似
 
 改变支付方法：
 
-	public abstract class ChangeMethodTransaction : ChangeEmployeeTransaction
+```C#
+public abstract class ChangeMethodTransaction : ChangeEmployeeTransaction
+{
+	public ChangeMethodTransaction(int empId, PayrollDatabase database)
+		: base(empId, database)
+	{}
+
+	protected override void Change(Employee e)
 	{
-		public ChangeMethodTransaction(int empId, PayrollDatabase database)
-			: base(empId, database)
-		{}
-	
-		protected override void Change(Employee e)
-		{
-			PaymentMethod method = Method;
-			e.Method = method;
-		}
-	
-		protected abstract PaymentMethod Method { get; }
+		PaymentMethod method = Method;
+		e.Method = method;
 	}
-	public class ChangeMailTransaction : ChangeMethodTransaction
+
+	protected abstract PaymentMethod Method { get; }
+}
+public class ChangeMailTransaction : ChangeMethodTransaction
+{
+	public ChangeMailTransaction(int empId, PayrollDatabase database)
+		: base(empId, database)
 	{
-		public ChangeMailTransaction(int empId, PayrollDatabase database)
-			: base(empId, database)
-		{
-		}
-	
-		protected override PaymentMethod Method
-		{
-			get { return new MailMethod(&#34;3.14 Pi St&#34;); }
-		}
-	
 	}
-	public class ChangeHoldTransaction : ChangeMethodTransaction
+
+	protected override PaymentMethod Method
 	{
-		public ChangeHoldTransaction(int empId, PayrollDatabase database)
-			: base(empId, database)
-		{
-		}
-	
-		protected override PaymentMethod Method
-		{
-			get { return new HoldMethod(); }
-		}
-	
+		get { return new MailMethod(&#34;3.14 Pi St&#34;); }
 	}
-	public class ChangeDirectTransaction : ChangeMethodTransaction
+
+}
+public class ChangeHoldTransaction : ChangeMethodTransaction
+{
+	public ChangeHoldTransaction(int empId, PayrollDatabase database)
+		: base(empId, database)
 	{
-		public ChangeDirectTransaction(int empId, PayrollDatabase database)
-			: base(empId, database)
-		{
-		}
-	
-		protected override PaymentMethod Method
-		{
-			get { return new DirectDepositMethod(&#34;Bank -1&#34;, &#34;123&#34;); }
-		}
-	
 	}
+
+	protected override PaymentMethod Method
+	{
+		get { return new HoldMethod(); }
+	}
+
+}
+public class ChangeDirectTransaction : ChangeMethodTransaction
+{
+	public ChangeDirectTransaction(int empId, PayrollDatabase database)
+		: base(empId, database)
+	{
+	}
+
+	protected override PaymentMethod Method
+	{
+		get { return new DirectDepositMethod(&#34;Bank -1&#34;, &#34;123&#34;); }
+	}
+
+}
+```
 
 改变工会：
 
-	public abstract class ChangeAffiliationTransaction : ChangeEmployeeTransaction
+```C#
+public abstract class ChangeAffiliationTransaction : ChangeEmployeeTransaction
+{
+	public ChangeAffiliationTransaction(int empId, PayrollDatabase database)
+		: base(empId, database)
+	{}
+
+	protected override void Change(Employee e)
 	{
-		public ChangeAffiliationTransaction(int empId, PayrollDatabase database)
-			: base(empId, database)
-		{}
-	
-		protected override void Change(Employee e)
-		{
-			RecordMembership(e);
-			Affiliation affiliation = Affiliation;
-			e.Affiliation = affiliation;
-		}
-	
-		protected abstract Affiliation Affiliation { get; }
-		protected abstract void RecordMembership(Employee e);
+		RecordMembership(e);
+		Affiliation affiliation = Affiliation;
+		e.Affiliation = affiliation;
 	}
-	public class ChangeUnaffiliatedTransaction : ChangeAffiliationTransaction
+
+	protected abstract Affiliation Affiliation { get; }
+	protected abstract void RecordMembership(Employee e);
+}
+public class ChangeUnaffiliatedTransaction : ChangeAffiliationTransaction
+{
+	public ChangeUnaffiliatedTransaction(int empId, PayrollDatabase database)
+		: base(empId, database)
+	{}
+
+	protected override Affiliation Affiliation
 	{
-		public ChangeUnaffiliatedTransaction(int empId, PayrollDatabase database)
-			: base(empId, database)
-		{}
-	
-		protected override Affiliation Affiliation
-		{
-			get { return new NoAffiliation(); }
-		}
-	
-		protected override void RecordMembership(Employee e)
-		{
-			Affiliation affiliation = e.Affiliation;
-			if(affiliation is UnionAffiliation)
-			{
-				UnionAffiliation unionAffiliation = 
-					affiliation as UnionAffiliation;
-				int memberId = unionAffiliation.MemberId;
-				database.RemoveUnionMember(memberId);
-			}
-		}
+		get { return new NoAffiliation(); }
 	}
-	public class ChangeMemberTransaction : ChangeAffiliationTransaction
+
+	protected override void RecordMembership(Employee e)
 	{
-		private readonly int memberId;
-		private readonly double dues;
-	
-		public ChangeMemberTransaction(int empId, int memberId, double dues, PayrollDatabase database)
-			: base(empId, database)
+		Affiliation affiliation = e.Affiliation;
+		if(affiliation is UnionAffiliation)
 		{
-			this.memberId = memberId;
-			this.dues = dues;
-		}
-	
-		protected override Affiliation Affiliation
-		{
-			get { return new UnionAffiliation(memberId, dues); }
-		}
-	
-		protected override void RecordMembership(Employee e)
-		{
-			database.AddUnionMember(memberId, e);
+			UnionAffiliation unionAffiliation = 
+				affiliation as UnionAffiliation;
+			int memberId = unionAffiliation.MemberId;
+			database.RemoveUnionMember(memberId);
 		}
 	}
+}
+public class ChangeMemberTransaction : ChangeAffiliationTransaction
+{
+	private readonly int memberId;
+	private readonly double dues;
+
+	public ChangeMemberTransaction(int empId, int memberId, double dues, PayrollDatabase database)
+		: base(empId, database)
+	{
+		this.memberId = memberId;
+		this.dues = dues;
+	}
+
+	protected override Affiliation Affiliation
+	{
+		get { return new UnionAffiliation(memberId, dues); }
+	}
+
+	protected override void RecordMembership(Employee e)
+	{
+		database.AddUnionMember(memberId, e);
+	}
+}
+```
 
 &#43; 支付薪水
 
@@ -578,307 +592,311 @@ Balarid：经理
 
 支付月薪：
 
-	public class PaydayTransaction : Transaction
+```C#
+public class PaydayTransaction : Transaction
+{
+	private readonly DateTime payDate;
+	private Hashtable paychecks = new Hashtable();
+
+	public PaydayTransaction(DateTime payDate, PayrollDatabase database)
+		: base (database)
 	{
-		private readonly DateTime payDate;
-		private Hashtable paychecks = new Hashtable();
-	
-		public PaydayTransaction(DateTime payDate, PayrollDatabase database)
-			: base (database)
+		this.payDate = payDate;
+	}
+
+	public override void Execute()
+	{
+		ArrayList empIds = database.GetAllEmployeeIds();
+		  
+		foreach(int empId in empIds)
 		{
-			this.payDate = payDate;
-		}
-	
-		public override void Execute()
-		{
-			ArrayList empIds = database.GetAllEmployeeIds();
-			  
-			foreach(int empId in empIds)
+			Employee employee = database.GetEmployee(empId);
+			if (employee.IsPayDate(payDate)) 
 			{
-				Employee employee = database.GetEmployee(empId);
-				if (employee.IsPayDate(payDate)) 
-				{
-					DateTime startDate = 
-						employee.GetPayPeriodStartDate(payDate);
-					Paycheck pc = new Paycheck(startDate, payDate);
-					paychecks[empId] = pc;
-					employee.Payday(pc);
-				}
+				DateTime startDate = 
+					employee.GetPayPeriodStartDate(payDate);
+				Paycheck pc = new Paycheck(startDate, payDate);
+				paychecks[empId] = pc;
+				employee.Payday(pc);
 			}
 		}
-	
-		public Paycheck GetPaycheck(int empId)
-		{
-			return paychecks[empId] as Paycheck;
-		}
 	}
-	public class MonthlySchedule : PaymentSchedule
+
+	public Paycheck GetPaycheck(int empId)
 	{
-		private bool IsLastDayOfMonth(DateTime date)
-		{
-			int m1 = date.Month;
-			int m2 = date.AddDays(1).Month;
-			return (m1 != m2);
-		}
-	
-		public bool IsPayDate(DateTime payDate)
-		{
-			return IsLastDayOfMonth(payDate);
-		}
-	
-		public DateTime GetPayPeriodStartDate(DateTime date)
-		{
-			int days = 0;
-			while(date.AddDays(days - 1).Month == date.Month)
-				days--;
-	
-			return date.AddDays(days);
-		}
-	
-		public override string ToString()
-		{
-			return &#34;monthly&#34;;
-		}
+		return paychecks[empId] as Paycheck;
 	}
+}
+public class MonthlySchedule : PaymentSchedule
+{
+	private bool IsLastDayOfMonth(DateTime date)
+	{
+		int m1 = date.Month;
+		int m2 = date.AddDays(1).Month;
+		return (m1 != m2);
+	}
+
+	public bool IsPayDate(DateTime payDate)
+	{
+		return IsLastDayOfMonth(payDate);
+	}
+
+	public DateTime GetPayPeriodStartDate(DateTime date)
+	{
+		int days = 0;
+		while(date.AddDays(days - 1).Month == date.Month)
+			days--;
+
+		return date.AddDays(days);
+	}
+
+	public override string ToString()
+	{
+		return &#34;monthly&#34;;
+	}
+}
+```
 
 其中有paycheck类。该类有日期，总薪酬，服务扣费，实际薪酬
 
 &#43; 临时工
 
 
-	public class HourlyClassification : PaymentClassification
-	{
-	    private double hourlyRate;
-	
-	    private Hashtable timeCards = new Hashtable();
-	
-	    public HourlyClassification(double rate)
-	    {
-	        this.hourlyRate = rate;
-	    }
-	
-	    public double HourlyRate
-	    {
-	        get { return hourlyRate; }
-	    }
-	
-	    public TimeCard GetTimeCard(DateTime date)
-	    {
-	        return timeCards[date] as TimeCard;
-	    }
-	
-	    public void AddTimeCard(TimeCard card)
-	    {
-	        timeCards[card.Date] = card;
-	    }
-	
-	    public override double CalculatePay(Paycheck paycheck)
-	    {
-	        double totalPay = 0.0;
-	        foreach(TimeCard timeCard in timeCards.Values)
-	        {
-	            if(DateUtil.IsInPayPeriod(timeCard.Date, 
-	                paycheck.PayPeriodStartDate, 
-	                paycheck.PayPeriodEndDate))
-	                totalPay &#43;= CalculatePayForTimeCard(timeCard);
-	        }
-	        return totalPay;
-	    }
-	
-	    private double CalculatePayForTimeCard(TimeCard card)
-	    {
-	        double overtimeHours = Math.Max(0.0, card.Hours - 8);
-	        double normalHours = card.Hours - overtimeHours;
-	        return hourlyRate * normalHours &#43; 
-	            hourlyRate * 1.5 * overtimeHours;
-	    }
-	
-	    public override string ToString()
-	    {
-	        return String.Format(&#34;${0}/hr&#34;, hourlyRate);
-	    }
-	}
-	public class WeeklySchedule : PaymentSchedule
-	{
-	    public bool IsPayDate(DateTime payDate)
-	    {
-	        return payDate.DayOfWeek == DayOfWeek.Friday;
-	    }
-	
-	    public DateTime GetPayPeriodStartDate(DateTime date)
-	    {
-	        return date.AddDays(-6);
-	    }
-	
-	    public override string ToString()
-	    {
-	        return &#34;weekly&#34;;
-	    }
-	}
-	
-	public class Employee
-	{
-	    private readonly int empid;
-	    private string name;
-	    private readonly string address;
-	    private PaymentClassification classification;
-	    private PaymentSchedule schedule;	
-	    private PaymentMethod method;
-	    private Affiliation affiliation = new NoAffiliation();
-	
-	    public Employee(int empid, string name, string address)
-	    {
-	        this.empid = empid;
-	        this.name = name;
-	        this.address = address;
-	    }
-	
-	    public string Name
-	    {
-	        get { return name; }
-	        set { name = value; }
-	    }
-	
-	    public string Address
-	    {
-	        get { return address; }
-	    }
-	
-	    public PaymentClassification Classification
-	    {
-	        get { return classification; }
-	        set { classification = value; }
-	    }
-	
-	    public PaymentSchedule Schedule
-	    {
-	        get { return schedule; }
-	        set { schedule = value; }
-	    }
-	
-	    public PaymentMethod Method
-	    {
-	        get { return method; }
-	        set { method = value; }
-	    }
-	
-	    public Affiliation Affiliation
-	    {
-	        get { return affiliation; }
-	        set { affiliation = value; }
-	    }
-	
-	    public bool IsPayDate(DateTime date)
-	    {
-	        return schedule.IsPayDate(date);
-	    }
-	
-	    public void Payday(Paycheck paycheck)
-	    {
-	        //计算总的薪资
-	        double grossPay = classification.CalculatePay(paycheck);
-	        //计算扣除薪资
-	        double deductions = affiliation.CalculateDeductions(paycheck);
-	        //计算实际薪资
-	        double netPay = grossPay - deductions;
-	        paycheck.GrossPay = grossPay;
-	        paycheck.Deductions = deductions;
-	        paycheck.NetPay = netPay;
-	        //通过支付方式支付
-	        method.Pay(paycheck);
-	    }
-	
-	    public DateTime GetPayPeriodStartDate(DateTime date)
-	    {
-	        return schedule.GetPayPeriodStartDate(date);
-	    }
-	
-	    public int EmpId
-	    {
-	        get { return empid; }
-	    }
-	
-	    public override string ToString()
-	    {
-	        StringBuilder builder = new StringBuilder();
-	        builder.Append(&#34;Emp#: &#34;).Append(empid).Append(&#34;   &#34;);
-	        builder.Append(name).Append(&#34;   &#34;);
-	        builder.Append(address).Append(&#34;   &#34;);
-	        builder.Append(&#34;Paid &#34;).Append(classification).Append(&#34; &#34;);
-	        builder.Append(schedule);
-	        builder.Append(&#34; by &#34;).Append(method);
-	        return builder.ToString();
-	    }
-	}
-	
-	public class UnionAffiliation : Affiliation
-	{
-	    private Hashtable charges = new Hashtable();
-	    private int memberId;
-	    private readonly double dues;
-	
-	    public UnionAffiliation(int memberId, double dues)
-	    {
-	        this.memberId = memberId;
-	        this.dues = dues;
-	    }
-	
-	    public UnionAffiliation()
-	        : this(-1, 0.0)
-	    {}
-	
-	    public ServiceCharge GetServiceCharge(DateTime time)
-	    {
-	        return charges[time] as ServiceCharge;
-	    }
-	
-	    public void AddServiceCharge(ServiceCharge sc)
-	    {
-	        charges[sc.Time] = sc;
-	    }
-	
-	    public double Dues
-	    {
-	        get { return dues;	}
-	    }
-	
-	    public int MemberId
-	    {
-	        get { return memberId; }
-	    }
-	
-	    public double CalculateDeductions(Paycheck paycheck)
-	    {
-	        double totalDues = 0;
-	
-	        int fridays = NumberOfFridaysInPayPeriod(
-	            paycheck.PayPeriodStartDate, paycheck.PayPeriodEndDate);
-	        totalDues = dues * fridays;
-	
-	        foreach(ServiceCharge charge in charges.Values)
-	        {
-	            if(DateUtil.IsInPayPeriod(charge.Time,
-	                paycheck.PayPeriodStartDate,
-	                paycheck.PayPeriodEndDate))
-	            totalDues &#43;= charge.Amount;
-	        }
-	
-	        return totalDues;
-	    }
-	
-	    private int NumberOfFridaysInPayPeriod(
-	        DateTime payPeriodStart, DateTime payPeriodEnd)
-	    {
-	        int fridays = 0;
-	        for (DateTime day = payPeriodStart; 
-	            day &lt;= payPeriodEnd; day = day.AddDays(1)) 
-	        {
-	            if (day.DayOfWeek == DayOfWeek.Friday)
-	                fridays&#43;&#43;;
-	        }
-	        return fridays;
-	    }
-	}
+```C#
+public class HourlyClassification : PaymentClassification
+{
+    private double hourlyRate;
+
+    private Hashtable timeCards = new Hashtable();
+
+    public HourlyClassification(double rate)
+    {
+        this.hourlyRate = rate;
+    }
+
+    public double HourlyRate
+    {
+        get { return hourlyRate; }
+    }
+
+    public TimeCard GetTimeCard(DateTime date)
+    {
+        return timeCards[date] as TimeCard;
+    }
+
+    public void AddTimeCard(TimeCard card)
+    {
+        timeCards[card.Date] = card;
+    }
+
+    public override double CalculatePay(Paycheck paycheck)
+    {
+        double totalPay = 0.0;
+        foreach(TimeCard timeCard in timeCards.Values)
+        {
+            if(DateUtil.IsInPayPeriod(timeCard.Date, 
+                paycheck.PayPeriodStartDate, 
+                paycheck.PayPeriodEndDate))
+                totalPay &#43;= CalculatePayForTimeCard(timeCard);
+        }
+        return totalPay;
+    }
+
+    private double CalculatePayForTimeCard(TimeCard card)
+    {
+        double overtimeHours = Math.Max(0.0, card.Hours - 8);
+        double normalHours = card.Hours - overtimeHours;
+        return hourlyRate * normalHours &#43; 
+            hourlyRate * 1.5 * overtimeHours;
+    }
+
+    public override string ToString()
+    {
+        return String.Format(&#34;${0}/hr&#34;, hourlyRate);
+    }
+}
+public class WeeklySchedule : PaymentSchedule
+{
+    public bool IsPayDate(DateTime payDate)
+    {
+        return payDate.DayOfWeek == DayOfWeek.Friday;
+    }
+
+    public DateTime GetPayPeriodStartDate(DateTime date)
+    {
+        return date.AddDays(-6);
+    }
+
+    public override string ToString()
+    {
+        return &#34;weekly&#34;;
+    }
+}
+
+public class Employee
+{
+    private readonly int empid;
+    private string name;
+    private readonly string address;
+    private PaymentClassification classification;
+    private PaymentSchedule schedule;	
+    private PaymentMethod method;
+    private Affiliation affiliation = new NoAffiliation();
+
+    public Employee(int empid, string name, string address)
+    {
+        this.empid = empid;
+        this.name = name;
+        this.address = address;
+    }
+
+    public string Name
+    {
+        get { return name; }
+        set { name = value; }
+    }
+
+    public string Address
+    {
+        get { return address; }
+    }
+
+    public PaymentClassification Classification
+    {
+        get { return classification; }
+        set { classification = value; }
+    }
+
+    public PaymentSchedule Schedule
+    {
+        get { return schedule; }
+        set { schedule = value; }
+    }
+
+    public PaymentMethod Method
+    {
+        get { return method; }
+        set { method = value; }
+    }
+
+    public Affiliation Affiliation
+    {
+        get { return affiliation; }
+        set { affiliation = value; }
+    }
+
+    public bool IsPayDate(DateTime date)
+    {
+        return schedule.IsPayDate(date);
+    }
+
+    public void Payday(Paycheck paycheck)
+    {
+        //计算总的薪资
+        double grossPay = classification.CalculatePay(paycheck);
+        //计算扣除薪资
+        double deductions = affiliation.CalculateDeductions(paycheck);
+        //计算实际薪资
+        double netPay = grossPay - deductions;
+        paycheck.GrossPay = grossPay;
+        paycheck.Deductions = deductions;
+        paycheck.NetPay = netPay;
+        //通过支付方式支付
+        method.Pay(paycheck);
+    }
+
+    public DateTime GetPayPeriodStartDate(DateTime date)
+    {
+        return schedule.GetPayPeriodStartDate(date);
+    }
+
+    public int EmpId
+    {
+        get { return empid; }
+    }
+
+    public override string ToString()
+    {
+        StringBuilder builder = new StringBuilder();
+        builder.Append(&#34;Emp#: &#34;).Append(empid).Append(&#34;   &#34;);
+        builder.Append(name).Append(&#34;   &#34;);
+        builder.Append(address).Append(&#34;   &#34;);
+        builder.Append(&#34;Paid &#34;).Append(classification).Append(&#34; &#34;);
+        builder.Append(schedule);
+        builder.Append(&#34; by &#34;).Append(method);
+        return builder.ToString();
+    }
+}
+
+public class UnionAffiliation : Affiliation
+{
+    private Hashtable charges = new Hashtable();
+    private int memberId;
+    private readonly double dues;
+
+    public UnionAffiliation(int memberId, double dues)
+    {
+        this.memberId = memberId;
+        this.dues = dues;
+    }
+
+    public UnionAffiliation()
+        : this(-1, 0.0)
+    {}
+
+    public ServiceCharge GetServiceCharge(DateTime time)
+    {
+        return charges[time] as ServiceCharge;
+    }
+
+    public void AddServiceCharge(ServiceCharge sc)
+    {
+        charges[sc.Time] = sc;
+    }
+
+    public double Dues
+    {
+        get { return dues;	}
+    }
+
+    public int MemberId
+    {
+        get { return memberId; }
+    }
+
+    public double CalculateDeductions(Paycheck paycheck)
+    {
+        double totalDues = 0;
+
+        int fridays = NumberOfFridaysInPayPeriod(
+            paycheck.PayPeriodStartDate, paycheck.PayPeriodEndDate);
+        totalDues = dues * fridays;
+
+        foreach(ServiceCharge charge in charges.Values)
+        {
+            if(DateUtil.IsInPayPeriod(charge.Time,
+                paycheck.PayPeriodStartDate,
+                paycheck.PayPeriodEndDate))
+            totalDues &#43;= charge.Amount;
+        }
+
+        return totalDues;
+    }
+
+    private int NumberOfFridaysInPayPeriod(
+        DateTime payPeriodStart, DateTime payPeriodEnd)
+    {
+        int fridays = 0;
+        for (DateTime day = payPeriodStart; 
+            day &lt;= payPeriodEnd; day = day.AddDays(1)) 
+        {
+            if (day.DayOfWeek == DayOfWeek.Friday)
+                fridays&#43;&#43;;
+        }
+        return fridays;
+    }
+}
+```
 
 &#43; 主程序
 

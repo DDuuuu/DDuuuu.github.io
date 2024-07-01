@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>薪水支付 - 标签 - AndrewDu&#39;s blog</title>
+    <link>https://DDuuuu.github.io/tags/%E8%96%AA%E6%B0%B4%E6%94%AF%E4%BB%98/</link>
+    <description>薪水支付 - 标签 | AndrewDu&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>978089234@qq.com (AndrewDu)</managingEditor>
+      <webMaster>978089234@qq.com (AndrewDu)</webMaster><copyright>Copyright© Andrew.Du</copyright><lastBuildDate>Wed, 10 Oct 2018 17:09:22 &#43;0800</lastBuildDate><atom:link href="https://DDuuuu.github.io/tags/%E8%96%AA%E6%B0%B4%E6%94%AF%E4%BB%98/" rel="self" type="application/rss+xml" /><item>
+  <title>敏捷软件开发原则模式与实践 薪水支付</title>
+  <link>https://DDuuuu.github.io/2018/10/designpattern3-case2/</link>
+  <pubDate>Wed, 10 Oct 2018 17:09:22 &#43;0800</pubDate>
+  <author>AndrewDu</author>
+  <guid>https://DDuuuu.github.io/2018/10/designpattern3-case2/</guid>
+  <description><![CDATA[上一章中对薪水支付案例的用例和类做了详细的阐述，在本篇会介绍薪水支付案例包的划分和数据库，UI的设计。 包的划分 一个错误包的划分 为什么这个包是]]></description>
+</item>
+</channel>
+</rss>
