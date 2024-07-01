@@ -1,0 +1,72 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>Prism源码解析 - 标签 - AndrewDu&#39;s blog</title>
+    <link>https://DDuuuu.github.io/tags/prism%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/</link>
+    <description>Prism源码解析 - 标签 | AndrewDu&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>978089234@qq.com (AndrewDu)</managingEditor>
+      <webMaster>978089234@qq.com (AndrewDu)</webMaster><copyright>Copyright© Andrew.Du</copyright><lastBuildDate>Wed, 08 Apr 2020 17:09:22 &#43;0800</lastBuildDate><atom:link href="https://DDuuuu.github.io/tags/prism%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/" rel="self" type="application/rss+xml" /><item>
+  <title>Prism源码解析 RegionContext</title>
+  <link>https://DDuuuu.github.io/2020/04/prism22-source/</link>
+  <pubDate>Wed, 08 Apr 2020 17:09:22 &#43;0800</pubDate>
+  <author>AndrewDu</author>
+  <guid>https://DDuuuu.github.io/2020/04/prism22-source/</guid>
+  <description><![CDATA[注意：该版本为Prism6,最新版已有较大改动。 介绍 0 RegionContext Prism为Region构造了一个RegionContext，其功能和DataCon]]></description>
+</item>
+<item>
+  <title>Prism源码解析 导航</title>
+  <link>https://DDuuuu.github.io/2020/04/prism21-source/</link>
+  <pubDate>Mon, 06 Apr 2020 17:09:22 &#43;0800</pubDate>
+  <author>AndrewDu</author>
+  <guid>https://DDuuuu.github.io/2020/04/prism21-source/</guid>
+  <description><![CDATA[注意：该版本为Prism6,最新版已有较大改动。 介绍 Prism提供了一个非常强大的功能导航，导航的意思就是指定对应的View显示。这个导航的]]></description>
+</item>
+<item>
+  <title>Prism源码解析 事件聚合</title>
+  <link>https://DDuuuu.github.io/2020/04/prism20-source/</link>
+  <pubDate>Sun, 05 Apr 2020 17:09:22 &#43;0800</pubDate>
+  <author>AndrewDu</author>
+  <guid>https://DDuuuu.github.io/2020/04/prism20-source/</guid>
+  <description><![CDATA[注意：该版本为Prism6,最新版已有较大改动。 0 介绍 事件提供的是1对多的绑定，通过委托链实现对订阅者的调用，事件必须要通过发布者调用。同时]]></description>
+</item>
+<item>
+  <title>Prism源码解析 数据绑定和命令</title>
+  <link>https://DDuuuu.github.io/2020/04/prism19-source/</link>
+  <pubDate>Fri, 03 Apr 2020 17:09:22 &#43;0800</pubDate>
+  <author>AndrewDu</author>
+  <guid>https://DDuuuu.github.io/2020/04/prism19-source/</guid>
+  <description><![CDATA[注意：该版本为Prism6,最新版已有较大改动。 介绍 WPF本身就支持通知、绑定和命令，实现ViewModel和VIew之间的通讯，但相对来说]]></description>
+</item>
+<item>
+  <title>Prism源码解析 ViewModel注入</title>
+  <link>https://DDuuuu.github.io/2020/04/prism18-source/</link>
+  <pubDate>Thu, 02 Apr 2020 17:09:22 &#43;0800</pubDate>
+  <author>AndrewDu</author>
+  <guid>https://DDuuuu.github.io/2020/04/prism18-source/</guid>
+  <description><![CDATA[注意：该版本为Prism6,最新版已有较大改动。 介绍 介绍一个Prism的MVVM实现，主要介绍Prism如何在WPF上进行的一些封装，以实现]]></description>
+</item>
+<item>
+  <title>Prism源码解析 Modules加载</title>
+  <link>https://DDuuuu.github.io/2020/04/prism17-source/</link>
+  <pubDate>Wed, 01 Apr 2020 17:09:22 &#43;0800</pubDate>
+  <author>AndrewDu</author>
+  <guid>https://DDuuuu.github.io/2020/04/prism17-source/</guid>
+  <description><![CDATA[注意：该版本为Prism6,最新版已有较大改动。 介绍 在软件开发过程中，总想组件式的开发方式，各个组件之间最好互不影响，独立测试。Prism的]]></description>
+</item>
+<item>
+  <title>Prism源码解析 View的加载和控制</title>
+  <link>https://DDuuuu.github.io/2020/03/prism16-source/</link>
+  <pubDate>Mon, 30 Mar 2020 17:09:22 &#43;0800</pubDate>
+  <author>AndrewDu</author>
+  <guid>https://DDuuuu.github.io/2020/03/prism16-source/</guid>
+  <description><![CDATA[注意：该版本为Prism6,最新版已有较大改动。 介绍 上一篇讲了入了门，这一篇，让我们不多BB直接开始 4、ViewDiscovery 在创建好R]]></description>
+</item>
+<item>
+  <title>Prism源码解析 Bootstrapper和Region的创建</title>
+  <link>https://DDuuuu.github.io/2020/03/prism15-source/</link>
+  <pubDate>Sun, 29 Mar 2020 17:09:22 &#43;0800</pubDate>
+  <author>AndrewDu</author>
+  <guid>https://DDuuuu.github.io/2020/03/prism15-source/</guid>
+  <description><![CDATA[注意：该版本为Prism6,最新版已有较大改动。 介绍 之前也研究过Prism框架但是一直没有深入理解，现在项目上想把一个Winform的桌面应]]></description>
+</item>
+</channel>
+</rss>

@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>RegionContext - 标签 - AndrewDu&#39;s blog</title>
+    <link>https://DDuuuu.github.io/tags/regioncontext/</link>
+    <description>RegionContext - 标签 | AndrewDu&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>978089234@qq.com (AndrewDu)</managingEditor>
+      <webMaster>978089234@qq.com (AndrewDu)</webMaster><copyright>Copyright© Andrew.Du</copyright><lastBuildDate>Wed, 08 Apr 2020 17:09:22 &#43;0800</lastBuildDate><atom:link href="https://DDuuuu.github.io/tags/regioncontext/" rel="self" type="application/rss+xml" /><item>
+  <title>Prism源码解析 RegionContext</title>
+  <link>https://DDuuuu.github.io/2020/04/prism22-source/</link>
+  <pubDate>Wed, 08 Apr 2020 17:09:22 &#43;0800</pubDate>
+  <author>AndrewDu</author>
+  <guid>https://DDuuuu.github.io/2020/04/prism22-source/</guid>
+  <description><![CDATA[注意：该版本为Prism6,最新版已有较大改动。 介绍 0 RegionContext Prism为Region构造了一个RegionContext，其功能和DataCon]]></description>
+</item>
+</channel>
+</rss>

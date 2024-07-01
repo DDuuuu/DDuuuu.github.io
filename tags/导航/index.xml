@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>导航 - 标签 - AndrewDu&#39;s blog</title>
+    <link>https://DDuuuu.github.io/tags/%E5%AF%BC%E8%88%AA/</link>
+    <description>导航 - 标签 | AndrewDu&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>978089234@qq.com (AndrewDu)</managingEditor>
+      <webMaster>978089234@qq.com (AndrewDu)</webMaster><copyright>Copyright© Andrew.Du</copyright><lastBuildDate>Mon, 06 Apr 2020 17:09:22 &#43;0800</lastBuildDate><atom:link href="https://DDuuuu.github.io/tags/%E5%AF%BC%E8%88%AA/" rel="self" type="application/rss+xml" /><item>
+  <title>Prism源码解析 导航</title>
+  <link>https://DDuuuu.github.io/2020/04/prism21-source/</link>
+  <pubDate>Mon, 06 Apr 2020 17:09:22 &#43;0800</pubDate>
+  <author>AndrewDu</author>
+  <guid>https://DDuuuu.github.io/2020/04/prism21-source/</guid>
+  <description><![CDATA[注意：该版本为Prism6,最新版已有较大改动。 介绍 Prism提供了一个非常强大的功能导航，导航的意思就是指定对应的View显示。这个导航的]]></description>
+</item>
+</channel>
+</rss>

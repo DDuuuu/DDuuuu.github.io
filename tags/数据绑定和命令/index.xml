@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>数据绑定和命令 - 标签 - AndrewDu&#39;s blog</title>
+    <link>https://DDuuuu.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%91%E5%AE%9A%E5%92%8C%E5%91%BD%E4%BB%A4/</link>
+    <description>数据绑定和命令 - 标签 | AndrewDu&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>978089234@qq.com (AndrewDu)</managingEditor>
+      <webMaster>978089234@qq.com (AndrewDu)</webMaster><copyright>Copyright© Andrew.Du</copyright><lastBuildDate>Fri, 03 Apr 2020 17:09:22 &#43;0800</lastBuildDate><atom:link href="https://DDuuuu.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%91%E5%AE%9A%E5%92%8C%E5%91%BD%E4%BB%A4/" rel="self" type="application/rss+xml" /><item>
+  <title>Prism源码解析 数据绑定和命令</title>
+  <link>https://DDuuuu.github.io/2020/04/prism19-source/</link>
+  <pubDate>Fri, 03 Apr 2020 17:09:22 &#43;0800</pubDate>
+  <author>AndrewDu</author>
+  <guid>https://DDuuuu.github.io/2020/04/prism19-source/</guid>
+  <description><![CDATA[注意：该版本为Prism6,最新版已有较大改动。 介绍 WPF本身就支持通知、绑定和命令，实现ViewModel和VIew之间的通讯，但相对来说]]></description>
+</item>
+</channel>
+</rss>

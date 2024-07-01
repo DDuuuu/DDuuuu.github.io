@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>事件聚合 - 标签 - AndrewDu&#39;s blog</title>
+    <link>https://DDuuuu.github.io/tags/%E4%BA%8B%E4%BB%B6%E8%81%9A%E5%90%88/</link>
+    <description>事件聚合 - 标签 | AndrewDu&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>978089234@qq.com (AndrewDu)</managingEditor>
+      <webMaster>978089234@qq.com (AndrewDu)</webMaster><copyright>Copyright© Andrew.Du</copyright><lastBuildDate>Sun, 05 Apr 2020 17:09:22 &#43;0800</lastBuildDate><atom:link href="https://DDuuuu.github.io/tags/%E4%BA%8B%E4%BB%B6%E8%81%9A%E5%90%88/" rel="self" type="application/rss+xml" /><item>
+  <title>Prism源码解析 事件聚合</title>
+  <link>https://DDuuuu.github.io/2020/04/prism20-source/</link>
+  <pubDate>Sun, 05 Apr 2020 17:09:22 &#43;0800</pubDate>
+  <author>AndrewDu</author>
+  <guid>https://DDuuuu.github.io/2020/04/prism20-source/</guid>
+  <description><![CDATA[注意：该版本为Prism6,最新版已有较大改动。 0 介绍 事件提供的是1对多的绑定，通过委托链实现对订阅者的调用，事件必须要通过发布者调用。同时]]></description>
+</item>
+</channel>
+</rss>
