@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>策略 - 标签 - AndrewDu&#39;s blog</title>
+    <link>https://DDuuuu.github.io/tags/%E7%AD%96%E7%95%A5/</link>
+    <description>策略 - 标签 | AndrewDu&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>978089234@qq.com (AndrewDu)</managingEditor>
+      <webMaster>978089234@qq.com (AndrewDu)</webMaster><copyright>Copyright© Andrew.Du</copyright><lastBuildDate>Tue, 12 Nov 2019 17:09:22 &#43;0800</lastBuildDate><atom:link href="https://DDuuuu.github.io/tags/%E7%AD%96%E7%95%A5/" rel="self" type="application/rss+xml" /><item>
+  <title>重构改善既有代码 策略 工厂 命令 状态</title>
+  <link>https://DDuuuu.github.io/2019/11/designpattern13-headfirst/</link>
+  <pubDate>Tue, 12 Nov 2019 17:09:22 &#43;0800</pubDate>
+  <author>AndrewDu</author>
+  <guid>https://DDuuuu.github.io/2019/11/designpattern13-headfirst/</guid>
+  <description><![CDATA[1 策略模式 鸭子飞行和嘎嘎叫策略 2 工厂模式 简单工厂简单的pizza工厂 通过一个工厂类的方法，创建和返回对象实例 原来混乱的代码： 修改后 简单工厂类]]></description>
+</item>
+</channel>
+</rss>

@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>重构改善既有代码 策略 工厂 命令 状态 - AndrewDu&#39;s blog</title><meta name="author" content="AndrewDu">
+<meta name="author-link" content="https://github.com/DDuuuu">
+<meta name="description" content="1 策略模式 鸭子飞行和嘎嘎叫策略 2 工厂模式 简单工厂简单的pizza工厂 通过一个工厂类的方法，创建和返回对象实例 原来混乱的代码： 修改后 简单工厂类" /><meta name="keywords" content='HeadFirst设计模式, 策略, 工厂, 命令, 状态' />
+  <meta itemprop="name" content="重构改善既有代码 策略 工厂 命令 状态">
+  <meta itemprop="description" content="1 策略模式 鸭子飞行和嘎嘎叫策略 2 工厂模式 简单工厂简单的pizza工厂 通过一个工厂类的方法，创建和返回对象实例 原来混乱的代码： 修改后 简单工厂类">
+  <meta itemprop="datePublished" content="2019-11-12T17:09:22+08:00">
+  <meta itemprop="dateModified" content="2019-11-12T17:09:22+08:00">
+  <meta itemprop="wordCount" content="1607">
+  <meta itemprop="image" content="https://DDuuuu.github.io/images/logo150.png">
+  <meta itemprop="keywords" content="HeadFirst设计模式,策略,工厂,命令,状态"><meta property="og:url" content="https://DDuuuu.github.io/2019/11/designpattern13-headfirst/">
+  <meta property="og:site_name" content="AndrewDu&#39;s blog">
+  <meta property="og:title" content="重构改善既有代码 策略 工厂 命令 状态">
+  <meta property="og:description" content="1 策略模式 鸭子飞行和嘎嘎叫策略 2 工厂模式 简单工厂简单的pizza工厂 通过一个工厂类的方法，创建和返回对象实例 原来混乱的代码： 修改后 简单工厂类">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2019-11-12T17:09:22+08:00">
+    <meta property="article:modified_time" content="2019-11-12T17:09:22+08:00">
+    <meta property="article:tag" content="HeadFirst设计模式">
+    <meta property="article:tag" content="策略">
+    <meta property="article:tag" content="工厂">
+    <meta property="article:tag" content="命令">
+    <meta property="article:tag" content="状态">
+    <meta property="og:image" content="https://DDuuuu.github.io/images/logo150.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://DDuuuu.github.io/images/logo150.png">
+  <meta name="twitter:title" content="重构改善既有代码 策略 工厂 命令 状态">
+  <meta name="twitter:description" content="1 策略模式 鸭子飞行和嘎嘎叫策略 2 工厂模式 简单工厂简单的pizza工厂 通过一个工厂类的方法，创建和返回对象实例 原来混乱的代码： 修改后 简单工厂类">
+<meta name="application-name" content="Andrew.Du">
+<meta name="apple-mobile-web-app-title" content="Andrew.Du"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://DDuuuu.github.io/2019/11/designpattern13-headfirst/" /><link rel="prev" href="https://DDuuuu.github.io/2019/11/designpattern9-refactoring5/" /><link rel="next" href="https://DDuuuu.github.io/2019/11/designpattern10-refactoring6/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "重构改善既有代码 策略 工厂 命令 状态",
+    "inLanguage": "zh-CN",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https:\/\/DDuuuu.github.io\/2019\/11\/designpattern13-headfirst\/"
+    },"image": ["https:\/\/DDuuuu.github.io\/images\/logo192.png"],"genre": "posts","keywords": "HeadFirst设计模式, 策略, 工厂, 命令, 状态","wordcount":  1607 ,
+    "url": "https:\/\/DDuuuu.github.io\/2019\/11\/designpattern13-headfirst\/","datePublished": "2019-11-12T17:09:22+08:00","dateModified": "2019-11-12T17:09:22+08:00","license": "Copyright© Andrew.Du","publisher": {
+      "@type": "Organization",
+      "name": "AndrewDu"},"author": {
+        "@type": "Person",
+        "name": "AndrewDu"
+      },"description": ""
+  }
+  </script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage?.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper" data-page-style="normal"><header class="desktop animate__faster" id="header-desktop">
+  <div class="header-wrapper" data-github-corner="right">
+    <div class="header-title">
+      <a href="/" title="AndrewDu&#39;s blog"><span class="typeit"><template>AndrewDu&#39;s blog</template></span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/"
+                title="主页"
+                
+              ><i class="fa-solid fa-home fa-fw fa-sm" aria-hidden="true"></i> 主页</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/archives/"
+                title="归档"
+                
+              ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 归档</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              ><i class="fa-solid fa-folder-tree fa-fw fa-sm" aria-hidden="true"></i> 类别</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/about/"
+                
+                
+              ><i class="fa-solid fa-link fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item delimiter"></li><li class="menu-item search" id="search-desktop">
+            <input type="text" placeholder="搜索文章标题或内容……" id="search-input-desktop">
+            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+              <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+            </a>
+            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+              <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+            </a>
+            <span class="search-button search-loading" id="search-loading-desktop">
+              <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+            </span>
+          </li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><header class="mobile animate__faster" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="AndrewDu&#39;s blog"><span class="typeit"><template>AndrewDu&#39;s blog</template></span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li class="search-wrapper">
+            <div class="search mobile" id="search-mobile">
+              <input type="text" placeholder="搜索文章标题或内容……" id="search-input-mobile">
+              <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+              </a>
+              <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+              </a>
+              <span class="search-button search-loading" id="search-loading-mobile">
+                <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+              </span>
+            </div>
+            <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+              取消
+            </a>
+          </li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/"
+                  title="主页"
+                  
+                ><i class="fa-solid fa-home fa-fw fa-sm" aria-hidden="true"></i> 主页</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/archives/"
+                  title="归档"
+                  
+                ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 归档</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/categories/"
+                  
+                  
+                ><i class="fa-solid fa-folder-tree fa-fw fa-sm" aria-hidden="true"></i> 类别</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/about/"
+                  
+                  
+                ><i class="fa-solid fa-link fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item menu-system">
+          <span class="menu-system-item theme-switch" title="切换主题"><i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i></span></li>
+      </ul>
+    </nav>
+  </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+  </div>
+  <div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+  </div><nav aria-label="breadcrumb" class="breadcrumb-container sticky">
+    <ol class="breadcrumb"><li class="breadcrumb-item"><a href="/" title="AndrewDu&#39;s Blog">主页</a></li><li class="breadcrumb-item"><a href="/posts/" title="Posts">文章</a></li><li class="breadcrumb-item active" aria-current="page">重构改善既有代码 策略 工厂 命令 状态</li>
+    </ol>
+  </nav><main class="container"><aside class="aside-collection animate__animated animate__fadeIn animate__faster" aria-label="合集"></aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX"><span>重构改善既有代码 策略 工厂 命令 状态</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><a href="https://github.com/DDuuuu" title="作者"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+    AndrewDu</a></span><span class="post-included-in">&nbsp;收录于 <a href="/categories/headfirst%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" class="post-category" title="分类 - HeadFirst设计模式"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> HeadFirst设计模式</a></span></div><div class="post-meta-line"><span title="发布于 2019-11-12 17:09:22"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2019-11-12">2019-11-12</time></span>&nbsp;<span title="1607 字"><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>约 1700 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>预计阅读 4 分钟</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="重构改善既有代码 策略 工厂 命令 状态">
+              <i class="fa-regular fa-eye fa-fw me-1" aria-hidden="true"></i><span id="busuanzi_value_page_pv">-</span>&nbsp;次阅读
+            </span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>目录</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-策略模式">1 策略模式</a>
+      <ul>
+        <li><a href="#鸭子飞行和嘎嘎叫策略">鸭子飞行和嘎嘎叫策略</a></li>
+      </ul>
+    </li>
+    <li><a href="#2-工厂模式">2 工厂模式</a>
+      <ul>
+        <li><a href="#简单工厂简单的pizza工厂">简单工厂简单的pizza工厂</a></li>
+        <li><a href="#pizza店变成加盟店">Pizza店变成加盟店</a>
+          <ul>
+            <li><a href="#pizza本身超类">Pizza本身，超类</a></li>
+          </ul>
+        </li>
+        <li><a href="#最终的user调用">最终的User调用</a></li>
+        <li><a href="#简单工厂模式">简单工厂模式</a></li>
+        <li><a href="#pizza店再次升级pizza原料升级">Pizza店再次升级，Pizza原料升级</a>
+          <ul>
+            <li><a href="#改造pizza类">改造Pizza类</a></li>
+          </ul>
+        </li>
+        <li><a href="#抽象工厂模式类图">抽象工厂模式类图</a></li>
+        <li><a href="#pizza店的类图">Pizza店的类图</a></li>
+      </ul>
+    </li>
+    <li><a href="#3-命令模式">3 命令模式</a>
+      <ul>
+        <li><a href="#餐厅案例">餐厅案例</a></li>
+        <li><a href="#回到遥控器">回到遥控器</a></li>
+        <li><a href="#命令模式类图">命令模式类图</a></li>
+        <li><a href="#支持撤销">支持撤销</a></li>
+        <li><a href="#使用状态的撤销">使用状态的撤销</a></li>
+        <li><a href="#宏命令之激进的遥控器">宏命令之激进的遥控器</a></li>
+        <li><a href="#队列请求">队列请求</a></li>
+        <li><a href="#日志请求">日志请求</a></li>
+      </ul>
+    </li>
+    <li><a href="#4-状态模式">4 状态模式</a>
+      <ul>
+        <li><a href="#糖果机">糖果机</a></li>
+        <li><a href="#激进糖果机">激进糖果机</a></li>
+        <li><a href="#状态模式">状态模式</a></li>
+        <li><a href="#十次抽奖">十次抽奖</a></li>
+        <li><a href="#总结">总结</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+      </div><div class="content" id="content" data-end-flag="感谢阅读！"><h2 id="1-策略模式" class="heading-element"><span>1 策略模式</span>
+  <a href="#1-%e7%ad%96%e7%95%a5%e6%a8%a1%e5%bc%8f" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><h3 id="鸭子飞行和嘎嘎叫策略" class="heading-element"><span>鸭子飞行和嘎嘎叫策略</span>
+  <a href="#%e9%b8%ad%e5%ad%90%e9%a3%9e%e8%a1%8c%e5%92%8c%e5%98%8e%e5%98%8e%e5%8f%ab%e7%ad%96%e7%95%a5" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p><img loading="lazy" src="/headfirst/1573522362069.png" alt="1573522362069" srcset="/headfirst/1573522362069.png?size=small, /headfirst/1573522362069.png?size=medium 1.5x, /headfirst/1573522362069.png?size=large 2x" data-title="1573522362069" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<h2 id="2-工厂模式" class="heading-element"><span>2 工厂模式</span>
+  <a href="#2-%e5%b7%a5%e5%8e%82%e6%a8%a1%e5%bc%8f" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><h3 id="简单工厂简单的pizza工厂" class="heading-element"><span>简单工厂简单的pizza工厂</span>
+  <a href="#%e7%ae%80%e5%8d%95%e5%b7%a5%e5%8e%82%e7%ae%80%e5%8d%95%e7%9a%84pizza%e5%b7%a5%e5%8e%82" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><ul>
+<li>通过一个工厂类的方法，创建和返回对象实例</li>
+</ul>
+<p><img loading="lazy" src="/headfirst/1573522439641.png" alt="1573522439641" srcset="/headfirst/1573522439641.png?size=small, /headfirst/1573522439641.png?size=medium 1.5x, /headfirst/1573522439641.png?size=large 2x" data-title="1573522439641" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<ul>
+<li>原来混乱的代码：</li>
+</ul>
+<p><img loading="lazy" src="/headfirst/1573522617683.png" alt="1573522617683" srcset="/headfirst/1573522617683.png?size=small, /headfirst/1573522617683.png?size=medium 1.5x, /headfirst/1573522617683.png?size=large 2x" data-title="1573522617683" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<ul>
+<li>修改后</li>
+</ul>
+<p><img loading="lazy" src="/headfirst/1573522695898.png" alt="1573522695898" srcset="/headfirst/1573522695898.png?size=small, /headfirst/1573522695898.png?size=medium 1.5x, /headfirst/1573522695898.png?size=large 2x" data-title="1573522695898" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<ul>
+<li>简单工厂类图</li>
+</ul>
+<p><img loading="lazy" src="/headfirst/1573522752878.png" alt="1573522752878" srcset="/headfirst/1573522752878.png?size=small, /headfirst/1573522752878.png?size=medium 1.5x, /headfirst/1573522752878.png?size=large 2x" data-title="1573522752878" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<h3 id="pizza店变成加盟店" class="heading-element"><span>Pizza店变成加盟店</span>
+  <a href="#pizza%e5%ba%97%e5%8f%98%e6%88%90%e5%8a%a0%e7%9b%9f%e5%ba%97" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p><img loading="lazy" src="/headfirst/1573522936624.png" alt="1573522936624" srcset="/headfirst/1573522936624.png?size=small, /headfirst/1573522936624.png?size=medium 1.5x, /headfirst/1573522936624.png?size=large 2x" data-title="1573522936624" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<ul>
+<li>在创建Pizza时将工厂传进去</li>
+</ul>
+<p><img loading="lazy" src="/headfirst/1573523017551.png" alt="1573523017551" srcset="/headfirst/1573523017551.png?size=small, /headfirst/1573523017551.png?size=medium 1.5x, /headfirst/1573523017551.png?size=large 2x" data-title="1573523017551" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<ul>
+<li>想要多一些的质量控制，每个pizza店的工艺又不一样，有的先切再烤，有的先烤再切。</li>
+</ul>
+<p><img loading="lazy" src="/headfirst/1573523268350.png" alt="1573523268350" srcset="/headfirst/1573523268350.png?size=small, /headfirst/1573523268350.png?size=medium 1.5x, /headfirst/1573523268350.png?size=large 2x" data-title="1573523268350" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<ul>
+<li>现在来看看Pizza店的多态。**将变化的东西移到低层（实现，子类），抽象的共性移到高层（超类或接口）**这边把Pizza的工艺流程移到子类中去</li>
+</ul>
+<p><img loading="lazy" src="/headfirst/1573523356734.png" alt="1573523356734" srcset="/headfirst/1573523356734.png?size=small, /headfirst/1573523356734.png?size=medium 1.5x, /headfirst/1573523356734.png?size=large 2x" data-title="1573523356734" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="/headfirst/1573523869191.png" alt="1573523869191" srcset="/headfirst/1573523869191.png?size=small, /headfirst/1573523869191.png?size=medium 1.5x, /headfirst/1573523869191.png?size=large 2x" data-title="1573523869191" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="/headfirst/1573523896063.png" alt="1573523896063" srcset="/headfirst/1573523896063.png?size=small, /headfirst/1573523896063.png?size=medium 1.5x, /headfirst/1573523896063.png?size=large 2x" data-title="1573523896063" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<ul>
+<li>PizzaStore超类变成，将CreatePizza变成抽象方法，由子类实现方法。</li>
+</ul>
+<p><img loading="lazy" src="/headfirst/1573524067917.png" alt="1573524067917" srcset="/headfirst/1573524067917.png?size=small, /headfirst/1573524067917.png?size=medium 1.5x, /headfirst/1573524067917.png?size=large 2x" data-title="1573524067917" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<ul>
+<li>工厂模式的工厂方法</li>
+</ul>
+<p><img loading="lazy" src="/headfirst/1573524169844.png" alt="1573524169844" srcset="/headfirst/1573524169844.png?size=small, /headfirst/1573524169844.png?size=medium 1.5x, /headfirst/1573524169844.png?size=large 2x" data-title="1573524169844" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<h4 id="pizza本身超类" class="heading-element"><span>Pizza本身，超类</span>
+  <a href="#pizza%e6%9c%ac%e8%ba%ab%e8%b6%85%e7%b1%bb" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h4><p><img loading="lazy" src="/headfirst/1573524496988.png" alt="1573524496988" srcset="/headfirst/1573524496988.png?size=small, /headfirst/1573524496988.png?size=medium 1.5x, /headfirst/1573524496988.png?size=large 2x" data-title="1573524496988" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<ul>
+<li>Pizza的多态</li>
+</ul>
+<p><img loading="lazy" src="/headfirst/1573524542662.png" alt="1573524542662" srcset="/headfirst/1573524542662.png?size=small, /headfirst/1573524542662.png?size=medium 1.5x, /headfirst/1573524542662.png?size=large 2x" data-title="1573524542662" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<h3 id="最终的user调用" class="heading-element"><span>最终的User调用</span>
+  <a href="#%e6%9c%80%e7%bb%88%e7%9a%84user%e8%b0%83%e7%94%a8" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p>对于pizza店和pizza通过工厂模式形成了一个pizza组件，这边对pizza的实现，就不会违反针对接口编程</p>
+<p><img loading="lazy" src="/headfirst/1573524588864.png" alt="1573524588864" srcset="/headfirst/1573524588864.png?size=small, /headfirst/1573524588864.png?size=medium 1.5x, /headfirst/1573524588864.png?size=large 2x" data-title="1573524588864" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<h3 id="简单工厂模式" class="heading-element"><span>简单工厂模式</span>
+  <a href="#%e7%ae%80%e5%8d%95%e5%b7%a5%e5%8e%82%e6%a8%a1%e5%bc%8f" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><ul>
+<li>创建者和产品</li>
+</ul>
+<p><img loading="lazy" src="/headfirst/1573524759662.png" alt="1573524759662" srcset="/headfirst/1573524759662.png?size=small, /headfirst/1573524759662.png?size=medium 1.5x, /headfirst/1573524759662.png?size=large 2x" data-title="1573524759662" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>所有的底层都依赖于高层，高层与高层之间相互依赖，相互解耦。</p>
+<p><img loading="lazy" src="/headfirst/1573524813813.png" alt="1573524813813" srcset="/headfirst/1573524813813.png?size=small, /headfirst/1573524813813.png?size=medium 1.5x, /headfirst/1573524813813.png?size=large 2x" data-title="1573524813813" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<ul>
+<li>工厂UML</li>
+</ul>
+<p><img loading="lazy" src="/headfirst/1573525037201.png" alt="1573525037201" srcset="/headfirst/1573525037201.png?size=small, /headfirst/1573525037201.png?size=medium 1.5x, /headfirst/1573525037201.png?size=large 2x" data-title="1573525037201" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<h3 id="pizza店再次升级pizza原料升级" class="heading-element"><span>Pizza店再次升级，Pizza原料升级</span>
+  <a href="#pizza%e5%ba%97%e5%86%8d%e6%ac%a1%e5%8d%87%e7%ba%a7pizza%e5%8e%9f%e6%96%99%e5%8d%87%e7%ba%a7" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><ul>
+<li>Ingredient（成分）超类：</li>
+</ul>
+<p><img loading="lazy" src="/headfirst/1573525987232.png" alt="1573525987232" srcset="/headfirst/1573525987232.png?size=small, /headfirst/1573525987232.png?size=medium 1.5x, /headfirst/1573525987232.png?size=large 2x" data-title="1573525987232" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<ul>
+<li>Dough（面团）Veggies(蔬菜)Pepperoni（意大利香肠）clam(蛤)子类：</li>
+</ul>
+<p><img loading="lazy" src="/headfirst/1573526054257.png" alt="1573526054257" srcset="/headfirst/1573526054257.png?size=small, /headfirst/1573526054257.png?size=medium 1.5x, /headfirst/1573526054257.png?size=large 2x" data-title="1573526054257" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<h4 id="改造pizza类" class="heading-element"><span>改造Pizza类</span>
+  <a href="#%e6%94%b9%e9%80%a0pizza%e7%b1%bb" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h4><ul>
+<li>抽象方法prepare()</li>
+</ul>
+<p><img loading="lazy" src="/headfirst/1573526283209.png" alt="1573526283209" srcset="/headfirst/1573526283209.png?size=small, /headfirst/1573526283209.png?size=medium 1.5x, /headfirst/1573526283209.png?size=large 2x" data-title="1573526283209" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<ul>
+<li>cheesepizza</li>
+</ul>
+<p><img loading="lazy" src="/headfirst/1573526337215.png" alt="1573526337215" srcset="/headfirst/1573526337215.png?size=small, /headfirst/1573526337215.png?size=medium 1.5x, /headfirst/1573526337215.png?size=large 2x" data-title="1573526337215" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<ul>
+<li>靠近一点工厂</li>
+</ul>
+<p><img loading="lazy" src="/headfirst/1573526403528.png" alt="1573526403528" srcset="/headfirst/1573526403528.png?size=small, /headfirst/1573526403528.png?size=medium 1.5x, /headfirst/1573526403528.png?size=large 2x" data-title="1573526403528" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<ul>
+<li>商店如何使用工厂</li>
+</ul>
+<p><img loading="lazy" src="/headfirst/1573526487108.png" alt="1573526487108" srcset="/headfirst/1573526487108.png?size=small, /headfirst/1573526487108.png?size=medium 1.5x, /headfirst/1573526487108.png?size=large 2x" data-title="1573526487108" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<h3 id="抽象工厂模式类图" class="heading-element"><span>抽象工厂模式类图</span>
+  <a href="#%e6%8a%bd%e8%b1%a1%e5%b7%a5%e5%8e%82%e6%a8%a1%e5%bc%8f%e7%b1%bb%e5%9b%be" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p>抽象工厂模式：提供一个接口，用于创建相关或依赖对象的家族，而不需要明确指定具体类。</p>
+<p><img loading="lazy" src="/headfirst/1573526645560.png" alt="1573526645560" srcset="/headfirst/1573526645560.png?size=small, /headfirst/1573526645560.png?size=medium 1.5x, /headfirst/1573526645560.png?size=large 2x" data-title="1573526645560" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<h3 id="pizza店的类图" class="heading-element"><span>Pizza店的类图</span>
+  <a href="#pizza%e5%ba%97%e7%9a%84%e7%b1%bb%e5%9b%be" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p><img loading="lazy" src="/headfirst/1573526742871.png" alt="1573526742871" srcset="/headfirst/1573526742871.png?size=small, /headfirst/1573526742871.png?size=medium 1.5x, /headfirst/1573526742871.png?size=large 2x" data-title="1573526742871" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<h2 id="3-命令模式" class="heading-element"><span>3 命令模式</span>
+  <a href="#3-%e5%91%bd%e4%bb%a4%e6%a8%a1%e5%bc%8f" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><p><strong>命令封装，支持撤销，宏命令，队列请求。</strong></p>
+<h3 id="餐厅案例" class="heading-element"><span>餐厅案例</span>
+  <a href="#%e9%a4%90%e5%8e%85%e6%a1%88%e4%be%8b" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p><img loading="lazy" src="/headfirst/1573570296084.png" alt="1573570296084" srcset="/headfirst/1573570296084.png?size=small, /headfirst/1573570296084.png?size=medium 1.5x, /headfirst/1573570296084.png?size=large 2x" data-title="1573570296084" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>餐馆点餐就是命令模式</p>
+<p><img loading="lazy" src="/headfirst/1573570996129.png" alt="1573570996129" srcset="/headfirst/1573570996129.png?size=small, /headfirst/1573570996129.png?size=medium 1.5x, /headfirst/1573570996129.png?size=large 2x" data-title="1573570996129" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="/headfirst/1573571069142.png" alt="1573571069142" srcset="/headfirst/1573571069142.png?size=small, /headfirst/1573571069142.png?size=medium 1.5x, /headfirst/1573571069142.png?size=large 2x" data-title="1573571069142" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="/headfirst/1573571209334.png" alt="1573571209334" srcset="/headfirst/1573571209334.png?size=small, /headfirst/1573571209334.png?size=medium 1.5x, /headfirst/1573571209334.png?size=large 2x" data-title="1573571209334" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<h3 id="回到遥控器" class="heading-element"><span>回到遥控器</span>
+  <a href="#%e5%9b%9e%e5%88%b0%e9%81%a5%e6%8e%a7%e5%99%a8" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p>动作请求者和动作执行者解耦，</p>
+<ul>
+<li>命令接口：</li>
+</ul>
+<p><img loading="lazy" src="/headfirst/1573571316249.png" alt="1573571316249" srcset="/headfirst/1573571316249.png?size=small, /headfirst/1573571316249.png?size=medium 1.5x, /headfirst/1573571316249.png?size=large 2x" data-title="1573571316249" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<ul>
+<li>具体命令：</li>
+</ul>
+<p><img loading="lazy" src="/headfirst/1573571329868.png" alt="1573571329868" srcset="/headfirst/1573571329868.png?size=small, /headfirst/1573571329868.png?size=medium 1.5x, /headfirst/1573571329868.png?size=large 2x" data-title="1573571329868" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<ul>
+<li>
+<p>命令调用者<img loading="lazy" src="/headfirst/1573571389149.png" alt="1573571389149" srcset="/headfirst/1573571389149.png?size=small, /headfirst/1573571389149.png?size=medium 1.5x, /headfirst/1573571389149.png?size=large 2x" data-title="1573571389149" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+</li>
+<li>
+<p>简单测试</p>
+<p><img loading="lazy" src="/headfirst/1573652063395.png" alt="1573652063395" srcset="/headfirst/1573652063395.png?size=small, /headfirst/1573652063395.png?size=medium 1.5x, /headfirst/1573652063395.png?size=large 2x" data-title="1573652063395" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+</li>
+</ul>
+<p>命令的调用者是遥控器 ，命令执行者是灯，如果不用命令模式应该是遥控器直接调用灯。</p>
+<p>命令模式最重要变化的是命令的执行者，在执行者有多种多样的时候，就需要命令模式来实现。</p>
+<h3 id="命令模式类图" class="heading-element"><span>命令模式类图</span>
+  <a href="#%e5%91%bd%e4%bb%a4%e6%a8%a1%e5%bc%8f%e7%b1%bb%e5%9b%be" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p><img loading="lazy" src="/headfirst/1573653013717.png" alt="1573653013717" srcset="/headfirst/1573653013717.png?size=small, /headfirst/1573653013717.png?size=medium 1.5x, /headfirst/1573653013717.png?size=large 2x" data-title="1573653013717" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>receiver:就是上文中的灯，action方法为light.on()方法。</p>
+<p><img loading="lazy" src="/headfirst/1573653904898.png" alt="1573653904898" srcset="/headfirst/1573653904898.png?size=small, /headfirst/1573653904898.png?size=medium 1.5x, /headfirst/1573653904898.png?size=large 2x" data-title="1573653904898" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<h3 id="支持撤销" class="heading-element"><span>支持撤销</span>
+  <a href="#%e6%94%af%e6%8c%81%e6%92%a4%e9%94%80" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p>将每个命令支持撤销方法</p>
+<p><img loading="lazy" src="/headfirst/1573654115227.png" alt="1573654115227" srcset="/headfirst/1573654115227.png?size=small, /headfirst/1573654115227.png?size=medium 1.5x, /headfirst/1573654115227.png?size=large 2x" data-title="1573654115227" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="/headfirst/1573654125422.png" alt="1573654125422" srcset="/headfirst/1573654125422.png?size=small, /headfirst/1573654125422.png?size=medium 1.5x, /headfirst/1573654125422.png?size=large 2x" data-title="1573654125422" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="/headfirst/1573654144656.png" alt="1573654144656" srcset="/headfirst/1573654144656.png?size=small, /headfirst/1573654144656.png?size=medium 1.5x, /headfirst/1573654144656.png?size=large 2x" data-title="1573654144656" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="/headfirst/1573654169008.png" alt="1573654169008" srcset="/headfirst/1573654169008.png?size=small, /headfirst/1573654169008.png?size=medium 1.5x, /headfirst/1573654169008.png?size=large 2x" data-title="1573654169008" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<h3 id="使用状态的撤销" class="heading-element"><span>使用状态的撤销</span>
+  <a href="#%e4%bd%bf%e7%94%a8%e7%8a%b6%e6%80%81%e7%9a%84%e6%92%a4%e9%94%80" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p><img loading="lazy" src="/headfirst/1573655612291.png" alt="1573655612291" srcset="/headfirst/1573655612291.png?size=small, /headfirst/1573655612291.png?size=medium 1.5x, /headfirst/1573655612291.png?size=large 2x" data-title="1573655612291" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="/headfirst/1573655671535.png" alt="1573655671535" srcset="/headfirst/1573655671535.png?size=small, /headfirst/1573655671535.png?size=medium 1.5x, /headfirst/1573655671535.png?size=large 2x" data-title="1573655671535" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="/headfirst/1573655711767.png" alt="1573655711767" srcset="/headfirst/1573655711767.png?size=small, /headfirst/1573655711767.png?size=medium 1.5x, /headfirst/1573655711767.png?size=large 2x" data-title="1573655711767" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<h3 id="宏命令之激进的遥控器" class="heading-element"><span>宏命令之激进的遥控器</span>
+  <a href="#%e5%ae%8f%e5%91%bd%e4%bb%a4%e4%b9%8b%e6%bf%80%e8%bf%9b%e7%9a%84%e9%81%a5%e6%8e%a7%e5%99%a8" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p>该遥控器要实现自动化功能，一键打开灯光，音响，电视和DVD，直接进入Party模式</p>
+<p><img loading="lazy" src="/headfirst/1573655867447.png" alt="1573655867447" srcset="/headfirst/1573655867447.png?size=small, /headfirst/1573655867447.png?size=medium 1.5x, /headfirst/1573655867447.png?size=large 2x" data-title="1573655867447" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="/headfirst/1573655893937.png" alt="1573655893937" srcset="/headfirst/1573655893937.png?size=small, /headfirst/1573655893937.png?size=medium 1.5x, /headfirst/1573655893937.png?size=large 2x" data-title="1573655893937" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="/headfirst/1573655990615.png" alt="1573655990615" srcset="/headfirst/1573655990615.png?size=small, /headfirst/1573655990615.png?size=medium 1.5x, /headfirst/1573655990615.png?size=large 2x" data-title="1573655990615" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="/headfirst/1573656028387.png" alt="1573656028387" srcset="/headfirst/1573656028387.png?size=small, /headfirst/1573656028387.png?size=medium 1.5x, /headfirst/1573656028387.png?size=large 2x" data-title="1573656028387" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="/headfirst/1573656102944.png" alt="1573656102944" srcset="/headfirst/1573656102944.png?size=small, /headfirst/1573656102944.png?size=medium 1.5x, /headfirst/1573656102944.png?size=large 2x" data-title="1573656102944" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<h3 id="队列请求" class="heading-element"><span>队列请求</span>
+  <a href="#%e9%98%9f%e5%88%97%e8%af%b7%e6%b1%82" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p>命令可以在不同的线程中被调用，日程安排，线程池，工作队列等。</p>
+<h3 id="日志请求" class="heading-element"><span>日志请求</span>
+  <a href="#%e6%97%a5%e5%bf%97%e8%af%b7%e6%b1%82" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p>​		某些应用需要我们将所有的动作都记录在日志中，并能在系统司机之后，重新调用这些动作恢复到之前的状态，通过新增两个方法（store()和load()），例用对象的序列化（serialization）实现这些方法，序列化最好只用在对象持久化（persistence）上。</p>
+<p>​		怎么做：当我们执行命令的时候，将历史记录储存在磁盘中，一旦系统司机，我们就可以将命令对象重新加载，并成批地依次调用这些对的execute()方法。</p>
+<p>​		许多调用大型数据结构的动作的应用我无法在每次改变发生时被快速的记录。通过使用记录日志，可以将上次检查点（checkpoint）之后的所有操作记录下来。如果系统出状况，从检查点开始应用这些操作。</p>
+<p>​		比方说对于电子表格的应用：将电子表格的操作记录在日志中，而不是每次电子表格一有变化就记录整个电子表格。对于更高级的应用而言，这些技巧可以被扩展应用到事务（Transaction）中,也就是说一群操作必须全部进行完成。</p>
+<p><img loading="lazy" src="/headfirst/1573657075868.png" alt="1573657075868" srcset="/headfirst/1573657075868.png?size=small, /headfirst/1573657075868.png?size=medium 1.5x, /headfirst/1573657075868.png?size=large 2x" data-title="1573657075868" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<h2 id="4-状态模式" class="heading-element"><span>4 状态模式</span>
+  <a href="#4-%e7%8a%b6%e6%80%81%e6%a8%a1%e5%bc%8f" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><p>策略模式和状态模式是双胞胎，在出生时才分开。</p>
+<p>策略模式是通过互换算法来创建成功业务的，状态是通过改变对象内部的状态来帮助对象控制自己的行为。</p>
+<h3 id="糖果机" class="heading-element"><span>糖果机</span>
+  <a href="#%e7%b3%96%e6%9e%9c%e6%9c%ba" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p><img loading="lazy" src="/headfirst/1573657473228.png" alt="1573657473228" srcset="/headfirst/1573657473228.png?size=small, /headfirst/1573657473228.png?size=medium 1.5x, /headfirst/1573657473228.png?size=large 2x" data-title="1573657473228" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>这个一个状态图，每个圆圈都是一个状态。</p>
+<p><img loading="lazy" src="/headfirst/1573657532071.png" alt="1573657532071" srcset="/headfirst/1573657532071.png?size=small, /headfirst/1573657532071.png?size=medium 1.5x, /headfirst/1573657532071.png?size=large 2x" data-title="1573657532071" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="/headfirst/1573657568594.png" alt="1573657568594" srcset="/headfirst/1573657568594.png?size=small, /headfirst/1573657568594.png?size=medium 1.5x, /headfirst/1573657568594.png?size=large 2x" data-title="1573657568594" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="/headfirst/1573657604552.png" alt="1573657604552" srcset="/headfirst/1573657604552.png?size=small, /headfirst/1573657604552.png?size=medium 1.5x, /headfirst/1573657604552.png?size=large 2x" data-title="1573657604552" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="/headfirst/1573657716301.png" alt="1573657716301" srcset="/headfirst/1573657716301.png?size=small, /headfirst/1573657716301.png?size=medium 1.5x, /headfirst/1573657716301.png?size=large 2x" data-title="1573657716301" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>测试：</p>
+<p><img loading="lazy" src="/headfirst/1573657748985.png" alt="1573657748985" srcset="/headfirst/1573657748985.png?size=small, /headfirst/1573657748985.png?size=medium 1.5x, /headfirst/1573657748985.png?size=large 2x" data-title="1573657748985" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<h3 id="激进糖果机" class="heading-element"><span>激进糖果机</span>
+  <a href="#%e6%bf%80%e8%bf%9b%e7%b3%96%e6%9e%9c%e6%9c%ba" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p>当曲柄转动时，有10%的几率会得到免费糖果。</p>
+<p>将之前的状态都变成类创建state接口</p>
+<p><img loading="lazy" src="/headfirst/1573657914726.png" alt="1573657914726" srcset="/headfirst/1573657914726.png?size=small, /headfirst/1573657914726.png?size=medium 1.5x, /headfirst/1573657914726.png?size=large 2x" data-title="1573657914726" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="/headfirst/1573657981897.png" alt="1573657981897" srcset="/headfirst/1573657981897.png?size=small, /headfirst/1573657981897.png?size=medium 1.5x, /headfirst/1573657981897.png?size=large 2x" data-title="1573657981897" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="/headfirst/1573658056688.png" alt="1573658056688" srcset="/headfirst/1573658056688.png?size=small, /headfirst/1573658056688.png?size=medium 1.5x, /headfirst/1573658056688.png?size=large 2x" data-title="1573658056688" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="/headfirst/1573739509140.png" alt="1573739509140" srcset="/headfirst/1573739509140.png?size=small, /headfirst/1573739509140.png?size=medium 1.5x, /headfirst/1573739509140.png?size=large 2x" data-title="1573739509140" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<ul>
+<li>
+<p>类似的实现所有的状态类</p>
+</li>
+<li>
+<p>糖果机改造</p>
+</li>
+</ul>
+<p><img loading="lazy" src="/headfirst/1573739622207.png" alt="1573739622207" srcset="/headfirst/1573739622207.png?size=small, /headfirst/1573739622207.png?size=medium 1.5x, /headfirst/1573739622207.png?size=large 2x" data-title="1573739622207" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="/headfirst/1573739638682.png" alt="1573739638682" srcset="/headfirst/1573739638682.png?size=small, /headfirst/1573739638682.png?size=medium 1.5x, /headfirst/1573739638682.png?size=large 2x" data-title="1573739638682" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="/headfirst/1573739757903.png" alt="1573739757903" srcset="/headfirst/1573739757903.png?size=small, /headfirst/1573739757903.png?size=medium 1.5x, /headfirst/1573739757903.png?size=large 2x" data-title="1573739757903" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="/headfirst/1573739819226.png" alt="1573739819226" srcset="/headfirst/1573739819226.png?size=small, /headfirst/1573739819226.png?size=medium 1.5x, /headfirst/1573739819226.png?size=large 2x" data-title="1573739819226" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<h3 id="状态模式" class="heading-element"><span>状态模式</span>
+  <a href="#%e7%8a%b6%e6%80%81%e6%a8%a1%e5%bc%8f" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p>允许对象在内部状态改变时改变它的行为，对象看起来好像修改了它的类。</p>
+<p><img loading="lazy" src="/headfirst/1573740066555.png" alt="1573740066555" srcset="/headfirst/1573740066555.png?size=small, /headfirst/1573740066555.png?size=medium 1.5x, /headfirst/1573740066555.png?size=large 2x" data-title="1573740066555" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>状态模式和策略模式，状态模式是上下文根本不知道对象发生了改变</p>
+<h3 id="十次抽奖" class="heading-element"><span>十次抽奖</span>
+  <a href="#%e5%8d%81%e6%ac%a1%e6%8a%bd%e5%a5%96" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p><img loading="lazy" src="/headfirst/1573740492379.png" alt="1573740492379" srcset="/headfirst/1573740492379.png?size=small, /headfirst/1573740492379.png?size=medium 1.5x, /headfirst/1573740492379.png?size=large 2x" data-title="1573740492379" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="/headfirst/1573740544180.png" alt="1573740544180" srcset="/headfirst/1573740544180.png?size=small, /headfirst/1573740544180.png?size=medium 1.5x, /headfirst/1573740544180.png?size=large 2x" data-title="1573740544180" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="/headfirst/1573740567210.png" alt="1573740567210" srcset="/headfirst/1573740567210.png?size=small, /headfirst/1573740567210.png?size=medium 1.5x, /headfirst/1573740567210.png?size=large 2x" data-title="1573740567210" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="/headfirst/1573740596436.png" alt="1573740596436" srcset="/headfirst/1573740596436.png?size=small, /headfirst/1573740596436.png?size=medium 1.5x, /headfirst/1573740596436.png?size=large 2x" data-title="1573740596436" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<h3 id="总结" class="heading-element"><span>总结</span>
+  <a href="#%e6%80%bb%e7%bb%93" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p>跟策略模式很像，策略模式是将不同的算法（变化的地方）封装成类，实现弹性变化，而状态模式是将不同的状态封装成类，同时客户不会直接改变状态，最好由状态自己改变状态，</p>
+</div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title="更新于 2019-11-12 17:09:22">更新于 2019-11-12&nbsp;</span>
+      </div><div class="post-info-license">
+            <span><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0 转载请注明来源</a></span>
+          </div></div><div class="post-info-line">
+        <div class="post-info-md"><span><a href="https://github.com/DDuuuu/issues/new?title=[BUG]%20%E9%87%8D%E6%9E%84%E6%94%B9%E5%96%84%E6%97%A2%E6%9C%89%E4%BB%A3%E7%A0%81&#43;%E7%AD%96%E7%95%A5&#43;%E5%B7%A5%E5%8E%82&#43;%E5%91%BD%E4%BB%A4&#43;%E7%8A%B6%E6%80%81&amp;body=%7cField%7cValue%7c%0A%7c-%7c-%7c%0A%7cTitle%7c%E9%87%8D%E6%9E%84%E6%94%B9%E5%96%84%E6%97%A2%E6%9C%89%E4%BB%A3%E7%A0%81&#43;%E7%AD%96%E7%95%A5&#43;%E5%B7%A5%E5%8E%82&#43;%E5%91%BD%E4%BB%A4&#43;%E7%8A%B6%E6%80%81%7c%0A%7cURL%7chttps://DDuuuu.github.io/2019/11/designpattern13-headfirst/%7c%0A%7cFilename%7c%7c" title="报告问题"target="_blank" rel="external nofollow noopener noreferrer" class="link-to-report">报告问题</a></span></div>
+        <div class="post-info-share">
+          <span></span>
+        </div>
+      </div></div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href="/tags/headfirst%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" class="post-tag" title="标签 - HeadFirst设计模式">HeadFirst设计模式</a><a href="/tags/%E7%AD%96%E7%95%A5/" class="post-tag" title="标签 - 策略">策略</a><a href="/tags/%E5%B7%A5%E5%8E%82/" class="post-tag" title="标签 - 工厂">工厂</a><a href="/tags/%E5%91%BD%E4%BB%A4/" class="post-tag" title="标签 - 命令">命令</a><a href="/tags/%E7%8A%B6%E6%80%81/" class="post-tag" title="标签 - 状态">状态</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/2019/11/designpattern9-refactoring5/" class="post-nav-item" rel="prev" title="重构改善既有代码 简化条件表达式"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>重构改善既有代码 简化条件表达式</a>
+      <a href="/2019/11/designpattern10-refactoring6/" class="post-nav-item" rel="next" title="重构改善既有代码 简化函数调用">重构改善既有代码 简化函数调用<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div class="post-reward">
+    <div class="comment">为爱发电,请我喝杯咖啡吧</div>
+    <input type="checkbox" class="reward-input" name="reward" id="fi-reward" hidden />
+    <label class="reward-button" for="fi-reward"><i class="fa-solid fa-qrcode fa-fw" aria-hidden="true"></i>赞赏</label>
+    <div class="reward-ways" data-mode="static"><div><img loading="lazy" src="/images/alipay.jpg" alt="AndrewDu 支付宝" data-title="AndrewDu 支付宝" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/><span data-animation>支付宝</span>
+          </div><div><img loading="lazy" src="/images/wechat.jpg" alt="AndrewDu 微信" data-title="AndrewDu 微信" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/><span data-animation>微信</span>
+          </div></div>
+  </div><div id="comments"><div id="giscus" class="comment">
+          <script
+            src="https://giscus.app/client.js"
+            data-repo="DDuuuu/DDuuuu.github.io"
+            data-repo-id="R_kgDOMOxQVQ"
+            data-category="Announcements"
+            data-category-id="DIC_kwDOMOxQVc4Cgd23"
+            data-mapping="pathname"
+            data-strict="0"
+            
+            data-theme="preferred_color_scheme"
+            data-reactions-enabled="1"
+            data-emit-metadata="0"
+            data-input-position="bottom"
+            data-lang="zh-CN"
+            data-loading="lazy"
+            crossorigin="anonymous"
+            async
+            defer
+          ></script>
+        </div>
+        <noscript>
+          Please enable JavaScript to view the comments powered by <a href="https://giscus.app/" rel="external nofollow noopener noreferrer">giscus</a>.
+        </noscript></div></article>
+
+  <aside class="toc" id="toc-auto" aria-label="目录"><h2 class="toc-title">目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2018 - 2024</span><span class="author" itemprop="copyrightHolder">
+              <a href="https://github.com/DDuuuu"target="_blank" rel="external nofollow noopener noreferrer">AndrewDu</a></span></div><div class="footer-line statistics"><span class="site-time" title='网站运行中……'><i class="fa-solid fa-heartbeat fa-fw animate-icon" aria-hidden="true"></i><span class="ms-1 d-none">网站运行时间:</span><span class="run-times ms-1">网站运行中……</span></span></div><div class="footer-line visitor">
+          <span id="busuanzi_container_site_uv" title='总访客数'><i class="fa-regular fa-user fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span><span id="busuanzi_container_site_pv" class="footer-divider" title='总访问量'><i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span>
+        </div></div>
+  </footer></div><div class="widgets"><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role="button" aria-label="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i><span class="variant-numeric d-none">0%</span>
+        </div><div class="fixed-button view-comments d-none" role="button" aria-label="查看评论"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></div></div><a href="https://github.com/DDuuuu" title="AndrewDu GitHub"target="_blank" rel="external nofollow" class="github-corner right d-none-mobile"><svg viewBox="0 0 250 250" aria-hidden="true" width="56" height="56"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><div id="mask"></div><div class="reading-progress-bar" style="left: 0;top: 0;"></div><noscript>
+    <div class="noscript-warning">该网站在启用 JavaScript 的情况下效果最佳。</div>
+  </noscript>
+</div><link rel="stylesheet" href="/lib/lightgallery/css/lightgallery-bundle.min.css"><link rel="preload" href="/lib/katex/katex.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/lib/katex/katex.min.css"></noscript><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><link rel="stylesheet" href="/lib/pace/themes/blue/pace-theme-minimal.css"><script src="https://polyfill.io/v3/polyfill.min.js?features=Array.prototype.fill%2CArray.prototype.find%2CArray.from%2CIntersectionObserver%2CMath.sign%2CObject.assign%2CPromise%2CObject.entries%2Chtml5shiv%2CObject.values%2Cfetch%2CElement.prototype.after"></script><script src="/lib/object-fit-images/ofi.min.js"></script><script src="/lib/autocomplete/autocomplete.min.js" defer></script><script src="/lib/fuse/fuse.min.js" defer></script><script src="/lib/instant-page/instantpage.min.js" async defer type="module"></script><script src="/lib/twemoji/twemoji.min.js" defer></script><script src="/lib/lightgallery/lightgallery.min.js" defer></script><script src="/lib/lightgallery/plugins/thumbnail/lg-thumbnail.min.js" defer></script><script src="/lib/lightgallery/plugins/zoom/lg-zoom.min.js" defer></script><script src="/lib/typeit/index.umd.js" defer></script><script src="/lib/katex/katex.min.js" defer></script><script src="/lib/katex/auto-render.min.js" defer></script><script src="/lib/katex/copy-tex.min.js" defer></script><script src="/lib/katex/mhchem.min.js" defer></script><script src="/lib/cookieconsent/cookieconsent.min.js" defer></script><script src="/lib/pangu/pangu.min.js" defer></script><script src="/lib/cell-watermark/watermark.min.js" defer></script><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async defer></script><script src="/lib/pace/pace.min.js" async defer></script><script>window.config={"autoBookmark":true,"code":{"copyTitle":"复制到剪贴板","maxShownLines":999999},"comment":{"enable":true,"expired":false,"giscus":{"darkTheme":"dark","lightTheme":"light","origin":"https://giscus.app"}},"cookieconsent":{"content":{"dismiss":"同意","link":"了解更多","message":"本网站使用 Cookies 来改善您的浏览体验。"},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"enablePWA":true,"lightgallery":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"pangu":{"enable":true,"selector":"article"},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":12,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":100,"threshold":0.3,"type":"fuse","useExtendedSearch":false},"siteTime":"2018-02-22T04:10:22+08:00","twemoji":true,"typeit":{"cursorChar":"|","cursorSpeed":1000,"duration":-1,"loop":false,"speed":100},"version":"v0.3.8","watermark":{"colspacing":300,"content":"Andrew.Du","enable":true,"fontfamily":"inherit","fontsize":0.85,"height":20,"opacity":0.1,"rotate":15,"rowspacing":300,"width":150}};</script><script src="/js/theme.min.js" defer></script></body>
+</html>
